@@ -1,7 +1,7 @@
 // Rendez-vous — Page rdv.html (AVANCÉ)
 
-// Base de données des vétérinaires
-const vets = [
+// Base de données des vétérinaires par défaut
+const defaultVets = [
   {
     id: 1,
     name: "Dr. Ahmed Alami",
@@ -60,7 +60,91 @@ const vets = [
   }
 ];
 
+// Variable globale qui sera mise à jour avec vets inscrits
+let vets = [];
+
+// === LOAD ALL VETS (DEFAULT + REGISTERED) ===
+function loadAllVetsForRDV() {
+  console.log('📥 [loadAllVetsForRDV] Chargement des vétérinaires...');
+  
+  // Commencer par les vétérinaires par défaut
+  vets = [...defaultVets];
+  console.log('✅ Default vets loaded:', vets.length);
+  
+  // Charger les vétérinaires inscrits
+  const registeredVets = JSON.parse(localStorage.getItem('ph_vet_list') || '[]');
+  console.log('📋 Registered vets in localStorage:', registeredVets.length, registeredVets);
+  
+  registeredVets.forEach(regVet => {
+    console.log('🔄 Processing registered vet:', regVet.name);
+    
+    // Vérifier que ce vét n'est pas déjà dans la liste
+    const alreadyExists = vets.find(v => v.email === regVet.email);
+    if (alreadyExists) {
+      console.log('⚠️ Vet already exists:', regVet.name);
+      return;
+    }
+    
+    // Transformer le vét inscrit au format attendu
+    const transformedVet = {
+      id: regVet.id || Date.now(),
+      name: regVet.name,
+      city: regVet.city || 'Non spécifié',
+      specialty: regVet.specialty || 'Généraliste',
+      phone: regVet.phone || '',
+      email: regVet.email,
+      rating: regVet.rating || 5.0,
+      reviews: regVet.reviews || 0,
+      experience: 0,
+      image: "🏥", // Icône pour vét inscrit
+      availability: ["09:00", "10:00", "11:00", "14:00", "15:00", "16:00"],
+      color: "#ef4444",
+      isNewRegistered: true // Marquer comme nouvellement inscrit
+    };
+    
+    console.log('➕ Adding vet to list:', transformedVet.name);
+    vets.push(transformedVet);
+  });
+  
+  console.log('✅ Final vets list:', vets.length, 'vétérinaires');
+  console.log('🐕 Vets data:', JSON.stringify(vets, null, 2));
+  return vets;
+}
+
+// === POPULATE VET SELECT DROPDOWN ===
+// Remplir le dropdown du formulaire avec les vétérinaires inscrits
+function populateVetSelect() {
+  const vetSelect = document.getElementById('vetSelect');
+  if (!vetSelect) return;
+  
+  // Garder les options par défaut (vides)
+  const defaultOptions = Array.from(vetSelect.options).filter(opt => opt.value === '');
+  vetSelect.innerHTML = '';
+  
+  // Ré-ajouter les options par défaut
+  defaultOptions.forEach(opt => vetSelect.appendChild(opt.cloneNode(true)));
+  
+  // Ajouter tous les vétérinaires (default + inscrits)
+  vets.forEach(vet => {
+    const optionText = `${vet.name} - ${vet.city} (${vet.specialty})`;
+    const optionValue = vet.name;
+    
+    const option = document.createElement('option');
+    option.value = optionValue;
+    option.textContent = optionText;
+    
+    // Marquer les vétérinaires nouvellement inscrits
+    if (vet.isNewRegistered) {
+      option.textContent = `🆕 ${optionText}`;
+    }
+    
+    vetSelect.appendChild(option);
+  });
+}
+
 document.addEventListener('DOMContentLoaded', () => {
+  console.log('🔄 [DOMContentLoaded] RDV Page Initialization Starting...');
+  
   // Défaut : la date min est dans 2 jours
   const tomorrow = new Date();
   tomorrow.setDate(tomorrow.getDate() + 2);
@@ -69,16 +153,35 @@ document.addEventListener('DOMContentLoaded', () => {
     dateInput.setAttribute('min', tomorrow.toISOString().split('T')[0]);
   }
 
+  // === CHARGER LES VÉTÉRINAIRES (DEFAULT + INSCRITS) ===
+  console.log('1️⃣ Calling loadAllVetsForRDV()...');
+  loadAllVetsForRDV();
+  console.log('✅ After loadAllVetsForRDV() - vets array length:', vets.length);
+
+  // === REMPLIR LE DROPDOWN DES VÉTÉRINAIRES ===
+  console.log('2️⃣ Calling populateVetSelect()...');
+  populateVetSelect();
+  console.log('✅ populateVetSelect() completed');
+
   // Initialiser les onglets
+  console.log('3️⃣ Calling initializeTabs()...');
   initializeTabs();
+  console.log('✅ initializeTabs() completed');
   
   // Charger et afficher les RDV
+  console.log('4️⃣ Calling loadRDVHistory()...');
   loadRDVHistory();
+  console.log('✅ loadRDVHistory() completed');
   
   // Afficher les vétérinaires
+  console.log('5️⃣ Calling displayVets()...');
+  console.log('📊 vets array BEFORE displayVets():', vets.length, 'vétérinaires');
+  console.log('📋 vets data:', JSON.stringify(vets.slice(0, 2), null, 2)); // Show first 2
   displayVets();
+  console.log('✅ displayVets() completed');
   
   // Afficher le statut d'abonnement
+  console.log('6️⃣ Calling updateSubscriptionStatus()...');
   updateSubscriptionStatus();
 
   // Gestion de l'affichage du champ "Autre animal"
@@ -166,6 +269,10 @@ document.addEventListener('DOMContentLoaded', () => {
       const rdvList = JSON.parse(localStorage.getItem('ph_rdv') || '[]');
       rdvList.push(rdv);
       localStorage.setItem('ph_rdv', JSON.stringify(rdvList));
+
+      // === SYNCHRONISATION AVEC LES VÉTÉRINAIRES ===
+      // Ajouter le RDV aussi dans le système des vétérinaires
+      syncRDVToVets(rdv, vet);
 
       // Afficher la confirmation
       showConfirmation(animalLabel, vet, dateFormatted, time, confirmationCode);
@@ -304,7 +411,24 @@ function loadRDVHistory() {
 function displayVets() {
   const container = document.getElementById('vetsContainer');
   
-  container.innerHTML = vets.map(vet => `
+  if (!container) {
+    console.error('❌ [displayVets] Container #vetsContainer not found in DOM!');
+    return false;
+  }
+
+  console.log('📊 [displayVets] Starting display. vets array length:', vets.length);
+  
+  if (!vets || vets.length === 0) {
+    console.warn('⚠️ [displayVets] vets array is empty!');
+    container.innerHTML = '<div class="col-12"><p class="text-center text-muted">Aucun vétérinaire disponible</p></div>';
+    return false;
+  }
+  
+  console.log('✅ [displayVets] Rendering', vets.length, 'vets');
+  
+  const html = vets.map((vet, index) => {
+    console.log(`🐕 [displayVets] Rendering vet ${index + 1}:`, vet.name);
+    return `
     <div class="col-md-6 col-lg-4">
       <div class="card border-0 shadow-sm h-100 overflow-hidden" style="border-top: 5px solid ${vet.color}; border-radius: 15px; transition: all 0.3s ease;">
         <div style="background: ${vet.color}; color: white; padding: 2rem; text-align: center;">
@@ -336,7 +460,7 @@ function displayVets() {
           </div>
 
           <div class="d-grid gap-2">
-            <button class="btn btn-primary btn-sm fw-bold" onclick="selectVet('${vet.name} - ${vet.city}')" style="border-radius: 8px;">
+            <button class="btn btn-primary btn-sm fw-bold" onclick="selectVet('${vet.name}')" style="border-radius: 8px;">
               <i class="bi bi-calendar-event me-1"></i>Prendre RDV
             </button>
             <a href="tel:${vet.phone}" class="btn btn-outline-secondary btn-sm fw-bold" style="border-radius: 8px;">
@@ -346,7 +470,12 @@ function displayVets() {
         </div>
       </div>
     </div>
-  `).join('');
+  `;
+  }).join('');
+  
+  container.innerHTML = html;
+  console.log('✅ [displayVets] HTML injected into container');
+  return true;
 }
 
 function selectVet(vetName) {
@@ -414,6 +543,59 @@ function rateRDV(id) {
 
 function initializeTabs() {
   // Bootstrap tabs are auto-handled
+}
+
+// === SYNCHRONIZATION FUNCTION ===
+// Sync RDV from clients to veterinarians
+function syncRDVToVets(rdv, vetName) {
+  // Get current appointments or create empty array
+  const appointments = JSON.parse(localStorage.getItem('ph_appointments') || '[]');
+  
+  // Find the vet from the default vets list
+  let vetInfo = vets.find(v => v.name === vetName);
+  
+  // If not found in default list, try to find in registered vets
+  if (!vetInfo) {
+    const registeredVets = JSON.parse(localStorage.getItem('ph_vet_list') || '[]');
+    vetInfo = registeredVets.find(v => v.name === vetName);
+  }
+  
+  if (!vetInfo) {
+    console.warn('Vet not found:', vetName);
+    return;
+  }
+  
+  // Get client session info if available
+  const clientSession = JSON.parse(localStorage.getItem('ph_session') || 'null');
+  const clientName = clientSession ? clientSession.name : 'Client ' + rdv.id;
+  const clientPhone = clientSession ? clientSession.phone : '';
+  
+  // Create appointment for vet
+  const appointment = {
+    id: rdv.id.toString(),
+    vetEmail: vetInfo.email,
+    vetName: vetInfo.name,
+    vetCity: vetInfo.city || '',
+    vetSpecialty: vetInfo.specialty,
+    clientName: clientName,
+    clientPhone: clientPhone,
+    petName: rdv.animal,
+    petType: rdv.animal,
+    date: rdv.date,
+    time: rdv.time,
+    reason: rdv.reason,
+    status: 'pending', // Pending confirmation from vet
+    createdAt: new Date().toISOString(),
+    notes: rdv.details || '',
+    confirmationCode: rdv.confirmationCode
+  };
+  
+  // Check if appointment already exists
+  if (!appointments.find(apt => apt.id === appointment.id)) {
+    appointments.push(appointment);
+    localStorage.setItem('ph_appointments', JSON.stringify(appointments));
+    console.log('Appointment synced for vet:', vetName);
+  }
 }
 
 

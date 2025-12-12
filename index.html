@@ -15,15 +15,15 @@
   <link rel="stylesheet" href="assets/css/styles.css">
   <link rel="stylesheet" href="assets/css/modern-ui.css">
   
-  <!-- Redirection vers home.html si pas encore authentifié -->
+  <!-- Redirection conditionnelle -->
   <script>
-    document.addEventListener('DOMContentLoaded', () => {
-      const session = localStorage.getItem('ph_session');
-      // Si pas de session, rediriger vers home.html
-      if (!session || session === 'null') {
-        window.location.href = 'home.html';
-      }
-    });
+    // Redirection intelligente
+    // Si utilisateur déjà connecté, rester sur index.html
+    // Sinon, aller à home.html
+    const session = localStorage.getItem('ph_session');
+    if (!session) {
+      window.location.href = 'home.html';
+    }
   </script>
   
   <style>

@@ -1,6 +1,6 @@
 // Vétérinaires — Page vets.html
 
-const veterinarians = [
+const defaultVeterinarians = [
   { id: 1, name: 'Dr. Ahmed Alami', city: 'Casablanca', specialty: 'Généraliste', phone: '05.22.11.22.33', email: 'ahmed@vetmaroc.com', rating: 4.8 },
   { id: 2, name: 'Dr. Fatima Bennani', city: 'Rabat', specialty: 'Chirurgie', phone: '05.37.44.55.66', email: 'fatima@vetmaroc.com', rating: 4.9 },
   { id: 3, name: 'Dr. Mohamed Karim', city: 'Fès', specialty: 'Dermatologie', phone: '05.35.77.88.99', email: 'karim@vetmaroc.com', rating: 4.7 },
@@ -9,13 +9,45 @@ const veterinarians = [
   { id: 6, name: 'Dr. Amina Brahim', city: 'Casablanca', specialty: 'Chirurgie', phone: '05.22.22.33.44', email: 'amina@vetmaroc.com', rating: 4.9 },
 ];
 
+let veterinarians = [];
+
 document.addEventListener('DOMContentLoaded', () => {
-  renderVets(veterinarians);
+  // Load all veterinarians (default + registered ones)
+  loadAllVeterinarians();
 
   // Filtres
   document.getElementById('cityFilter').addEventListener('change', filterVets);
   document.getElementById('specialtyFilter').addEventListener('change', filterVets);
 });
+
+// === LOAD ALL VETERINARIANS ===
+// Combine default vets with newly registered ones
+function loadAllVeterinarians() {
+  // Start with default vets
+  veterinarians = [...defaultVeterinarians];
+  
+  // Add registered vets from localStorage
+  const registeredVets = JSON.parse(localStorage.getItem('ph_vet_list') || '[]');
+  
+  registeredVets.forEach(registeredVet => {
+    // Check if vet is not already in the default list
+    if (!veterinarians.find(v => v.email === registeredVet.email)) {
+      veterinarians.push({
+        id: registeredVet.id || Date.now(),
+        name: registeredVet.name,
+        city: registeredVet.city,
+        specialty: registeredVet.specialty,
+        phone: registeredVet.phone,
+        email: registeredVet.email,
+        rating: registeredVet.rating || 5.0,
+        reviews: registeredVet.reviews || 0,
+        isNew: true // Mark as newly registered
+      });
+    }
+  });
+  
+  renderVets(veterinarians);
+}
 
 function filterVets() {
   const city = document.getElementById('cityFilter').value;

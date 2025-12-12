@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Debug RDV Sync</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet">
+    <style>
+        body { background: #f8f9fa; padding: 20px; }
+        .card { margin-bottom: 20px; }
+        .data-section { background: #f0f0f0; padding: 15px; border-radius: 8px; margin-bottom: 10px; font-family: monospace; white-space: pre-wrap; word-break: break-all; font-size: 0.85rem; }
+        .btn-action { margin: 5px; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🔍 Debug RDV Synchronization System</h1>
+
+        <div class="card">
+            <div class="card-header bg-primary text-white">
+                <h5>📊 localStorage Data</h5>
+            </div>
+            <div class="card-body">
+                <h6>1️⃣ ph_vet_profiles (Registered Vets - Full Profiles)</h6>
+                <div class="data-section" id="vetProfiles">Loading...</div>
+
+                <h6 class="mt-3">2️⃣ ph_vet_list (Client Visible Vets - For Display)</h6>
+                <div class="data-section" id="vetList">Loading...</div>
+
+                <h6 class="mt-3">3️⃣ vets Array (In Memory - What rdv.js Uses)</h6>
+                <div class="data-section" id="vetsArray">Loading...</div>
+
+                <h6 class="mt-3">4️⃣ defaultVets (Hardcoded)</h6>
+                <div class="data-section" id="defaultVets">Loading...</div>
+            </div>
+        </div>
+
+        <div class="card">
+            <div class="card-header bg-success text-white">
+                <h5>🛠️ Action Buttons</h5>
+            </div>
+            <div class="card-body">
+                <button class="btn btn-primary btn-action" onclick="refreshData()">🔄 Refresh Data</button>
+                <button class="btn btn-info btn-action" onclick="createTestVet()">➕ Create Test Vet</button>
+                <button class="btn btn-warning btn-action" onclick="simulateLoadAllVets()">⚙️ Simulate loadAllVetsForRDV()</button>
+                <button class="btn btn-danger btn-action" onclick="clearAllData()">🗑️ Clear All Data</button>
+                <button class="btn btn-secondary btn-action" onclick="goToRDV()">📍 Go to rdv.html</button>
+            </div>
+        </div>
+
+        <div class="card">
+            <div class="card-header bg-warning">
+                <h5>📝 Console Output</h5>
+            </div>
+            <div class="card-body">
+                <div id="console" class="data-section" style="background: #000; color: #0f0; max-height: 300px; overflow-y: auto;">
+                    Console output will appear here...
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Include rdv.js to test its functions -->
+    <script src="assets/js/rdv.js"></script>
+
+    <script>
+        // Override console.log to capture output
+        const originalLog = console.log;
+        let logBuffer = [];
+        console.log = function(...args) {
+            originalLog(...args);
+            logBuffer.push(args.join(' '));
+            const consoleDiv = document.getElementById('console');
+            if (consoleDiv) {
+                consoleDiv.textContent = logBuffer.slice(-50).join('\n');
+                consoleDiv.scrollTop = consoleDiv.scrollHeight;
+            }
+        };
+
+        function refreshData() {
+            console.log('=== REFRESHING DATA ===');
+            
+            // Get data from localStorage
+            const vetProfiles = JSON.parse(localStorage.getItem('ph_vet_profiles') || '[]');
+            const vetList = JSON.parse(localStorage.getItem('ph_vet_list') || '[]');
+            
+            console.log(`✅ ph_vet_profiles: ${vetProfiles.length} items`);
+            console.log(`✅ ph_vet_list: ${vetList.length} items`);
+            
+            document.getElementById('vetProfiles').textContent = JSON.stringify(vetProfiles, null, 2);
+            document.getElementById('vetList').textContent = JSON.stringify(vetList, null, 2);
+            
+            // Show vets array if it exists (from rdv.js)
+            if (typeof vets !== 'undefined') {
+                console.log(`✅ vets array: ${vets.length} items`);
+                document.getElementById('vetsArray').textContent = JSON.stringify(vets, null, 2);
+            } else {
+                document.getElementById('vetsArray').textContent = 'vets array not yet loaded';
+            }
+            
+            // Show defaultVets if it exists
+            if (typeof defaultVets !== 'undefined') {
+                console.log(`✅ defaultVets: ${defaultVets.length} items`);
+                document.getElementById('defaultVets').textContent = JSON.stringify(defaultVets, null, 2);
+            } else {
+                document.getElementById('defaultVets').textContent = 'defaultVets not yet loaded';
+            }
+        }
+
+        function createTestVet() {
+            console.log('=== CREATING TEST VET ===');
+            
+            const testVet = {
+                id: Date.now().toString(),
+                name: 'Dr. Test ' + Math.random().toString(36).substring(7),
+                email: 'test' + Date.now() + '@example.com',
+                password: 'test123',
+                specialty: 'Chiens',
+                phone: '06-12-34-56-78',
+                city: 'Casablanca',
+                license: 'TEST-123',
+                createdAt: new Date().toISOString(),
+                appointments: []
+            };
+            
+            // Save to ph_vet_profiles
+            const vetProfiles = JSON.parse(localStorage.getItem('ph_vet_profiles') || '[]');
+            vetProfiles.push(testVet);
+            localStorage.setItem('ph_vet_profiles', JSON.stringify(vetProfiles));
+            console.log(`✅ Saved to ph_vet_profiles: ${testVet.name}`);
+            
+            // Sync to ph_vet_list
+            const vetList = JSON.parse(localStorage.getItem('ph_vet_list') || '[]');
+            const vetForClients = {
+                id: testVet.id,
+                name: testVet.name,
+                email: testVet.email,
+                city: testVet.city,
+                specialty: testVet.specialty,
+                phone: testVet.phone,
+                rating: 5.0,
+                reviews: 0,
+                isRegistered: true,
+                registeredAt: new Date().toISOString()
+            };
+            vetList.push(vetForClients);
+            localStorage.setItem('ph_vet_list', JSON.stringify(vetList));
+            console.log(`✅ Synced to ph_vet_list: ${testVet.name}`);
+            
+            refreshData();
+        }
+
+        function simulateLoadAllVets() {
+            console.log('=== SIMULATING loadAllVetsForRDV() ===');
+            
+            // This will call the actual function from rdv.js
+            if (typeof loadAllVetsForRDV === 'function') {
+                loadAllVetsForRDV();
+                console.log(`✅ loadAllVetsForRDV() executed`);
+                
+                // Now try to display them
+                if (typeof displayVets === 'function') {
+                    console.log('🎨 displayVets() would be called next...');
+                } else {
+                    console.log('❌ displayVets not found');
+                }
+            } else {
+                console.log('❌ loadAllVetsForRDV not found');
+            }
+            
+            refreshData();
+        }
+
+        function clearAllData() {
+            if (confirm('Are you sure? This will delete all localStorage data!')) {
+                localStorage.removeItem('ph_vet_profiles');
+                localStorage.removeItem('ph_vet_list');
+                console.log('🗑️ Cleared all vet data');
+                refreshData();
+            }
+        }
+
+        function goToRDV() {
+            window.location.href = 'rdv.html';
+        }
+
+        // Initial load
+        window.addEventListener('load', refreshData);
+    </script>
+</body>
+</html>

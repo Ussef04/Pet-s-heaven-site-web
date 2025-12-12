@@ -1377,6 +1377,35 @@
             </div>
           </div>
         </div>
+
+        <!-- VETERINAIRE CARD -->
+        <div class="col-lg-6">
+          <div class="role-card" style="background: linear-gradient(135deg, rgba(239, 68, 68, 0.05) 0%, rgba(220, 38, 38, 0.05) 100%); border-left: 5px solid #ef4444;">
+            <h3>
+              <i class="bi bi-hospital" style="color: #ef4444;"></i>
+              Vous êtes vétérinaire ? Rejoignez notre réseau
+            </h3>
+            <p>
+              Gérez vos rendez-vous facilement et augmentez votre clientèle grâce à notre plateforme de mise en réseau professionnelle.
+            </p>
+            <ul class="role-features">
+              <li>Gérer votre profil professionnel</li>
+              <li>Recevoir et gérer les rendez-vous en ligne</li>
+              <li>Voir le calendrier des consultations</li>
+              <li>Communiquer avec vos clients</li>
+              <li>Maintenir un historique des patients</li>
+              <li>Augmenter votre visibilité et votre clientèle</li>
+            </ul>
+            <div style="display: flex; gap: 1rem; margin-top: 2rem;">
+              <button class="btn btn-primary w-100" style="background: linear-gradient(135deg, #ef4444 0%, #dc2626 100%); border: none; padding: 0.75rem;" data-bs-toggle="modal" data-bs-target="#loginVetModal">
+                <i class="bi bi-box-arrow-in-right me-2"></i>Se Connecter
+              </button>
+              <button class="btn btn-outline-danger w-100" style="border-color: #ef4444; color: #ef4444; padding: 0.75rem;" data-bs-toggle="modal" data-bs-target="#signupVetModal">
+                <i class="bi bi-person-plus me-2"></i>S'Inscrire
+              </button>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   </section>
@@ -1869,6 +1898,131 @@
     </div>
   </div>
 
+  <!-- === LOGIN VET MODAL === -->
+  <div class="modal fade" id="loginVetModal" tabindex="-1" role="dialog" aria-labelledby="loginVetModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+        <div class="modal-header" style="border-bottom: 2px solid #ef4444;">
+          <h5 class="modal-title" id="loginVetModalLabel">
+            <i class="bi bi-hospital me-2" style="color: #ef4444;"></i>Connexion Vétérinaire
+          </h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <form id="loginVetForm">
+          <div class="modal-body">
+            <div id="loginVetError" class="alert alert-danger alert-custom d-none"></div>
+            
+            <div class="mb-3">
+              <label for="loginVetEmail" class="form-label">Adresse Email Professionnelle</label>
+              <input type="email" class="form-control" id="loginVetEmail" placeholder="dr.nom@veterinaire.com" required>
+            </div>
+
+            <div class="mb-3">
+              <label for="loginVetPassword" class="form-label">Mot de Passe</label>
+              <input type="password" class="form-control" id="loginVetPassword" placeholder="••••••••" required>
+            </div>
+
+            <div class="mb-3">
+              <div class="form-check">
+                <input class="form-check-input" type="checkbox" id="rememberMeVet">
+                <label class="form-check-label" for="rememberMeVet">
+                  Rester connecté
+                </label>
+              </div>
+            </div>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Annuler</button>
+            <button type="submit" class="btn btn-danger" style="background: linear-gradient(135deg, #ef4444 0%, #dc2626 100%); border: none;">Se Connecter</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <!-- === SIGNUP VET MODAL === -->
+  <div class="modal fade" id="signupVetModal" tabindex="-1" role="dialog" aria-labelledby="signupVetModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-lg">
+      <div class="modal-content">
+        <div class="modal-header" style="border-bottom: 2px solid #ef4444;">
+          <h5 class="modal-title" id="signupVetModalLabel">
+            <i class="bi bi-hospital me-2" style="color: #ef4444;"></i>S'Inscrire en tant que Vétérinaire
+          </h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <form id="signupVetForm">
+          <div class="modal-body">
+            <div id="signupVetError" class="alert alert-danger alert-custom d-none"></div>
+            <div id="signupVetSuccess" class="alert alert-success alert-custom d-none"></div>
+
+            <div class="row">
+              <div class="col-md-6 mb-3">
+                <label for="signupVetName" class="form-label">Nom Complet (Dr.)</label>
+                <input type="text" class="form-control" id="signupVetName" placeholder="Dr. Ahmed Hassan" required>
+              </div>
+
+              <div class="col-md-6 mb-3">
+                <label for="signupVetSpecialty" class="form-label">Spécialité</label>
+                <select class="form-control" id="signupVetSpecialty" required>
+                  <option value="">Sélectionnez une spécialité</option>
+                  <option value="Médecine Générale">Médecine Générale</option>
+                  <option value="Chirurgie">Chirurgie</option>
+                  <option value="Dermatologie">Dermatologie</option>
+                  <option value="Dentisterie">Dentisterie</option>
+                  <option value="Ophtalmologie">Ophtalmologie</option>
+                  <option value="Cardiologie">Cardiologie</option>
+                  <option value="Orthopédie">Orthopédie</option>
+                  <option value="Autre">Autre</option>
+                </select>
+              </div>
+
+              <div class="col-md-6 mb-3">
+                <label for="signupVetEmail" class="form-label">Email Professionnel</label>
+                <input type="email" class="form-control" id="signupVetEmail" placeholder="dr.ahmed@veterinaire.com" required>
+              </div>
+
+              <div class="col-md-6 mb-3">
+                <label for="signupVetPhone" class="form-label">Téléphone</label>
+                <input type="tel" class="form-control" id="signupVetPhone" placeholder="+212 6XX XXX XXX" required>
+              </div>
+
+              <div class="col-md-6 mb-3">
+                <label for="signupVetCity" class="form-label">Ville</label>
+                <input type="text" class="form-control" id="signupVetCity" placeholder="Casablanca" required>
+              </div>
+
+              <div class="col-md-6 mb-3">
+                <label for="signupVetLicense" class="form-label">Numéro de Licence</label>
+                <input type="text" class="form-control" id="signupVetLicense" placeholder="VET-2024-XXXXX" required>
+              </div>
+
+              <div class="col-md-6 mb-3">
+                <label for="signupVetPassword" class="form-label">Mot de Passe</label>
+                <input type="password" class="form-control" id="signupVetPassword" placeholder="••••••••" minlength="6" required>
+              </div>
+
+              <div class="col-md-6 mb-3">
+                <label for="signupVetPasswordConfirm" class="form-label">Confirmer Mot de Passe</label>
+                <input type="password" class="form-control" id="signupVetPasswordConfirm" placeholder="••••••••" minlength="6" required>
+              </div>
+            </div>
+
+            <div class="form-check">
+              <input class="form-check-input" type="checkbox" id="signupVetTerms" required>
+              <label class="form-check-label" for="signupVetTerms">
+                J'accepte les conditions d'utilisation et confirme que je suis un professionnel vétérinaire agréé
+              </label>
+            </div>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Annuler</button>
+            <button type="submit" class="btn btn-danger" style="background: linear-gradient(135deg, #ef4444 0%, #dc2626 100%); border: none;">Créer mon Professionnel</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+
   <!-- === SUBSCRIPTION TOAST === -->
   <div class="toast-container position-fixed bottom-0 end-0 p-3">
     <div id="subToast" class="toast align-items-center text-white bg-success border-0" role="alert">
@@ -1949,6 +2103,8 @@
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
   
   <!-- Scripts personnalisés -->
+  <script src="assets/js/sync-system.js"></script>
+  <script src="assets/js/vet-auth.js"></script>
   <script src="assets/js/home.js"></script>
   <script src="assets/js/script.js"></script>
 </body>

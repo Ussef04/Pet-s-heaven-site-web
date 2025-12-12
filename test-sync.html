@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Test Synchronisation - Pet's Heaven</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <style>
+    body { padding: 20px; }
+    .test-section { margin: 20px 0; padding: 20px; border: 2px solid #4f46e5; border-radius: 10px; }
+    .success { color: green; font-weight: bold; }
+    .error { color: red; font-weight: bold; }
+    .info { color: blue; }
+    pre { background: #f3f4f6; padding: 10px; border-radius: 5px; overflow-x: auto; }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>🔍 Test Synchronisation Vétérinaires</h1>
+    
+    <div class="test-section">
+      <h3>1️⃣ Vétérinaires Inscrits (ph_vet_profiles)</h3>
+      <div id="vetProfiles"></div>
+    </div>
+
+    <div class="test-section">
+      <h3>2️⃣ Liste Vets Clients (ph_vet_list)</h3>
+      <div id="vetList"></div>
+    </div>
+
+    <div class="test-section">
+      <h3>3️⃣ Vétérinaires dans rdv.js</h3>
+      <div id="rdjVets"></div>
+    </div>
+
+    <div class="test-section">
+      <h3>4️⃣ Rendez-vous Synchronisés (ph_appointments)</h3>
+      <div id="appointments"></div>
+    </div>
+
+    <div class="test-section">
+      <h3>5️⃣ Action: Créer un Test Vétérinaire</h3>
+      <button class="btn btn-primary" onclick="createTestVet()">Créer Dr. Test</button>
+      <div id="actionResult" style="margin-top: 10px;"></div>
+    </div>
+
+    <div class="test-section">
+      <h3>6️⃣ Synchronisation Status</h3>
+      <button class="btn btn-success" onclick="checkSync()">Vérifier Sync</button>
+      <div id="syncStatus" style="margin-top: 10px;"></div>
+    </div>
+  </div>
+
+  <script>
+    function displayData(elementId, data, title = "") {
+      const elem = document.getElementById(elementId);
+      if (!data || data.length === 0) {
+        elem.innerHTML = `<p class="error">❌ ${title} - Aucune donnée</p>`;
+      } else {
+        elem.innerHTML = `<p class="success">✅ ${title} - ${data.length} item(s)</p>
+          <pre>${JSON.stringify(data, null, 2)}</pre>`;
+      }
+    }
+
+    function checkAllData() {
+      const vetProfiles = JSON.parse(localStorage.getItem('ph_vet_profiles') || '[]');
+      const vetList = JSON.parse(localStorage.getItem('ph_vet_list') || '[]');
+      const appointments = JSON.parse(localStorage.getItem('ph_appointments') || '[]');
+
+      displayData('vetProfiles', vetProfiles, 'Profils Vétérinaires');
+      displayData('vetList', vetList, 'Liste Clients');
+      displayData('appointments', appointments, 'Rendez-vous');
+
+      // Afficher les vets de rdv.js
+      const rdjVetsDiv = document.getElementById('rdjVets');
+      rdjVetsDiv.innerHTML = `<p class="info">📋 Vets dans rdv.js seront chargés quand rdv.html se charge</p>
+        <p>Pour voir les vets, visitez <a href="rdv.html">rdv.html</a></p>`;
+    }
+
+    function createTestVet() {
+      const testVet = {
+        id: Date.now().toString(),
+        name: "Dr. Test Sync",
+        email: "test@sync.com",
+        password: btoa("password123"),
+        specialty: "Test Spécialité",
+        phone: "+212 6 00 00 00 00",
+        city: "Test City",
+        license: "TEST-2024-001",
+        createdAt: new Date().toISOString(),
+        appointments: []
+      };
+
+      const profiles = JSON.parse(localStorage.getItem('ph_vet_profiles') || '[]');
+      profiles.push(testVet);
+      localStorage.setItem('ph_vet_profiles', JSON.stringify(profiles));
+
+      // Sync to vet list
+      const vetList = JSON.parse(localStorage.getItem('ph_vet_list') || '[]');
+      const existingVet = vetList.find(v => v.email === testVet.email);
+      if (!existingVet) {
+        vetList.push({
+          id: testVet.id,
+          name: testVet.name,
+          email: testVet.email,
+          city: testVet.city,
+          specialty: testVet.specialty,
+          phone: testVet.phone,
+          rating: 5.0,
+          reviews: 0,
+          isRegistered: true,
+          registeredAt: testVet.createdAt
+        });
+        localStorage.setItem('ph_vet_list', JSON.stringify(vetList));
+      }
+
+      document.getElementById('actionResult').innerHTML = 
+        `<p class="success">✅ Vétérinaire test créé!</p>
+         <p>Vérifiez maintenant vets.html et rdv.html pour voir si "Dr. Test Sync" apparaît</p>`;
+      
+      checkAllData();
+    }
+
+    function checkSync() {
+      const profiles = JSON.parse(localStorage.getItem('ph_vet_profiles') || '[]');
+      const vetList = JSON.parse(localStorage.getItem('ph_vet_list') || '[]');
+      const appointments = JSON.parse(localStorage.getItem('ph_appointments') || '[]');
+
+      let syncOk = true;
+      let issues = [];
+
+      if (profiles.length === 0) {
+        issues.push("❌ Aucun profil vétérinaire");
+      } else {
+        issues.push(`✅ ${profiles.length} profil(s) vétérinaire(s)`);
+      }
+
+      if (vetList.length === 0) {
+        issues.push("❌ Liste vets clients vide");
+        syncOk = false;
+      } else {
+        issues.push(`✅ ${vetList.length} vets dans liste clients`);
+      }
+
+      if (profiles.length > 0 && vetList.length === 0) {
+        issues.push("⚠️ Profils non synchronisés avec liste clients");
+        syncOk = false;
+      }
+
+      if (appointments.length > 0) {
+        issues.push(`✅ ${appointments.length} rendez-vous`);
+      } else {
+        issues.push("ℹ️ Aucun rendez-vous (normal si pas encore pris)");
+      }
+
+      const syncDiv = document.getElementById('syncStatus');
+      syncDiv.innerHTML = `
+        <div class="${syncOk ? 'success' : 'error'}">
+          ${syncOk ? '✅ SYNCHRONISATION OK' : '❌ PROBLÈME DE SYNCHRONISATION'}
+        </div>
+        <ul style="margin-top: 10px;">
+          ${issues.map(issue => `<li>${issue}</li>`).join('')}
+        </ul>
+      `;
+    }
+
+    // Afficher les données au chargement
+    window.addEventListener('load', checkAllData);
+  </script>
+</body>
+</html>
