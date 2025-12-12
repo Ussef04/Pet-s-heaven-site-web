@@ -346,25 +346,66 @@
 </head>
 <body>
 
-  <!-- === HEADER === -->
-  <div class="admin-header">
+  <!-- === NAVBAR === -->
+  <nav class="admin-header" style="position: sticky; top: 0; z-index: 1000; box-shadow: 0 4px 6px rgba(0,0,0,0.1);">
     <div class="container-fluid px-4">
-      <div style="display: flex; justify-content: space-between; align-items: center;">
-        <div>
-          <h1 class="admin-title">
-            <i class="bi bi-file-earmark-check me-3"></i>Gestion des Candidatures
-          </h1>
-          <p style="color: #64748b; font-weight: 600; margin: 0.5rem 0 0 0;">Vétérinaires partenaires</p>
+      <div style="display: flex; justify-content: space-between; align-items: center; padding: 1rem 0;">
+        <!-- Logo + Brand -->
+        <div style="display: flex; align-items: center; gap: 1rem;">
+          <img src="assets/images/Logo12.jpg" alt="Pet's Heaven Logo" style="height: 40px; width: auto; border-radius: 6px;">
+          <span style="font-weight: 700; font-size: 1.1rem; color: var(--dark-text);">Pet's Heaven</span>
         </div>
-        <button onclick="exportData()" class="btn btn-primary" style="background: var(--gradient-1); border: none; font-weight: 700;">
-          <i class="bi bi-download me-2"></i>Exporter
-        </button>
+
+        <!-- Navigation Menu -->
+        <div style="display: flex; align-items: center; gap: 2rem;">
+          <a href="index.html" style="text-decoration: none; color: #64748b; font-weight: 500; display: flex; align-items: center; gap: 0.5rem; transition: all 0.3s ease;">
+            <i class="bi bi-house"></i>Accueil
+          </a>
+          <a href="index.html#vets" style="text-decoration: none; color: #64748b; font-weight: 500; display: flex; align-items: center; gap: 0.5rem; transition: all 0.3s ease;">
+            <i class="bi bi-hospital"></i>Vétérinaires
+          </a>
+          <a href="index.html#partners" style="text-decoration: none; color: #64748b; font-weight: 500; display: flex; align-items: center; gap: 0.5rem; transition: all 0.3s ease;">
+            <i class="bi bi-handshake"></i>Devenir Partenaire
+          </a>
+        </div>
+
+        <!-- Buttons -->
+        <div style="display: flex; align-items: center; gap: 1rem;">
+          <button onclick="exportData()" class="btn btn-primary" style="background: var(--gradient-1); border: none; font-weight: 700; padding: 0.6rem 1.5rem; border-radius: 10px;">
+            <i class="bi bi-file-earmark-check me-2"></i>GESTION DES CANDIDATURES
+          </button>
+          <a href="vet-dashboard.html" class="btn btn-outline-primary" style="border: 2px solid var(--primary); color: var(--primary); font-weight: 700; padding: 0.6rem 1.2rem; border-radius: 10px; text-decoration: none;">
+            <i class="bi bi-arrow-left me-2"></i>RETOUR
+          </a>
+        </div>
       </div>
     </div>
-  </div>
+  </nav>
 
   <!-- === MAIN CONTENT === -->
   <div class="container-fluid px-4" style="padding: 2rem 0;">
+    
+    <!-- === HERO SECTION === -->
+    <div style="background: linear-gradient(135deg, #6366f1 0%, #8b5cf6 50%, #ec4899 100%); border-radius: 16px; padding: 3rem 2rem; margin-bottom: 2rem; color: white; text-align: center;">
+      <h1 style="font-size: 2.5rem; font-weight: 900; margin-bottom: 1rem;">Devenez Partenaire de Pet's Heaven</h1>
+      <p style="font-size: 1.1rem; opacity: 0.95; margin-bottom: 2rem; max-width: 700px; margin-left: auto; margin-right: auto;">Rejoignez le réseau Pet's Heaven et développez votre activité sans frais d'enregistrement</p>
+      
+      <!-- Stats Row -->
+      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 2rem; margin-top: 2rem;">
+        <div>
+          <div style="font-size: 2.5rem; font-weight: 900; margin-bottom: 0.5rem;">0 DH</div>
+          <div style="font-size: 0.95rem; opacity: 0.9;">Frais d'inscription</div>
+        </div>
+        <div>
+          <div style="font-size: 2.5rem; font-weight: 900; margin-bottom: 0.5rem;">32+</div>
+          <div style="font-size: 0.95rem; opacity: 0.9;">Vétérinaires actifs</div>
+        </div>
+        <div>
+          <div style="font-size: 2.5rem; font-weight: 900; margin-bottom: 0.5rem;">150+</div>
+          <div style="font-size: 0.95rem; opacity: 0.9;">Patients actifs</div>
+        </div>
+      </div>
+    </div>
     
     <!-- === STATISTICS === -->
     <div class="stats-grid">

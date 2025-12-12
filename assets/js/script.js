@@ -97,24 +97,40 @@ function addVetSpecificMenuItems(isVet) {
   const dropdownMenu = document.querySelector('#accountMenu .dropdown-menu');
   if (!dropdownMenu) return;
 
-  // Vérifier si le lien candidatures existe déjà
-  const existingLink = document.getElementById('menuCandidatures');
+  // Vérifier si les liens spécifiques aux vétérinaires existent déjà
+  const existingCandidaturesLink = document.getElementById('menuCandidatures');
+  const existingDashboardLink = document.getElementById('menuVetDashboard');
   
-  if (isVet && !existingLink) {
-    // Trouver le dernier li avant le divider final
-    const dividers = dropdownMenu.querySelectorAll('hr');
-    const lastDivider = dividers[dividers.length - 1];
-    const liBeforeDivider = lastDivider.parentElement;
+  if (isVet) {
+    // Ajouter le lien tableau de bord vétérinaire s'il n'existe pas
+    if (!existingDashboardLink) {
+      const dividers = dropdownMenu.querySelectorAll('hr');
+      const lastDivider = dividers[dividers.length - 1];
+      const liBeforeDivider = lastDivider.parentElement;
+      
+      const liDashboard = document.createElement('li');
+      liDashboard.innerHTML = `<a class="dropdown-item dropdown-item-premium" href="vet-dashboard.html" id="menuVetDashboard" style="padding: 10px 16px; color: #374151; transition: all 0.3s ease;"><i class="bi bi-speedometer2 me-2" style="color: #8b5cf6; font-weight: 700;"></i>Tableau de Bord</a>`;
+      liBeforeDivider.parentElement.insertBefore(liDashboard, liBeforeDivider);
+    }
     
-    // Créer le lien candidatures
-    const li = document.createElement('li');
-    li.innerHTML = `<a class="dropdown-item dropdown-item-premium" href="vets-register.html" id="menuCandidatures" style="padding: 10px 16px; color: #374151; transition: all 0.3s ease;"><i class="bi bi-file-earmark-check me-2" style="color: #8b5cf6; font-weight: 700;"></i>Candidatures</a>`;
-    
-    // Insérer avant le dernier divider
-    liBeforeDivider.parentElement.insertBefore(li, liBeforeDivider);
-  } else if (!isVet && existingLink) {
-    // Retirer le lien candidatures si c'est un client
-    existingLink.parentElement.remove();
+    // Ajouter le lien candidatures s'il n'existe pas
+    if (!existingCandidaturesLink) {
+      const dividers = dropdownMenu.querySelectorAll('hr');
+      const lastDivider = dividers[dividers.length - 1];
+      const liBeforeDivider = lastDivider.parentElement;
+      
+      const li = document.createElement('li');
+      li.innerHTML = `<a class="dropdown-item dropdown-item-premium" href="#candidaturesSection" id="menuCandidatures" style="padding: 10px 16px; color: #374151; transition: all 0.3s ease; cursor: pointer;" onclick="scrollToCandidatures(event)"><i class="bi bi-file-earmark-check me-2" style="color: #8b5cf6; font-weight: 700;"></i>Nos Partenaires</a>`;
+      liBeforeDivider.parentElement.insertBefore(li, liBeforeDivider);
+    }
+  } else {
+    // Retirer les liens spécifiques aux vétérinaires si c'est un client
+    if (existingCandidaturesLink) {
+      existingCandidaturesLink.parentElement.remove();
+    }
+    if (existingDashboardLink) {
+      existingDashboardLink.parentElement.remove();
+    }
   }
 }
 
@@ -609,4 +625,13 @@ document.addEventListener('DOMContentLoaded', function() {
     });
   });
 });
+
+// === Scroll vers la section Candidatures/Partenaires ===
+function scrollToCandidatures(event) {
+  event.preventDefault();
+  const section = document.getElementById('candidaturesSection');
+  if (section) {
+    section.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  }
+}
 

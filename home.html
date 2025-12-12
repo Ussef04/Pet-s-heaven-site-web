@@ -690,6 +690,23 @@
       transform: translateY(0);
     }
 
+    /* === CHOICE MODAL BUTTONS === */
+    #signupClientChoiceBtn {
+      background: white !important;
+      border-color: #e5e7eb !important;
+      color: var(--dark-text) !important;
+      position: relative;
+      overflow: hidden;
+    }
+
+    #signupClientChoiceBtn:hover {
+      background: white !important;
+      transform: translateY(-4px);
+      box-shadow: 0 12px 24px rgba(0, 0, 0, 0.15) !important;
+      border-color: #4f46e5 !important;
+      background: linear-gradient(135deg, rgba(79, 70, 229, 0.05), white) !important;
+    }
+
     /* === RESPONSIVE === */
     @media (max-width: 768px) {
       .hero-section {
@@ -832,12 +849,6 @@
             Retrouvez les meilleurs vétérinaires, reservez vos consultations en quelques clics et découvrez nos produits premium pour le bien-être de vos animaux.
           </p>
           <div class="hero-buttons">
-            <button class="btn btn-hero-primary" id="heroLogin">
-              <i class="bi bi-box-arrow-in-right me-2"></i>Se Connecter
-            </button>
-            <button class="btn btn-hero-secondary" id="heroSignup">
-              Créer un Compte
-            </button>
           </div>
         </div>
         <div class="col-lg-6 text-center">
@@ -1051,35 +1062,6 @@
               </button>
               <button class="btn btn-outline-primary w-100" style="border-color: #4f46e5; color: #4f46e5; padding: 0.75rem;" data-bs-toggle="modal" data-bs-target="#signupClientModal">
                 <i class="bi bi-person-plus me-2"></i>S'Inscrire
-              </button>
-            </div>
-          </div>
-        </div>
-
-        <!-- VET CARD -->
-        <div class="col-lg-6">
-          <div class="role-card">
-            <h3>
-              <i class="bi bi-hospital" style="color: var(--secondary);"></i>
-              Pour les Vétérinaires
-            </h3>
-            <p>
-              Rejoignez notre réseau de professionnels et offrez vos services à une large clientèle avec une gestion simplifiée.
-            </p>
-            <ul class="role-features">
-              <li>Gérer votre agenda de consultations</li>
-              <li>Consulter les demandes de rendez-vous</li>
-              <li>Afficher vos disponibilités et spécialités</li>
-              <li>Accéder aux dossiers médicaux des patients</li>
-              <li>Proposer des produits recommandés</li>
-              <li>Élargir votre clientèle et augmenter vos revenus</li>
-            </ul>
-            <div style="display: flex; gap: 1rem; margin-top: 2rem;">
-              <button class="btn btn-primary w-100" style="background: linear-gradient(135deg, #7c3aed 0%, #a78bfa 100%); border: none; padding: 0.75rem;" data-bs-toggle="modal" data-bs-target="#loginModal">
-                <i class="bi bi-box-arrow-in-right me-2"></i>Se Connecter
-              </button>
-              <button class="btn btn-outline-primary w-100" style="border-color: #7c3aed; color: #7c3aed; padding: 0.75rem;" data-bs-toggle="modal" data-bs-target="#signupVetModal">
-                <i class="bi bi-hospital me-2"></i>S'Inscrire
               </button>
             </div>
           </div>
@@ -1468,7 +1450,7 @@
         <div class="footer-column">
           <h4><i class="bi bi-telephone-fill me-2"></i>Contact</h4>
           <p>📧 contact@petsheaven.ma</p>
-          <p>📞 +212 5XX XXX XXX</p>
+          <p>📞 +212 6 12 34 56 78</p>
           <p>📍 Casablanca, Maroc</p>
         </div>
       </div>
@@ -1516,6 +1498,33 @@
             <button type="submit" class="btn btn-login">Se Connecter</button>
           </div>
         </form>
+      </div>
+    </div>
+  </div>
+
+  <!-- === SIGNUP CHOICE MODAL === -->
+  <div class="modal fade" id="signupChoiceModal" tabindex="-1" role="dialog" aria-labelledby="signupChoiceModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="signupChoiceModalLabel">
+            <i class="bi bi-person-check me-2"></i>Qui êtes-vous ?
+          </h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body text-center">
+          <p class="mb-4 text-muted">Choisissez le type de compte à créer</p>
+          <div class="row g-3">
+            <div class="col-md-6">
+              <button type="button" id="signupClientChoiceBtn" class="btn btn-light border-2 w-100 p-4" style="border-color: #4f46e5; transition: all 0.3s ease;">
+                <i class="bi bi-person me-2" style="font-size: 2rem; color: #4f46e5;"></i>
+                <div class="fw-bold mt-2">Client</div>
+                <small class="text-muted d-block">Propriétaire d'animal</small>
+              </button>
+            </div>
+
+          </div>
+        </div>
       </div>
     </div>
   </div>
@@ -1570,99 +1579,6 @@
           <div class="modal-footer">
             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Annuler</button>
             <button type="submit" class="btn btn-register">Créer mon Compte</button>
-          </div>
-        </form>
-      </div>
-    </div>
-  </div>
-
-  <!-- === SIGNUP VET MODAL === -->
-  <div class="modal fade" id="signupVetModal" tabindex="-1" role="dialog" aria-labelledby="signupVetModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered modal-lg">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title" id="signupVetModalLabel">
-            <i class="bi bi-hospital me-2"></i>Créer un Compte Vétérinaire
-          </h5>
-          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-        </div>
-        <form id="signupVetForm">
-          <div class="modal-body">
-            <div id="signupVetError" class="alert alert-danger alert-custom d-none"></div>
-            <div id="signupVetSuccess" class="alert alert-success alert-custom d-none"></div>
-
-            <div class="row">
-              <div class="col-md-6 mb-3">
-                <label for="signupVetName" class="form-label">Nom Complet</label>
-                <input type="text" class="form-control" id="signupVetName" placeholder="Dr. Ahmed Ben Ali" required>
-              </div>
-
-              <div class="col-md-6 mb-3">
-                <label for="signupVetEmail" class="form-label">Adresse Email</label>
-                <input type="email" class="form-control" id="signupVetEmail" placeholder="vet@exemple.com" required>
-              </div>
-            </div>
-
-            <div class="row">
-              <div class="col-md-6 mb-3">
-                <label for="signupVetPhone" class="form-label">Téléphone</label>
-                <input type="tel" class="form-control" id="signupVetPhone" placeholder="+212 6XX XXX XXX" required>
-              </div>
-
-              <div class="col-md-6 mb-3">
-                <label for="signupVetSpecialty" class="form-label">Spécialité</label>
-                <select class="form-select" id="signupVetSpecialty" required>
-                  <option value="">Sélectionner une spécialité</option>
-                  <option value="Médecine Générale">Médecine Générale</option>
-                  <option value="Chirurgie">Chirurgie</option>
-                  <option value="Dermatologie">Dermatologie</option>
-                  <option value="Cardiologie">Cardiologie</option>
-                  <option value="Orthopédie">Orthopédie</option>
-                  <option value="Dentisterie">Dentisterie</option>
-                  <option value="Ophtalmologie">Ophtalmologie</option>
-                </select>
-              </div>
-            </div>
-
-            <div class="row">
-              <div class="col-md-6 mb-3">
-                <label for="signupVetCity" class="form-label">Ville</label>
-                <input type="text" class="form-control" id="signupVetCity" placeholder="Casablanca" required>
-              </div>
-
-              <div class="col-md-6 mb-3">
-                <label for="signupVetClinic" class="form-label">Clinique/Cabinet</label>
-                <input type="text" class="form-control" id="signupVetClinic" placeholder="Nom de la clinique">
-              </div>
-            </div>
-
-            <div class="mb-3">
-              <label for="signupVetLicense" class="form-label">Numéro de Licence Vétérinaire</label>
-              <input type="text" class="form-control" id="signupVetLicense" placeholder="VET-XXXX-XXXX" required>
-            </div>
-
-            <div class="row">
-              <div class="col-md-6 mb-3">
-                <label for="signupVetPassword" class="form-label">Mot de Passe</label>
-                <input type="password" class="form-control" id="signupVetPassword" placeholder="••••••••" minlength="6" required>
-              </div>
-
-              <div class="col-md-6 mb-3">
-                <label for="signupVetPasswordConfirm" class="form-label">Confirmer Mot de Passe</label>
-                <input type="password" class="form-control" id="signupVetPasswordConfirm" placeholder="••••••••" minlength="6" required>
-              </div>
-            </div>
-
-            <div class="form-check">
-              <input class="form-check-input" type="checkbox" id="signupVetTerms" required>
-              <label class="form-check-label" for="signupVetTerms">
-                J'accepte les conditions d'utilisation et confirme que toutes les informations fournies sont exactes
-              </label>
-            </div>
-          </div>
-          <div class="modal-footer">
-            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Annuler</button>
-            <button type="submit" class="btn btn-register">Créer mon Compte Vétérinaire</button>
           </div>
         </form>
       </div>

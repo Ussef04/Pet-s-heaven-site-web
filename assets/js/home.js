@@ -50,11 +50,29 @@ function hideMessage(elementId) {
 }
 
 function redirectUser(userType) {
+  console.log('Redirection vers:', userType);
   if (userType === 'client') {
+    console.log('Session client confirmée, redirection vers index.html');
     window.location.href = 'index.html';
   } else if (userType === 'vet') {
+    console.log('Session vet confirmée, redirection vers vet-dashboard.html');
     window.location.href = 'vet-dashboard.html';
   }
+}
+
+function openSignupChoice() {
+  // Fermer tout modal ouvert
+  const openModals = document.querySelectorAll('.modal.show');
+  openModals.forEach(modal => {
+    const instance = bootstrap.Modal.getInstance(modal);
+    if (instance) instance.hide();
+  });
+  
+  // Ouvrir le modal de choix après un court délai
+  setTimeout(() => {
+    const choiceModal = new bootstrap.Modal('#signupChoiceModal');
+    choiceModal.show();
+  }, 300);
 }
 
 // === DOM READY ===
@@ -66,26 +84,36 @@ document.addEventListener('DOMContentLoaded', () => {
   // Setup event listeners
   setupLoginForm();
   setupSignupClientForm();
-  setupSignupVetForm();
   setupHeroButtons();
+
+  // Auto-redirect if already logged in (only if on home page, not on signup/login)
+  const session = getSession();
+  if (session && session.type) {
+    console.log('Session trouvée:', session.type);
+    // Add a small delay to ensure all modals are closed
+    setTimeout(() => {
+      if (session.type === 'client') {
+        redirectUser('client');
+      } else if (session.type === 'vet') {
+        redirectUser('vet');
+      }
+    }, 100);
+  }
 });
 
 // === HERO BUTTONS ===
 function setupHeroButtons() {
-  const heroLoginBtn = document.getElementById('heroLogin');
-  const heroSignupBtn = document.getElementById('heroSignup');
-
-  if (heroLoginBtn) {
-    heroLoginBtn.addEventListener('click', () => {
-      const loginModal = new bootstrap.Modal('#loginModal');
-      loginModal.show();
-    });
-  }
-
-  if (heroSignupBtn) {
-    heroSignupBtn.addEventListener('click', () => {
-      const signupClientModal = new bootstrap.Modal('#signupClientModal');
-      signupClientModal.show();
+  // Setup choice modal buttons
+  const signupClientChoiceBtn = document.getElementById('signupClientChoiceBtn');
+  
+  if (signupClientChoiceBtn) {
+    signupClientChoiceBtn.addEventListener('click', () => {
+      const choiceModal = bootstrap.Modal.getInstance('#signupChoiceModal');
+      if (choiceModal) choiceModal.hide();
+      setTimeout(() => {
+        const clientModal = new bootstrap.Modal('#signupClientModal');
+        clientModal.show();
+      }, 300);
     });
   }
 }
@@ -203,99 +231,17 @@ function setupSignupClientForm() {
       email: newClient.email
     });
 
+    console.log('Compte client créé et session définie:', getSession());
     showMessage('signupClientSuccess', 'Compte créé avec succès ! Redirection en cours...', 'success');
     
     setTimeout(() => {
       const modal = bootstrap.Modal.getInstance('#signupClientModal');
-      modal.hide();
-      redirectUser('client');
-    }, 1500);
-  });
-}
-
-// === SIGNUP VET FORM ===
-function setupSignupVetForm() {
-  const signupForm = document.getElementById('signupVetForm');
-  if (!signupForm) return;
-
-  signupForm.addEventListener('submit', (e) => {
-    e.preventDefault();
-
-    const name = document.getElementById('signupVetName').value.trim();
-    const email = document.getElementById('signupVetEmail').value.trim().toLowerCase();
-    const phone = document.getElementById('signupVetPhone').value.trim();
-    const specialty = document.getElementById('signupVetSpecialty').value;
-    const city = document.getElementById('signupVetCity').value.trim();
-    const clinic = document.getElementById('signupVetClinic').value.trim();
-    const license = document.getElementById('signupVetLicense').value.trim();
-    const password = document.getElementById('signupVetPassword').value;
-    const passwordConfirm = document.getElementById('signupVetPasswordConfirm').value;
-    const terms = document.getElementById('signupVetTerms').checked;
-
-    hideMessage('signupVetError');
-    hideMessage('signupVetSuccess');
-
-    // Validation
-    if (!terms) {
-      showMessage('signupVetError', 'Vous devez accepter les conditions d\'utilisation', 'danger');
-      return;
-    }
-
-    if (password !== passwordConfirm) {
-      showMessage('signupVetError', 'Les mots de passe ne correspondent pas', 'danger');
-      return;
-    }
-
-    // Check if email exists
-    const vets = loadData(KEY_VETS);
-    if (vets.some(v => v.email === email)) {
-      showMessage('signupVetError', 'Cet email est déjà utilisé', 'danger');
-      return;
-    }
-
-    // Check if license is unique
-    if (vets.some(v => v.license === license)) {
-      showMessage('signupVetError', 'Ce numéro de licence est déjà enregistré', 'danger');
-      return;
-    }
-
-    // Create new vet
-    const newVet = {
-      id: Date.now().toString(),
-      type: 'vet',
-      name,
-      email,
-      phone,
-      specialty,
-      city,
-      clinic,
-      license,
-      password,
-      createdAt: new Date().toISOString(),
-      availability: [],
-      appointments: [],
-      verified: false
-    };
-
-    vets.push(newVet);
-    saveData(KEY_VETS, vets);
-
-    // Set session and redirect
-    setSession({
-      type: 'vet',
-      id: newVet.id,
-      name: newVet.name,
-      email: newVet.email,
-      specialty: newVet.specialty,
-      clinic: newVet.clinic
-    });
-
-    showMessage('signupVetSuccess', 'Compte créé avec succès ! Redirection en cours...', 'success');
-    
-    setTimeout(() => {
-      const modal = bootstrap.Modal.getInstance('#signupVetModal');
-      modal.hide();
-      redirectUser('vet');
+      if (modal) modal.hide();
+      
+      // Force redirect after a brief delay to ensure modal closes
+      setTimeout(() => {
+        redirectUser('client');
+      }, 300);
     }, 1500);
   });
 }
@@ -322,14 +268,6 @@ function scrollCarousel(direction) {
 }
 
 // === AUTO-REDIRECT IF ALREADY LOGGED IN ===
-document.addEventListener('DOMContentLoaded', () => {
-  const session = getSession();
-  if (session) {
-    if (session.type === 'client') {
-      redirectUser('client');
-    } else if (session.type === 'vet') {
-      redirectUser('vet');
-    }
-  }
-});
+// (Merged into main DOMContentLoaded above)
+
 
