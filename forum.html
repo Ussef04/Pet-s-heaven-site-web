@@ -1,0 +1,334 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Forum Communautaire — Pet's Heaven</title>
+  <meta name="description" content="Discutez avec la communauté Pet's Heaven sur les animaux et le bien-être animal.">
+
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet">
+  <link rel="stylesheet" href="assets/css/styles.css">
+</head>
+<body>
+  <!-- Featured Banner -->
+  <div style="background: linear-gradient(135deg, #4f46e5 0%, #7c3aed 100%); color: white; padding: 12px 0; text-align: center; font-size: 14px; font-weight: 500;">
+    <div class="container">
+      <div class="row align-items-center g-2">
+        <div class="col-md-4 mb-2 mb-md-0">
+          <span style="margin-right: 8px; display: inline-block;">✓</span>
+          <a href="#" style="color: white; text-decoration: none; border-bottom: 2px solid rgba(255,255,255,0.5); transition: all 0.3s ease;"><strong>Livraison Gratuite</strong> pour commandes > 500 DH</a>
+        </div>
+        <div class="col-md-4 mb-2 mb-md-0">
+          <span style="margin-right: 8px; display: inline-block;">📅</span>
+          <a href="index.html#abonnement" style="color: white; text-decoration: none; border-bottom: 2px solid rgba(255,255,255,0.5); transition: all 0.3s ease;"><strong>Abonnement</strong> : Économisez jusqu'à 40%</a>
+        </div>
+        <div class="col-md-4">
+          <span style="margin-right: 8px; display: inline-block;">🐾</span>
+          <a href="pets.html" style="color: white; text-decoration: none; border-bottom: 2px solid rgba(255,255,255,0.5); transition: all 0.3s ease;"><strong>Suivi Pet</strong> : Profil gratuit</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- NAVBAR -->
+  <nav class="navbar navbar-expand-lg sticky-top shadow-sm" style="background: white; z-index: 1000;">
+    <div class="container">
+      <!-- Logo -->
+      <a class="navbar-brand fw-bold d-flex align-items-center" href="index.html" style="gap: 10px;">
+        <img src="assets/images/Logo12.jpg" alt="Pet's Heaven" style="height: 50px; width: auto; border-radius: 50%; object-fit: cover; box-shadow: 0 2px 8px rgba(0,0,0,0.1);">
+        <span style="font-size: 1.3rem; background: linear-gradient(135deg, #4f46e5 0%, #7c3aed 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;">Pet's Heaven</span>
+      </a>
+
+      <!-- Toggler -->
+      <button class="navbar-toggler border-0" data-bs-toggle="collapse" data-bs-target="#navContent">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+      <!-- Navigation -->
+      <div id="navContent" class="collapse navbar-collapse">
+        <ul class="navbar-nav mx-auto">
+          <li class="nav-item"><a class="nav-link fw-500" href="index.html#menu"><i class="bi bi-compass me-2" style="color: #4f46e5;"></i>Découvrir</a></li>
+          <li class="nav-item"><a class="nav-link fw-500" href="products.html"><i class="bi bi-bag-fill me-2" style="color: #f59e0b;"></i>Produits</a></li>
+          <li class="nav-item"><a class="nav-link fw-500" href="vets.html"><i class="bi bi-hospital me-2" style="color: #10b981;"></i>Vétérinaires</a></li>
+          <li class="nav-item"><a class="nav-link fw-500" href="rdv.html"><i class="bi bi-calendar-event me-2" style="color: #ef4444;"></i>RDV</a></li>
+          <li class="nav-item"><a class="nav-link fw-500" href="pets.html"><i class="bi bi-paw-fill me-2" style="color: #7c3aed;"></i>Mes Animaux</a></li>
+        </ul>
+
+        <!-- Auth Actions -->
+        <div class="d-flex align-items-center gap-2 mt-3 mt-lg-0">
+          <!-- Account Menu (hidden by default) -->
+          <div class="dropdown d-none" id="accountMenu">
+            <button class="btn btn-light btn-sm fw-600 dropdown-toggle" data-bs-toggle="dropdown" id="accountBtn" style="border-radius: 8px;">
+              <i class="bi bi-person-check me-1"></i>Mon compte
+            </button>
+            <ul class="dropdown-menu dropdown-menu-end rounded-3" style="box-shadow: 0 10px 30px rgba(0,0,0,0.1);">
+              <li class="dropdown-item-text small text-muted px-3 pt-3 pb-2" id="helloUser">Bonjour</li>
+              <li><hr class="dropdown-divider"></li>
+              <li><a class="dropdown-item" href="pets.html"><i class="bi bi-paw-fill me-2" style="color: #4f46e5;"></i>Mes animaux</a></li>
+              <li><a class="dropdown-item" href="rdv.html"><i class="bi bi-calendar-event me-2" style="color: #f59e0b;"></i>Mes rendez-vous</a></li>
+              <li><a class="dropdown-item" href="index.html#abonnement"><i class="bi bi-gift me-2" style="color: #10b981;"></i>Mon abonnement</a></li>
+              <li><hr class="dropdown-divider"></li>
+              <li><button class="dropdown-item text-danger" id="btnLogout"><i class="bi bi-box-arrow-right me-2"></i>Se déconnecter</button></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <style>
+    .nav-link {
+      color: #374151 !important;
+      transition: all 0.3s ease;
+      border-radius: 8px;
+      padding: 8px 12px !important;
+    }
+    .nav-link:hover {
+      background: #f3f4f6;
+      color: #4f46e5 !important;
+    }
+  </style>
+
+  <!-- MODALES AUTH -->
+  <div class="modal fade" id="loginModal" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+      <form class="modal-content" id="loginForm">
+        <div class="modal-header"><h5 class="modal-title">S'identifier</h5><button type="button" class="btn-close" data-bs-dismiss="modal"></button></div>
+        <div class="modal-body">
+          <div class="mb-3"><label class="form-label">Email</label><input type="email" class="form-control" id="loginEmail" required></div>
+          <div class="mb-2"><label class="form-label">Mot de passe</label><input type="password" class="form-control" id="loginPassword" minlength="4" required></div>
+          <div class="text-danger small mt-2 d-none" id="loginError">Identifiants invalides.</div>
+        </div>
+        <div class="modal-footer"><button class="btn btn-primary" type="submit">Se connecter</button></div>
+      </form>
+    </div>
+  </div>
+
+  <div class="modal fade" id="signupModal" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+      <form class="modal-content" id="signupForm">
+        <div class="modal-header flex-column align-items-center border-0 pb-0">
+          <img src="assets/images/Logo12.jpg" alt="Logo Pet's Heaven" class="mb-3 rounded-circle shadow-lg" style="width: 90px; height: 90px; object-fit: cover; border: 3px solid #4f46e5;">
+          <h5 class="modal-title fw-bold">Créer un compte</h5>
+          <button type="button" class="btn-close position-absolute end-0 top-0 m-3" data-bs-dismiss="modal"></button>
+        </div>
+        <div class="modal-body pt-0">
+          <div class="mb-3"><label class="form-label">Nom</label><input type="text" class="form-control" id="signupName" required></div>
+          <div class="mb-3"><label class="form-label">Email</label><input type="email" class="form-control" id="signupEmail" required></div>
+          <div class="mb-2"><label class="form-label">Mot de passe</label><input type="password" class="form-control" id="signupPassword" minlength="4" required></div>
+          <div class="text-danger small mt-2 d-none" id="signupError">Email déjà utilisé.</div>
+        </div>
+        <div class="modal-footer border-0"><button class="btn btn-primary w-100" type="submit">S'inscrire</button></div>
+      </form>
+    </div>
+  </div>
+
+  <!-- HEADER -->
+  <header class="py-5" style="background: linear-gradient(135deg, #4f46e5 0%, #7c3aed 100%); color: white;">
+    <div class="container text-center">
+      <h1 class="display-4 fw-bold mb-3">
+        <i class="bi bi-chat-dots me-2"></i>Forum Communautaire
+      </h1>
+      <p class="lead mb-4">Partager vos expériences et conseils avec d'autres passionnés d'animaux</p>
+      <button class="btn btn-light fw-bold" data-bs-toggle="modal" data-bs-target="#newThreadModal" style="border-radius: 10px; padding: 10px 25px;">
+        <i class="bi bi-pencil-square me-2"></i>Créer une discussion
+      </button>
+    </div>
+  </header>
+
+  <!-- CATÉGORIES -->
+  <section class="py-4" style="background: #f9fafb;">
+    <div class="container">
+      <div class="d-flex gap-2 flex-wrap justify-content-center">
+        <button class="btn btn-primary active" data-category="all" style="border-radius: 20px;">
+          <i class="bi bi-grid-3x3 me-1"></i>Toutes
+        </button>
+        <button class="btn btn-outline-primary" data-category="sante" style="border-radius: 20px;">
+          <i class="bi bi-hospital me-1" style="color: #ef4444;"></i>Santé
+        </button>
+        <button class="btn btn-outline-primary" data-category="nutrition" style="border-radius: 20px;">
+          <i class="bi bi-apple me-1" style="color: #f59e0b;"></i>Nutrition
+        </button>
+        <button class="btn btn-outline-primary" data-category="comportement" style="border-radius: 20px;">
+          <i class="bi bi-smiley-smile me-1" style="color: #10b981;"></i>Comportement
+        </button>
+        <button class="btn btn-outline-primary" data-category="general" style="border-radius: 20px;">
+          <i class="bi bi-chat-left me-1" style="color: #7c3aed;"></i>Général
+        </button>
+      </div>
+    </div>
+  </section>
+
+  <!-- DISCUSSIONS -->
+  <section class="py-5" style="background: linear-gradient(135deg, rgba(79, 70, 229, 0.05) 0%, rgba(245, 158, 11, 0.05) 100%);">
+    <div class="container">
+      <div id="threadsList" class="list-group">
+        <!-- Discussions générées par JS -->
+      </div>
+    </div>
+  </section>
+
+  <!-- MODAL NOUVELLE DISCUSSION -->
+  <div class="modal fade" id="newThreadModal" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+      <form class="modal-content" id="newThreadForm">
+        <div class="modal-header"><h5 class="modal-title">Créer une discussion</h5><button type="button" class="btn-close" data-bs-dismiss="modal"></button></div>
+        <div class="modal-body">
+          <div class="mb-3">
+            <label class="form-label">Titre</label>
+            <input type="text" class="form-control" id="threadTitle" required>
+          </div>
+          <div class="mb-3">
+            <label class="form-label">Catégorie</label>
+            <select class="form-select" id="threadCategory" required>
+              <option value="sante">🏥 Santé</option>
+              <option value="nutrition">🍖 Nutrition</option>
+              <option value="comportement">😺 Comportement</option>
+              <option value="general">💬 Général</option>
+            </select>
+          </div>
+          <div class="mb-3">
+            <label class="form-label">Message</label>
+            <textarea class="form-control" id="threadMessage" rows="4" required></textarea>
+          </div>
+        </div>
+        <div class="modal-footer"><button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Annuler</button><button type="submit" class="btn btn-primary">Publier</button></div>
+      </form>
+    </div>
+  </div>
+
+  <!-- FOOTER -->
+  <footer style="background: linear-gradient(135deg, #1f2937 0%, #111827 100%); color: #f3f4f6; padding-top: 3rem; padding-bottom: 1.5rem; margin-top: 4rem;">
+    <div class="container">
+      <div class="row mb-5">
+        <!-- Brand Section -->
+        <div class="col-md-3 mb-4">
+          <h6 class="fw-bold mb-3" style="color: #60a5fa; font-size: 18px;">
+            <i class="bi bi-paw-fill" style="color: #4f46e5;"></i> Pet's Heaven
+          </h6>
+          <p style="color: #d1d5db; font-size: 14px; line-height: 1.6;">
+            Votre plateforme complète pour prendre soin de vos animaux de compagnie.
+          </p>
+          <div style="display: flex; gap: 0.75rem;">
+            <a href="#" class="text-decoration-none" style="color: #60a5fa; transition: 0.3s;">
+              <i class="bi bi-facebook" style="font-size: 18px;"></i>
+            </a>
+            <a href="#" class="text-decoration-none" style="color: #ec4899; transition: 0.3s;">
+              <i class="bi bi-instagram" style="font-size: 18px;"></i>
+            </a>
+            <a href="#" class="text-decoration-none" style="color: #10b981; transition: 0.3s;">
+              <i class="bi bi-whatsapp" style="font-size: 18px;"></i>
+            </a>
+            <a href="#" class="text-decoration-none" style="color: #06b6d4; transition: 0.3s;">
+              <i class="bi bi-twitter" style="font-size: 18px;"></i>
+            </a>
+          </div>
+        </div>
+
+        <!-- Quick Links -->
+        <div class="col-md-3 mb-4">
+          <h6 class="fw-bold mb-3" style="color: #60a5fa;">Navigation</h6>
+          <ul class="list-unstyled" style="font-size: 14px;">
+            <li class="mb-2">
+              <a href="products.html" class="text-decoration-none" style="color: #d1d5db; transition: 0.3s;">
+                <i class="bi bi-box-fill" style="color: #f59e0b; margin-right: 0.5rem;"></i>Nos Produits
+              </a>
+            </li>
+            <li class="mb-2">
+              <a href="vets.html" class="text-decoration-none" style="color: #d1d5db; transition: 0.3s;">
+                <i class="bi bi-hospital" style="color: #f59e0b; margin-right: 0.5rem;"></i>Vétérinaires
+              </a>
+            </li>
+            <li class="mb-2">
+              <a href="rdv.html" class="text-decoration-none" style="color: #d1d5db; transition: 0.3s;">
+                <i class="bi bi-calendar-check" style="color: #f59e0b; margin-right: 0.5rem;"></i>Rendez-vous
+              </a>
+            </li>
+            <li class="mb-2">
+              <a href="pets.html" class="text-decoration-none" style="color: #d1d5db; transition: 0.3s;">
+                <i class="bi bi-heart-fill" style="color: #f59e0b; margin-right: 0.5rem;"></i>Mes Animaux
+              </a>
+            </li>
+          </ul>
+        </div>
+
+        <!-- Company Info -->
+        <div class="col-md-3 mb-4">
+          <h6 class="fw-bold mb-3" style="color: #60a5fa;">Informations</h6>
+          <ul class="list-unstyled" style="font-size: 14px;">
+            <li class="mb-2">
+              <a href="#" class="text-decoration-none" style="color: #d1d5db; transition: 0.3s;">
+                <i class="bi bi-question-circle" style="color: #f59e0b; margin-right: 0.5rem;"></i>À Propos
+              </a>
+            </li>
+            <li class="mb-2">
+              <a href="#" class="text-decoration-none" style="color: #d1d5db; transition: 0.3s;">
+                <i class="bi bi-shield-check" style="color: #f59e0b; margin-right: 0.5rem;"></i>Confidentialité
+              </a>
+            </li>
+            <li class="mb-2">
+              <a href="#" class="text-decoration-none" style="color: #d1d5db; transition: 0.3s;">
+                <i class="bi bi-file-text" style="color: #f59e0b; margin-right: 0.5rem;"></i>Conditions
+              </a>
+            </li>
+            <li class="mb-2">
+              <a href="#" class="text-decoration-none" style="color: #d1d5db; transition: 0.3s;">
+                <i class="bi bi-chat-dots" style="color: #f59e0b; margin-right: 0.5rem;"></i>FAQ
+              </a>
+            </li>
+          </ul>
+        </div>
+
+        <!-- Contact Info -->
+        <div class="col-md-3 mb-4">
+          <h6 class="fw-bold mb-3" style="color: #60a5fa;">Nous Contacter</h6>
+          <div style="font-size: 14px; line-height: 2;">
+            <p class="mb-2">
+              <i class="bi bi-envelope-fill" style="color: #f59e0b; margin-right: 0.5rem;"></i>
+              <a href="mailto:support@petheaven.ma" class="text-decoration-none" style="color: #d1d5db;">
+                support@petheaven.ma
+              </a>
+            </p>
+            <p class="mb-2">
+              <i class="bi bi-whatsapp" style="color: #f59e0b; margin-right: 0.5rem;"></i>
+              <a href="https://wa.me/212612345678" class="text-decoration-none" style="color: #d1d5db;">
+                +212 6 12 34 56 78
+              </a>
+            </p>
+            <p class="mb-2">
+              <i class="bi bi-telephone-fill" style="color: #f59e0b; margin-right: 0.5rem;"></i>
+              <span style="color: #d1d5db;">+212 5 22 34 56 78</span>
+            </p>
+            <p class="mb-0">
+              <i class="bi bi-geo-alt-fill" style="color: #f59e0b; margin-right: 0.5rem;"></i>
+              <span style="color: #d1d5db;">Casablanca, Maroc</span>
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Divider -->
+      <hr style="border-color: #374151; margin-bottom: 2rem;">
+
+      <!-- Copyright -->
+      <div class="row align-items-center">
+        <div class="col-md-6">
+          <p style="color: #9ca3af; font-size: 13px; margin-bottom: 0;">
+            © 2025 Pet's Heaven Morocco. Tous droits réservés.
+          </p>
+        </div>
+        <div class="col-md-6 text-md-end">
+          <p style="color: #9ca3af; font-size: 13px; margin-bottom: 0;">
+            Conçu avec <i class="bi bi-heart-fill" style="color: #ef4444; margin: 0 0.25rem;"></i> pour vos compagnons
+          </p>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="assets/js/script.js"></script>
+  <script src="assets/js/forum.js"></script>
+</body>
+</html>

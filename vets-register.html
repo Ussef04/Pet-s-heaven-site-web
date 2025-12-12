@@ -1,0 +1,1329 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Devenir Partenaire Vétérinaire — Pet's Heaven</title>
+  <meta name="description" content="Rejoignez le réseau de vétérinaires partenaires de Pet's Heaven. Gratuit, sans engagement, avec support complet.">
+
+  <!-- Bootstrap & Icons -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet">
+
+  <!-- Styles -->
+  <link rel="stylesheet" href="assets/css/styles.css">
+  <link rel="stylesheet" href="assets/css/modern-ui.css">
+  
+  <style>
+    /* Vet Registration Styles - Enhanced */
+    .hero-vet {
+      background: linear-gradient(135deg, #4f46e5 0%, #7c3aed 50%, #a855f7 100%);
+      color: white;
+      padding: 6rem 0;
+      position: relative;
+      overflow: hidden;
+      animation: gradientShift 15s ease infinite;
+    }
+
+    @keyframes gradientShift {
+      0%, 100% { background: linear-gradient(135deg, #4f46e5 0%, #7c3aed 50%, #a855f7 100%); }
+      50% { background: linear-gradient(135deg, #7c3aed 0%, #a855f7 50%, #4f46e5 100%); }
+    }
+
+    .hero-vet::before {
+      content: '';
+      position: absolute;
+      top: -50%;
+      right: -50%;
+      width: 600px;
+      height: 600px;
+      background: rgba(255, 255, 255, 0.1);
+      border-radius: 50%;
+      animation: float 8s ease-in-out infinite;
+    }
+
+    .hero-vet::after {
+      content: '';
+      position: absolute;
+      bottom: -30%;
+      left: -10%;
+      width: 400px;
+      height: 400px;
+      background: rgba(255, 255, 255, 0.05);
+      border-radius: 50%;
+      animation: float 10s ease-in-out infinite reverse;
+    }
+
+    @keyframes float {
+      0%, 100% { transform: translateY(0px); }
+      50% { transform: translateY(30px); }
+    }
+
+    .hero-vet .content {
+      position: relative;
+      z-index: 2;
+    }
+
+    .hero-vet h1 {
+      font-weight: 900;
+      text-shadow: 0 2px 20px rgba(0, 0, 0, 0.2);
+      letter-spacing: -1px;
+      animation: slideInDown 0.8s ease-out;
+    }
+
+    .hero-vet p {
+      font-size: 1.15rem;
+      opacity: 0.95;
+      animation: slideInUp 0.8s ease-out 0.2s both;
+    }
+
+    @keyframes slideInDown {
+      from {
+        opacity: 0;
+        transform: translateY(-30px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @keyframes slideInUp {
+      from {
+        opacity: 0;
+        transform: translateY(30px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .benefits-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 2.5rem;
+      margin: 3rem 0;
+    }
+
+    .benefit-box {
+      background: white;
+      padding: 2.5rem;
+      border-radius: 18px;
+      text-align: center;
+      box-shadow: 0 5px 20px rgba(0, 0, 0, 0.08);
+      transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+      border-top: 4px solid;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .benefit-box::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+      transition: left 0.5s ease;
+    }
+
+    .benefit-box:hover::before {
+      left: 100%;
+    }
+
+    .benefit-box:hover {
+      transform: translateY(-12px) scale(1.02);
+      box-shadow: 0 20px 50px rgba(79, 70, 229, 0.2);
+      background: linear-gradient(135deg, #ffffff 0%, #f8f7ff 100%);
+    }
+
+    .benefit-box.blue {
+      border-top-color: #4f46e5;
+    }
+
+    .benefit-box.blue:hover {
+      border-top-color: #4f46e5;
+      box-shadow: 0 20px 50px rgba(79, 70, 229, 0.25);
+    }
+
+    .benefit-box.orange {
+      border-top-color: #f59e0b;
+    }
+
+    .benefit-box.orange:hover {
+      box-shadow: 0 20px 50px rgba(245, 158, 11, 0.25);
+    }
+
+    .benefit-box.green {
+      border-top-color: #10b981;
+    }
+
+    .benefit-box.green:hover {
+      box-shadow: 0 20px 50px rgba(16, 185, 129, 0.25);
+    }
+
+    .benefit-box.pink {
+      border-top-color: #ec4899;
+    }
+
+    .benefit-box.pink:hover {
+      box-shadow: 0 20px 50px rgba(236, 72, 153, 0.25);
+    }
+
+    .benefit-icon {
+      font-size: 3.5rem;
+      margin-bottom: 1.5rem;
+      display: block;
+      animation: bounce 2s ease-in-out infinite;
+    }
+
+    .benefit-box:nth-child(1) .benefit-icon { animation-delay: 0s; }
+    .benefit-box:nth-child(2) .benefit-icon { animation-delay: 0.1s; }
+    .benefit-box:nth-child(3) .benefit-icon { animation-delay: 0.2s; }
+    .benefit-box:nth-child(4) .benefit-icon { animation-delay: 0.3s; }
+    .benefit-box:nth-child(5) .benefit-icon { animation-delay: 0.4s; }
+    .benefit-box:nth-child(6) .benefit-icon { animation-delay: 0.5s; }
+
+    @keyframes bounce {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-10px); }
+    }
+
+    .benefit-box h5 {
+      font-weight: 700;
+      color: #1f2937;
+      font-size: 1.2rem;
+    }
+
+    .benefit-box p {
+      color: #6b7280;
+      font-size: 0.95rem;
+      line-height: 1.6;
+    }
+
+    .form-section {
+      background: white;
+      padding: 3rem;
+      border-radius: 18px;
+      box-shadow: 0 5px 20px rgba(0, 0, 0, 0.08);
+      margin-bottom: 2.5rem;
+      border: 1px solid rgba(79, 70, 229, 0.1);
+      animation: slideInUp 0.6s ease-out;
+    }
+
+    .form-section:nth-of-type(1) { animation-delay: 0s; }
+    .form-section:nth-of-type(2) { animation-delay: 0.1s; }
+    .form-section:nth-of-type(3) { animation-delay: 0.2s; }
+
+    .section-title {
+      font-size: 1.4rem;
+      font-weight: 800;
+      color: #1f2937;
+      margin-bottom: 2rem;
+      padding-bottom: 1.2rem;
+      border-bottom: 3px solid transparent;
+      background: linear-gradient(to right, #4f46e5, #7c3aed);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+    }
+
+    .form-group label {
+      font-weight: 700;
+      color: #1f2937;
+      margin-bottom: 0.75rem;
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+    }
+
+    .form-control, .form-select {
+      border: 2px solid #e5e7eb;
+      border-radius: 12px;
+      padding: 12px 16px;
+      transition: all 0.3s ease;
+      font-size: 1rem;
+      background-color: #f9fafb;
+    }
+
+    .form-control:focus, .form-select:focus {
+      border-color: #4f46e5;
+      box-shadow: 0 0 0 4px rgba(79, 70, 229, 0.1);
+      background-color: white;
+      transform: scale(1.01);
+    }
+
+    .form-control::placeholder {
+      color: #9ca3af;
+    }
+
+    .checkbox-custom {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 14px 16px;
+      background: linear-gradient(135deg, #f9fafb 0%, #f3f4f6 100%);
+      border: 2px solid #e5e7eb;
+      border-radius: 10px;
+      margin-bottom: 12px;
+      cursor: pointer;
+      transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+    }
+
+    .checkbox-custom:hover {
+      border-color: #4f46e5;
+      background: linear-gradient(135deg, #f0f9ff 0%, #f8f7ff 100%);
+      transform: translateX(4px);
+    }
+
+    .checkbox-custom:hover {
+      background: #f3f4f6;
+    }
+
+    .checkbox-custom input[type="checkbox"] {
+      width: 20px;
+      height: 20px;
+      cursor: pointer;
+      accent-color: #4f46e5;
+    }
+
+    .checkbox-custom label {
+      margin: 0;
+      cursor: pointer;
+      flex: 1;
+    }
+
+    .req-badge {
+      background: #fef3c7;
+      color: #92400e;
+      padding: 4px 8px;
+      border-radius: 4px;
+      font-size: 0.75rem;
+      font-weight: 600;
+      margin-left: 5px;
+    }
+
+    .opt-badge {
+      background: #dbeafe;
+      color: #1e40af;
+      padding: 4px 8px;
+      border-radius: 4px;
+      font-size: 0.75rem;
+      font-weight: 600;
+      margin-left: 5px;
+    }
+
+    .conditions-box {
+      background: linear-gradient(135deg, #f0f9ff 0%, #f3f4f6 100%);
+      border: 2px solid #bfdbfe;
+      border-radius: 16px;
+      padding: 2.5rem;
+      margin: 2rem 0;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .conditions-box::before {
+      content: '';
+      position: absolute;
+      top: -50%;
+      right: -50%;
+      width: 400px;
+      height: 400px;
+      background: rgba(79, 70, 229, 0.05);
+      border-radius: 50%;
+    }
+
+    .conditions-box > * {
+      position: relative;
+      z-index: 1;
+    }
+
+    .condition-item {
+      display: flex;
+      gap: 12px;
+      margin-bottom: 1rem;
+      padding: 14px 16px;
+      background: white;
+      border-radius: 12px;
+      border-left: 4px solid #4f46e5;
+      transition: all 0.3s ease;
+    }
+
+    .condition-item:hover {
+      box-shadow: 0 8px 20px rgba(79, 70, 229, 0.15);
+      transform: translateX(4px);
+    }
+
+    .condition-item:last-child {
+      margin-bottom: 0;
+    }
+
+    .condition-icon {
+      font-size: 1.8rem;
+      min-width: 40px;
+      text-align: center;
+      animation: pulse 2s ease-in-out infinite;
+    }
+
+    .condition-icon:nth-child(1) { animation-delay: 0s; }
+
+    .condition-text {
+      flex: 1;
+    }
+
+    .condition-text strong {
+      color: #1f2937;
+      display: block;
+      margin-bottom: 0.35rem;
+      font-size: 1.05rem;
+    }
+
+    .condition-text small {
+      color: #6b7280;
+      line-height: 1.5;
+    }
+
+    @keyframes pulse {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0.7; }
+    }
+
+    .steps-timeline {
+      position: relative;
+      padding: 2rem 0;
+    }
+
+    .step {
+      display: flex;
+      gap: 2.5rem;
+      margin-bottom: 3.5rem;
+      position: relative;
+      animation: slideInLeft 0.6s ease-out;
+    }
+
+    .step:nth-of-type(1) { animation-delay: 0s; }
+    .step:nth-of-type(2) { animation-delay: 0.1s; }
+    .step:nth-of-type(3) { animation-delay: 0.2s; }
+    .step:nth-of-type(4) { animation-delay: 0.3s; }
+
+    @keyframes slideInLeft {
+      from {
+        opacity: 0;
+        transform: translateX(-30px);
+      }
+      to {
+        opacity: 1;
+        transform: translateX(0);
+      }
+    }
+
+    .step:not(:last-child)::after {
+      content: '';
+      position: absolute;
+      left: 30px;
+      top: 80px;
+      width: 3px;
+      height: 80px;
+      background: linear-gradient(180deg, #4f46e5 0%, transparent 100%);
+    }
+
+    .step-number {
+      width: 70px;
+      height: 70px;
+      background: linear-gradient(135deg, #4f46e5 0%, #7c3aed 100%);
+      color: white;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 700;
+      font-size: 1.8rem;
+      flex-shrink: 0;
+      box-shadow: 0 8px 25px rgba(79, 70, 229, 0.35);
+      transition: all 0.3s ease;
+    }
+
+    .step:hover .step-number {
+      transform: scale(1.1) rotate(-5deg);
+      box-shadow: 0 12px 35px rgba(79, 70, 229, 0.45);
+    }
+
+    .step-content h5 {
+      color: #1f2937;
+      font-weight: 800;
+      font-size: 1.2rem;
+      margin-bottom: 0.5rem;
+    }
+
+    .step-content p {
+      color: #6b7280;
+      margin: 0;
+      line-height: 1.6;
+    }
+
+    .btn-submit {
+      background: linear-gradient(135deg, #4f46e5 0%, #7c3aed 100%);
+      border: none;
+      color: white;
+      padding: 16px 45px;
+      font-weight: 700;
+      border-radius: 12px;
+      transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+      font-size: 1.15rem;
+      letter-spacing: 0.5px;
+      position: relative;
+      overflow: hidden;
+      box-shadow: 0 4px 15px rgba(79, 70, 229, 0.3);
+      text-transform: uppercase;
+    }
+
+    .btn-submit::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+      transition: left 0.5s ease;
+    }
+
+    .btn-submit:hover {
+      background: linear-gradient(135deg, #3f36d5 0%, #6c2bdd 100%);
+      transform: translateY(-4px) scale(1.02);
+      box-shadow: 0 15px 40px rgba(79, 70, 229, 0.4);
+      color: white;
+    }
+
+    .btn-submit:hover::before {
+      left: 100%;
+    }
+
+    .btn-submit:active {
+      transform: translateY(-2px) scale(1.01);
+      box-shadow: 0 8px 20px rgba(79, 70, 229, 0.35);
+    }
+
+    .success-message {
+      display: none;
+      background: linear-gradient(135deg, #f0fdf4 0%, #ecfdf5 100%);
+      border: 2px solid #10b981;
+      border-radius: 16px;
+      padding: 2.5rem;
+      text-align: center;
+      color: #15803d;
+      animation: tada 0.8s cubic-bezier(0.68, -0.55, 0.265, 1.55), fadeIn 0.6s ease;
+      box-shadow: 0 10px 40px rgba(16, 185, 129, 0.2);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .success-message::before {
+      content: '';
+      position: absolute;
+      top: -50%;
+      left: -50%;
+      width: 200%;
+      height: 200%;
+      background: radial-gradient(circle, rgba(16, 185, 129, 0.1) 0%, transparent 70%);
+      animation: pulse 2s ease-in-out infinite;
+    }
+
+    .success-message > * {
+      position: relative;
+      z-index: 2;
+    }
+
+    @keyframes tada {
+      0% {
+        opacity: 0;
+        transform: scale(0.8) rotate(-5deg);
+      }
+      50% {
+        opacity: 1;
+        transform: scale(1.05) rotate(2deg);
+      }
+      100% {
+        opacity: 1;
+        transform: scale(1) rotate(0deg);
+      }
+    }
+
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+      }
+      to {
+        opacity: 1;
+      }
+    }
+
+    @keyframes slideDown {
+      from {
+        opacity: 0;
+        transform: translateY(-20px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    /* Accordion Enhancement */
+    .accordion-button {
+      background: white !important;
+      color: #1f2937 !important;
+      border: none;
+      padding: 1.2rem !important;
+      font-size: 1.05rem;
+      transition: all 0.3s ease;
+      position: relative;
+    }
+
+    .accordion-button::after {
+      background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3e%3cpath fill='none' stroke='%234f46e5' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M2 5l6 6 6-6'/%3e%3c/svg%3e") !important;
+      transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+    }
+
+    .accordion-button:not(.collapsed)::after {
+      transform: rotate(180deg);
+    }
+
+    .accordion-button:hover {
+      background: linear-gradient(135deg, #f9fafb 0%, #f3f4f6 100%) !important;
+      color: #4f46e5 !important;
+      transform: translateX(4px);
+      box-shadow: 0 4px 15px rgba(79, 70, 229, 0.1);
+    }
+
+    .accordion-button:focus {
+      border-color: #4f46e5 !important;
+      box-shadow: 0 0 0 3px rgba(79, 70, 229, 0.1) !important;
+    }
+
+    .accordion-body {
+      padding: 1.5rem !important;
+      background: #fafbfc;
+      border-top: 2px solid #e5e7eb;
+      animation: slideDown 0.4s ease;
+    }
+
+    .accordion-item {
+      border: none !important;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+      transition: all 0.3s ease;
+    }
+
+    .accordion-item:hover {
+      box-shadow: 0 6px 20px rgba(79, 70, 229, 0.1);
+      transform: translateY(-2px);
+    }
+
+    .required-indicator {
+      color: #ef4444;
+      font-weight: 700;
+    }
+  </style>
+</head>
+<body>
+  <!-- Featured Banner -->
+  <div style="background: linear-gradient(135deg, #4f46e5 0%, #7c3aed 100%); color: white; padding: 12px 0; text-align: center; font-size: 14px; font-weight: 500;">
+    <div class="container">
+      <span>✓ Rejoignez nos 200+ vétérinaires partenaires au Maroc</span>
+    </div>
+  </div>
+
+  <!-- NAVBAR -->
+  <nav class="navbar navbar-expand-lg sticky-top shadow-sm" style="background: white; z-index: 1000;">
+    <div class="container">
+      <a class="navbar-brand fw-bold d-flex align-items-center" href="index.html" style="gap: 10px;">
+        <img src="assets/images/Logo12.jpg" alt="Pet's Heaven" style="height: 50px; width: auto; border-radius: 50%; object-fit: cover; box-shadow: 0 2px 8px rgba(0,0,0,0.1);">
+        <span style="font-size: 1.3rem; background: linear-gradient(135deg, #4f46e5 0%, #7c3aed 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;">Pet's Heaven</span>
+      </a>
+      <button class="navbar-toggler border-0" data-bs-toggle="collapse" data-bs-target="#navContent">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div id="navContent" class="collapse navbar-collapse">
+        <ul class="navbar-nav mx-auto">
+          <li class="nav-item"><a class="nav-link fw-500" href="index.html#menu"><i class="bi bi-compass me-2" style="color: #4f46e5;"></i>Accueil</a></li>
+          <li class="nav-item"><a class="nav-link fw-500" href="vets.html"><i class="bi bi-hospital me-2" style="color: #10b981;"></i>Vétérinaires</a></li>
+          <li class="nav-item"><a class="nav-link fw-500 active" href="vets-register.html"><i class="bi bi-person-plus me-2" style="color: #f59e0b;"></i>Devenir Partenaire</a></li>
+        </ul>
+        <div class="d-flex align-items-center gap-2 mt-3 mt-lg-0">
+          <a href="manage-candidates.html" class="btn btn-primary btn-sm fw-600" style="border-radius: 8px; background: linear-gradient(135deg, #4f46e5 0%, #7c3aed 100%); border: none;">
+            <i class="bi bi-people-fill me-1"></i>Gestion des Candidatures
+          </a>
+          <a href="index.html" class="btn btn-outline-primary btn-sm fw-600" style="border-radius: 8px;">
+            <i class="bi bi-arrow-left me-1"></i>Retour
+          </a>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <style>
+    .nav-link {
+      color: #374151 !important;
+      transition: all 0.3s ease;
+      border-radius: 8px;
+      padding: 8px 12px !important;
+    }
+    .nav-link:hover {
+      background: #f3f4f6;
+      color: #4f46e5 !important;
+    }
+  </style>
+
+  <!-- HERO SECTION -->
+  <section class="hero-vet">
+    <div class="container">
+      <div class="content text-center">
+        <h1 style="font-size: 3.5rem; font-weight: 900; margin-bottom: 1.5rem;">
+          Devenez Partenaire Vétérinaire
+        </h1>
+        <p style="font-size: 1.2rem; margin-bottom: 2rem; opacity: 0.95;">
+          Rejoignez le réseau Pet's Heaven et développez votre activité sans frais d'enregistrement
+        </p>
+        <div class="row g-3 justify-content-center" style="margin-top: 2rem;">
+          <div class="col-md-4">
+            <div style="background: rgba(255, 255, 255, 0.1); padding: 1.5rem; border-radius: 12px; backdrop-filter: blur(10px);">
+              <h5 style="font-size: 2rem; margin-bottom: 0.5rem;">0 DH</h5>
+              <p style="opacity: 0.9;">Frais d'inscription</p>
+            </div>
+          </div>
+          <div class="col-md-4">
+            <div style="background: rgba(255, 255, 255, 0.1); padding: 1.5rem; border-radius: 12px; backdrop-filter: blur(10px);">
+              <h5 style="font-size: 2rem; margin-bottom: 0.5rem;">32+</h5>
+              <p style="opacity: 0.9;">Vétérinaires actifs</p>
+            </div>
+          </div>
+          <div class="col-md-4">
+            <div style="background: rgba(255, 255, 255, 0.1); padding: 1.5rem; border-radius: 12px; backdrop-filter: blur(10px);">
+              <h5 style="font-size: 2rem; margin-bottom: 0.5rem;">150+</h5>
+              <p style="opacity: 0.9;">Patients actifs</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- BENEFITS SECTION -->
+  <section style="padding: 5rem 0; background: #f9fafb;">
+    <div class="container">
+      <h2 style="text-align: center; font-size: 2.5rem; font-weight: 900; margin-bottom: 3rem; color: #1f2937;">
+        Avantages de Partenariat
+      </h2>
+
+      <div class="benefits-grid">
+        <div class="benefit-box blue">
+          <div class="benefit-icon">📈</div>
+          <h5 style="color: #1f2937; font-weight: 700; margin-bottom: 0.5rem;">Plus de Patients</h5>
+          <p style="color: #6b7280; margin: 0;">Accès à notre base de 5000+ clients actifs</p>
+        </div>
+
+        <div class="benefit-box orange">
+          <div class="benefit-icon">🎯</div>
+          <h5 style="color: #1f2937; font-weight: 700; margin-bottom: 0.5rem;">Visibilité Maximale</h5>
+          <p style="color: #6b7280; margin: 0;">Profil complet avec avis et notes clients</p>
+        </div>
+
+        <div class="benefit-box green">
+          <div class="benefit-icon">💰</div>
+          <h5 style="color: #1f2937; font-weight: 700; margin-bottom: 0.5rem;">0% Commissions</h5>
+          <p style="color: #6b7280; margin: 0;">100% de vos revenus, aucun prélèvement</p>
+        </div>
+
+        <div class="benefit-box pink">
+          <div class="benefit-icon">🤝</div>
+          <h5 style="color: #1f2937; font-weight: 700; margin-bottom: 0.5rem;">Support Dédié</h5>
+          <p style="color: #6b7280; margin: 0;">Équipe d'support disponible pour vous</p>
+        </div>
+
+        <div class="benefit-box blue">
+          <div class="benefit-icon">⭐</div>
+          <h5 style="color: #1f2937; font-weight: 700; margin-bottom: 0.5rem;">Avis & Évaluations</h5>
+          <p style="color: #6b7280; margin: 0;">Système d'évaluation transparent et juste</p>
+        </div>
+
+        <div class="benefit-box green">
+          <div class="benefit-icon">🔒</div>
+          <h5 style="color: #1f2937; font-weight: 700; margin-bottom: 0.5rem;">Données Sécurisées</h5>
+          <p style="color: #6b7280; margin: 0;">Protection RGPD de toutes les informations</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONDITIONS SECTION -->
+  <section style="padding: 5rem 0;">
+    <div class="container">
+      <h2 style="text-align: center; font-size: 2.5rem; font-weight: 900; margin-bottom: 3rem; color: #1f2937;">
+        Conditions de Partenariat
+      </h2>
+
+      <div class="conditions-box">
+        <h4 style="color: #1e40af; font-weight: 700; margin-bottom: 1.5rem;">
+          <i class="bi bi-check-circle me-2"></i>Critères d'Admissibilité
+        </h4>
+
+        <div class="condition-item">
+          <div class="condition-icon">🎓</div>
+          <div class="condition-text">
+            <strong>Diplôme Vétérinaire Obligatoire <span class="required-indicator">*</span></strong>
+            <small>Vous devez être titulaire d'un diplôme d'études vétérinaires reconnu. Nous vérifierons l'authenticité de vos documents.</small>
+          </div>
+        </div>
+
+        <div class="condition-item">
+          <div class="condition-icon">📜</div>
+          <div class="condition-text">
+            <strong>Certifications & Spécialités (Optionnel)</strong>
+            <small>Diplômes spécialisés, formations complémentaires, certifications en dermatologie, cardiologie, etc. (non obligatoire)</small>
+          </div>
+        </div>
+
+        <div class="condition-item">
+          <div class="condition-icon">📍</div>
+          <div class="condition-text">
+            <strong>Localisation & Clinique <span class="required-indicator">*</span></strong>
+            <small>Votre localisation, adresse de la clinique/cabinet vétérinaire et numéros de contact doivent être vérifiés.</small>
+          </div>
+        </div>
+
+        <div class="condition-item">
+          <div class="condition-icon">💬</div>
+          <div class="condition-text">
+            <strong>Entretien d'Admission <span class="required-indicator">*</span></strong>
+            <small>Obligatoire - Appel de vérification avec notre équipe pour évaluer le professionnalisme et la sérieux du partenariat.</small>
+          </div>
+        </div>
+
+        <div class="condition-item">
+          <div class="condition-icon">✓</div>
+          <div class="condition-text">
+            <strong>Engagement de Qualité de Service</strong>
+            <small>Respect des délais de réponse, professionnalisme, et engagement envers la satisfaction des patients.</small>
+          </div>
+        </div>
+
+        <div class="condition-item">
+          <div class="condition-icon">🚫</div>
+          <div class="condition-text">
+            <strong>Code de Conduite</strong>
+            <small>Respect de la déontologie vétérinaire et des termes du partenariat Pet's Heaven.</small>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- TIMELINE SECTION -->
+  <section style="padding: 5rem 0; background: #f9fafb;">
+    <div class="container">
+      <h2 style="text-align: center; font-size: 2.5rem; font-weight: 900; margin-bottom: 3rem; color: #1f2937;">
+        Processus d'Admission
+      </h2>
+
+      <div class="steps-timeline">
+        <div class="step">
+          <div class="step-number">1</div>
+          <div class="step-content">
+            <h5>Remplir le Formulaire</h5>
+            <p>Complétez tous les informations requises avec vos détails professionnels et vos diplômes.</p>
+          </div>
+        </div>
+
+        <div class="step">
+          <div class="step-number">2</div>
+          <div class="step-content">
+            <h5>Vérification des Documents</h5>
+            <p>Nos équipes examinent votre diplôme, certifications et localisation (48h).</p>
+          </div>
+        </div>
+
+        <div class="step">
+          <div class="step-number">3</div>
+          <div class="step-content">
+            <h5>Entretien de Sélection</h5>
+            <p>Appel avec notre équipe pour valider professionnalisme et compatibilité (15-20 min).</p>
+          </div>
+        </div>
+
+        <div class="step">
+          <div class="step-number">4</div>
+          <div class="step-content">
+            <h5>Activation du Profil</h5>
+            <p>Après validation, votre profil est activé et visible sur notre plateforme immédiatement.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- REGISTRATION FORM -->
+  <section style="padding: 5rem 0;">
+    <div class="container">
+      <h2 style="text-align: center; font-size: 2.5rem; font-weight: 900; margin-bottom: 3rem; color: #1f2937;">
+        Formulaire d'Inscription
+      </h2>
+
+      <div class="form-section">
+        <form id="vetRegisterForm">
+          <!-- Section 1: Informations Personnelles -->
+          <div class="mb-5">
+            <h4 class="section-title">
+              <i class="bi bi-person-fill me-2" style="color: #4f46e5;"></i>Informations Personnelles
+            </h4>
+
+            <div class="row g-3">
+              <div class="col-md-6">
+                <div class="form-group">
+                  <label for="firstName">Prénom <span class="required-indicator">*</span></label>
+                  <input type="text" class="form-control" id="firstName" name="firstName" required>
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="form-group">
+                  <label for="lastName">Nom <span class="required-indicator">*</span></label>
+                  <input type="text" class="form-control" id="lastName" name="lastName" required>
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="form-group">
+                  <label for="email">Email <span class="required-indicator">*</span></label>
+                  <input type="email" class="form-control" id="email" name="email" required>
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="form-group">
+                  <label for="phone">Téléphone <span class="required-indicator">*</span></label>
+                  <input type="tel" class="form-control" id="phone" name="phone" placeholder="+212 6XX XXX XXX" required>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Section 2: Informations Professionnelles -->
+          <div class="mb-5">
+            <h4 class="section-title">
+              <i class="bi bi-briefcase-fill me-2" style="color: #10b981;"></i>Informations Professionnelles
+            </h4>
+
+            <div class="row g-3">
+              <div class="col-md-6">
+                <div class="form-group">
+                  <label for="clinicName">Nom de la Clinique/Cabinet <span class="required-indicator">*</span></label>
+                  <input type="text" class="form-control" id="clinicName" name="clinicName" required>
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="form-group">
+                  <label for="specialty">Spécialité Principale <span class="required-indicator">*</span></label>
+                  <select class="form-select" id="specialty" name="specialty" required>
+                    <option value="">Sélectionnez une spécialité</option>
+                    <option value="Généraliste">Généraliste</option>
+                    <option value="Dermatologie">Dermatologie</option>
+                    <option value="Chirurgie">Chirurgie</option>
+                    <option value="Dentaire">Dentaire</option>
+                    <option value="Urgences">Urgences</option>
+                    <option value="Cardiologie">Cardiologie</option>
+                    <option value="Orthopédie">Orthopédie</option>
+                    <option value="Ophtalmologie">Ophtalmologie</option>
+                    <option value="Reproduction">Reproduction</option>
+                    <option value="Oncologie">Oncologie</option>
+                    <option value="Autre">Autre</option>
+                  </select>
+                </div>
+              </div>
+              <div class="col-12">
+                <div class="form-group">
+                  <label for="experience">Années d'Expérience <span class="required-indicator">*</span></label>
+                  <input type="number" class="form-control" id="experience" name="experience" min="0" max="60" required>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Section 3: Localisation -->
+          <div class="mb-5">
+            <h4 class="section-title">
+              <i class="bi bi-geo-alt-fill me-2" style="color: #f59e0b;"></i>Localisation & Adresse
+            </h4>
+
+            <div class="row g-3">
+              <div class="col-md-4">
+                <div class="form-group">
+                  <label for="city">Ville <span class="required-indicator">*</span></label>
+                  <input type="text" class="form-control" id="city" name="city" required>
+                </div>
+              </div>
+              <div class="col-md-4">
+                <div class="form-group">
+                  <label for="region">Région <span class="required-indicator">*</span></label>
+                  <select class="form-select" id="region" name="region" required>
+                    <option value="">Sélectionnez une région</option>
+                    <option value="Casablanca-Settat">Casablanca-Settat</option>
+                    <option value="Rabat-Salé-Kénitra">Rabat-Salé-Kénitra</option>
+                    <option value="Fès-Meknès">Fès-Meknès</option>
+                    <option value="Tanger-Tétouan-Al Hoceïma">Tanger-Tétouan-Al Hoceïma</option>
+                    <option value="Marrakech-Safi">Marrakech-Safi</option>
+                    <option value="Agadir-Ida-Outanane">Agadir-Ida-Outanane</option>
+                    <option value="Souss-Massa">Souss-Massa</option>
+                    <option value="Drâa-Tafilalet">Drâa-Tafilalet</option>
+                    <option value="Béni Mellal-Khénifra">Béni Mellal-Khénifra</option>
+                  </select>
+                </div>
+              </div>
+              <div class="col-md-4">
+                <div class="form-group">
+                  <label for="codePostal">Code Postal <span class="required-indicator">*</span></label>
+                  <input type="text" class="form-control" id="codePostal" name="codePostal" required>
+                </div>
+              </div>
+              <div class="col-12">
+                <div class="form-group">
+                  <label for="address">Adresse Complète <span class="required-indicator">*</span></label>
+                  <input type="text" class="form-control" id="address" name="address" required>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Section 4: Diplômes et Certifications -->
+          <div class="mb-5">
+            <h4 class="section-title">
+              <i class="bi bi-award-fill me-2" style="color: #ec4899;"></i>Diplômes et Certifications
+            </h4>
+
+            <div class="row g-3 mb-3">
+              <div class="col-12">
+                <div class="form-group">
+                  <label for="diploma">Diplôme Vétérinaire (Établissement & Année) <span class="required-indicator">*</span></label>
+                  <textarea class="form-control" id="diploma" name="diploma" rows="2" placeholder="Ex: Diplôme de l'Université Cadi Ayyad, Marrakech (2010)" required></textarea>
+                </div>
+              </div>
+            </div>
+
+            <div class="form-group mb-3">
+              <label>Certifications Additionnelles <span class="opt-badge">OPTIONNEL</span></label>
+              <small style="display: block; color: #6b7280; margin-bottom: 1rem;">Ajoutez vos certifications, formations spécialisées ou diplômes complémentaires</small>
+              
+              <div id="certificationsContainer">
+                <div class="checkbox-custom">
+                  <input type="checkbox" id="cert1" name="certifications" value="Chirurgie">
+                  <label for="cert1">Diplôme/Formation en Chirurgie</label>
+                </div>
+                <div class="checkbox-custom">
+                  <input type="checkbox" id="cert2" name="certifications" value="Dermatologie">
+                  <label for="cert2">Diplôme/Formation en Dermatologie</label>
+                </div>
+                <div class="checkbox-custom">
+                  <input type="checkbox" id="cert3" name="certifications" value="Cardiologie">
+                  <label for="cert3">Diplôme/Formation en Cardiologie</label>
+                </div>
+                <div class="checkbox-custom">
+                  <input type="checkbox" id="cert4" name="certifications" value="Reproduction">
+                  <label for="cert4">Diplôme/Formation en Reproduction</label>
+                </div>
+                <div class="checkbox-custom">
+                  <input type="checkbox" id="cert5" name="certifications" value="Urgences">
+                  <label for="cert5">Diplôme/Formation en Urgences & Réanimation</label>
+                </div>
+                <div class="checkbox-custom">
+                  <input type="checkbox" id="cert6" name="certifications" value="Dentaire">
+                  <label for="cert6">Diplôme/Formation en Dentisterie</label>
+                </div>
+              </div>
+
+              <div class="form-group mt-3">
+                <label for="otherCerts">Autres Certifications (Décrivez)</label>
+                <textarea class="form-control" id="otherCerts" name="otherCerts" rows="2" placeholder="Mentionnez d'autres formations, certifications ou spécialisations..."></textarea>
+              </div>
+            </div>
+          </div>
+
+          <!-- Section 5: Disponibilités -->
+          <div class="mb-5">
+            <h4 class="section-title">
+              <i class="bi bi-clock-fill me-2" style="color: #06b6d4;"></i>Horaires & Disponibilités
+            </h4>
+
+            <div class="row g-3">
+              <div class="col-md-6">
+                <div class="form-group">
+                  <label for="openingTime">Heure d'Ouverture <span class="required-indicator">*</span></label>
+                  <input type="time" class="form-control" id="openingTime" name="openingTime" required>
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="form-group">
+                  <label for="closingTime">Heure de Fermeture <span class="required-indicator">*</span></label>
+                  <input type="time" class="form-control" id="closingTime" name="closingTime" required>
+                </div>
+              </div>
+              <div class="col-12">
+                <div class="form-group">
+                  <label>Jours d'Ouverture <span class="required-indicator">*</span></label>
+                  <div>
+                    <div class="checkbox-custom">
+                      <input type="checkbox" id="day1" name="days" value="Lundi" checked>
+                      <label for="day1">Lundi</label>
+                    </div>
+                    <div class="checkbox-custom">
+                      <input type="checkbox" id="day2" name="days" value="Mardi" checked>
+                      <label for="day2">Mardi</label>
+                    </div>
+                    <div class="checkbox-custom">
+                      <input type="checkbox" id="day3" name="days" value="Mercredi" checked>
+                      <label for="day3">Mercredi</label>
+                    </div>
+                    <div class="checkbox-custom">
+                      <input type="checkbox" id="day4" name="days" value="Jeudi" checked>
+                      <label for="day4">Jeudi</label>
+                    </div>
+                    <div class="checkbox-custom">
+                      <input type="checkbox" id="day5" name="days" value="Vendredi" checked>
+                      <label for="day5">Vendredi</label>
+                    </div>
+                    <div class="checkbox-custom">
+                      <input type="checkbox" id="day6" name="days" value="Samedi" checked>
+                      <label for="day6">Samedi</label>
+                    </div>
+                    <div class="checkbox-custom">
+                      <input type="checkbox" id="day7" name="days" value="Dimanche">
+                      <label for="day7">Dimanche</label>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Section 6: Conditions d'Accord -->
+          <div class="mb-5">
+            <h4 class="section-title">
+              <i class="bi bi-file-earmark-check-fill me-2" style="color: #8b5cf6;"></i>Conditions d'Accord
+            </h4>
+
+            <div class="checkbox-custom" style="flex-direction: column; align-items: flex-start; padding: 15px;">
+              <div style="display: flex; gap: 10px; width: 100%; margin-bottom: 10px;">
+                <input type="checkbox" id="agree1" name="agreements" value="conditions" required style="margin-top: 3px;">
+                <label for="agree1" style="margin: 0;">J'accepte les conditions de partenariat et les termes de service de Pet's Heaven <span class="required-indicator">*</span></label>
+              </div>
+            </div>
+
+            <div class="checkbox-custom" style="flex-direction: column; align-items: flex-start; padding: 15px;">
+              <div style="display: flex; gap: 10px; width: 100%; margin-bottom: 10px;">
+                <input type="checkbox" id="agree2" name="agreements" value="interview" required style="margin-top: 3px;">
+                <label for="agree2" style="margin: 0;">Je suis d'accord pour participer à un entretien d'admission avec l'équipe Pet's Heaven <span class="required-indicator">*</span></label>
+              </div>
+            </div>
+
+            <div class="checkbox-custom" style="flex-direction: column; align-items: flex-start; padding: 15px;">
+              <div style="display: flex; gap: 10px; width: 100%; margin-bottom: 10px;">
+                <input type="checkbox" id="agree3" name="agreements" value="quality" required style="margin-top: 3px;">
+                <label for="agree3" style="margin: 0;">Je m'engage à maintenir les standards de qualité et de professionnalisme <span class="required-indicator">*</span></label>
+              </div>
+            </div>
+
+            <div class="checkbox-custom" style="flex-direction: column; align-items: flex-start; padding: 15px;">
+              <div style="display: flex; gap: 10px; width: 100%;">
+                <input type="checkbox" id="agree4" name="agreements" value="rgpd" style="margin-top: 3px;">
+                <label for="agree4" style="margin: 0;">J'accepte la politique de confidentialité et le traitement des données selon le RGPD</label>
+              </div>
+            </div>
+          </div>
+
+          <!-- Message de Succès -->
+          <div id="successMessage" class="success-message">
+            <h4 style="color: #15803d; font-weight: 700; margin-bottom: 1rem;">
+              <i class="bi bi-check-circle-fill me-2"></i>Inscription Réussie!
+            </h4>
+            <p style="margin-bottom: 1rem;">Merci pour votre inscription. Notre équipe vous contactera dans les 48 heures pour confirmer votre candidature et planifier l'entretien d'admission.</p>
+            <div id="confirmationDetails" style="background: white; padding: 1.5rem; border-radius: 10px; margin-bottom: 1.5rem; text-align: left;">
+            </div>
+            <button type="button" class="btn btn-success" onclick="location.reload()" style="border-radius: 8px;">
+              <i class="bi bi-arrow-clockwise me-2"></i>Retour
+            </button>
+          </div>
+
+          <!-- Bouton Submit -->
+          <button type="submit" class="btn-submit w-100 mt-4">
+            <i class="bi bi-check-circle me-2"></i>Soumettre ma Candidature
+          </button>
+
+          <p style="color: #6b7280; text-align: center; margin-top: 2rem; font-size: 0.9rem;">
+            En soumettant ce formulaire, vous acceptez nos conditions de partenariat et confirmez que les informations fournies sont exactes.
+          </p>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ SECTION -->
+  <section style="padding: 5rem 0; background: #f9fafb;">
+    <div class="container">
+      <h2 style="text-align: center; font-size: 2.5rem; font-weight: 900; margin-bottom: 3rem; color: #1f2937;">
+        Questions Fréquemment Posées
+      </h2>
+
+      <div class="accordion" id="faqAccordion">
+        <div class="accordion-item" style="border: 2px solid #e5e7eb; border-radius: 10px; margin-bottom: 1rem;">
+          <h2 class="accordion-header">
+            <button class="accordion-button fw-bold" type="button" data-bs-toggle="collapse" data-bs-target="#faq1" style="color: #1f2937;">
+              Y a-t-il des frais d'inscription?
+            </button>
+          </h2>
+          <div id="faq1" class="accordion-collapse collapse show" data-bs-parent="#faqAccordion">
+            <div class="accordion-body" style="color: #6b7280;">
+              Non, l'inscription au réseau Pet's Heaven est complètement gratuite. Il n'y a aucun frais d'inscription ou de commission sur vos consultations.
+            </div>
+          </div>
+        </div>
+
+        <div class="accordion-item" style="border: 2px solid #e5e7eb; border-radius: 10px; margin-bottom: 1rem;">
+          <h2 class="accordion-header">
+            <button class="accordion-button fw-bold collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq2" style="color: #1f2937;">
+              Combien de temps prend le processus d'admission?
+            </button>
+          </h2>
+          <div id="faq2" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+            <div class="accordion-body" style="color: #6b7280;">
+              En moyenne, le processus dure 3-5 jours: 48h pour la vérification des documents, puis l'entretien et l'activation du profil.
+            </div>
+          </div>
+        </div>
+
+        <div class="accordion-item" style="border: 2px solid #e5e7eb; border-radius: 10px; margin-bottom: 1rem;">
+          <h2 class="accordion-header">
+            <button class="accordion-button fw-bold collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq3" style="color: #1f2937;">
+              Que se passe-t-il pendant l'entretien d'admission?
+            </button>
+          </h2>
+          <div id="faq3" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+            <div class="accordion-body" style="color: #6b7280;">
+              L'entretien dure 15-20 minutes. Notre équipe discute de votre parcours, de votre spécialité, de votre approche du patient et de votre compatibilité avec le réseau Pet's Heaven.
+            </div>
+          </div>
+        </div>
+
+        <div class="accordion-item" style="border: 2px solid #e5e7eb; border-radius: 10px;">
+          <h2 class="accordion-header">
+            <button class="accordion-button fw-bold collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq4" style="color: #1f2937;">
+              Comment les patients me trouveront-ils?
+            </button>
+          </h2>
+          <div id="faq4" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+            <div class="accordion-body" style="color: #6b7280;">
+              Votre profil apparaîtra dans notre répertoire en ligne que les patients consultent pour réserver des rendez-vous. Vous pouvez filtrer par spécialité, localisation et notes.
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer style="background: linear-gradient(135deg, #1f2937 0%, #111827 100%); color: #f3f4f6; padding-top: 3rem; padding-bottom: 1.5rem; margin-top: 4rem; position: relative; overflow: hidden;">
+    <!-- Animated Background -->
+    <div style="position: absolute; top: 0; left: 0; right: 0; bottom: 0; opacity: 0.1;">
+      <div style="position: absolute; width: 400px; height: 400px; background: radial-gradient(circle, #4f46e5 0%, transparent 70%); top: -100px; right: -100px; border-radius: 50%; animation: float 8s ease-in-out infinite;"></div>
+      <div style="position: absolute; width: 300px; height: 300px; background: radial-gradient(circle, #7c3aed 0%, transparent 70%); bottom: -50px; left: -50px; border-radius: 50%; animation: float 10s ease-in-out infinite reverse;"></div>
+    </div>
+
+    <div class="container" style="position: relative; z-index: 2;">
+      <div class="row mb-5">
+        <div class="col-md-3 mb-4" style="animation: slideInUp 0.6s ease-out 0s;">
+          <h6 class="fw-bold mb-3" style="color: #60a5fa; font-size: 1.1rem; letter-spacing: 0.5px;">
+            <i class="bi bi-paw-fill me-2" style="color: #4f46e5; font-size: 1.3rem;"></i> Pet's Heaven
+          </h6>
+          <p style="color: #d1d5db; font-size: 14px; line-height: 1.6;">Plateforme complète pour le bien-être de vos animaux de compagnie.</p>
+        </div>
+        <div class="col-md-3 mb-4" style="animation: slideInUp 0.6s ease-out 0.1s; animation-fill-mode: both;">
+          <h6 class="fw-bold mb-3" style="color: #60a5fa; font-size: 1.1rem; letter-spacing: 0.5px;">Navigation</h6>
+          <ul class="list-unstyled" style="font-size: 14px;">
+            <li class="mb-2" style="transition: all 0.3s ease;">
+              <a href="index.html" class="text-decoration-none footer-link" style="color: #d1d5db; display: flex; align-items: center; gap: 8px;">
+                <i class="bi bi-arrow-right" style="font-size: 12px; opacity: 0;"></i>Accueil
+              </a>
+            </li>
+            <li class="mb-2" style="transition: all 0.3s ease;">
+              <a href="vets.html" class="text-decoration-none footer-link" style="color: #d1d5db; display: flex; align-items: center; gap: 8px;">
+                <i class="bi bi-arrow-right" style="font-size: 12px; opacity: 0;"></i>Vétérinaires
+              </a>
+            </li>
+            <li class="mb-2" style="transition: all 0.3s ease;">
+              <a href="vets-register.html" class="text-decoration-none footer-link" style="color: #d1d5db; display: flex; align-items: center; gap: 8px;">
+                <i class="bi bi-arrow-right" style="font-size: 12px; opacity: 0;"></i>Devenir Partenaire
+              </a>
+            </li>
+          </ul>
+        </div>
+        <div class="col-md-3 mb-4" style="animation: slideInUp 0.6s ease-out 0.2s; animation-fill-mode: both;">
+          <h6 class="fw-bold mb-3" style="color: #60a5fa; font-size: 1.1rem; letter-spacing: 0.5px;">Contact</h6>
+          <p style="color: #d1d5db; font-size: 14px; line-height: 1.8;">
+            <i class="bi bi-envelope-fill me-2" style="color: #60a5fa;"></i><span style="transition: all 0.3s ease; cursor: pointer;" class="footer-contact">support@petheaven.ma</span><br>
+            <i class="bi bi-whatsapp me-2" style="color: #10b981;"></i><span style="transition: all 0.3s ease; cursor: pointer;" class="footer-contact">+212 6 12 34 56 78</span><br>
+            <i class="bi bi-geo-alt-fill me-2" style="color: #f59e0b;"></i><span class="footer-contact">Casablanca, Maroc</span>
+          </p>
+        </div>
+        <div class="col-md-3 mb-4" style="animation: slideInUp 0.6s ease-out 0.3s; animation-fill-mode: both;">
+          <h6 class="fw-bold mb-3" style="color: #60a5fa; font-size: 1.1rem; letter-spacing: 0.5px;">Réseaux Sociaux</h6>
+          <div style="display: flex; gap: 1rem;">
+            <a href="#" class="text-decoration-none footer-social" style="color: #60a5fa; width: 40px; height: 40px; border-radius: 50%; background: rgba(96, 165, 250, 0.1); display: flex; align-items: center; justify-content: center; transition: all 0.3s ease;">
+              <i class="bi bi-facebook" style="font-size: 1.1rem;"></i>
+            </a>
+            <a href="#" class="text-decoration-none footer-social" style="color: #ec4899; width: 40px; height: 40px; border-radius: 50%; background: rgba(236, 72, 153, 0.1); display: flex; align-items: center; justify-content: center; transition: all 0.3s ease;">
+              <i class="bi bi-instagram" style="font-size: 1.1rem;"></i>
+            </a>
+            <a href="#" class="text-decoration-none footer-social" style="color: #10b981; width: 40px; height: 40px; border-radius: 50%; background: rgba(16, 185, 129, 0.1); display: flex; align-items: center; justify-content: center; transition: all 0.3s ease;">
+              <i class="bi bi-whatsapp" style="font-size: 1.1rem;"></i>
+            </a>
+          </div>
+        </div>
+      </div>
+      <hr style="border-color: #374151; margin: 2rem 0;">
+      <div class="text-center">
+        <p style="color: #9ca3af; font-size: 13px; margin: 0;">© 2025 Pet's Heaven Morocco. Tous droits réservés. | <a href="admin-vets.html" style="color: #60a5fa; text-decoration: none; opacity: 0.5; font-size: 11px; transition: all 0.3s ease; cursor: pointer;" class="admin-link">Admin</a></p>
+      </div>
+    </div>
+
+    <style>
+      .footer-link:hover {
+        color: #4f46e5 !important;
+        transform: translateX(4px);
+      }
+
+      .footer-link:hover i {
+        opacity: 1 !important;
+      }
+
+      .footer-contact:hover {
+        color: #60a5fa !important;
+      }
+
+      .footer-social:hover {
+        transform: scale(1.15) rotate(10deg);
+        background: rgba(79, 70, 229, 0.2) !important;
+      }
+
+      .admin-link:hover {
+        opacity: 1 !important;
+        color: #93c5fd !important;
+      }
+    </style>
+  </footer>
+
+  <!-- JS -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="assets/js/script.js"></script>
+  <script src="assets/js/vets-register.js"></script>
+</body>
+</html>

@@ -1,0 +1,781 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Prendre RDV — Pet's Heaven</title>
+  <meta name="description" content="Prenez rendez-vous chez votre vétérinaire préféré facilement.">
+
+  <!-- Bootstrap & Icons -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet">
+
+  <!-- Styles -->
+  <link rel="stylesheet" href="assets/css/styles.css">
+  <link rel="stylesheet" href="assets/css/modern-ui.css">
+  
+  <style>
+    @keyframes slideDown {
+      from {
+        opacity: 0;
+        transform: translateY(-10px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @keyframes slideInUp {
+      from {
+        opacity: 0;
+        transform: translateY(20px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+      }
+      to {
+        opacity: 1;
+      }
+    }
+
+    @keyframes pulse {
+      0%, 100% {
+        opacity: 1;
+      }
+      50% {
+        opacity: 0.7;
+      }
+    }
+
+    @keyframes float {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-10px); }
+    }
+
+    /* Advanced RDV Page Styles */
+    .nav-tabs {
+      border: none;
+      background: linear-gradient(135deg, #f9fafb 0%, #f3f4f6 100%);
+      padding: 1rem;
+      border-radius: 12px;
+      margin-bottom: 2rem;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+    }
+
+    .nav-tabs .nav-link {
+      border: none !important;
+      color: #6b7280 !important;
+      transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+      padding: 12px 24px;
+      border-radius: 10px;
+      background: transparent;
+      font-weight: 600;
+      letter-spacing: 0.5px;
+      position: relative;
+    }
+
+    .nav-tabs .nav-link:hover {
+      background: rgba(79, 70, 229, 0.08);
+      color: #4f46e5 !important;
+      transform: translateY(-2px);
+    }
+
+    .nav-tabs .nav-link.active {
+      background: linear-gradient(135deg, #4f46e5 0%, #7c3aed 100%);
+      color: white !important;
+      font-weight: 700;
+      box-shadow: 0 4px 15px rgba(79, 70, 229, 0.3);
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+
+    .tab-content {
+      border: none;
+    }
+
+    .form-control, .form-select {
+      transition: all 0.3s ease;
+      border: 2px solid #e5e7eb;
+      border-radius: 10px;
+      padding: 12px 16px;
+      font-size: 1rem;
+    }
+
+    .form-control:hover, .form-select:hover {
+      border-color: #4f46e5;
+      box-shadow: 0 4px 12px rgba(79, 70, 229, 0.1);
+    }
+
+    .form-control:focus, .form-select:focus {
+      border-color: #4f46e5;
+      box-shadow: 0 0 0 4px rgba(79, 70, 229, 0.1);
+      background-color: white;
+    }
+
+    .card {
+      transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+      border: 2px solid #e5e7eb;
+      border-radius: 16px;
+      animation: slideInUp 0.6s ease-out;
+    }
+
+    .card:hover {
+      transform: translateY(-8px) scale(1.02);
+      box-shadow: 0 20px 50px rgba(79, 70, 229, 0.15);
+      border-color: #4f46e5;
+    }
+
+    .btn-primary {
+      background: linear-gradient(135deg, #4f46e5 0%, #7c3aed 100%);
+      border: none;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      padding: 12px 32px;
+      border-radius: 10px;
+      transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+      box-shadow: 0 4px 15px rgba(79, 70, 229, 0.2);
+    }
+
+    .btn-primary:hover {
+      background: linear-gradient(135deg, #3f36d5 0%, #6c2bdd 100%);
+      transform: translateY(-4px) scale(1.05);
+      box-shadow: 0 12px 35px rgba(79, 70, 229, 0.4);
+      color: white;
+    }
+
+    .btn-primary:active {
+      transform: translateY(-2px) scale(1.02);
+      box-shadow: 0 6px 20px rgba(79, 70, 229, 0.3);
+    }
+
+    .alert {
+      border: none;
+      border-radius: 12px;
+      animation: slideDown 0.4s ease;
+      border-left: 5px solid #4f46e5;
+    }
+
+    .alert-info {
+      background: linear-gradient(135deg, #dbeafe 0%, #e0f2fe 100%);
+      color: #0c4a6e;
+      border-left-color: #0284c7;
+    }
+
+    .alert-success {
+      background: linear-gradient(135deg, #dcfce7 0%, #ecfdf5 100%);
+      color: #15803d;
+      border-left-color: #10b981;
+    }
+
+    .alert-warning {
+      background: linear-gradient(135deg, #fef3c7 0%, #fef08a 100%);
+      color: #92400e;
+      border-left-color: #f59e0b;
+    }
+
+    .badge {
+      padding: 8px 16px;
+      border-radius: 20px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      font-size: 0.8rem;
+    }
+
+    .tab-pane {
+      animation: slideDown 0.4s ease;
+    }
+
+    /* Rating stars */
+    .stars {
+      color: #f59e0b;
+      font-size: 1.3rem;
+      letter-spacing: 3px;
+      animation: float 3s ease-in-out infinite;
+    }
+
+    /* RDV Card Styles */
+    .rdv-card {
+      transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+      border-radius: 16px;
+      border: 2px solid #e5e7eb;
+      overflow: hidden;
+      animation: slideInUp 0.6s ease-out;
+      position: relative;
+    }
+
+    .rdv-card:hover {
+      box-shadow: 0 20px 50px rgba(79, 70, 229, 0.15);
+      transform: translateY(-8px) scale(1.02);
+      border-color: #4f46e5;
+    }
+
+    .rdv-card .card-header {
+      background: linear-gradient(135deg, #f9fafb 0%, #f3f4f6 100%);
+      border-bottom: 2px solid #e5e7eb;
+    }
+
+    /* Form Group Animation */
+    .form-group {
+      animation: slideInUp 0.6s ease-out;
+    }
+
+    .form-group:nth-child(1) { animation-delay: 0s; }
+    .form-group:nth-child(2) { animation-delay: 0.1s; }
+    .form-group:nth-child(3) { animation-delay: 0.2s; }
+    .form-group:nth-child(4) { animation-delay: 0.3s; }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+      .nav-tabs {
+        flex-wrap: nowrap;
+        overflow-x: auto;
+        padding-bottom: 10px;
+      }
+
+      .nav-link {
+        white-space: nowrap;
+        font-size: 0.9rem;
+        padding: 10px 16px;
+      }
+
+      .btn-primary {
+        width: 100%;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- Featured Banner -->
+  <div style="background: linear-gradient(135deg, #4f46e5 0%, #7c3aed 100%); color: white; padding: 12px 0; text-align: center; font-size: 14px; font-weight: 500;">
+    <div class="container">
+      <div class="row align-items-center g-2">
+        <div class="col-md-4 mb-2 mb-md-0">
+          <span style="margin-right: 8px; display: inline-block;">✓</span>
+          <a href="#" style="color: white; text-decoration: none; border-bottom: 2px solid rgba(255,255,255,0.5); transition: all 0.3s ease;"><strong>Livraison Gratuite</strong> pour commandes > 500 DH</a>
+        </div>
+        <div class="col-md-4 mb-2 mb-md-0">
+          <span style="margin-right: 8px; display: inline-block;">📅</span>
+          <a href="index.html#abonnement" style="color: white; text-decoration: none; border-bottom: 2px solid rgba(255,255,255,0.5); transition: all 0.3s ease;"><strong>Abonnement</strong> : Économisez jusqu'à 40%</a>
+        </div>
+        <div class="col-md-4">
+          <span style="margin-right: 8px; display: inline-block;">🐾</span>
+          <a href="pets.html" style="color: white; text-decoration: none; border-bottom: 2px solid rgba(255,255,255,0.5); transition: all 0.3s ease;"><strong>Suivi Pet</strong> : Profil gratuit</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- NAVBAR -->
+  <nav class="navbar navbar-expand-lg sticky-top shadow-sm" style="background: white; z-index: 1000;">
+    <div class="container">
+      <!-- Logo -->
+      <a class="navbar-brand fw-bold d-flex align-items-center" href="index.html" style="gap: 10px;">
+        <img src="assets/images/Logo12.jpg" alt="Pet's Heaven" style="height: 50px; width: auto; border-radius: 50%; object-fit: cover; box-shadow: 0 2px 8px rgba(0,0,0,0.1);">
+        <span style="font-size: 1.3rem; background: linear-gradient(135deg, #4f46e5 0%, #7c3aed 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;">Pet's Heaven</span>
+      </a>
+
+      <!-- Toggler -->
+      <button class="navbar-toggler border-0" data-bs-toggle="collapse" data-bs-target="#navContent">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+      <!-- Navigation -->
+      <div id="navContent" class="collapse navbar-collapse">
+        <ul class="navbar-nav mx-auto">
+          <li class="nav-item"><a class="nav-link fw-500" href="index.html#menu"><i class="bi bi-compass me-2" style="color: #4f46e5;"></i>Découvrir</a></li>
+          <li class="nav-item"><a class="nav-link fw-500" href="products.html"><i class="bi bi-bag-fill me-2" style="color: #f59e0b;"></i>Produits</a></li>
+          <li class="nav-item"><a class="nav-link fw-500" href="vets.html"><i class="bi bi-hospital me-2" style="color: #10b981;"></i>Vétérinaires</a></li>
+          <li class="nav-item"><a class="nav-link fw-500" href="rdv.html"><i class="bi bi-calendar-event me-2" style="color: #ef4444;"></i>RDV</a></li>
+          <li class="nav-item"><a class="nav-link fw-500" href="pets.html"><i class="bi bi-paw-fill me-2" style="color: #7c3aed;"></i>Mes Animaux</a></li>
+        </ul>
+
+        <!-- Auth Actions -->
+        <div class="d-flex align-items-center gap-2 mt-3 mt-lg-0">
+          <!-- Account Menu (hidden by default) -->
+          <div class="dropdown d-none" id="accountMenu">
+            <button class="btn btn-light btn-sm fw-600 dropdown-toggle" data-bs-toggle="dropdown" id="accountBtn" style="border-radius: 8px;">
+              <i class="bi bi-person-check me-1"></i>Mon compte
+            </button>
+            <ul class="dropdown-menu dropdown-menu-end rounded-3" style="box-shadow: 0 10px 30px rgba(0,0,0,0.1);">
+              <li class="dropdown-item-text small text-muted px-3 pt-3 pb-2" id="helloUser">Bonjour</li>
+              <li><hr class="dropdown-divider"></li>
+              <li><a class="dropdown-item" href="pets.html"><i class="bi bi-paw-fill me-2" style="color: #4f46e5;"></i>Mes animaux</a></li>
+              <li><a class="dropdown-item" href="rdv.html"><i class="bi bi-calendar-event me-2" style="color: #f59e0b;"></i>Mes rendez-vous</a></li>
+              <li><a class="dropdown-item" href="index.html#abonnement"><i class="bi bi-gift me-2" style="color: #10b981;"></i>Mon abonnement</a></li>
+              <li><hr class="dropdown-divider"></li>
+              <li><button class="dropdown-item text-danger" id="btnLogout"><i class="bi bi-box-arrow-right me-2"></i>Se déconnecter</button></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <style>
+    .nav-link {
+      color: #374151 !important;
+      transition: all 0.3s ease;
+      border-radius: 8px;
+      padding: 8px 12px !important;
+    }
+    .nav-link:hover {
+      background: #f3f4f6;
+      color: #4f46e5 !important;
+    }
+  </style>
+
+  <!-- MODALE — S'identifier -->
+  <div class="modal fade" id="loginModal" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+      <form class="modal-content" id="loginForm">
+        <div class="modal-header">
+          <h5 class="modal-title">S'identifier</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+        </div>
+        <div class="modal-body">
+          <div class="mb-3">
+            <label class="form-label">Email</label>
+            <input type="email" class="form-control" id="loginEmail" required>
+          </div>
+          <div class="mb-2">
+            <label class="form-label">Mot de passe</label>
+            <input type="password" class="form-control" id="loginPassword" minlength="4" required>
+          </div>
+          <div class="form-text">Mot de passe ≥ 4 caractères.</div>
+          <div class="text-danger small mt-2 d-none" id="loginError">Identifiants invalides.</div>
+        </div>
+        <div class="modal-footer">
+          <button class="btn btn-primary" type="submit">Se connecter</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- MODALE — S'inscrire -->
+  <div class="modal fade" id="signupModal" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+      <form class="modal-content" id="signupForm">
+        <div class="modal-header flex-column align-items-center border-0 pb-0">
+          <img src="assets/images/Logo12.jpg" 
+               alt="Logo Pet's Heaven" 
+               class="mb-3 rounded-circle shadow-lg" 
+               style="width: 90px; height: 90px; object-fit: cover; border: 3px solid #4f46e5;">
+          <h5 class="modal-title fw-bold">Créer un compte</h5>
+          <button type="button" class="btn-close position-absolute end-0 top-0 m-3" data-bs-dismiss="modal"></button>
+        </div>
+
+        <div class="modal-body pt-0">
+          <div class="mb-3">
+            <label class="form-label">Nom</label>
+            <input type="text" class="form-control" id="signupName" required>
+          </div>
+          <div class="mb-3">
+            <label class="form-label">Email</label>
+            <input type="email" class="form-control" id="signupEmail" required>
+          </div>
+          <div class="mb-2">
+            <label class="form-label">Mot de passe</label>
+            <input type="password" class="form-control" id="signupPassword" minlength="4" required>
+          </div>
+          <div class="form-text">Mot de passe ≥ 4 caractères (démo locale).</div>
+          <div class="text-danger small mt-2 d-none" id="signupError">Email déjà utilisé.</div>
+        </div>
+
+        <div class="modal-footer border-0">
+          <button class="btn btn-primary w-100" type="submit">S'inscrire</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- CONTENT -->
+  <section class="py-5" style="background: linear-gradient(135deg, rgba(79, 70, 229, 0.05) 0%, rgba(245, 158, 11, 0.05) 100%);">
+    <div class="container">
+      <div class="section-header mb-5">
+        <h1 style="font-size: 2.5rem;"><i class="bi bi-calendar-heart me-3" style="color: #ef4444;"></i>Prendre un Rendez-vous Vétérinaire</h1>
+        <p>Réservez facilement avec nos vétérinaires partenaires et suivez votre consultation en temps réel</p>
+      </div>
+
+      <!-- TABS NAVIGATION -->
+      <ul class="nav nav-tabs border-0 mb-4 d-flex gap-2" role="tablist" style="background: white; padding: 20px; border-radius: 15px; box-shadow: 0 2px 10px rgba(0,0,0,0.05);">
+        <li class="nav-item" role="presentation">
+          <button class="nav-link active fw-bold" id="booking-tab" data-bs-toggle="tab" data-bs-target="#booking" type="button" style="color: #4f46e5; border-radius: 10px;">
+            <i class="bi bi-calendar-check me-2"></i>Réserver un RDV
+          </button>
+        </li>
+        <li class="nav-item" role="presentation">
+          <button class="nav-link fw-bold" id="history-tab" data-bs-toggle="tab" data-bs-target="#history" type="button" style="color: #7c3aed; border-radius: 10px;">
+            <i class="bi bi-clock-history me-2"></i>Mes RDV (<span id="rdvCount">0</span>)
+          </button>
+        </li>
+        <li class="nav-item" role="presentation">
+          <button class="nav-link fw-bold" id="vets-tab" data-bs-toggle="tab" data-bs-target="#vets" type="button" style="color: #10b981; border-radius: 10px;">
+            <i class="bi bi-hospital me-2"></i>Vétérinaires Partenaires
+          </button>
+        </li>
+      </ul>
+
+      <!-- TAB CONTENT -->
+      <div class="tab-content">
+        <!-- BOOKING TAB -->
+        <div class="tab-pane fade show active" id="booking" role="tabpanel">
+          <div class="row g-4">
+            <div class="col-lg-8">
+              <form id="rdvForm" class="card border-0 shadow-sm p-5 rounded-3" style="background: white;">
+                <h5 class="fw-bold mb-4 pb-3 border-bottom" style="color: #4f46e5;">
+                  <i class="bi bi-calendar-check me-2"></i>Détails du rendez-vous
+                </h5>
+            
+            <div class="mb-4">
+              <label class="form-label fw-bold" style="color: #374151;">
+                <i class="bi bi-paw-fill me-2" style="color: #4f46e5;"></i>Type d'animal
+              </label>
+              <div class="d-flex gap-3">
+                <div class="form-check">
+                  <input class="form-check-input" type="radio" name="animalType" id="animalDog" value="Chien" required>
+                  <label class="form-check-label fw-bold" for="animalDog">
+                    <i class="bi bi-paw" style="color: #f59e0b; font-size: 1.2rem;"></i> Chien
+                  </label>
+                </div>
+                <div class="form-check">
+                  <input class="form-check-input" type="radio" name="animalType" id="animalCat" value="Chat" required>
+                  <label class="form-check-label fw-bold" for="animalCat">
+                    <i class="bi bi-paw" style="color: #ef4444; font-size: 1.2rem;"></i> Chat
+                  </label>
+                </div>
+                <div class="form-check">
+                  <input class="form-check-input" type="radio" name="animalType" id="animalOther" value="Autre" required>
+                  <label class="form-check-label fw-bold" for="animalOther">
+                    <i class="bi bi-star" style="color: #10b981; font-size: 1.2rem;"></i> Autre
+                  </label>
+                </div>
+              </div>
+              <!-- Champ pour "Autre" animal -->
+              <div id="otherAnimalDiv" class="d-none mt-3">
+                <input type="text" class="form-control" id="otherAnimalType" placeholder="Précisez la nature de votre animal (Lapin, Oiseau, Rongeur...)" style="border-radius: 10px; border: 2px solid #e5e7eb; padding: 10px 15px;">
+              </div>
+            </div>
+
+            <div class="mb-4">
+              <label class="form-label fw-bold" style="color: #374151;">
+                <i class="bi bi-hospital me-2" style="color: #f59e0b;"></i>Vétérinaire
+              </label>
+              <select class="form-select" id="vetSelect" required style="border-radius: 10px; border: 2px solid #e5e7eb; padding: 10px 15px;">
+                <option value="">Choisissez un vétérinaire</option>
+                <option value="Dr. Ahmed Alami - Casablanca">Dr. Ahmed Alami - Casablanca (Généraliste)</option>
+                <option value="Dr. Fatima Bennani - Rabat">Dr. Fatima Bennani - Rabat (Dermatologie)</option>
+                <option value="Dr. Mohamed Karim - Fès">Dr. Mohamed Karim - Fès (Chirurgie)</option>
+                <option value="Dr. Leila Hamdaoui - Marrakech">Dr. Leila Hamdaoui - Marrakech (Dentaire)</option>
+              </select>
+              <small id="vetAvailability" class="form-text text-muted mt-2" style="display: block;">
+                <i class="bi bi-clock me-1"></i>Disponibilités mises à jour
+              </small>
+            </div>
+
+            <div class="row">
+              <div class="col-md-6 mb-4">
+                <label class="form-label fw-bold" style="color: #374151;">
+                  <i class="bi bi-calendar3 me-2" style="color: #10b981;"></i>Date du rendez-vous
+                </label>
+                <input type="date" class="form-control" id="rdvDate" required style="border-radius: 10px; border: 2px solid #e5e7eb; padding: 10px 15px;">
+                <small class="form-text text-muted mt-2" style="display: block;">
+                  <i class="bi bi-info-circle me-1"></i>Minimum <strong>48 heures</strong> à l'avance
+                </small>
+              </div>
+
+              <div class="col-md-6 mb-4">
+                <label class="form-label fw-bold" style="color: #374151;">
+                  <i class="bi bi-clock me-2" style="color: #ef4444;"></i>Heure
+                </label>
+                <select class="form-select" id="rdvTime" required style="border-radius: 10px; border: 2px solid #e5e7eb; padding: 10px 15px;">
+                  <option value="">Sélectionnez une heure</option>
+                  <option value="09:00">09:00 - Matin</option>
+                  <option value="10:00">10:00 - Matin</option>
+                  <option value="11:00">11:00 - Matin</option>
+                  <option value="14:00">14:00 - Après-midi</option>
+                  <option value="15:00">15:00 - Après-midi</option>
+                  <option value="16:00">16:00 - Après-midi</option>
+                  <option value="17:00">17:00 - Fin de journée</option>
+                </select>
+              </div>
+            </div>
+
+            <div class="mb-4">
+              <label class="form-label fw-bold" style="color: #374151;">
+                <i class="bi bi-file-text me-2" style="color: #7c3aed;"></i>Motif du rendez-vous
+              </label>
+              <select class="form-select" id="rdvReason" style="border-radius: 10px; border: 2px solid #e5e7eb; padding: 10px 15px; margin-bottom: 10px;">
+                <option value="Consultation générale">Consultation générale</option>
+                <option value="Vaccination">Vaccination</option>
+                <option value="Suivi médical">Suivi médical</option>
+                <option value="Chirurgie">Chirurgie</option>
+                <option value="Détartrage">Détartrage dentaire</option>
+                <option value="Autre">Autre...</option>
+              </select>
+              <textarea class="form-control" id="rdvDetails" rows="3" placeholder="Détails supplémentaires (symptômes, allergies, etc.)..." style="border-radius: 10px; border: 2px solid #e5e7eb; padding: 10px 15px;"></textarea>
+            </div>
+
+            <!-- NOTIFICATION PREFERENCES -->
+            <div class="mb-4 p-3 rounded-3" style="background: #f0fdf4; border-left: 4px solid #10b981;">
+              <h6 class="fw-bold mb-3" style="color: #15803d;">
+                <i class="bi bi-bell me-2"></i>Notifications & Rappels
+              </h6>
+              <div class="form-check form-switch mb-2">
+                <input class="form-check-input" type="checkbox" id="emailReminder" checked>
+                <label class="form-check-label" for="emailReminder">
+                  <strong>Email</strong> - Rappel 24h avant
+                </label>
+              </div>
+              <div class="form-check form-switch">
+                <input class="form-check-input" type="checkbox" id="smsReminder" checked>
+                <label class="form-check-label" for="smsReminder">
+                  <strong>SMS</strong> - Rappel 1h avant
+                </label>
+              </div>
+            </div>
+
+            <button type="submit" class="btn btn-primary btn-lg w-100 fw-bold" style="border-radius: 10px; padding: 12px;">
+              <i class="bi bi-check-circle me-2"></i>Confirmer le rendez-vous
+            </button>
+          </form>
+
+          <!-- Message confirmation -->
+          <div id="successMessage" class="alert alert-success d-none mt-4 p-4 rounded-3" style="border-left: 5px solid #10b981;">
+            <div class="d-flex align-items-start">
+              <div style="font-size: 1.5rem; color: #10b981; margin-right: 15px;">
+                <i class="bi bi-check-circle-fill"></i>
+              </div>
+              <div>
+                <strong style="font-size: 1.1rem; color: #15803d;">Rendez-vous confirmé!</strong>
+                <p class="mt-2 mb-1">Numéro de confirmation: <strong id="confirmationCode"></strong></p>
+                <p class="mb-1">Vous recevrez un rappel par email et SMS</p>
+                <small class="text-muted">Conservez ce numéro pour modifier ou annuler votre RDV</small>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-lg-4">
+          <!-- SIDEBAR CARDS -->
+          <div class="card border-0 shadow-sm p-0 rounded-3 overflow-hidden mb-4" style="background: linear-gradient(135deg, #4f46e5 0%, #7c3aed 100%); color: white;">
+            <div class="p-4">
+              <h6 class="fw-bold mb-4 pb-3 border-bottom border-white border-opacity-25">
+                <i class="bi bi-info-circle me-2"></i>Avant votre visite
+              </h6>
+              <ul class="list-unstyled small">
+                <li class="mb-3"><i class="bi bi-clock text-warning me-2"></i> <strong>Arrivez 15 min</strong> avant</li>
+                <li class="mb-3"><i class="bi bi-file-text text-info me-2"></i> <strong>Carnet de santé</strong> obligatoire</li>
+                <li class="mb-3"><i class="bi bi-shield-check text-success me-2"></i> <strong>Vaccins à jour</strong></li>
+                <li class="mb-3"><i class="bi bi-calendar-event text-light me-2"></i> <strong>Annulation</strong> jusqu'à 24h</li>
+                <li><i class="bi bi-clock text-danger me-2"></i> <strong>Délai</strong> pour modification: 48h</li>
+              </ul>
+            </div>
+          </div>
+
+          <!-- SUBSCRIPTION STATUS -->
+          <div class="card border-0 shadow-sm p-4 rounded-3 mb-4" style="background: white; border-top: 4px solid #f59e0b;">
+            <h6 class="fw-bold mb-3" style="color: #1f2937;">
+              <i class="bi bi-gift me-2" style="color: #f59e0b;"></i>Votre Statut d'Abonnement
+            </h6>
+            <div id="subscriptionStatus" style="background: #fef3c7; padding: 15px; border-radius: 10px; color: #92400e;">
+              <p class="mb-0"><small><strong>Plan Découverte</strong> - Pas de priorité spéciale</small></p>
+              <small class="text-muted mt-2" style="display: block;">Passez à <strong>Plus</strong> ou <strong>Pro</strong> pour priorité RDV!</small>
+            </div>
+          </div>
+
+          <!-- QUICK STATS -->
+          <div class="card border-0 shadow-sm p-4 rounded-3" style="background: white;">
+            <h6 class="fw-bold mb-3" style="color: #1f2937;">
+              <i class="bi bi-graph-up me-2" style="color: #10b981;"></i>Vos Statistiques
+            </h6>
+            <div class="row g-3 text-center">
+              <div class="col-6">
+                <div style="background: #f0fdf4; padding: 15px; border-radius: 10px;">
+                  <p class="mb-1" style="color: #15803d; font-size: 1.5rem; font-weight: bold;" id="totalRdv">0</p>
+                  <small style="color: #6b7280;">RDV total</small>
+                </div>
+              </div>
+              <div class="col-6">
+                <div style="background: #fef3c7; padding: 15px; border-radius: 10px;">
+                  <p class="mb-1" style="color: #92400e; font-size: 1.5rem; font-weight: bold;" id="nextRdv">-</p>
+                  <small style="color: #6b7280;">Prochain RDV</small>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+        <!-- HISTORY TAB -->
+        <div class="tab-pane fade" id="history" role="tabpanel">
+          <div class="card border-0 shadow-sm p-4 rounded-3" style="background: white;">
+            <h5 class="fw-bold mb-4" style="color: #4f46e5;">
+              <i class="bi bi-clock-history me-2"></i>Historique de vos rendez-vous
+            </h5>
+            <div id="rdvHistoryContainer">
+              <div class="alert alert-info text-center" style="border-radius: 10px;">
+                <i class="bi bi-inbox"></i> Aucun rendez-vous enregistré pour le moment
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- VETS TAB -->
+        <div class="tab-pane fade" id="vets" role="tabpanel">
+          <div class="row g-4" id="vetsContainer">
+            <!-- Vets will be dynamically inserted here -->
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer style="background: linear-gradient(135deg, #1f2937 0%, #111827 100%); color: #f3f4f6; padding-top: 3rem; padding-bottom: 1.5rem; margin-top: 4rem;">
+    <div class="container">
+      <div class="row mb-5">
+        <!-- Brand Section -->
+        <div class="col-md-3 mb-4">
+          <h6 class="fw-bold mb-3" style="color: #60a5fa; font-size: 18px;">
+            <i class="bi bi-paw-fill" style="color: #4f46e5;"></i> Pet's Heaven
+          </h6>
+          <p style="color: #d1d5db; font-size: 14px; line-height: 1.6;">
+            Votre plateforme complète pour prendre soin de vos animaux de compagnie.
+          </p>
+          <div style="display: flex; gap: 0.75rem;">
+            <a href="#" class="text-decoration-none" style="color: #60a5fa; transition: 0.3s;">
+              <i class="bi bi-facebook" style="font-size: 18px;"></i>
+            </a>
+            <a href="#" class="text-decoration-none" style="color: #ec4899; transition: 0.3s;">
+              <i class="bi bi-instagram" style="font-size: 18px;"></i>
+            </a>
+            <a href="#" class="text-decoration-none" style="color: #10b981; transition: 0.3s;">
+              <i class="bi bi-whatsapp" style="font-size: 18px;"></i>
+            </a>
+            <a href="#" class="text-decoration-none" style="color: #06b6d4; transition: 0.3s;">
+              <i class="bi bi-twitter" style="font-size: 18px;"></i>
+            </a>
+          </div>
+        </div>
+
+        <!-- Quick Links -->
+        <div class="col-md-3 mb-4">
+          <h6 class="fw-bold mb-3" style="color: #60a5fa;">Navigation</h6>
+          <ul class="list-unstyled" style="font-size: 14px;">
+            <li class="mb-2">
+              <a href="products.html" class="text-decoration-none" style="color: #d1d5db; transition: 0.3s;">
+                <i class="bi bi-box-fill" style="color: #f59e0b; margin-right: 0.5rem;"></i>Nos Produits
+              </a>
+            </li>
+            <li class="mb-2">
+              <a href="vets.html" class="text-decoration-none" style="color: #d1d5db; transition: 0.3s;">
+                <i class="bi bi-hospital" style="color: #f59e0b; margin-right: 0.5rem;"></i>Vétérinaires
+              </a>
+            </li>
+            <li class="mb-2">
+              <a href="rdv.html" class="text-decoration-none" style="color: #d1d5db; transition: 0.3s;">
+                <i class="bi bi-calendar-check" style="color: #f59e0b; margin-right: 0.5rem;"></i>Rendez-vous
+              </a>
+            </li>
+            <li class="mb-2">
+              <a href="pets.html" class="text-decoration-none" style="color: #d1d5db; transition: 0.3s;">
+                <i class="bi bi-heart-fill" style="color: #f59e0b; margin-right: 0.5rem;"></i>Mes Animaux
+              </a>
+            </li>
+          </ul>
+        </div>
+
+        <!-- Company Info -->
+        <div class="col-md-3 mb-4">
+          <h6 class="fw-bold mb-3" style="color: #60a5fa;">Informations</h6>
+          <ul class="list-unstyled" style="font-size: 14px;">
+            <li class="mb-2">
+              <a href="#" class="text-decoration-none" style="color: #d1d5db; transition: 0.3s;">
+                <i class="bi bi-question-circle" style="color: #f59e0b; margin-right: 0.5rem;"></i>À Propos
+              </a>
+            </li>
+            <li class="mb-2">
+              <a href="#" class="text-decoration-none" style="color: #d1d5db; transition: 0.3s;">
+                <i class="bi bi-shield-check" style="color: #f59e0b; margin-right: 0.5rem;"></i>Confidentialité
+              </a>
+            </li>
+            <li class="mb-2">
+              <a href="#" class="text-decoration-none" style="color: #d1d5db; transition: 0.3s;">
+                <i class="bi bi-file-text" style="color: #f59e0b; margin-right: 0.5rem;"></i>Conditions
+              </a>
+            </li>
+            <li class="mb-2">
+              <a href="#" class="text-decoration-none" style="color: #d1d5db; transition: 0.3s;">
+                <i class="bi bi-chat-dots" style="color: #f59e0b; margin-right: 0.5rem;"></i>FAQ
+              </a>
+            </li>
+          </ul>
+        </div>
+
+        <!-- Contact Info -->
+        <div class="col-md-3 mb-4">
+          <h6 class="fw-bold mb-3" style="color: #60a5fa;">Nous Contacter</h6>
+          <div style="font-size: 14px; line-height: 2;">
+            <p class="mb-2">
+              <i class="bi bi-envelope-fill" style="color: #f59e0b; margin-right: 0.5rem;"></i>
+              <a href="mailto:support@petheaven.ma" class="text-decoration-none" style="color: #d1d5db;">
+                support@petheaven.ma
+              </a>
+            </p>
+            <p class="mb-2">
+              <i class="bi bi-whatsapp" style="color: #f59e0b; margin-right: 0.5rem;"></i>
+              <a href="https://wa.me/212612345678" class="text-decoration-none" style="color: #d1d5db;">
+                +212 6 12 34 56 78
+              </a>
+            </p>
+            <p class="mb-2">
+              <i class="bi bi-telephone-fill" style="color: #f59e0b; margin-right: 0.5rem;"></i>
+              <span style="color: #d1d5db;">+212 5 22 34 56 78</span>
+            </p>
+            <p class="mb-0">
+              <i class="bi bi-geo-alt-fill" style="color: #f59e0b; margin-right: 0.5rem;"></i>
+              <span style="color: #d1d5db;">Casablanca, Maroc</span>
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Divider -->
+      <hr style="border-color: #374151; margin-bottom: 2rem;">
+
+      <!-- Copyright -->
+      <div class="row align-items-center">
+        <div class="col-md-6">
+          <p style="color: #9ca3af; font-size: 13px; margin-bottom: 0;">
+            © 2025 Pet's Heaven Morocco. Tous droits réservés.
+          </p>
+        </div>
+        <div class="col-md-6 text-md-end">
+          <p style="color: #9ca3af; font-size: 13px; margin-bottom: 0;">
+            Conçu avec <i class="bi bi-heart-fill" style="color: #ef4444; margin: 0 0.25rem;"></i> pour vos compagnons
+          </p>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- JS -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="assets/js/script.js"></script>
+  <script src="assets/js/rdv-advanced.js"></script>
+</body>
+</html>

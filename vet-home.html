@@ -1,0 +1,1347 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Accueil Vétérinaire - Pet's Heaven</title>
+  <meta name="description" content="Bienvenue sur votre espace vétérinaire Pet's Heaven. Gérez vos rendez-vous, votre profil et vos disponibilités.">
+  
+  <!-- Bootstrap 5 -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet">
+  
+  <!-- Styles -->
+  <link rel="stylesheet" href="assets/css/styles.css">
+  <link rel="stylesheet" href="assets/css/modern-ui.css">
+  
+  <style>
+    :root {
+      --primary: #6366f1;
+      --secondary: #8b5cf6;
+      --accent: #ec4899;
+      --success: #10b981;
+      --danger: #ef4444;
+      --light-bg: #f0f9ff;
+      --dark-text: #0f172a;
+      --gradient-1: linear-gradient(135deg, #6366f1 0%, #8b5cf6 50%, #ec4899 100%);
+      --gradient-2: linear-gradient(135deg, #8b5cf6 0%, #06b6d4 100%);
+      --shadow-sm: 0 4px 15px rgba(99, 102, 241, 0.1);
+      --shadow-md: 0 10px 30px rgba(99, 102, 241, 0.15);
+      --shadow-lg: 0 20px 60px rgba(99, 102, 241, 0.2);
+      --shadow-xl: 0 30px 80px rgba(99, 102, 241, 0.25);
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: 'Segoe UI', 'Helvetica Neue', -apple-system, BlinkMacSystemFont, sans-serif;
+      color: var(--dark-text);
+      background: linear-gradient(180deg, #f8fafc 0%, #f0f9ff 50%, #faf5ff 100%);
+      position: relative;
+      overflow-x: hidden;
+    }
+
+    /* === ANIMATIONS === */
+    @keyframes float {
+      0%, 100% { transform: translateY(0px) rotate(0deg); }
+      50% { transform: translateY(-30px) rotate(5deg); }
+    }
+
+    @keyframes slideInDown {
+      from { opacity: 0; transform: translateY(-50px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    @keyframes slideInUp {
+      from { opacity: 0; transform: translateY(50px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    @keyframes slideInLeft {
+      from { opacity: 0; transform: translateX(-50px); }
+      to { opacity: 1; transform: translateX(0); }
+    }
+
+    @keyframes slideInRight {
+      from { opacity: 0; transform: translateX(50px); }
+      to { opacity: 1; transform: translateX(0); }
+    }
+
+    @keyframes scaleIn {
+      from { opacity: 0; transform: scale(0.8); }
+      to { opacity: 1; transform: scale(1); }
+    }
+
+    @keyframes pulse-glow {
+      0%, 100% { box-shadow: 0 0 20px rgba(99, 102, 241, 0.3), var(--shadow-lg); }
+      50% { box-shadow: 0 0 40px rgba(99, 102, 241, 0.6), var(--shadow-xl); }
+    }
+
+    @keyframes shimmer {
+      0% { background-position: -1000px 0; }
+      100% { background-position: 1000px 0; }
+    }
+
+    @keyframes morph {
+      0%, 100% { border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%; }
+      50% { border-radius: 30% 60% 70% 40% / 50% 60% 30% 60%; }
+    }
+
+    /* === NAVBAR === */
+    .navbar {
+      background: rgba(255, 255, 255, 0.95);
+      backdrop-filter: blur(20px);
+      box-shadow: var(--shadow-md);
+      padding: 1.2rem 0;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      border-bottom: 1px solid rgba(99, 102, 241, 0.1);
+      transition: all 0.3s ease;
+    }
+
+    .navbar:hover {
+      box-shadow: var(--shadow-lg);
+    }
+
+    .navbar-brand {
+      font-size: 1.8rem;
+      font-weight: 800;
+      background: var(--gradient-1);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      letter-spacing: -0.5px;
+      animation: slideInDown 0.6s ease-out;
+      transition: all 0.3s ease;
+    }
+
+    .navbar-brand:hover {
+      transform: scale(1.05);
+      filter: drop-shadow(0 8px 20px rgba(99, 102, 241, 0.4));
+    }
+
+    .navbar-brand img {
+      transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+      filter: drop-shadow(0 4px 12px rgba(99, 102, 241, 0.3));
+    }
+
+    .navbar-brand:hover img {
+      transform: rotate(10deg) scale(1.15);
+      filter: drop-shadow(0 8px 20px rgba(99, 102, 241, 0.5));
+    }
+
+    .navbar-brand i {
+      font-size: 1.8rem;
+      filter: drop-shadow(0 4px 12px rgba(99, 102, 241, 0.3));
+    }
+
+    .nav-link {
+      color: var(--dark-text) !important;
+      font-weight: 600;
+      transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+      position: relative;
+      margin: 0 0.75rem;
+      padding: 0.5rem 0 !important;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .nav-link i {
+      font-size: 1.1rem;
+      transition: all 0.3s ease;
+    }
+
+    .nav-link:hover {
+      color: var(--primary) !important;
+      transform: translateY(-3px);
+    }
+
+    .nav-link:hover i {
+      transform: scale(1.2) rotate(10deg);
+    }
+
+    .nav-link::before {
+      content: '';
+      position: absolute;
+      bottom: -8px;
+      left: 0;
+      width: 0;
+      height: 3px;
+      background: var(--gradient-1);
+      border-radius: 2px;
+      transition: width 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+    }
+
+    .nav-link:hover::before {
+      width: 100%;
+    }
+
+    .nav-link.active::before {
+      width: 100%;
+    }
+
+    #btnLogoutTop {
+      background: var(--gradient-1);
+      color: white !important;
+      border: none !important;
+      font-weight: 800;
+      transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+      box-shadow: var(--shadow-sm);
+      border-radius: 10px;
+      padding: 0.6rem 1.5rem !important;
+      position: relative;
+      overflow: hidden;
+      letter-spacing: -0.5px;
+    }
+
+    #btnLogoutTop::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+      transition: left 0.6s ease;
+    }
+
+    #btnLogoutTop:hover::before {
+      left: 100%;
+    }
+
+    #btnLogoutTop:hover {
+      transform: translateY(-4px) scale(1.08);
+      box-shadow: var(--shadow-lg);
+      filter: brightness(1.15);
+    }
+
+    #btnLogoutTop:active {
+      transform: translateY(-2px) scale(1.05);
+    }
+
+    .navbar-toggler {
+      border: 2px solid var(--primary);
+      transition: all 0.3s ease;
+    }
+
+    .navbar-toggler:hover {
+      transform: scale(1.1);
+      box-shadow: 0 0 15px rgba(99, 102, 241, 0.3);
+    }
+
+    .navbar-toggler:focus {
+      box-shadow: 0 0 0 0.25rem rgba(99, 102, 241, 0.25);
+    }
+
+    .navbar-collapse {
+      animation: slideInDown 0.4s ease-out;
+    }
+
+    /* === NAVBAR DIVIDER === */
+    .navbar::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      height: 3px;
+      background: var(--gradient-1);
+      opacity: 0;
+      transition: opacity 0.3s ease;
+    }
+
+    .navbar:hover::after {
+      opacity: 0.5;
+    }
+
+    /* === HERO SECTION === */
+    .hero-section {
+      background: var(--gradient-1);
+      color: white;
+      padding: 7rem 0;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero-section::before {
+      content: '';
+      position: absolute;
+      top: -40%;
+      right: -15%;
+      width: 700px;
+      height: 700px;
+      background: radial-gradient(circle, rgba(255,255,255,0.15) 0%, transparent 70%);
+      border-radius: 50%;
+      animation: float 8s ease-in-out infinite;
+    }
+
+    .hero-section::after {
+      content: '';
+      position: absolute;
+      bottom: -30%;
+      left: -10%;
+      width: 600px;
+      height: 600px;
+      background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, transparent 70%);
+      border-radius: 50%;
+      animation: float 10s ease-in-out infinite 1s;
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 2;
+      animation: slideInLeft 0.8s ease-out 0.2s both;
+    }
+
+    .hero-title {
+      font-size: clamp(2.5rem, 6vw, 4.5rem);
+      font-weight: 900;
+      line-height: 1.1;
+      margin-bottom: 1.5rem;
+      text-shadow: 0 8px 30px rgba(0, 0, 0, 0.2);
+      letter-spacing: -1px;
+    }
+
+    .hero-subtitle {
+      font-size: 1.3rem;
+      margin-bottom: 2.5rem;
+      opacity: 0.98;
+      line-height: 1.8;
+      font-weight: 500;
+    }
+
+    .hero-buttons {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1.2rem;
+      animation: slideInUp 0.8s ease-out 0.4s both;
+    }
+
+    .btn-hero {
+      padding: 1rem 2.8rem;
+      font-weight: 700;
+      border-radius: 12px;
+      transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+      border: none;
+      cursor: pointer;
+      font-size: 1rem;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .btn-hero::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+      transition: left 0.6s ease;
+    }
+
+    .btn-hero:hover::before {
+      left: 100%;
+    }
+
+    .btn-hero-white {
+      background: white;
+      color: var(--primary);
+      box-shadow: var(--shadow-md);
+    }
+
+    .btn-hero-white:hover {
+      transform: translateY(-5px) scale(1.05);
+      box-shadow: var(--shadow-xl);
+      color: var(--primary);
+    }
+
+    .hero-icon {
+      animation: slideInRight 0.8s ease-out 0.3s both, float 4s ease-in-out infinite 0.8s;
+      font-size: 6rem;
+      filter: drop-shadow(0 20px 40px rgba(0, 0, 0, 0.15));
+    }
+
+    /* === WELCOME SECTION === */
+    .welcome-section {
+      padding: 5rem 0;
+    }
+
+    .welcome-section h2 {
+      animation: slideInDown 0.8s ease-out;
+      font-size: clamp(2rem, 4vw, 2.8rem);
+      font-weight: 900;
+      letter-spacing: -1px;
+      margin-bottom: 3.5rem;
+    }
+
+    .welcome-card {
+      background: white;
+      border-radius: 18px;
+      padding: 3rem;
+      box-shadow: var(--shadow-sm);
+      margin-bottom: 2rem;
+      transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+      border: 1px solid rgba(99, 102, 241, 0.05);
+      animation: scaleIn 0.6s ease-out;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .welcome-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 4px;
+      background: var(--gradient-1);
+      opacity: 0;
+      transition: opacity 0.3s ease;
+    }
+
+    .welcome-card:hover {
+      box-shadow: var(--shadow-xl);
+      transform: translateY(-12px);
+      border-color: rgba(99, 102, 241, 0.15);
+    }
+
+    .welcome-card:hover::before {
+      opacity: 1;
+    }
+
+    .welcome-icon {
+      font-size: 3.5rem;
+      background: var(--gradient-1);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      margin-bottom: 1.5rem;
+      display: block;
+      filter: drop-shadow(0 4px 8px rgba(99, 102, 241, 0.2));
+    }
+
+    .welcome-card h3 {
+      font-weight: 800;
+      color: var(--dark-text);
+      margin-bottom: 1rem;
+      font-size: 1.4rem;
+      letter-spacing: -0.5px;
+    }
+
+    .welcome-card p {
+      color: #64748b;
+      line-height: 1.8;
+      font-size: 1.05rem;
+    }
+
+    /* === QUICK ACTION CARDS === */
+    .action-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 2.5rem;
+      margin: 4rem 0;
+    }
+
+    .action-card {
+      background: white;
+      border-radius: 16px;
+      padding: 2.5rem;
+      text-align: center;
+      box-shadow: var(--shadow-sm);
+      transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+      cursor: pointer;
+      text-decoration: none;
+      color: inherit;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 1.2rem;
+      border: 2px solid transparent;
+      animation: slideInUp 0.6s ease-out;
+      animation-fill-mode: both;
+    }
+
+    .action-card:nth-child(1) { animation-delay: 0.1s; }
+    .action-card:nth-child(2) { animation-delay: 0.2s; }
+    .action-card:nth-child(3) { animation-delay: 0.3s; }
+    .action-card:nth-child(4) { animation-delay: 0.4s; }
+
+    .action-card:hover {
+      transform: translateY(-18px) scale(1.03);
+      box-shadow: var(--shadow-xl);
+      border-color: var(--primary);
+      background: linear-gradient(135deg, rgba(99, 102, 241, 0.02) 0%, rgba(139, 92, 246, 0.02) 100%);
+    }
+
+    .action-icon {
+      font-size: 3.5rem;
+      width: 80px;
+      height: 80px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 16px;
+      background: var(--gradient-1);
+      color: white;
+      transition: all 0.3s ease;
+      box-shadow: var(--shadow-md);
+    }
+
+    .action-card:hover .action-icon {
+      transform: rotate(10deg) scale(1.15);
+      box-shadow: var(--shadow-lg);
+    }
+
+    .action-card h4 {
+      font-weight: 800;
+      color: var(--dark-text);
+      margin: 0.5rem 0;
+      font-size: 1.25rem;
+      letter-spacing: -0.5px;
+    }
+
+    .action-card p {
+      font-size: 0.95rem;
+      color: #64748b;
+      margin: 0;
+    }
+
+    /* === STATS SECTION === */
+    .stats-section {
+      background: white;
+      padding: 4rem 3rem;
+      border-radius: 20px;
+      margin: 3rem 0;
+      box-shadow: var(--shadow-md);
+      border: 1px solid rgba(99, 102, 241, 0.05);
+      animation: slideInUp 0.8s ease-out 0.3s both;
+    }
+
+    .stat-box {
+      text-align: center;
+      padding: 2.5rem 1.5rem;
+      border-right: 2px solid rgba(99, 102, 241, 0.1);
+      position: relative;
+      transition: all 0.3s ease;
+    }
+
+    .stat-box:hover {
+      transform: scale(1.05);
+    }
+
+    .stat-box::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 0;
+      height: 3px;
+      background: var(--gradient-1);
+      transition: width 0.3s ease;
+    }
+
+    .stat-box:hover::after {
+      width: 80%;
+    }
+
+    .stat-box:last-child {
+      border-right: none;
+    }
+
+    .stat-number {
+      font-size: 3rem;
+      font-weight: 900;
+      background: var(--gradient-1);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      letter-spacing: -1px;
+    }
+
+    .stat-label {
+      color: #64748b;
+      margin-top: 0.75rem;
+      font-weight: 700;
+      font-size: 1.05rem;
+    }
+
+    /* === FOOTER === */
+    .footer {
+      background: linear-gradient(135deg, #1e293b 0%, #0f172a 100%);
+      color: white;
+      padding: 4rem 0 1.5rem;
+      margin-top: 5rem;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .footer::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, var(--gradient-1), transparent);
+    }
+
+    .footer h5 {
+      font-weight: 800;
+      margin-bottom: 1.5rem;
+      letter-spacing: -0.5px;
+    }
+
+    .footer-link {
+      color: #cbd5e1;
+      text-decoration: none;
+      transition: all 0.3s ease;
+      display: inline-block;
+    }
+
+    .footer-link:hover {
+      color: white;
+      transform: translateX(4px);
+    }
+
+    /* === BUTTON STYLES === */
+    .btn-cta {
+      display: inline-block;
+      padding: 1rem 2.8rem;
+      background: var(--gradient-1);
+      color: white;
+      border-radius: 12px;
+      text-decoration: none;
+      font-weight: 800;
+      transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+      border: none;
+      cursor: pointer;
+      box-shadow: var(--shadow-md);
+      letter-spacing: -0.5px;
+    }
+
+    .btn-cta:hover {
+      transform: translateY(-5px) scale(1.05);
+      box-shadow: var(--shadow-xl);
+      color: white;
+    }
+
+    /* === CONTACT SECTION === */
+    .contact-section {
+      background: var(--gradient-1);
+      border-radius: 20px;
+      padding: 4rem;
+      color: white;
+      text-align: center;
+      box-shadow: var(--shadow-xl);
+      animation: slideInUp 0.8s ease-out 0.2s both;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .contact-section::before {
+      content: '';
+      position: absolute;
+      top: -50%;
+      right: -10%;
+      width: 400px;
+      height: 400px;
+      background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, transparent 70%);
+      border-radius: 50%;
+    }
+
+    .contact-section h2 {
+      font-size: 2.5rem;
+      font-weight: 900;
+      margin-bottom: 1rem;
+      letter-spacing: -1px;
+      position: relative;
+      z-index: 2;
+    }
+
+    .contact-section p {
+      font-size: 1.2rem;
+      margin-bottom: 2rem;
+      opacity: 0.98;
+      position: relative;
+      z-index: 2;
+    }
+
+    /* === RESPONSIVE === */
+    @media (max-width: 768px) {
+      .hero-title {
+        font-size: 2.5rem;
+      }
+
+      .stat-box {
+        border-right: none;
+        border-bottom: 2px solid rgba(99, 102, 241, 0.1);
+        padding: 2rem 1rem;
+      }
+
+      .stat-box:last-child {
+        border-bottom: none;
+      }
+
+      .action-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .stats-section {
+        padding: 2rem;
+      }
+
+      .contact-section {
+        padding: 2rem;
+      }
+
+      .navbar-brand span {
+        display: none;
+      }
+    }
+  </style>
+</head>
+<body>
+
+<!-- === NAVBAR === -->
+<nav class="navbar navbar-expand-lg navbar-light">
+  <div class="container-fluid px-4">
+    <a class="navbar-brand" href="vet-home.html">
+      <img src="assets/images/Logo12.jpg" alt="Pet's Heaven Logo" style="height: 50px; width: auto; border-radius: 8px; box-shadow: 0 4px 12px rgba(99, 102, 241, 0.3); margin-right: 12px;">
+      <span style="display: none; font-size: 1.8rem; font-weight: 800; background: linear-gradient(135deg, #6366f1 0%, #8b5cf6 50%, #ec4899 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; letter-spacing: -0.5px;">Pet's Heaven</span>
+    </a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav ms-auto">
+        <li class="nav-item">
+          <a class="nav-link active" href="vet-home.html">
+            <i class="bi bi-house-fill"></i>
+            <span>Accueil</span>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="vet-dashboard.html">
+            <i class="bi bi-speedometer2"></i>
+            <span>Tableau de Bord</span>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#about">
+            <i class="bi bi-info-circle"></i>
+            <span>À Propos</span>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#contact">
+            <i class="bi bi-telephone"></i>
+            <span>Contact</span>
+          </a>
+        </li>
+        <li class="nav-item">
+          <button id="btnLogoutTop" class="btn btn-sm ms-3" style="display: none;">
+            <i class="bi bi-box-arrow-right me-2"></i><span>Déconnexion</span>
+          </button>
+          <button id="btnLoginTop" class="btn btn-sm ms-3" data-bs-toggle="modal" data-bs-target="#loginModal" style="display: none;">
+            <i class="bi bi-box-arrow-in-right me-2"></i><span>Connexion</span>
+          </button>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+<!-- === HERO SECTION === -->
+<section class="hero-section">
+  <div class="container">
+    <div class="row align-items-center">
+      <div class="col-lg-8 hero-content">
+        <h1 class="hero-title">Bienvenue sur votre Espace Vétérinaire</h1>
+        <p class="hero-subtitle">
+          Gérez efficacement votre pratique vétérinaire avec nos outils modernes. 
+          Consultations, rendez-vous, profil professionnel et bien plus encore.
+        </p>
+        <div class="hero-buttons">
+          <a href="vet-dashboard.html" class="btn btn-hero btn-hero-white">
+            <i class="bi bi-speedometer2 me-2"></i>Accéder au Tableau de Bord
+          </a>
+          <a href="#about" class="btn btn-hero btn-hero-white">
+            <i class="bi bi-info-circle me-2"></i>En Savoir Plus
+          </a>
+        </div>
+      </div>
+      <div class="col-lg-4 text-center">
+        <div class="hero-icon">
+          <i class="bi bi-stethoscope"></i>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- === WELCOME SECTION === -->
+<section class="welcome-section">
+  <div class="container">
+    <h2 style="font-size: 2.5rem; font-weight: 700; text-align: center; margin-bottom: 3rem;">
+      Bienvenue dans la Communauté Pet's Heaven
+    </h2>
+    
+    <div class="row">
+      <div class="col-lg-6 mb-4">
+        <div class="welcome-card">
+          <div class="welcome-icon">
+            <i class="bi bi-calendar-check"></i>
+          </div>
+          <h3>Gestion des Rendez-vous</h3>
+          <p>
+            Organisez vos consultations, gérez les rendez-vous de vos clients et optimisez votre planning quotidien.
+          </p>
+        </div>
+      </div>
+      <div class="col-lg-6 mb-4">
+        <div class="welcome-card">
+          <div class="welcome-icon">
+            <i class="bi bi-clock-history"></i>
+          </div>
+          <h3>Disponibilités</h3>
+          <p>
+            Définissez vos horaires de travail et vos périodes de disponibilité pour faciliter la prise de rendez-vous.
+          </p>
+        </div>
+      </div>
+      <div class="col-lg-6 mb-4">
+        <div class="welcome-card">
+          <div class="welcome-icon">
+            <i class="bi bi-person-circle"></i>
+          </div>
+          <h3>Profil Professionnel</h3>
+          <p>
+            Créez et mettez à jour votre profil pour que les clients trouvent facilement vos informations et services.
+          </p>
+        </div>
+      </div>
+      <div class="col-lg-6 mb-4">
+        <div class="welcome-card">
+          <div class="welcome-icon">
+            <i class="bi bi-bar-chart"></i>
+          </div>
+          <h3>Statistiques</h3>
+          <p>
+            Suivez vos performances, consultez les avis clients et analysez votre activité en détail.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- === QUICK ACTIONS === -->
+<section class="container">
+  <h2 style="font-size: 2.5rem; font-weight: 700; text-align: center; margin: 3rem 0;">Accès Rapide</h2>
+  
+  <div class="action-grid">
+    <a href="vet-dashboard.html" class="action-card" onclick="navigateToDashboard('dashboard'); return false;">
+      <div class="action-icon">
+        <i class="bi bi-speedometer2"></i>
+      </div>
+      <h4>Tableau de Bord</h4>
+      <p>Vue d'ensemble de votre activité</p>
+    </a>
+
+    <a href="vet-dashboard.html" class="action-card" onclick="navigateToDashboard('appointments'); return false;">
+      <div class="action-icon">
+        <i class="bi bi-calendar-check"></i>
+      </div>
+      <h4>Rendez-vous</h4>
+      <p>Gérez vos consultations</p>
+    </a>
+
+    <a href="vet-dashboard.html" class="action-card" onclick="navigateToDashboard('availability'); return false;">
+      <div class="action-icon">
+        <i class="bi bi-clock-history"></i>
+      </div>
+      <h4>Disponibilités</h4>
+      <p>Définissez vos horaires</p>
+    </a>
+
+    <a href="vet-dashboard.html" class="action-card" onclick="navigateToDashboard('clinic'); return false;">
+      <div class="action-icon">
+        <i class="bi bi-info-circle"></i>
+      </div>
+      <h4>Mon Profil</h4>
+      <p>Modifiez vos informations</p>
+    </a>
+  </div>
+</section>
+
+<!-- === STATS SECTION === -->
+<section class="container">
+  <div class="stats-section">
+    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 40px; padding: 2rem 0; border-top: 2px solid rgba(99, 102, 241, 0.1); animation: slideInUp 0.9s ease-out 0.75s backwards;">
+      <div style="text-align: center;">
+        <div style="font-size: 3rem; font-weight: 950; background: linear-gradient(135deg, #6366f1 0%, #8b5cf6 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; margin-bottom: 12px; letter-spacing: -0.5px;">
+          <span class="stat-counter" data-target="32">0</span>+
+        </div>
+        <p style="color: #64748b; font-weight: 700; font-size: 0.95rem; text-transform: uppercase; letter-spacing: 0.5px; margin: 0;">Vétérinaires</p>
+      </div>
+      <div style="text-align: center;">
+        <div style="font-size: 3rem; font-weight: 950; background: linear-gradient(135deg, #ec4899 0%, #f472b6 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; margin-bottom: 12px; letter-spacing: -0.5px;">
+          <span class="stat-counter" data-target="50">0</span>+
+        </div>
+        <p style="color: #64748b; font-weight: 700; font-size: 0.95rem; text-transform: uppercase; letter-spacing: 0.5px; margin: 0;">Patients</p>
+      </div>
+      <div style="text-align: center;">
+        <div style="font-size: 3rem; font-weight: 950; background: linear-gradient(135deg, #10b981 0%, #06b6d4 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; margin-bottom: 12px; letter-spacing: -0.5px;">
+          <span class="stat-counter" data-target="150">0</span>+
+        </div>
+        <p style="color: #64748b; font-weight: 700; font-size: 0.95rem; text-transform: uppercase; letter-spacing: 0.5px; margin: 0;">Consultations</p>
+      </div>
+      <div style="text-align: center;">
+        <div style="font-size: 3rem; font-weight: 950; background: linear-gradient(135deg, #f59e0b 0%, #fbbf24 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; margin-bottom: 12px; letter-spacing: -0.5px;">
+          <span>24/7</span>
+        </div>
+        <p style="color: #64748b; font-weight: 700; font-size: 0.95rem; text-transform: uppercase; letter-spacing: 0.5px; margin: 0;">Support</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- === ABOUT SECTION === -->
+<section id="about" class="container" style="padding: 4rem 0;">
+  <div class="row align-items-center">
+    <div class="col-lg-6">
+      <h2 style="font-size: 2.5rem; font-weight: 900; margin-bottom: 1.5rem; letter-spacing: -1px;">
+        Pourquoi Choisir Pet's Heaven?
+      </h2>
+      <p style="font-size: 1.1rem; color: #64748b; margin-bottom: 1.5rem; line-height: 1.8;">
+        Pet's Heaven est la plateforme complète pour les vétérinaires modernes. 
+        Nous vous offrons les outils les plus avancés pour gérer votre pratique efficacement.
+      </p>
+      <ul style="list-style: none; padding: 0;">
+        <li style="margin-bottom: 1rem; display: flex; align-items: center; gap: 1rem;">
+          <i class="bi bi-check-circle-fill" style="color: var(--success); font-size: 1.5rem;"></i>
+          <span style="font-weight: 600; color: var(--dark-text);">Gestion complète des rendez-vous</span>
+        </li>
+        <li style="margin-bottom: 1rem; display: flex; align-items: center; gap: 1rem;">
+          <i class="bi bi-check-circle-fill" style="color: var(--success); font-size: 1.5rem;"></i>
+          <span style="font-weight: 600; color: var(--dark-text);">Interface intuitive et facile d'utilisation</span>
+        </li>
+        <li style="margin-bottom: 1rem; display: flex; align-items: center; gap: 1rem;">
+          <i class="bi bi-check-circle-fill" style="color: var(--success); font-size: 1.5rem;"></i>
+          <span style="font-weight: 600; color: var(--dark-text);">Support client 24h/24, 7j/7</span>
+        </li>
+        <li style="display: flex; align-items: center; gap: 1rem;">
+          <i class="bi bi-check-circle-fill" style="color: var(--success); font-size: 1.5rem;"></i>
+          <span style="font-weight: 600; color: var(--dark-text);">Sécurité et confidentialité garanties</span>
+        </li>
+      </ul>
+    </div>
+    <div class="col-lg-6" style="text-align: center;">
+      <div style="position: relative; display: inline-block; margin-top: 2rem;">
+        <!-- Fond décoratif -->
+        <div style="position: absolute; top: -20px; right: -20px; width: 300px; height: 300px; background: var(--gradient-1); border-radius: 30% 70% 70% 30% / 30% 30% 70% 70%; opacity: 0.15; animation: morph 8s ease-in-out infinite;"></div>
+        
+        <!-- Image -->
+        <img src="assets/images/moi.jpeg" alt="Vétérinaire" style="
+          position: relative;
+          z-index: 10;
+          width: 280px;
+          height: 280px;
+          object-fit: cover;
+          border-radius: 20px;
+          box-shadow: 0 20px 60px rgba(99, 102, 241, 0.3);
+          border: 8px solid white;
+          animation: slideInRight 0.8s ease-out 0.3s both;
+          transition: all 0.4s ease;
+        " onmouseover="this.style.transform='scale(1.05) translateY(-10px)'; this.style.boxShadow='0 30px 80px rgba(99, 102, 241, 0.4)';" onmouseout="this.style.transform='scale(1)'; this.style.boxShadow='0 20px 60px rgba(99, 102, 241, 0.3)';">
+        
+        <!-- Badge -->
+        <div style="
+          position: absolute;
+          bottom: -15px;
+          left: 50%;
+          transform: translateX(-50%);
+          background: var(--gradient-1);
+          color: white;
+          padding: 0.8rem 1.5rem;
+          border-radius: 12px;
+          font-weight: 700;
+          box-shadow: 0 10px 30px rgba(99, 102, 241, 0.3);
+          white-space: nowrap;
+          z-index: 20;
+        ">
+          <i class="bi bi-star-fill me-2"></i>Expert en Soins Vétérinaires
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- === CONTACT SECTION === -->
+<section id="contact" class="container" style="padding: 4rem 0; margin-bottom: 4rem;">
+  <div class="contact-section">
+    <h2><i class="bi bi-question-circle me-3"></i>Des Questions?</h2>
+    <p>Notre équipe de support est disponible pour vous aider à tout moment.</p>
+    <div style="display: flex; justify-content: center; gap: 1.5rem; flex-wrap: wrap; position: relative; z-index: 2;">
+      <a href="mailto:support@petsheavens.com" class="btn btn-hero btn-hero-white">
+        <i class="bi bi-envelope me-2"></i>support@petsheavens.com
+      </a>
+      <a href="tel:+212612345678" class="btn btn-hero btn-hero-white">
+        <i class="bi bi-telephone me-2"></i>+212 6 12 34 56 78
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- === MODALES DE CONNEXION === -->
+<!-- LOGIN MODAL -->
+<div class="modal fade" id="loginModal" tabindex="-1" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content" style="border: none; box-shadow: var(--shadow-lg); border-radius: 20px;">
+      <div class="modal-header" style="background: var(--gradient-1); color: white; border: none; border-radius: 20px 20px 0 0;">
+        <h5 class="modal-title" style="font-weight: 800;">Connexion Vétérinaire</h5>
+        <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body" style="padding: 2rem;">
+        <form id="loginForm">
+          <div class="mb-3">
+            <label class="form-label" style="font-weight: 700;">Email</label>
+            <input type="email" class="form-control" id="loginEmail" placeholder="votre@email.com" style="border-radius: 10px; border: 2px solid #e5e7eb;" required>
+          </div>
+          <div class="mb-3">
+            <label class="form-label" style="font-weight: 700;">Mot de passe</label>
+            <input type="password" class="form-control" id="loginPassword" placeholder="••••••••" style="border-radius: 10px; border: 2px solid #e5e7eb;" required>
+          </div>
+          <div id="loginError" class="alert alert-danger d-none" role="alert">
+            Email ou mot de passe incorrect
+          </div>
+          <button type="submit" class="btn btn-cta w-100" style="padding: 0.9rem; border-radius: 10px;">
+            <i class="bi bi-box-arrow-in-right me-2"></i>Se Connecter
+          </button>
+        </form>
+        <hr>
+        <p style="text-align: center; color: #64748b; margin-bottom: 0;">
+          Pas encore inscrit? <a href="#" data-bs-toggle="modal" data-bs-target="#signupModal" data-bs-dismiss="modal" style="color: var(--primary); font-weight: 700; text-decoration: none;">S'inscrire</a>
+        </p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- SIGNUP MODAL -->
+<div class="modal fade" id="signupModal" tabindex="-1" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content" style="border: none; box-shadow: var(--shadow-lg); border-radius: 20px;">
+      <div class="modal-header" style="background: var(--gradient-1); color: white; border: none; border-radius: 20px 20px 0 0;">
+        <h5 class="modal-title" style="font-weight: 800;">S'inscrire en tant que Vétérinaire</h5>
+        <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body" style="padding: 2rem;">
+        <form id="signupForm">
+          <div class="mb-3">
+            <label class="form-label" style="font-weight: 700;">Nom complet</label>
+            <input type="text" class="form-control" id="signupName" placeholder="Dr. Nom" style="border-radius: 10px; border: 2px solid #e5e7eb;" required>
+          </div>
+          <div class="mb-3">
+            <label class="form-label" style="font-weight: 700;">Email</label>
+            <input type="email" class="form-control" id="signupEmail" placeholder="votre@email.com" style="border-radius: 10px; border: 2px solid #e5e7eb;" required>
+          </div>
+          <div class="mb-3">
+            <label class="form-label" style="font-weight: 700;">Mot de passe</label>
+            <input type="password" class="form-control" id="signupPassword" placeholder="••••••••" style="border-radius: 10px; border: 2px solid #e5e7eb;" required>
+          </div>
+          <div class="mb-3">
+            <label class="form-label" style="font-weight: 700;">Type de compte</label>
+            <div style="display: flex; gap: 1rem;">
+              <div class="form-check">
+                <input class="form-check-input" type="radio" name="accountType" id="typeVet" value="vet" checked>
+                <label class="form-check-label" for="typeVet" style="font-weight: 600;">
+                  <i class="bi bi-stethoscope me-2"></i>Vétérinaire
+                </label>
+              </div>
+              <div class="form-check">
+                <input class="form-check-input" type="radio" name="accountType" id="typeClient" value="client">
+                <label class="form-check-label" for="typeClient" style="font-weight: 600;">
+                  <i class="bi bi-person me-2"></i>Client
+                </label>
+              </div>
+            </div>
+          </div>
+          <div id="signupError" class="alert alert-danger d-none" role="alert">
+            Un compte avec cet email existe déjà
+          </div>
+          <button type="submit" class="btn btn-cta w-100" style="padding: 0.9rem; border-radius: 10px;">
+            <i class="bi bi-person-plus me-2"></i>S'inscrire
+          </button>
+        </form>
+        <hr>
+        <p style="text-align: center; color: #64748b; margin-bottom: 0;">
+          Déjà inscrit? <a href="#" data-bs-toggle="modal" data-bs-target="#loginModal" data-bs-dismiss="modal" style="color: var(--primary); font-weight: 700; text-decoration: none;">Se connecter</a>
+        </p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- === FOOTER === -->
+<footer class="footer">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-4 mb-4">
+        <h5 style="color: white; margin-bottom: 1rem;">Pet's Heaven</h5>
+        <p>Plateforme complète de services vétérinaires au Maroc.</p>
+      </div>
+      <div class="col-md-4 mb-4">
+        <h5 style="color: white; margin-bottom: 1rem;">Liens Utiles</h5>
+        <ul style="list-style: none; padding: 0;">
+          <li><a href="vet-dashboard.html" class="footer-link">Tableau de Bord</a></li>
+          <li><a href="#about" class="footer-link">À Propos</a></li>
+          <li><a href="#contact" class="footer-link">Contact</a></li>
+        </ul>
+      </div>
+      <div class="col-md-4 mb-4">
+        <h5 style="color: white; margin-bottom: 1rem;">Nous Suivre</h5>
+        <div style="display: flex; gap: 1rem;">
+          <a href="#" class="footer-link"><i class="bi bi-facebook"></i></a>
+          <a href="#" class="footer-link"><i class="bi bi-twitter"></i></a>
+          <a href="#" class="footer-link"><i class="bi bi-instagram"></i></a>
+        </div>
+      </div>
+    </div>
+    <hr style="border-color: rgba(255,255,255,0.1);">
+    <div style="text-align: center; padding-top: 1rem; color: #9ca3af;">
+      <p>&copy; <span id="year"></span> Pet's Heaven. Tous droits réservés.</p>
+    </div>
+  </div>
+</footer>
+
+<!-- === BOOTSTRAP JS === -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
+<script>
+  // Année footer
+  document.getElementById('year').textContent = new Date().getFullYear();
+
+  // LocalStorage helpers
+  const KEY_USERS = 'ph_users';
+  const KEY_SESSION = 'ph_session';
+
+  function loadUsers() {
+    try { return JSON.parse(localStorage.getItem(KEY_USERS) || '[]'); }
+    catch { return []; }
+  }
+
+  function saveUsers(list) {
+    localStorage.setItem(KEY_USERS, JSON.stringify(list));
+  }
+
+  function getSession() {
+    try { return JSON.parse(localStorage.getItem(KEY_SESSION) || 'null'); }
+    catch { return null; }
+  }
+
+  function setSession(sess) {
+    if (sess) localStorage.setItem(KEY_SESSION, JSON.stringify(sess));
+    else localStorage.removeItem(KEY_SESSION);
+  }
+
+  // Mise à jour de l'UI d'authentification
+  function updateAuthUI() {
+    const session = getSession();
+    const btnLogout = document.getElementById('btnLogoutTop');
+    const btnLogin = document.getElementById('btnLoginTop');
+    const contentSections = document.querySelectorAll('.welcome-section, .action-grid, .stats-section, #about, #contact');
+    
+    if (session && session.type === 'vet') {
+      // Vétérinaire connecté
+      if (btnLogout) btnLogout.style.display = 'block';
+      if (btnLogin) btnLogin.style.display = 'none';
+      contentSections.forEach(section => section.style.display = 'block');
+      
+      // Ajouter le nom dans la navbar
+      const userSpan = document.getElementById('userNameSpan');
+      if (!userSpan) {
+        const navbar = document.querySelector('.navbar-nav');
+        const span = document.createElement('span');
+        span.id = 'userNameSpan';
+        span.style.cssText = 'color: #64748b; margin-right: 1rem; font-weight: 600; font-size: 0.9rem;';
+        span.textContent = `👋 Connecté: ${session.name}`;
+        navbar.parentElement.insertBefore(span, navbar);
+      }
+    } else {
+      // Non connecté
+      if (btnLogout) btnLogout.style.display = 'none';
+      if (btnLogin) btnLogin.style.display = 'block';
+      contentSections.forEach(section => section.style.display = 'none');
+      
+      const userSpan = document.getElementById('userNameSpan');
+      if (userSpan) userSpan.remove();
+    }
+  }
+
+  // Vérifier l'authentification au chargement
+  function checkAuth() {
+    try {
+      const session = getSession();
+      
+      // Si pas de session vétérinaire, masquer le contenu
+      if (!session || session.type !== 'vet') {
+        updateAuthUI();
+      } else {
+        updateAuthUI();
+      }
+    } catch (e) {
+      updateAuthUI();
+    }
+  }
+
+  // Gestion du formulaire de connexion
+  const loginForm = document.getElementById('loginForm');
+  const loginError = document.getElementById('loginError');
+  if (loginForm) {
+    loginForm.addEventListener('submit', (e) => {
+      e.preventDefault();
+      const email = document.getElementById('loginEmail').value.trim().toLowerCase();
+      const password = document.getElementById('loginPassword').value;
+
+      const users = loadUsers();
+      const user = users.find(u => u.email === email && u.password === password);
+      
+      if (!user) {
+        if (loginError) loginError.classList.remove('d-none');
+        return;
+      }
+
+      const userType = user.type || 'vet';
+      setSession({ name: user.name, email: user.email, type: userType });
+
+      // Fermer la modale
+      const modal = bootstrap.Modal.getInstance(document.getElementById('loginModal'));
+      if (modal) modal.hide();
+      
+      // Réinitialiser le formulaire
+      loginForm.reset();
+      if (loginError) loginError.classList.add('d-none');
+      
+      updateAuthUI();
+    });
+  }
+
+  // Gestion du formulaire d'inscription
+  const signupForm = document.getElementById('signupForm');
+  const signupError = document.getElementById('signupError');
+  if (signupForm) {
+    signupForm.addEventListener('submit', (e) => {
+      e.preventDefault();
+      const name = document.getElementById('signupName').value.trim();
+      const email = document.getElementById('signupEmail').value.trim().toLowerCase();
+      const password = document.getElementById('signupPassword').value;
+      const accountType = document.querySelector('input[name="accountType"]:checked').value || 'vet';
+
+      const users = loadUsers();
+      if (users.some(u => u.email === email)) {
+        if (signupError) signupError.classList.remove('d-none');
+        return;
+      }
+
+      users.push({ name, email, password, type: accountType });
+      saveUsers(users);
+      setSession({ name, email, type: accountType });
+
+      // Fermer la modale
+      const modal = bootstrap.Modal.getInstance(document.getElementById('signupModal'));
+      if (modal) modal.hide();
+      
+      // Réinitialiser le formulaire
+      signupForm.reset();
+      if (signupError) signupError.classList.add('d-none');
+      
+      updateAuthUI();
+    });
+  }
+
+  // Déconnexion (sans redirection)
+  const btnLogout = document.getElementById('btnLogoutTop');
+  if (btnLogout) {
+    btnLogout.addEventListener('click', () => {
+      setSession(null);
+      updateAuthUI();
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+  }
+
+  // Navigation vers dashboard avec section spécifique
+  function navigateToDashboard(section) {
+    const session = getSession();
+    if (session && session.type === 'vet') {
+      localStorage.setItem('vetDashboardSection', section);
+      window.location.href = 'vet-dashboard.html';
+    } else {
+      // Afficher la modale de connexion si pas connecté
+      const loginModal = new bootstrap.Modal('#loginModal');
+      loginModal.show();
+    }
+  }
+
+  // Animation des compteurs
+  function animateCounters() {
+    const counters = document.querySelectorAll('.stat-counter');
+    const observerOptions = {
+      threshold: 0.5,
+      rootMargin: '0px'
+    };
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting && !entry.target.hasAttribute('data-animated')) {
+          const target = parseInt(entry.target.getAttribute('data-target'));
+          const duration = 2000; // 2 secondes
+          const start = Date.now();
+
+          entry.target.setAttribute('data-animated', 'true');
+
+          const animate = () => {
+            const now = Date.now();
+            const progress = Math.min((now - start) / duration, 1);
+            const value = Math.floor(progress * target);
+            entry.target.textContent = value;
+
+            if (progress < 1) {
+              requestAnimationFrame(animate);
+            } else {
+              entry.target.textContent = target;
+            }
+          };
+
+          animate();
+        }
+      });
+    }, observerOptions);
+
+    counters.forEach(counter => observer.observe(counter));
+  }
+
+  // Vérifier l'authentification au chargement
+  document.addEventListener('DOMContentLoaded', () => {
+    checkAuth();
+    animateCounters();
+  });
+</script>
+
+</body>
+</html>

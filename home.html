@@ -1,0 +1,1755 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Pet's Heaven - Services Vétérinaires Modernes</title>
+  <meta name="description" content="Plateforme complète de services vétérinaires : consultations, produits, rendez-vous et bien-être animal.">
+  
+  <!-- Bootstrap 5 -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet">
+  
+  <!-- Styles personnalisés -->
+  <link rel="stylesheet" href="assets/css/styles.css">
+  <link rel="stylesheet" href="assets/css/modern-ui.css">
+  <style>
+    :root {
+      --primary: #4f46e5;
+      --secondary: #7c3aed;
+      --accent: #f59e0b;
+      --success: #10b981;
+      --danger: #ef4444;
+      --light-bg: #f8fafc;
+      --dark-text: #1f2937;
+      --gradient-1: linear-gradient(135deg, #4f46e5 0%, #7c3aed 100%);
+      --gradient-2: linear-gradient(135deg, #f59e0b 0%, #fbbf24 100%);
+      --gradient-3: linear-gradient(135deg, #10b981 0%, #34d399 100%);
+      --shadow-lg: 0 20px 60px rgba(79, 70, 229, 0.15);
+      --shadow-xl: 0 30px 80px rgba(79, 70, 229, 0.2);
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: 'Inter', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      line-height: 1.6;
+      color: var(--dark-text);
+      background: linear-gradient(180deg, #ffffff 0%, #f8fafc 50%, #ffffff 100%);
+      overflow-x: hidden;
+    }
+
+    /* === ANIMATIONS CRÉATIVES === */
+    @keyframes float {
+      0%, 100% { transform: translateY(0px) rotate(0deg); }
+      50% { transform: translateY(25px) rotate(2deg); }
+    }
+
+    @keyframes slideInDown {
+      from { opacity: 0; transform: translateY(-40px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    @keyframes slideInUp {
+      from { opacity: 0; transform: translateY(40px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    @keyframes slideInLeft {
+      from { opacity: 0; transform: translateX(-40px); }
+      to { opacity: 1; transform: translateX(0); }
+    }
+
+    @keyframes slideInRight {
+      from { opacity: 0; transform: translateX(40px); }
+      to { opacity: 1; transform: translateX(0); }
+    }
+
+    @keyframes bounce {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-15px); }
+    }
+
+    @keyframes pulse {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0.5; }
+    }
+
+    @keyframes glow {
+      0%, 100% { box-shadow: 0 0 10px rgba(79, 70, 229, 0.3), 0 0 30px rgba(79, 70, 229, 0.1); }
+      50% { box-shadow: 0 0 20px rgba(79, 70, 229, 0.5), 0 0 50px rgba(79, 70, 229, 0.2); }
+    }
+
+    @keyframes shimmer {
+      0% { background-position: -1000px 0; }
+      100% { background-position: 1000px 0; }
+    }
+
+    @keyframes morph {
+      0%, 100% { border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%; }
+      50% { border-radius: 30% 60% 70% 40% / 50% 60% 30% 60%; }
+    }
+
+    @keyframes fadeInScale {
+      from {
+        opacity: 0;
+        transform: scale(0.95);
+      }
+      to {
+        opacity: 1;
+        transform: scale(1);
+      }
+    }
+
+    @keyframes slideUpStagger {
+      from {
+        opacity: 0;
+        transform: translateY(30px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    /* === NAVBAR CRÉATIVE === */
+    .navbar-home {
+      background: linear-gradient(135deg, rgba(79, 70, 229, 0.02) 0%, rgba(124, 58, 237, 0.02) 100%);
+      border-bottom: 1px solid rgba(79, 70, 229, 0.1);
+      padding: 1rem 0;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.03);
+      backdrop-filter: blur(10px);
+    }
+
+    .navbar-brand-custom {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      font-weight: 800;
+      font-size: 1.5rem;
+      background: var(--gradient-1);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      text-decoration: none;
+      transition: all 0.3s ease;
+    }
+
+    .navbar-brand-custom:hover {
+      transform: translateY(-2px);
+      filter: brightness(1.1);
+    }
+
+    .navbar-brand-custom img {
+      max-height: 45px;
+      width: auto;
+    }
+
+    .navbar-brand-custom span {
+      display: none;
+    }
+
+    @media (min-width: 576px) {
+      .navbar-brand-custom span {
+        display: inline;
+      }
+    }
+
+    /* === HERO SECTION ULTRA CRÉATIVE === */
+    .hero-section {
+      background: linear-gradient(135deg, #ffffff 0%, #f0f4ff 50%, #faf9ff 100%);
+      color: var(--dark-text);
+      padding: 8rem 0;
+      overflow: hidden;
+      position: relative;
+      min-height: 90vh;
+      display: flex;
+      align-items: center;
+    }
+
+    .hero-section::before {
+      content: '';
+      position: absolute;
+      top: -100px;
+      right: -100px;
+      width: 450px;
+      height: 450px;
+      background: radial-gradient(circle, rgba(79, 70, 229, 0.15) 0%, transparent 70%);
+      border-radius: 50%;
+      animation: float 8s ease-in-out infinite;
+    }
+
+    .hero-section::after {
+      content: '';
+      position: absolute;
+      bottom: -150px;
+      left: -150px;
+      width: 500px;
+      height: 500px;
+      background: radial-gradient(circle, rgba(124, 58, 237, 0.1) 0%, transparent 70%);
+      border-radius: 50%;
+      animation: float 10s ease-in-out infinite;
+      animation-delay: 2s;
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 2;
+    }
+
+    .hero-title {
+      font-size: clamp(2.5rem, 8vw, 4.5rem);
+      font-weight: 900;
+      line-height: 1.15;
+      margin-bottom: 1.5rem;
+      animation: slideInDown 0.8s ease-out;
+      background: linear-gradient(135deg, #1f2937 0%, #4f46e5 50%, #7c3aed 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .hero-subtitle {
+      font-size: 1.25rem;
+      margin-bottom: 2.5rem;
+      color: #6b7280;
+      animation: slideInUp 0.8s ease-out 0.2s both;
+      line-height: 1.8;
+      max-width: 600px;
+    }
+
+    .hero-buttons {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1.25rem;
+      animation: slideInUp 0.8s ease-out 0.4s both;
+    }
+
+    .hero-buttons .btn {
+      padding: 0.9rem 2.5rem;
+      font-weight: 700;
+      border-radius: 12px;
+      transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+      cursor: pointer;
+      border: none;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .btn-hero-primary {
+      background: var(--gradient-1);
+      color: white;
+      box-shadow: var(--shadow-lg);
+    }
+
+    .btn-hero-primary::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+      transition: left 0.6s ease;
+    }
+
+    .btn-hero-primary:hover {
+      transform: translateY(-4px);
+      box-shadow: var(--shadow-xl);
+      filter: brightness(1.1);
+    }
+
+    .btn-hero-primary:hover::before {
+      left: 100%;
+    }
+
+    .btn-hero-secondary {
+      background: white;
+      color: var(--primary);
+      border: 2.5px solid var(--primary);
+      box-shadow: 0 2px 8px rgba(79, 70, 229, 0.15);
+    }
+
+    .btn-hero-secondary:hover {
+      background: var(--gradient-1);
+      color: white;
+      border-color: var(--primary);
+      transform: translateY(-4px);
+      box-shadow: var(--shadow-lg);
+    }
+
+    /* === FEATURES SECTION === */
+    .features-section {
+      padding: 5rem 0;
+      background: var(--light-bg);
+    }
+
+    .section-title {
+      font-size: clamp(1.75rem, 5vw, 2.5rem);
+      font-weight: 700;
+      text-align: center;
+      margin-bottom: 1rem;
+      color: var(--dark-text);
+      position: relative;
+      display: inline-block;
+      width: 100%;
+    }
+
+    .section-title::after {
+      content: '';
+      position: absolute;
+      bottom: -8px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 100px;
+      height: 4px;
+      background: linear-gradient(90deg, var(--primary), var(--secondary), var(--accent));
+      border-radius: 2px;
+      animation: slideInUp 0.6s ease-out;
+    }
+
+    .section-subtitle {
+      text-align: center;
+      font-size: 1.1rem;
+      color: #6b7280;
+      margin-bottom: 3rem;
+      max-width: 600px;
+      margin-left: auto;
+      margin-right: auto;
+      animation: slideInUp 0.7s ease-out 0.1s both;
+    }
+
+    .feature-card {
+      background: white;
+      padding: 2rem;
+      border-radius: 16px;
+      text-align: center;
+      transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+      height: 100%;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .feature-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 4px;
+      background: linear-gradient(90deg, var(--primary), var(--secondary));
+      transform: scaleX(0);
+      transform-origin: left;
+      transition: transform 0.4s ease;
+    }
+
+    .feature-card:hover::before {
+      transform: scaleX(1);
+    }
+
+    .feature-card:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 12px 32px rgba(79, 70, 229, 0.15);
+    }
+
+    .feature-icon {
+      font-size: 3rem;
+      background: linear-gradient(135deg, var(--primary), var(--secondary));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      margin-bottom: 1.5rem;
+      display: block;
+    }
+
+    .feature-card h3 {
+      font-size: 1.5rem;
+      font-weight: 700;
+      margin-bottom: 1rem;
+      color: var(--dark-text);
+    }
+
+    .feature-card p {
+      font-size: 0.95rem;
+      color: #6b7280;
+      line-height: 1.6;
+    }
+
+    /* === ROLE-BASED DESCRIPTION === */
+    .roles-section {
+      padding: 5rem 0;
+      background: linear-gradient(135deg, #ffffff 0%, #f9fafb 100%);
+    }
+
+    .role-card {
+      background: white;
+      border: 2px solid rgba(79, 70, 229, 0.1);
+      padding: 2.5rem;
+      border-radius: 16px;
+      margin-bottom: 2rem;
+      transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+      position: relative;
+      overflow: hidden;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+    }
+
+    .role-card::before {
+      content: '';
+      position: absolute;
+      top: -2px;
+      left: 0;
+      right: 0;
+      height: 4px;
+      background: linear-gradient(90deg, var(--primary), var(--secondary), var(--accent));
+      animation: morph 4s ease-in-out infinite;
+    }
+
+    .role-card::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      right: 0;
+      width: 120px;
+      height: 120px;
+      background: radial-gradient(circle, rgba(79, 70, 229, 0.1) 0%, transparent 70%);
+      border-radius: 50%;
+      transform: translate(30px, -30px);
+    }
+
+    .role-card:hover {
+      border-color: var(--primary);
+      box-shadow: 0 12px 32px rgba(79, 70, 229, 0.15);
+      transform: translateY(-6px);
+    }
+
+    .role-card h3 {
+      font-size: 1.75rem;
+      font-weight: 700;
+      background: linear-gradient(135deg, var(--primary), var(--secondary));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      margin-bottom: 1rem;
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      position: relative;
+      z-index: 1;
+    }
+
+    .role-card p {
+      font-size: 1rem;
+      color: #6b7280;
+      line-height: 1.8;
+      margin-bottom: 1.5rem;
+      position: relative;
+      z-index: 1;
+    }
+
+    .role-features {
+      list-style: none;
+      padding: 0;
+      position: relative;
+      z-index: 1;
+    }
+
+    .role-features li {
+      padding: 0.75rem 0;
+      padding-left: 2rem;
+      position: relative;
+      color: #4b5563;
+      font-size: 0.95rem;
+      transition: transform 0.3s ease;
+    }
+
+    .role-features li:hover {
+      transform: translateX(4px);
+    }
+
+    .role-features li::before {
+      content: '✓';
+      position: absolute;
+      left: 0;
+      font-weight: 700;
+      color: var(--success);
+      font-size: 1.25rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    /* === AUTH SECTION === */
+    .auth-section {
+      padding: 5rem 0;
+      background: linear-gradient(135deg, var(--light-bg), white);
+      text-align: center;
+    }
+
+    .auth-content {
+      max-width: 800px;
+      margin: 0 auto;
+    }
+
+    .auth-description {
+      font-size: 1.1rem;
+      color: #6b7280;
+      margin-bottom: 2rem;
+      line-height: 1.8;
+    }
+
+    .auth-buttons-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 1.5rem;
+      margin-top: 3rem;
+    }
+
+    .auth-btn {
+      padding: 1rem 2rem;
+      font-size: 1.1rem;
+      font-weight: 600;
+      border-radius: 12px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      border: none;
+    }
+
+    .auth-btn-login {
+      background: var(--primary);
+      color: white;
+      box-shadow: 0 4px 12px rgba(79, 70, 229, 0.3);
+    }
+
+    .auth-btn-login:hover {
+      background: #3730a3;
+      transform: translateY(-3px);
+      box-shadow: 0 8px 20px rgba(79, 70, 229, 0.4);
+      color: white;
+    }
+
+    .auth-btn-signup {
+      background: white;
+      color: var(--primary);
+      border: 2px solid var(--primary);
+    }
+
+    .auth-btn-signup:hover {
+      background: #f3f4f6;
+      transform: translateY(-3px);
+      color: var(--primary);
+    }
+
+    /* === FOOTER === */
+    .footer-home {
+      background: linear-gradient(135deg, #1f2937 0%, #111827 100%);
+      color: white;
+      padding: 4rem 0 1.5rem;
+      margin-top: 6rem;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .footer-home::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, rgba(79, 70, 229, 0.3), transparent);
+    }
+
+    .footer-content {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 3rem;
+      margin-bottom: 2rem;
+    }
+
+    .footer-column {
+      transition: transform 0.3s ease;
+    }
+
+    .footer-column:hover {
+      transform: translateY(-4px);
+    }
+
+    .footer-column h4 {
+      font-weight: 700;
+      margin-bottom: 1.5rem;
+      color: #f3f4f6;
+      font-size: 1.1rem;
+      background: linear-gradient(135deg, #7c3aed, #4f46e5);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .footer-column p,
+    .footer-column a {
+      font-size: 0.95rem;
+      color: #d1d5db;
+      text-decoration: none;
+      display: block;
+      margin-bottom: 0.8rem;
+      transition: all 0.3s ease;
+      line-height: 1.6;
+    }
+
+    .footer-column a:hover {
+      color: var(--accent);
+      padding-left: 4px;
+    }
+
+    .footer-bottom {
+      border-top: 1px solid rgba(255, 255, 255, 0.1);
+      padding-top: 2.5rem;
+      text-align: center;
+      font-size: 0.9rem;
+      color: #9ca3af;
+    }
+
+    /* === MODALES === */
+    .modal-header {
+      background: linear-gradient(135deg, var(--primary), var(--secondary));
+      color: white;
+      border: none;
+      box-shadow: 0 4px 12px rgba(79, 70, 229, 0.2);
+    }
+
+    .modal-header .btn-close {
+      filter: brightness(0) invert(1);
+      transition: all 0.3s ease;
+    }
+
+    .modal-header .btn-close:hover {
+      filter: brightness(0) invert(1) drop-shadow(0 0 4px rgba(255,255,255,0.5));
+    }
+
+    .modal-content {
+      border: 1px solid rgba(79, 70, 229, 0.1);
+      border-radius: 16px;
+      box-shadow: 0 20px 60px rgba(0,0,0,0.15);
+      animation: slideInDown 0.4s ease-out;
+    }
+
+    .form-control, .form-select {
+      border-radius: 12px;
+      border: 1.5px solid #e5e7eb;
+      padding: 0.85rem 1rem;
+      font-size: 0.95rem;
+      transition: all 0.3s ease;
+      background: white;
+    }
+
+    .form-control:focus, .form-select:focus {
+      border-color: var(--primary);
+      box-shadow: 0 0 0 0.3rem rgba(79, 70, 229, 0.15);
+      background: white;
+    }
+
+    .form-label {
+      font-weight: 600;
+      color: #374151;
+      margin-bottom: 0.5rem;
+      font-size: 0.95rem;
+    }
+
+    .btn-login, .btn-register {
+      background: linear-gradient(135deg, var(--primary), var(--secondary));
+      border: none;
+      padding: 0.85rem 1.75rem;
+      font-weight: 700;
+      border-radius: 12px;
+      cursor: pointer;
+      transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+      color: white;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .btn-login:hover, .btn-register:hover {
+      filter: brightness(1.15);
+      transform: translateY(-2px);
+      box-shadow: 0 8px 20px rgba(79, 70, 229, 0.3);
+    }
+
+    .btn-login:active, .btn-register:active {
+      transform: translateY(0);
+    }
+
+    /* === RESPONSIVE === */
+    @media (max-width: 768px) {
+      .hero-section {
+        padding: 2.5rem 0;
+        min-height: auto;
+      }
+
+      .hero-title {
+        font-size: 2rem !important;
+        line-height: 1.2 !important;
+      }
+
+      .hero-subtitle {
+        font-size: 1rem !important;
+      }
+
+      .hero-buttons {
+        flex-direction: column;
+        gap: 0.75rem;
+      }
+
+      .hero-buttons .btn {
+        width: 100%;
+        padding: 0.75rem 1.5rem !important;
+        font-size: 0.95rem;
+      }
+
+      .auth-buttons-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .footer-content {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+      }
+
+      .features-section {
+        padding: 2.5rem 0;
+      }
+
+      .roles-section {
+        padding: 2.5rem 0;
+      }
+
+      .section-title {
+        font-size: 1.75rem !important;
+      }
+
+      .section-title::after {
+        width: 80px;
+      }
+
+      .role-card {
+        padding: 1.75rem;
+      }
+
+      .feature-card {
+        padding: 1.5rem;
+      }
+
+      .modal-content {
+        margin: 10px;
+      }
+
+      .navbar-brand-custom {
+        font-size: 1.25rem;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .hero-title {
+        font-size: 1.5rem !important;
+      }
+
+      .section-title {
+        font-size: 1.5rem !important;
+      }
+
+      .footer-column h4 {
+        font-size: 1rem;
+      }
+
+      .partners-carousel-item {
+        min-width: 100%;
+      }
+    }
+
+    /* === ERROR & SUCCESS MESSAGES === */
+    .alert-custom {
+      border-radius: 8px;
+      border: none;
+      margin-bottom: 1rem;
+    }
+
+    .alert-danger-custom {
+      background-color: #fee2e2;
+      color: #991b1b;
+    }
+
+    .alert-success-custom {
+      background-color: #dcfce7;
+      color: #166534;
+    }
+  </style>
+</head>
+<body>
+  <!-- === NAVBAR === -->
+  <nav class="navbar navbar-expand-lg navbar-home">
+    <div class="container">
+      <a class="navbar-brand-custom" href="home.html">
+        <i class="bi bi-heart-pulse"></i>
+        <span>Pet's Heaven</span>
+      </a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav ms-auto">
+          <li class="nav-item">
+            <a class="nav-link" href="#services">Services</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#roles">Pour Qui ?</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#contact">Contact</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <!-- === HERO SECTION === -->
+  <section class="hero-section">
+    <div class="container">
+      <div class="row align-items-center">
+        <div class="col-lg-6 hero-content">
+          <h1 class="hero-title">La Santé de Votre Compagnon, Notre Priorité</h1>
+          <p class="hero-subtitle">
+            Retrouvez les meilleurs vétérinaires, reservez vos consultations en quelques clics et découvrez nos produits premium pour le bien-être de vos animaux.
+          </p>
+          <div class="hero-buttons">
+            <button class="btn btn-hero-primary" id="heroLogin">
+              <i class="bi bi-box-arrow-in-right me-2"></i>Se Connecter
+            </button>
+            <button class="btn btn-hero-secondary" id="heroSignup">
+              Créer un Compte
+            </button>
+          </div>
+        </div>
+        <div class="col-lg-6 text-center">
+          <div style="font-size: 8rem; animation: float 6s ease-in-out infinite;">
+            <i class="bi bi-hospital" style="color: white; opacity: 0.9;"></i>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- === BENEFITS SECTION === -->
+  <section style="background: linear-gradient(135deg, #f8fafc 0%, #ffffff 100%); padding: 80px 0; position: relative; overflow: hidden;">
+    <div class="container">
+      <div style="text-align: center; margin-bottom: 4rem;">
+        <h2 style="font-size: 2.5rem; font-weight: 700; color: #1f2937; margin-bottom: 1rem;">
+          <i class="bi bi-star-fill" style="color: #f59e0b; margin-right: 10px;"></i>Pourquoi Nous Choisir ?
+        </h2>
+        <p style="font-size: 1.1rem; color: #6b7280;">Découvrez les avantages de Pet's Heaven pour vous et vos animaux</p>
+      </div>
+
+      <div class="row g-4">
+        <!-- Bénéfice 1 -->
+        <div class="col-md-6 col-lg-3">
+          <div class="card border-0 shadow-sm h-100" style="background: white; border-radius: 16px; padding: 2.5rem 1.5rem; transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1); position: relative; overflow: hidden; animation: slideInUp 0.6s ease-out;">
+            <div class="card-body text-center p-0">
+              <div style="font-size: 3.5rem; background: linear-gradient(135deg, #4f46e5 0%, #7c3aed 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; margin-bottom: 1rem; display: block;">
+                <i class="bi bi-shield-check"></i>
+              </div>
+              <h5 class="card-title fw-bold mb-2" style="color: #1f2937;">Vétérinaires Certifiés</h5>
+              <p class="card-text text-muted" style="font-size: 0.9rem; line-height: 1.6;">Accédez à un réseau de professionnels qualifiés et expérimentés</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Bénéfice 2 -->
+        <div class="col-md-6 col-lg-3">
+          <div class="card border-0 shadow-sm h-100" style="background: white; border-radius: 16px; padding: 2.5rem 1.5rem; transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1); position: relative; overflow: hidden; animation: slideInUp 0.6s ease-out; animation-delay: 0.1s;">
+            <div class="card-body text-center p-0">
+              <div style="font-size: 3.5rem; background: linear-gradient(135deg, #f59e0b 0%, #fbbf24 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; margin-bottom: 1rem; display: block;">
+                <i class="bi bi-clock-history"></i>
+              </div>
+              <h5 class="card-title fw-bold mb-2" style="color: #1f2937;">Disponibilité 24/7</h5>
+              <p class="card-text text-muted" style="font-size: 0.9rem; line-height: 1.6;">Services et support disponibles jour et nuit pour vos urgences</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Bénéfice 3 -->
+        <div class="col-md-6 col-lg-3">
+          <div class="card border-0 shadow-sm h-100" style="background: white; border-radius: 16px; padding: 2.5rem 1.5rem; transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1); position: relative; overflow: hidden; animation: slideInUp 0.6s ease-out; animation-delay: 0.2s;">
+            <div class="card-body text-center p-0">
+              <div style="font-size: 3.5rem; background: linear-gradient(135deg, #10b981 0%, #34d399 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; margin-bottom: 1rem; display: block;">
+                <i class="bi bi-bag-check"></i>
+              </div>
+              <h5 class="card-title fw-bold mb-2" style="color: #1f2937;">Produits de Qualité</h5>
+              <p class="card-text text-muted" style="font-size: 0.9rem; line-height: 1.6;">Une large sélection de produits vétérinaires et d'accessoires</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Bénéfice 4 -->
+        <div class="col-md-6 col-lg-3">
+          <div class="card border-0 shadow-sm h-100" style="background: white; border-radius: 16px; padding: 2.5rem 1.5rem; transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1); position: relative; overflow: hidden; animation: slideInUp 0.6s ease-out; animation-delay: 0.3s;">
+            <div class="card-body text-center p-0">
+              <div style="font-size: 3.5rem; background: linear-gradient(135deg, #7c3aed 0%, #d946ef 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; margin-bottom: 1rem; display: block;">
+                <i class="bi bi-heart-pulse"></i>
+              </div>
+              <h5 class="card-title fw-bold mb-2" style="color: #1f2937;">Bien-être Animal</h5>
+              <p class="card-text text-muted" style="font-size: 0.9rem; line-height: 1.6;">Conseils et ressources pour la santé et le bien-être de vos compagnons</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- === SERVICES SECTION === -->
+  <section id="services" class="features-section">
+    <div class="container">
+      <h2 class="section-title">Nos Services</h2>
+      <p class="section-subtitle">
+        Une plateforme complète dédiée à la santé et au bien-être de vos animaux de compagnie
+      </p>
+      
+      <div class="row g-4">
+        <!-- Consultations -->
+        <div class="col-md-6 col-lg-3">
+          <div class="feature-card">
+            <i class="bi bi-stethoscope feature-icon"></i>
+            <h3>Consultations</h3>
+            <p>
+              Accédez à un réseau de vétérinaires qualifiés et prenez rendez-vous facilement pour les consultations de vos animaux.
+            </p>
+          </div>
+        </div>
+
+        <!-- Produits -->
+        <div class="col-md-6 col-lg-3">
+          <div class="feature-card">
+            <i class="bi bi-bag-heart feature-icon"></i>
+            <h3>Produits</h3>
+            <p>
+              Découvrez notre sélection de produits de qualité : aliments, accessoires, jouets et suppléments pour vos animaux.
+            </p>
+          </div>
+        </div>
+
+        <!-- Assistance 24/7 -->
+        <div class="col-md-6 col-lg-3">
+          <div class="feature-card">
+            <i class="bi bi-telephone-fill feature-icon"></i>
+            <h3>Assistance 24/7</h3>
+            <p>
+              Notre équipe est disponible jour et nuit pour répondre à vos questions et vous fournir des conseils vétérinaires.
+            </p>
+          </div>
+        </div>
+
+        <!-- Bien-être -->
+        <div class="col-md-6 col-lg-3">
+          <div class="feature-card">
+            <i class="bi bi-heart-pulse feature-icon"></i>
+            <h3>Bien-être Animal</h3>
+            <p>
+              Accédez à des ressources, des conseils et des programmes dédiés à la santé et au bien-être de vos compagnons.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- === HOW IT WORKS SECTION === -->
+  <section style="background: linear-gradient(135deg, rgba(79, 70, 229, 0.05) 0%, rgba(124, 58, 237, 0.05) 100%); padding: 80px 0; position: relative; overflow: hidden;">
+    <div class="container">
+      <div style="text-align: center; margin-bottom: 4rem;">
+        <h2 style="font-size: 2.5rem; font-weight: 700; color: #1f2937; margin-bottom: 1rem;">
+          <i class="bi bi-lightning-charge-fill" style="color: #f59e0b; margin-right: 10px;"></i>Comment Ça Marche ?
+        </h2>
+        <p style="font-size: 1.1rem; color: #6b7280;">Trois étapes simples pour commencer</p>
+      </div>
+
+      <div class="row g-4 align-items-center">
+        <!-- Étape 1 -->
+        <div class="col-md-6 col-lg-4">
+          <div class="text-center">
+            <div style="width: 80px; height: 80px; margin: 0 auto 1.5rem; background: linear-gradient(135deg, #4f46e5 0%, #7c3aed 100%); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 2rem; color: white; box-shadow: 0 10px 30px rgba(79, 70, 229, 0.2);">
+              <i class="bi bi-person-plus"></i>
+            </div>
+            <h4 class="fw-bold mb-3" style="color: #1f2937; font-size: 1.2rem;">1. Créez votre compte</h4>
+            <p class="text-muted" style="font-size: 0.9rem; line-height: 1.6;">Inscrivez-vous facilement en quelques clics. Choisissez votre profil : Client ou Vétérinaire.</p>
+          </div>
+        </div>
+
+        <!-- Étape 2 -->
+        <div class="col-md-6 col-lg-4">
+          <div class="text-center">
+            <div style="width: 80px; height: 80px; margin: 0 auto 1.5rem; background: linear-gradient(135deg, #f59e0b 0%, #fbbf24 100%); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 2rem; color: white; box-shadow: 0 10px 30px rgba(245, 158, 11, 0.2);">
+              <i class="bi bi-search"></i>
+            </div>
+            <h4 class="fw-bold mb-3" style="color: #1f2937; font-size: 1.2rem;">2. Explorez les services</h4>
+            <p class="text-muted" style="font-size: 0.9rem; line-height: 1.6;">Parcourez nos vétérinaires, produits et services disponibles selon vos besoins.</p>
+          </div>
+        </div>
+
+        <!-- Étape 3 -->
+        <div class="col-md-6 col-lg-4">
+          <div class="text-center">
+            <div style="width: 80px; height: 80px; margin: 0 auto 1.5rem; background: linear-gradient(135deg, #10b981 0%, #34d399 100%); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 2rem; color: white; box-shadow: 0 10px 30px rgba(16, 185, 129, 0.2);">
+              <i class="bi bi-check-circle"></i>
+            </div>
+            <h4 class="fw-bold mb-3" style="color: #1f2937; font-size: 1.2rem;">3. Commencez votre parcours</h4>
+            <p class="text-muted" style="font-size: 0.9rem; line-height: 1.6;">Prenez rendez-vous, commandez des produits et gérez votre santé animale facilement.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- === ROLES SECTION === -->
+  <section id="roles" class="roles-section">
+    <div class="container">
+      <h2 class="section-title">Qui Êtes-Vous ?</h2>
+      <p class="section-subtitle">
+        Choisissez votre profil pour accéder aux fonctionnalités qui vous correspondent
+      </p>
+
+      <div class="row g-4">
+        <!-- CLIENT CARD -->
+        <div class="col-lg-6">
+          <div class="role-card">
+            <h3>
+              <i class="bi bi-person-check" style="color: var(--primary);"></i>
+              Pour les Clients
+            </h3>
+            <p>
+              Accédez à une plateforme complète pour gérer la santé de vos animaux de compagnie et bénéficier de services vétérinaires professionnels.
+            </p>
+            <ul class="role-features">
+              <li>Prendre rendez-vous auprès de vétérinaires</li>
+              <li>Consulter votre historique de visites</li>
+              <li>Commander des produits pour vos animaux</li>
+              <li>Créer et gérer les profils de vos animaux</li>
+              <li>Accéder à des conseils de bien-être animal</li>
+              <li>Bénéficier d'offres et promotions exclusives</li>
+            </ul>
+            <div style="display: flex; gap: 1rem; margin-top: 2rem;">
+              <button class="btn btn-primary w-100" style="background: linear-gradient(135deg, #4f46e5 0%, #667eea 100%); border: none; padding: 0.75rem;" data-bs-toggle="modal" data-bs-target="#loginModal">
+                <i class="bi bi-box-arrow-in-right me-2"></i>Se Connecter
+              </button>
+              <button class="btn btn-outline-primary w-100" style="border-color: #4f46e5; color: #4f46e5; padding: 0.75rem;" data-bs-toggle="modal" data-bs-target="#signupClientModal">
+                <i class="bi bi-person-plus me-2"></i>S'Inscrire
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- VET CARD -->
+        <div class="col-lg-6">
+          <div class="role-card">
+            <h3>
+              <i class="bi bi-hospital" style="color: var(--secondary);"></i>
+              Pour les Vétérinaires
+            </h3>
+            <p>
+              Rejoignez notre réseau de professionnels et offrez vos services à une large clientèle avec une gestion simplifiée.
+            </p>
+            <ul class="role-features">
+              <li>Gérer votre agenda de consultations</li>
+              <li>Consulter les demandes de rendez-vous</li>
+              <li>Afficher vos disponibilités et spécialités</li>
+              <li>Accéder aux dossiers médicaux des patients</li>
+              <li>Proposer des produits recommandés</li>
+              <li>Élargir votre clientèle et augmenter vos revenus</li>
+            </ul>
+            <div style="display: flex; gap: 1rem; margin-top: 2rem;">
+              <button class="btn btn-primary w-100" style="background: linear-gradient(135deg, #7c3aed 0%, #a78bfa 100%); border: none; padding: 0.75rem;" data-bs-toggle="modal" data-bs-target="#loginModal">
+                <i class="bi bi-box-arrow-in-right me-2"></i>Se Connecter
+              </button>
+              <button class="btn btn-outline-primary w-100" style="border-color: #7c3aed; color: #7c3aed; padding: 0.75rem;" data-bs-toggle="modal" data-bs-target="#signupVetModal">
+                <i class="bi bi-hospital me-2"></i>S'Inscrire
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- === TESTIMONIALS SECTION === -->
+  <section class="py-5" style="background: linear-gradient(135deg, #f8fafc 0%, #ffffff 50%, #f0f4ff 100%); position: relative; overflow: hidden;">
+    <!-- Background decorative elements -->
+    <div style="position: absolute; top: -100px; right: -100px; width: 300px; height: 300px; background: radial-gradient(circle, rgba(79, 70, 229, 0.1) 0%, transparent 70%); border-radius: 50%; z-index: 0;"></div>
+    <div style="position: absolute; bottom: -150px; left: -100px; width: 400px; height: 400px; background: radial-gradient(circle, rgba(245, 158, 11, 0.08) 0%, transparent 70%); border-radius: 50%; z-index: 0;"></div>
+    
+    <div class="container" style="position: relative; z-index: 1;">
+      <div class="section-header mb-5" style="text-align: center;">
+        <h2 style="font-size: 2.8rem; margin-bottom: 1rem; color: #1f2937; font-weight: 900;">Nos Clients Adorent Pet's Heaven</h2>
+        <p style="font-size: 1.1rem; color: #6b7280; max-width: 600px; margin: 0 auto;">Rejoignez des milliers de clients satisfaits</p>
+        <div style="width: 100px; height: 4px; background: linear-gradient(90deg, #4f46e5 0%, #7c3aed 100%); margin: 1.5rem auto; border-radius: 2px;"></div>
+      </div>
+
+      <div class="row g-4" style="max-width: 1100px; margin: 0 auto;">
+        <!-- Testimonial 1 -->
+        <div class="col-md-6 col-lg-4">
+          <div style="background: white; padding: 2rem; border-radius: 16px; position: relative; overflow: hidden; box-shadow: 0 8px 24px rgba(0,0,0,0.08); transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1); height: 100%; border: 1px solid rgba(79, 70, 229, 0.1);" onmouseover="this.style.transform='translateY(-12px)'; this.style.boxShadow='0 16px 48px rgba(79, 70, 229, 0.2)'" onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='0 8px 24px rgba(0,0,0,0.08)'">
+            <div style="position: absolute; top: 0; left: 0; right: 0; height: 4px; background: linear-gradient(90deg, #4f46e5, #7c3aed); border-radius: 0;"></div>
+            <div style="display: flex; gap: 0.3rem; margin-bottom: 1rem;">
+              <i class="bi bi-star-fill" style="color: #f59e0b;"></i>
+              <i class="bi bi-star-fill" style="color: #f59e0b;"></i>
+              <i class="bi bi-star-fill" style="color: #f59e0b;"></i>
+              <i class="bi bi-star-fill" style="color: #f59e0b;"></i>
+              <i class="bi bi-star-fill" style="color: #f59e0b;"></i>
+            </div>
+            <p style="color: #4b5563; font-size: 1rem; line-height: 1.6; margin-bottom: 1.5rem; font-weight: 500;">"Pet's Heaven a complètement changé ma façon de prendre soin de mon chat. Les rendez-vous sont faciles à réserver et le support est incroyable!"</p>
+            <div style="display: flex; align-items: center; gap: 0.8rem;">
+              <div style="width: 45px; height: 45px; border-radius: 50%; background: linear-gradient(135deg, #4f46e5 0%, #7c3aed 100%); display: flex; align-items: center; justify-content: center; color: white; font-weight: 700; font-size: 1.1rem;">MK</div>
+              <div>
+                <h6 style="margin: 0; color: #1f2937; font-weight: 700;">Mariam K.</h6>
+                <small style="color: #9ca3af;">Casablanca</small>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Testimonial 2 -->
+        <div class="col-md-6 col-lg-4">
+          <div style="background: white; padding: 2rem; border-radius: 16px; position: relative; overflow: hidden; box-shadow: 0 8px 24px rgba(0,0,0,0.08); transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1); height: 100%; border: 1px solid rgba(16, 185, 129, 0.1);" onmouseover="this.style.transform='translateY(-12px)'; this.style.boxShadow='0 16px 48px rgba(16, 185, 129, 0.2)'" onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='0 8px 24px rgba(0,0,0,0.08)'">
+            <div style="position: absolute; top: 0; left: 0; right: 0; height: 4px; background: linear-gradient(90deg, #10b981, #059669); border-radius: 0;"></div>
+            <div style="display: flex; gap: 0.3rem; margin-bottom: 1rem;">
+              <i class="bi bi-star-fill" style="color: #f59e0b;"></i>
+              <i class="bi bi-star-fill" style="color: #f59e0b;"></i>
+              <i class="bi bi-star-fill" style="color: #f59e0b;"></i>
+              <i class="bi bi-star-fill" style="color: #f59e0b;"></i>
+              <i class="bi bi-star-fill" style="color: #f59e0b;"></i>
+            </div>
+            <p style="color: #4b5563; font-size: 1rem; line-height: 1.6; margin-bottom: 1.5rem; font-weight: 500;">"Les produits de qualité premium et la livraison rapide m'ont conquis. Mon chien est tellement heureux avec les nouvelles croquettes!"</p>
+            <div style="display: flex; align-items: center; gap: 0.8rem;">
+              <div style="width: 45px; height: 45px; border-radius: 50%; background: linear-gradient(135deg, #10b981 0%, #059669 100%); display: flex; align-items: center; justify-content: center; color: white; font-weight: 700; font-size: 1.1rem;">HB</div>
+              <div>
+                <h6 style="margin: 0; color: #1f2937; font-weight: 700;">Hassan B.</h6>
+                <small style="color: #9ca3af;">Rabat</small>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Testimonial 3 -->
+        <div class="col-md-6 col-lg-4">
+          <div style="background: white; padding: 2rem; border-radius: 16px; position: relative; overflow: hidden; box-shadow: 0 8px 24px rgba(0,0,0,0.08); transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1); height: 100%; border: 1px solid rgba(245, 158, 11, 0.1);" onmouseover="this.style.transform='translateY(-12px)'; this.style.boxShadow='0 16px 48px rgba(245, 158, 11, 0.2)'" onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='0 8px 24px rgba(0,0,0,0.08)'">
+            <div style="position: absolute; top: 0; left: 0; right: 0; height: 4px; background: linear-gradient(90deg, #f59e0b, #d97706); border-radius: 0;"></div>
+            <div style="display: flex; gap: 0.3rem; margin-bottom: 1rem;">
+              <i class="bi bi-star-fill" style="color: #f59e0b;"></i>
+              <i class="bi bi-star-fill" style="color: #f59e0b;"></i>
+              <i class="bi bi-star-fill" style="color: #f59e0b;"></i>
+              <i class="bi bi-star-fill" style="color: #f59e0b;"></i>
+              <i class="bi bi-star-fill" style="color: #f59e0b;"></i>
+            </div>
+            <p style="color: #4b5563; font-size: 1rem; line-height: 1.6; margin-bottom: 1.5rem; font-weight: 500;">"L'abonnement Premium en vaut vraiment la peine. Les vétérinaires sont professionnels et les réductions sont fantastiques!"</p>
+            <div style="display: flex; align-items: center; gap: 0.8rem;">
+              <div style="width: 45px; height: 45px; border-radius: 50%; background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%); display: flex; align-items: center; justify-content: center; color: white; font-weight: 700; font-size: 1.1rem;">SA</div>
+              <div>
+                <h6 style="margin: 0; color: #1f2937; font-weight: 700;">Sarah A.</h6>
+                <small style="color: #9ca3af;">Fès</small>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Testimonial 4 -->
+        <div class="col-md-6 col-lg-4">
+          <div style="background: white; padding: 2rem; border-radius: 16px; position: relative; overflow: hidden; box-shadow: 0 8px 24px rgba(0,0,0,0.08); transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1); height: 100%; border: 1px solid rgba(6, 182, 212, 0.1);" onmouseover="this.style.transform='translateY(-12px)'; this.style.boxShadow='0 16px 48px rgba(6, 182, 212, 0.2)'" onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='0 8px 24px rgba(0,0,0,0.08)'">
+            <div style="position: absolute; top: 0; left: 0; right: 0; height: 4px; background: linear-gradient(90deg, #06b6d4, #0891b2); border-radius: 0;"></div>
+            <div style="display: flex; gap: 0.3rem; margin-bottom: 1rem;">
+              <i class="bi bi-star-fill" style="color: #f59e0b;"></i>
+              <i class="bi bi-star-fill" style="color: #f59e0b;"></i>
+              <i class="bi bi-star-fill" style="color: #f59e0b;"></i>
+              <i class="bi bi-star-fill" style="color: #f59e0b;"></i>
+              <i class="bi bi-star-fill" style="color: #f59e0b;"></i>
+            </div>
+            <p style="color: #4b5563; font-size: 1rem; line-height: 1.6; margin-bottom: 1.5rem; font-weight: 500;">"L'interface est super intuitive! Même ma grand-mère a pu réserver un rendez-vous sans problème. C'est vraiment une belle plateforme!"</p>
+            <div style="display: flex; align-items: center; gap: 0.8rem;">
+              <div style="width: 45px; height: 45px; border-radius: 50%; background: linear-gradient(135deg, #06b6d4 0%, #0891b2 100%); display: flex; align-items: center; justify-content: center; color: white; font-weight: 700; font-size: 1.1rem;">NZ</div>
+              <div>
+                <h6 style="margin: 0; color: #1f2937; font-weight: 700;">Noor Z.</h6>
+                <small style="color: #9ca3af;">Marrakech</small>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Testimonial 5 -->
+        <div class="col-md-6 col-lg-4">
+          <div style="background: white; padding: 2rem; border-radius: 16px; position: relative; overflow: hidden; box-shadow: 0 8px 24px rgba(0,0,0,0.08); transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1); height: 100%; border: 1px solid rgba(236, 72, 153, 0.1);" onmouseover="this.style.transform='translateY(-12px)'; this.style.boxShadow='0 16px 48px rgba(236, 72, 153, 0.2)'" onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='0 8px 24px rgba(0,0,0,0.08)'">
+            <div style="position: absolute; top: 0; left: 0; right: 0; height: 4px; background: linear-gradient(90deg, #ec4899, #db2777); border-radius: 0;"></div>
+            <div style="display: flex; gap: 0.3rem; margin-bottom: 1rem;">
+              <i class="bi bi-star-fill" style="color: #f59e0b;"></i>
+              <i class="bi bi-star-fill" style="color: #f59e0b;"></i>
+              <i class="bi bi-star-fill" style="color: #f59e0b;"></i>
+              <i class="bi bi-star-fill" style="color: #f59e0b;"></i>
+              <i class="bi bi-star-fill" style="color: #f59e0b;"></i>
+            </div>
+            <p style="color: #4b5563; font-size: 1rem; line-height: 1.6; margin-bottom: 1.5rem; font-weight: 500;">"Le support client répond en moins de 2 heures! Enfin une plateforme qui prend vraiment soin de ses clients."</p>
+            <div style="display: flex; align-items: center; gap: 0.8rem;">
+              <div style="width: 45px; height: 45px; border-radius: 50%; background: linear-gradient(135deg, #ec4899 0%, #db2777 100%); display: flex; align-items: center; justify-content: center; color: white; font-weight: 700; font-size: 1.1rem;">FA</div>
+              <div>
+                <h6 style="margin: 0; color: #1f2937; font-weight: 700;">Fatima A.</h6>
+                <small style="color: #9ca3af;">Tangier</small>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Testimonial 6 -->
+        <div class="col-md-6 col-lg-4">
+          <div style="background: white; padding: 2rem; border-radius: 16px; position: relative; overflow: hidden; box-shadow: 0 8px 24px rgba(0,0,0,0.08); transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1); height: 100%; border: 1px solid rgba(139, 92, 246, 0.1);" onmouseover="this.style.transform='translateY(-12px)'; this.style.boxShadow='0 16px 48px rgba(139, 92, 246, 0.2)'" onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='0 8px 24px rgba(0,0,0,0.08)'">
+            <div style="position: absolute; top: 0; left: 0; right: 0; height: 4px; background: linear-gradient(90deg, #8b5cf6, #7c3aed); border-radius: 0;"></div>
+            <div style="display: flex; gap: 0.3rem; margin-bottom: 1rem;">
+              <i class="bi bi-star-fill" style="color: #f59e0b;"></i>
+              <i class="bi bi-star-fill" style="color: #f59e0b;"></i>
+              <i class="bi bi-star-fill" style="color: #f59e0b;"></i>
+              <i class="bi bi-star-fill" style="color: #f59e0b;"></i>
+              <i class="bi bi-star-fill" style="color: #f59e0b;"></i>
+            </div>
+            <p style="color: #4b5563; font-size: 1rem; line-height: 1.6; margin-bottom: 1.5rem; font-weight: 500;">"Les prix des abonnements sont très compétitifs et je fais d'énormes économies chaque mois!"</p>
+            <div style="display: flex; align-items: center; gap: 0.8rem;">
+              <div style="width: 45px; height: 45px; border-radius: 50%; background: linear-gradient(135deg, #8b5cf6 0%, #7c3aed 100%); display: flex; align-items: center; justify-content: center; color: white; font-weight: 700; font-size: 1.1rem;">KM</div>
+              <div>
+                <h6 style="margin: 0; color: #1f2937; font-weight: 700;">Karim M.</h6>
+                <small style="color: #9ca3af;">Agadir</small>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Partenaires Marocains -->
+  <section class="py-5" style="background: linear-gradient(135deg, #f8fafc 0%, #ffffff 100%); position: relative; overflow: hidden;">
+    <!-- Background elements -->
+    <div style="position: absolute; top: -100px; left: -100px; width: 300px; height: 300px; background: radial-gradient(circle, rgba(245, 158, 11, 0.1) 0%, transparent 70%); border-radius: 50%; z-index: 0;"></div>
+    
+    <div class="container" style="position: relative; z-index: 1;">
+      <div class="section-header mb-5">
+        <h2 style="font-size: 2.5rem; margin-bottom: 1rem;">
+          <i class="bi bi-building" style="color: #4f46e5; margin-right: 10px;"></i>Nos Partenaires Marocains
+        </h2>
+        <p style="font-size: 1.1rem; color: #6b7280;">Les meilleures marques d'alimentation et produits pour animaux au Maroc</p>
+        <div style="width: 100px; height: 4px; background: linear-gradient(90deg, #4f46e5 0%, #7c3aed 100%); margin: 1.5rem auto; border-radius: 2px;"></div>
+      </div>
+
+      <div class="partners-carousel-wrapper">
+        <div class="partners-carousel-container" id="partnersContainer">
+          <!-- Partenaire 1 -->
+          <div class="partners-carousel-item">
+            <div class="card border-0 h-100" style="background: white; border-radius: 16px; overflow: hidden; box-shadow: 0 8px 24px rgba(0,0,0,0.08); transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1); position: relative; border: 1px solid rgba(245, 158, 11, 0.2);" onmouseover="this.style.transform='translateY(-12px)'; this.style.boxShadow='0 16px 48px rgba(245, 158, 11, 0.2)'" onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='0 8px 24px rgba(0,0,0,0.08)'">
+              <div style="position: absolute; top: 0; left: 0; right: 0; height: 4px; background: linear-gradient(90deg, #f59e0b 0%, #fbbf24 100%);"></div>
+              <div class="card-body p-5 d-flex flex-column">
+                <div style="font-size: 3.5rem; margin-bottom: 1.5rem; text-align: center;">🐾</div>
+                <h5 class="card-title fw-bold mb-2" style="font-size: 1.1rem; text-align: center; color: #1f2937;">Pet Shop Casablanca</h5>
+                <p class="text-muted small mb-4 text-center flex-grow-1">Leader marocain des produits pour animaux domestiques</p>
+                <div class="text-center"><span class="badge fw-bold" style="background: linear-gradient(135deg, #f59e0b, #fbbf24); color: white; font-size: 0.85rem; padding: 0.5rem 1rem;">⭐ Depuis 2010</span></div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Partenaire 2 -->
+          <div class="partners-carousel-item">
+            <div class="card border-0 h-100" style="background: white; border-radius: 16px; overflow: hidden; box-shadow: 0 8px 24px rgba(0,0,0,0.08); transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1); position: relative; border: 1px solid rgba(16, 185, 129, 0.2);" onmouseover="this.style.transform='translateY(-12px)'; this.style.boxShadow='0 16px 48px rgba(16, 185, 129, 0.2)'" onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='0 8px 24px rgba(0,0,0,0.08)'">
+              <div style="position: absolute; top: 0; left: 0; right: 0; height: 4px; background: linear-gradient(90deg, #10b981 0%, #34d399 100%);"></div>
+              <div class="card-body p-5 d-flex flex-column">
+                <div style="height: 130px; display: flex; align-items: center; justify-content: center; margin-bottom: 1.5rem;">
+                  <img src="assets/images/logo entreprise.png" alt="Alimentation Animaux Maroc" style="width: 100%; height: 100%; object-fit: contain;">
+                </div>
+                <h5 class="card-title fw-bold mb-2" style="font-size: 1.1rem; text-align: center; color: #1f2937;">Alimentation Animaux Maroc</h5>
+                <p class="text-muted small mb-4 text-center flex-grow-1">Distributeur officiel de croquettes premium</p>
+                <div class="text-center"><span class="badge fw-bold" style="background: linear-gradient(135deg, #10b981, #34d399); color: white; font-size: 0.85rem; padding: 0.5rem 1rem;">✓ Distributeur agréé</span></div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Partenaire 3 -->
+          <div class="partners-carousel-item">
+            <div class="card border-0 h-100" style="background: white; border-radius: 16px; overflow: hidden; box-shadow: 0 8px 24px rgba(0,0,0,0.08); transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1); position: relative; border: 1px solid rgba(124, 58, 237, 0.2);" onmouseover="this.style.transform='translateY(-12px)'; this.style.boxShadow='0 16px 48px rgba(124, 58, 237, 0.2)'" onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='0 8px 24px rgba(0,0,0,0.08)'">
+              <div style="position: absolute; top: 0; left: 0; right: 0; height: 4px; background: linear-gradient(90deg, #7c3aed 0%, #a78bfa 100%);"></div>
+              <div class="card-body p-5 d-flex flex-column">
+                <div style="height: 130px; display: flex; align-items: center; justify-content: center; margin-bottom: 1.5rem;">
+                  <img src="assets/images/images.png" alt="Pharmacie Vétérinaire Maroc" style="width: 100%; height: 100%; object-fit: contain;">
+                </div>
+                <h5 class="card-title fw-bold mb-2" style="font-size: 1.1rem; text-align: center; color: #1f2937;">Pharmacie Vétérinaire Maroc</h5>
+                <p class="text-muted small mb-4 text-center flex-grow-1">Produits vétérinaires et suppléments nutritifs</p>
+                <div class="text-center"><span class="badge fw-bold" style="background: linear-gradient(135deg, #7c3aed, #a78bfa); color: white; font-size: 0.85rem; padding: 0.5rem 1rem;">🏥 Agréé santé</span></div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Partenaire 4 -->
+          <div class="partners-carousel-item">
+            <div class="card border-0 h-100" style="background: white; border-radius: 16px; overflow: hidden; box-shadow: 0 8px 24px rgba(0,0,0,0.08); transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1); position: relative; border: 1px solid rgba(239, 68, 68, 0.2);" onmouseover="this.style.transform='translateY(-12px)'; this.style.boxShadow='0 16px 48px rgba(239, 68, 68, 0.2)'" onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='0 8px 24px rgba(0,0,0,0.08)'">
+              <div style="position: absolute; top: 0; left: 0; right: 0; height: 4px; background: linear-gradient(90deg, #ef4444 0%, #f87171 100%);"></div>
+              <div class="card-body p-5 d-flex flex-column">
+                <div style="height: 130px; display: flex; align-items: center; justify-content: center; margin-bottom: 1.5rem;">
+                  <img src="assets/images/jouer.png" alt="Jouets & Accessoires Maroc" style="width: 100%; height: 100%; object-fit: contain;">
+                </div>
+                <h5 class="card-title fw-bold mb-2" style="font-size: 1.1rem; text-align: center; color: #1f2937;">Jouets & Accessoires Maroc</h5>
+                <p class="text-muted small mb-4 text-center flex-grow-1">Jouets écologiques et accessoires innovants</p>
+                <div class="text-center"><span class="badge fw-bold" style="background: linear-gradient(135deg, #ef4444, #f87171); color: white; font-size: 0.85rem; padding: 0.5rem 1rem;">🌱 Produits éco</span></div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Partenaire 5 -->
+          <div class="partners-carousel-item">
+            <div class="card border-0 h-100" style="background: white; border-radius: 16px; overflow: hidden; box-shadow: 0 8px 24px rgba(0,0,0,0.08); transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1); position: relative; border: 1px solid rgba(6, 182, 212, 0.2);" onmouseover="this.style.transform='translateY(-12px)'; this.style.boxShadow='0 16px 48px rgba(6, 182, 212, 0.2)'" onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='0 8px 24px rgba(0,0,0,0.08)'">
+              <div style="position: absolute; top: 0; left: 0; right: 0; height: 4px; background: linear-gradient(90deg, #06b6d4 0%, #22d3ee 100%);"></div>
+              <div class="card-body p-5 d-flex flex-column">
+                <div style="height: 130px; display: flex; align-items: center; justify-content: center; margin-bottom: 1.5rem;">
+                  <img src="assets/images/image2.png" alt="Hygiène Animaux Fez" style="width: 100%; height: 100%; object-fit: contain;">
+                </div>
+                <h5 class="card-title fw-bold mb-2" style="font-size: 1.1rem; text-align: center; color: #1f2937;">Hygiène Animaux Fez</h5>
+                <p class="text-muted small mb-4 text-center flex-grow-1">Produits d'hygiène et soins naturels</p>
+                <div class="text-center"><span class="badge fw-bold" style="background: linear-gradient(135deg, #06b6d4, #22d3ee); color: white; font-size: 0.85rem; padding: 0.5rem 1rem;">✨ Produits naturels</span></div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Contrôles du carrousel -->
+        <button class="carousel-nav-btn prev" onclick="scrollCarousel('left')">
+          <i class="bi bi-chevron-left"></i>
+        </button>
+        <button class="carousel-nav-btn next" onclick="scrollCarousel('right')">
+          <i class="bi bi-chevron-right"></i>
+        </button>
+      </div>
+    </div>
+  </section>
+
+  <!-- === ABONNEMENT SECTION === -->
+  <section id="abonnement" class="py-5" style="background: linear-gradient(135deg, #f9fafb 0%, #f3f4f6 100%); position: relative; overflow: hidden;">
+    <!-- Background decorative elements -->
+    <div style="position: absolute; bottom: -100px; right: -100px; width: 300px; height: 300px; background: radial-gradient(circle, rgba(79, 70, 229, 0.08) 0%, transparent 70%); border-radius: 50%; z-index: 0;"></div>
+    
+    <div class="container" style="position: relative; z-index: 1;">
+      <div style="text-align: center; margin-bottom: 4rem;">
+        <h2 style="font-size: 2.8rem; margin-bottom: 1rem; color: #1f2937; font-weight: 900;">Formules d'Abonnement</h2>
+        <p style="font-size: 1.1rem; color: #6b7280;">Choisissez votre plan pour accéder aux meilleurs services vétérinaires</p>
+        <div style="width: 100px; height: 4px; background: linear-gradient(90deg, #4f46e5 0%, #7c3aed 100%); margin: 1.5rem auto; border-radius: 2px;"></div>
+      </div>
+
+      <div class="row g-4 justify-content-center">
+        <!-- Plan Découverte -->
+        <div class="col-md-6 col-lg-4">
+          <div class="card border-0 h-100" style="box-shadow: 0 8px 24px rgba(0,0,0,0.08); background: white; border-radius: 16px; overflow: hidden; transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1); position: relative;" onmouseover="this.style.transform='translateY(-12px)'; this.style.boxShadow='0 16px 48px rgba(0,0,0,0.12)'" onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='0 8px 24px rgba(0,0,0,0.08)'">
+            <div style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); padding: 2.5rem 2rem; color: white; text-align: center; border-radius: 1.5rem 1.5rem 0 0; position: relative; overflow: hidden;">
+              <div style="position: absolute; top: -50%; right: -50%; width: 200px; height: 200px; background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, transparent 70%); border-radius: 50%;"></div>
+              <h5 class="fw-bold mb-2" style="position: relative; z-index: 1; font-size: 1.3rem;">Découverte</h5>
+              <div class="display-4 fw-bold" style="position: relative; z-index: 1;">0 <span style="font-size: 0.6em;">DH</span></div>
+              <p class="small mt-2" style="position: relative; z-index: 1; opacity: 0.9;">Accès gratuit de base</p>
+            </div>
+            <div class="card-body p-4 text-center">
+              <ul class="list-unstyled" style="font-size: 0.9rem;">
+                <li class="py-2"><i class="bi bi-check-circle" style="color: #10b981; margin-right: 8px; font-weight: 700;"></i><span>Profil animal</span></li>
+                <li class="py-2"><i class="bi bi-check-circle" style="color: #10b981; margin-right: 8px; font-weight: 700;"></i><span>Conseils basiques</span></li>
+                <li class="py-2 text-muted"><i class="bi bi-x-circle" style="margin-right: 8px;"></i><span>Accès vétérinaires limité</span></li>
+                <li class="py-2 text-muted"><i class="bi bi-x-circle" style="margin-right: 8px;"></i><span>Pas de livraisons</span></li>
+              </ul>
+              <button class="btn w-100 mt-4 fw-700 sub-btn" data-plan="Découverte" style="border: 2.5px solid #667eea; color: #667eea; background: white; border-radius: 12px; transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1); cursor: pointer;" onmouseover="this.style.background='linear-gradient(135deg, #667eea 0%, #764ba2 100%)'; this.style.color='white'; this.style.transform='translateY(-2px)'" onmouseout="this.style.background='white'; this.style.color='#667eea'; this.style.transform='translateY(0)'">
+                <i class="bi bi-arrow-right me-2"></i>Choisir
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Plan Plus (POPULAIRE) -->
+        <div class="col-md-6 col-lg-4" style="position: relative;">
+          <div style="position: absolute; top: -18px; left: 50%; transform: translateX(-50%); z-index: 30;">
+            <div style="background: linear-gradient(135deg, #f59e0b 0%, #f97316 100%); color: white; padding: 8px 20px; border-radius: 20px; font-weight: 700; font-size: 0.85rem; box-shadow: 0 4px 15px rgba(245, 158, 11, 0.3);">
+              ⭐ POPULAIRE
+            </div>
+          </div>
+          <div class="card border-0 h-100" style="transform: scale(1.06); box-shadow: 0 16px 48px rgba(245, 158, 11, 0.25); background: white; border-radius: 16px; overflow: hidden; transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);" onmouseover="this.style.transform='scale(1.06) translateY(-12px)'; this.style.boxShadow='0 20px 60px rgba(245, 158, 11, 0.35)'" onmouseout="this.style.transform='scale(1.06)'; this.style.boxShadow='0 16px 48px rgba(245, 158, 11, 0.25)'">
+            <div style="background: linear-gradient(135deg, #f59e0b 0%, #f97316 100%); padding: 2.5rem 2rem; color: white; text-align: center; border-radius: 1.5rem 1.5rem 0 0; position: relative; overflow: hidden;">
+              <div style="position: absolute; top: -50%; right: -50%; width: 200px; height: 200px; background: radial-gradient(circle, rgba(255,255,255,0.15) 0%, transparent 70%); border-radius: 50%;"></div>
+              <h5 class="fw-bold mb-2" style="position: relative; z-index: 1; font-size: 1.3rem;">Plus</h5>
+              <div class="display-4 fw-bold" style="position: relative; z-index: 1;">100 <span style="font-size: 0.6em;">DH</span></div>
+              <p class="small mt-2" style="position: relative; z-index: 1; opacity: 0.9;">Plan principal recommandé</p>
+            </div>
+            <div class="card-body p-4 text-center">
+              <ul class="list-unstyled" style="font-size: 0.9rem;">
+                <li class="py-2"><i class="bi bi-check-circle" style="color: #f59e0b; margin-right: 8px; font-weight: 700;"></i><span>2-3 animaux</span></li>
+                <li class="py-2"><i class="bi bi-check-circle" style="color: #f59e0b; margin-right: 8px; font-weight: 700;"></i><span>Jusqu'à 20 kg/mois</span></li>
+                <li class="py-2"><i class="bi bi-check-circle" style="color: #f59e0b; margin-right: 8px; font-weight: 700;"></i><span>Profil complet</span></li>
+                <li class="py-2"><i class="bi bi-calendar-check" style="color: #f59e0b; margin-right: 8px; font-weight: 700;"></i><strong>RDV vétérinaire</strong></li>
+                <li class="py-2"><i class="bi bi-clock" style="color: #f59e0b; margin-right: 8px; font-weight: 700;"></i><span>Priorité réservation</span></li>
+                <li class="py-2"><i class="bi bi-headset" style="color: #f59e0b; margin-right: 8px; font-weight: 700;"></i><span>Support prioritaire</span></li>
+              </ul>
+              <button class="btn w-100 mt-4 fw-700 sub-btn" data-plan="Plus" style="background: linear-gradient(135deg, #f59e0b 0%, #f97316 100%); color: white; border: none; border-radius: 12px; box-shadow: 0 4px 15px rgba(245, 158, 11, 0.25); transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1); cursor: pointer;" onmouseover="this.style.transform='translateY(-2px)'; this.style.boxShadow='0 10px 30px rgba(245, 158, 11, 0.35)'" onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='0 4px 15px rgba(245, 158, 11, 0.25)'">
+                <i class="bi bi-lightning-fill me-2"></i>Choisir
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Plan Pro -->
+        <div class="col-md-6 col-lg-4">
+          <div class="card border-0 h-100" style="box-shadow: 0 8px 24px rgba(0,0,0,0.08); background: white; border-radius: 16px; overflow: hidden; transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);" onmouseover="this.style.transform='translateY(-12px)'; this.style.boxShadow='0 16px 48px rgba(124, 58, 237, 0.2)'" onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='0 8px 24px rgba(0,0,0,0.08)'">
+            <div style="background: linear-gradient(135deg, #7c3aed 0%, #d946ef 100%); padding: 2.5rem 2rem; color: white; text-align: center; border-radius: 1.5rem 1.5rem 0 0; position: relative; overflow: hidden;">
+              <div style="position: absolute; top: -50%; right: -50%; width: 200px; height: 200px; background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, transparent 70%); border-radius: 50%;"></div>
+              <h5 class="fw-bold mb-2" style="position: relative; z-index: 1; font-size: 1.3rem;">Pro</h5>
+              <div class="display-4 fw-bold" style="position: relative; z-index: 1;">200 <span style="font-size: 0.6em;">DH</span></div>
+              <p class="small mt-2" style="position: relative; z-index: 1; opacity: 0.9;">Plan premium illimité</p>
+            </div>
+            <div class="card-body p-4 text-center">
+              <ul class="list-unstyled" style="font-size: 0.9rem;">
+                <li class="py-2"><i class="bi bi-check-circle" style="color: #7c3aed; margin-right: 8px; font-weight: 700;"></i><span>Animaux illimités</span></li>
+                <li class="py-2"><i class="bi bi-check-circle" style="color: #7c3aed; margin-right: 8px; font-weight: 700;"></i><span>Livraisons illimitées</span></li>
+                <li class="py-2"><i class="bi bi-calendar-check" style="color: #7c3aed; margin-right: 8px; font-weight: 700;"></i><strong>RDV illimités</strong></li>
+                <li class="py-2"><i class="bi bi-telephone" style="color: #7c3aed; margin-right: 8px; font-weight: 700;"></i><span>Réservation gratuite</span></li>
+                <li class="py-2"><i class="bi bi-crown" style="color: #7c3aed; margin-right: 8px; font-weight: 700;"></i><span>Créneau prioritaire</span></li>
+                <li class="py-2"><i class="bi bi-shield-check" style="color: #7c3aed; margin-right: 8px; font-weight: 700;"></i><span>Support 24/7 VIP</span></li>
+              </ul>
+              <button class="btn w-100 mt-4 fw-700 sub-btn" data-plan="Pro" style="background: linear-gradient(135deg, #7c3aed 0%, #d946ef 100%); color: white; border: none; border-radius: 12px; box-shadow: 0 4px 15px rgba(124, 58, 237, 0.25); transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1); cursor: pointer;" onmouseover="this.style.transform='translateY(-2px)'; this.style.boxShadow='0 10px 30px rgba(124, 58, 237, 0.35)'" onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='0 4px 15px rgba(124, 58, 237, 0.25)'">
+                <i class="bi bi-crown me-2"></i>Choisir
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- === FOOTER === -->
+
+  <footer class="footer-home">
+    <div class="container">
+      <div class="footer-content">
+        <div class="footer-column">
+          <h4><i class="bi bi-paw-fill me-2"></i>Pet's Heaven</h4>
+          <p>Votre plateforme complète de services vétérinaires et de bien-être animal.</p>
+          <div style="display: flex; gap: 0.8rem; margin-top: 1rem;">
+            <a href="#" style="width: 36px; height: 36px; display: flex; align-items: center; justify-content: center; border-radius: 8px; background: rgba(79, 70, 229, 0.2); color: #7c3aed; transition: all 0.3s ease;" onmouseover="this.style.background='rgba(79, 70, 229, 0.4)'; this.style.transform='scale(1.1)'" onmouseout="this.style.background='rgba(79, 70, 229, 0.2)'; this.style.transform='scale(1)'">
+              <i class="bi bi-facebook"></i>
+            </a>
+            <a href="#" style="width: 36px; height: 36px; display: flex; align-items: center; justify-content: center; border-radius: 8px; background: rgba(79, 70, 229, 0.2); color: #7c3aed; transition: all 0.3s ease;" onmouseover="this.style.background='rgba(79, 70, 229, 0.4)'; this.style.transform='scale(1.1)'" onmouseout="this.style.background='rgba(79, 70, 229, 0.2)'; this.style.transform='scale(1)'">
+              <i class="bi bi-twitter"></i>
+            </a>
+            <a href="#" style="width: 36px; height: 36px; display: flex; align-items: center; justify-content: center; border-radius: 8px; background: rgba(79, 70, 229, 0.2); color: #7c3aed; transition: all 0.3s ease;" onmouseover="this.style.background='rgba(79, 70, 229, 0.4)'; this.style.transform='scale(1.1)'" onmouseout="this.style.background='rgba(79, 70, 229, 0.2)'; this.style.transform='scale(1)'">
+              <i class="bi bi-instagram"></i>
+            </a>
+          </div>
+        </div>
+        <div class="footer-column">
+          <h4><i class="bi bi-compass me-2"></i>Navigation</h4>
+          <a href="home.html">🏠 Accueil</a>
+          <a href="#services">🔧 Services</a>
+          <a href="#roles">ℹ️ Qui Sommes-Nous</a>
+          <a href="#contact">📧 Contact</a>
+        </div>
+        <div class="footer-column">
+          <h4><i class="bi bi-shield-check me-2"></i>Légal</h4>
+          <a href="#">📋 Conditions d'Utilisation</a>
+          <a href="#">🔒 Politique de Confidentialité</a>
+          <a href="#">⚖️ Mentions Légales</a>
+        </div>
+        <div class="footer-column">
+          <h4><i class="bi bi-telephone-fill me-2"></i>Contact</h4>
+          <p>📧 contact@petsheaven.ma</p>
+          <p>📞 +212 5XX XXX XXX</p>
+          <p>📍 Casablanca, Maroc</p>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>&copy; <span id="year">2024</span> Pet's Heaven. Tous droits réservés. | Conçu avec ❤️ pour vos compagnons</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- === LOGIN MODAL === -->
+  <div class="modal fade" id="loginModal" tabindex="-1" role="dialog" aria-labelledby="loginModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="loginModalLabel">
+            <i class="bi bi-box-arrow-in-right me-2"></i>Se Connecter
+          </h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <form id="loginForm">
+          <div class="modal-body">
+            <div id="loginError" class="alert alert-danger alert-custom d-none"></div>
+            
+            <div class="mb-3">
+              <label for="loginEmail" class="form-label">Adresse Email</label>
+              <input type="email" class="form-control" id="loginEmail" placeholder="vous@exemple.com" required>
+            </div>
+
+            <div class="mb-3">
+              <label for="loginPassword" class="form-label">Mot de Passe</label>
+              <input type="password" class="form-control" id="loginPassword" placeholder="••••••••" required>
+            </div>
+
+            <div class="mb-3">
+              <div class="form-check">
+                <input class="form-check-input" type="checkbox" id="rememberMe">
+                <label class="form-check-label" for="rememberMe">
+                  Rester connecté
+                </label>
+              </div>
+            </div>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Annuler</button>
+            <button type="submit" class="btn btn-login">Se Connecter</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <!-- === SIGNUP CLIENT MODAL === -->
+  <div class="modal fade" id="signupClientModal" tabindex="-1" role="dialog" aria-labelledby="signupClientModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="signupClientModalLabel">
+            <i class="bi bi-person-plus me-2"></i>Créer un Compte Client
+          </h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <form id="signupClientForm">
+          <div class="modal-body">
+            <div id="signupClientError" class="alert alert-danger alert-custom d-none"></div>
+            <div id="signupClientSuccess" class="alert alert-success alert-custom d-none"></div>
+
+            <div class="mb-3">
+              <label for="signupClientName" class="form-label">Nom Complet</label>
+              <input type="text" class="form-control" id="signupClientName" placeholder="Jean Dupont" required>
+            </div>
+
+            <div class="mb-3">
+              <label for="signupClientEmail" class="form-label">Adresse Email</label>
+              <input type="email" class="form-control" id="signupClientEmail" placeholder="vous@exemple.com" required>
+            </div>
+
+            <div class="mb-3">
+              <label for="signupClientPhone" class="form-label">Téléphone</label>
+              <input type="tel" class="form-control" id="signupClientPhone" placeholder="+212 6XX XXX XXX">
+            </div>
+
+            <div class="mb-3">
+              <label for="signupClientPassword" class="form-label">Mot de Passe</label>
+              <input type="password" class="form-control" id="signupClientPassword" placeholder="••••••••" minlength="6" required>
+            </div>
+
+            <div class="mb-3">
+              <label for="signupClientPasswordConfirm" class="form-label">Confirmer Mot de Passe</label>
+              <input type="password" class="form-control" id="signupClientPasswordConfirm" placeholder="••••••••" minlength="6" required>
+            </div>
+
+            <div class="form-check">
+              <input class="form-check-input" type="checkbox" id="signupClientTerms" required>
+              <label class="form-check-label" for="signupClientTerms">
+                J'accepte les conditions d'utilisation
+              </label>
+            </div>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Annuler</button>
+            <button type="submit" class="btn btn-register">Créer mon Compte</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <!-- === SIGNUP VET MODAL === -->
+  <div class="modal fade" id="signupVetModal" tabindex="-1" role="dialog" aria-labelledby="signupVetModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-lg">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="signupVetModalLabel">
+            <i class="bi bi-hospital me-2"></i>Créer un Compte Vétérinaire
+          </h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <form id="signupVetForm">
+          <div class="modal-body">
+            <div id="signupVetError" class="alert alert-danger alert-custom d-none"></div>
+            <div id="signupVetSuccess" class="alert alert-success alert-custom d-none"></div>
+
+            <div class="row">
+              <div class="col-md-6 mb-3">
+                <label for="signupVetName" class="form-label">Nom Complet</label>
+                <input type="text" class="form-control" id="signupVetName" placeholder="Dr. Ahmed Ben Ali" required>
+              </div>
+
+              <div class="col-md-6 mb-3">
+                <label for="signupVetEmail" class="form-label">Adresse Email</label>
+                <input type="email" class="form-control" id="signupVetEmail" placeholder="vet@exemple.com" required>
+              </div>
+            </div>
+
+            <div class="row">
+              <div class="col-md-6 mb-3">
+                <label for="signupVetPhone" class="form-label">Téléphone</label>
+                <input type="tel" class="form-control" id="signupVetPhone" placeholder="+212 6XX XXX XXX" required>
+              </div>
+
+              <div class="col-md-6 mb-3">
+                <label for="signupVetSpecialty" class="form-label">Spécialité</label>
+                <select class="form-select" id="signupVetSpecialty" required>
+                  <option value="">Sélectionner une spécialité</option>
+                  <option value="Médecine Générale">Médecine Générale</option>
+                  <option value="Chirurgie">Chirurgie</option>
+                  <option value="Dermatologie">Dermatologie</option>
+                  <option value="Cardiologie">Cardiologie</option>
+                  <option value="Orthopédie">Orthopédie</option>
+                  <option value="Dentisterie">Dentisterie</option>
+                  <option value="Ophtalmologie">Ophtalmologie</option>
+                </select>
+              </div>
+            </div>
+
+            <div class="row">
+              <div class="col-md-6 mb-3">
+                <label for="signupVetCity" class="form-label">Ville</label>
+                <input type="text" class="form-control" id="signupVetCity" placeholder="Casablanca" required>
+              </div>
+
+              <div class="col-md-6 mb-3">
+                <label for="signupVetClinic" class="form-label">Clinique/Cabinet</label>
+                <input type="text" class="form-control" id="signupVetClinic" placeholder="Nom de la clinique">
+              </div>
+            </div>
+
+            <div class="mb-3">
+              <label for="signupVetLicense" class="form-label">Numéro de Licence Vétérinaire</label>
+              <input type="text" class="form-control" id="signupVetLicense" placeholder="VET-XXXX-XXXX" required>
+            </div>
+
+            <div class="row">
+              <div class="col-md-6 mb-3">
+                <label for="signupVetPassword" class="form-label">Mot de Passe</label>
+                <input type="password" class="form-control" id="signupVetPassword" placeholder="••••••••" minlength="6" required>
+              </div>
+
+              <div class="col-md-6 mb-3">
+                <label for="signupVetPasswordConfirm" class="form-label">Confirmer Mot de Passe</label>
+                <input type="password" class="form-control" id="signupVetPasswordConfirm" placeholder="••••••••" minlength="6" required>
+              </div>
+            </div>
+
+            <div class="form-check">
+              <input class="form-check-input" type="checkbox" id="signupVetTerms" required>
+              <label class="form-check-label" for="signupVetTerms">
+                J'accepte les conditions d'utilisation et confirme que toutes les informations fournies sont exactes
+              </label>
+            </div>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Annuler</button>
+            <button type="submit" class="btn btn-register">Créer mon Compte Vétérinaire</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <!-- === SUBSCRIPTION TOAST === -->
+  <div class="toast-container position-fixed bottom-0 end-0 p-3">
+    <div id="subToast" class="toast align-items-center text-white bg-success border-0" role="alert">
+      <div class="d-flex">
+        <div class="toast-body">
+          ✓ Abonnement <strong id="subName">Plus</strong> choisi avec succès !
+        </div>
+        <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast"></button>
+      </div>
+    </div>
+  </div>
+
+  <!-- === PAYMENT MODAL === -->
+  <div class="modal fade" id="paymentModal" tabindex="-1">
+    <div class="modal-dialog modal-dialog-centered modal-lg">
+      <div class="modal-content border-0 rounded-4" style="box-shadow: 0 25px 75px rgba(79, 70, 229, 0.15); overflow: hidden;">
+        <!-- Header Premium -->
+        <div class="modal-header border-0 p-0" style="background: linear-gradient(135deg, #4f46e5 0%, #7c3aed 100%); color: white; min-height: 120px; display: flex; align-items: center; justify-content: space-between; padding: 30px!important; position: relative; overflow: hidden;">
+          <div style="position: absolute; top: -50%; right: -50%; width: 300px; height: 300px; background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, transparent 70%); border-radius: 50%; animation: float 8s infinite ease-in-out;"></div>
+          <div style="position: relative; z-index: 5;">
+            <h5 class="modal-title fw-bold mb-1" style="font-size: 1.3rem;">Finaliser l'abonnement</h5>
+            <p class="small text-white-50 mb-0">Sélectionnez votre mode de paiement</p>
+          </div>
+          <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" style="position: relative; z-index: 5;"></button>
+        </div>
+
+        <div class="modal-body p-5">
+          <!-- Plan Info Card -->
+          <div class="card border-0 mb-5" style="background: linear-gradient(135deg, rgba(79, 70, 229, 0.05) 0%, rgba(124, 58, 237, 0.05) 100%); border-radius: 16px;">
+            <div class="card-body p-4">
+              <div class="d-flex justify-content-between align-items-center">
+                <div>
+                  <h6 class="text-muted mb-1" style="font-size: 0.8rem; text-transform: uppercase; letter-spacing: 0.5px;">Plan sélectionné</h6>
+                  <h4 class="fw-bold mb-1" id="paymentPlanName">Plus</h4>
+                  <p class="text-muted small mb-0" id="paymentPlanDesc">12% de réduction</p>
+                </div>
+                <div class="text-end">
+                  <h3 class="fw-bold mb-0"><span id="paymentAmount">100</span> <span style="font-size: 1.2rem;">DH</span></h3>
+                  <p class="text-muted small mb-0">/mois</p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Payment Methods -->
+          <h6 class="fw-bold mb-3">Mode de paiement</h6>
+          <div class="row g-3 mb-4">
+            <div class="col-md-6"><div class="card border-2 payment-method" data-method="card" style="cursor: pointer; border-color: #e5e7eb; transition: all 0.3s ease; border-radius: 12px;"><div class="card-body text-center p-4"><i class="bi bi-credit-card" style="font-size: 2rem; color: #4f46e5; margin-bottom: 10px; display: block;"></i><h6 class="fw-bold small mb-1">Carte Bancaire</h6><p class="text-muted small mb-0">Visa, MC, Amex</p></div></div></div>
+            <div class="col-md-6"><div class="card border-2 payment-method" data-method="mobile" style="cursor: pointer; border-color: #e5e7eb; transition: all 0.3s ease; border-radius: 12px;"><div class="card-body text-center p-4"><i class="bi bi-phone" style="font-size: 2rem; color: #f59e0b; margin-bottom: 10px; display: block;"></i><h6 class="fw-bold small mb-1">Portefeuille</h6><p class="text-muted small mb-0">Maroc Telecom</p></div></div></div>
+            <div class="col-md-6"><div class="card border-2 payment-method" data-method="transfer" style="cursor: pointer; border-color: #e5e7eb; transition: all 0.3s ease; border-radius: 12px;"><div class="card-body text-center p-4"><i class="bi bi-bank" style="font-size: 2rem; color: #10b981; margin-bottom: 10px; display: block;"></i><h6 class="fw-bold small mb-1">Virement</h6><p class="text-muted small mb-0">Compte bancaire</p></div></div></div>
+            <div class="col-md-6"><div class="card border-2 payment-method" data-method="cash" style="cursor: pointer; border-color: #e5e7eb; transition: all 0.3s ease; border-radius: 12px;"><div class="card-body text-center p-4"><i class="bi bi-cash-coin" style="font-size: 2rem; color: #ef4444; margin-bottom: 10px; display: block;"></i><h6 class="fw-bold small mb-1">À la livraison</h6><p class="text-muted small mb-0">Paiement en espèces</p></div></div></div>
+          </div>
+
+          <!-- Form Container -->
+          <div id="paymentFormContainer" class="mb-4"></div>
+
+          <!-- Terms Checkbox -->
+          <div class="form-check mb-0" style="padding: 14px; background: rgba(79, 70, 229, 0.05); border-radius: 10px; margin-bottom: 20px!important;">
+            <input class="form-check-input" type="checkbox" id="agreeTerms" required style="border: 2px solid #e5e7eb; width: 18px; height: 18px; cursor: pointer;">
+            <label class="form-check-label small" for="agreeTerms" style="color: #6b7280; margin-left: 10px; cursor: pointer;">
+              J'accepte les <a href="#" style="color: #4f46e5; text-decoration: none; font-weight: 600;">conditions</a> et <a href="#" style="color: #4f46e5; text-decoration: none; font-weight: 600;">politique de confidentialité</a>
+            </label>
+          </div>
+        </div>
+
+        <!-- Footer -->
+        <div class="modal-footer border-top p-4" style="background: #f9fafb;">
+          <button type="button" class="btn btn-light fw-600" data-bs-dismiss="modal" style="border: 1px solid #e5e7eb; color: #374151;">Annuler</button>
+          <button type="button" class="btn fw-700" id="confirmPaymentBtn" disabled style="background: linear-gradient(135deg, #4f46e5 0%, #7c3aed 100%); color: white; transition: all 0.3s ease; box-shadow: 0 4px 12px rgba(79, 70, 229, 0.2);" onmouseover="if(!this.disabled) { this.style.boxShadow='0 8px 25px rgba(79, 70, 229, 0.35)'; this.style.transform='translateY(-2px)'; }" onmouseout="if(!this.disabled) { this.style.boxShadow='0 4px 12px rgba(79, 70, 229, 0.2)'; this.style.transform='translateY(0)'; }">
+            <i class="bi bi-lock-fill me-2"></i>Confirmer
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Bootstrap JS -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  
+  <!-- Scripts personnalisés -->
+  <script src="assets/js/home.js"></script>
+  <script src="assets/js/script.js"></script>
+</body>
+</html>

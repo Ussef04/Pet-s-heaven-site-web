@@ -1,0 +1,871 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Espace Vétérinaire - Pet's Heaven</title>
+  
+  <!-- Bootstrap 5 -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet">
+  
+  <!-- Styles -->
+  <link rel="stylesheet" href="assets/css/styles.css">
+  <style>
+    :root {
+      --primary: #6366f1;
+      --secondary: #8b5cf6;
+      --accent: #ec4899;
+      --success: #10b981;
+      --danger: #ef4444;
+      --light-bg: #f8fafc;
+      --dark-text: #0f172a;
+      --gradient-1: linear-gradient(135deg, #6366f1 0%, #8b5cf6 50%, #ec4899 100%);
+      --gradient-2: linear-gradient(135deg, #8b5cf6 0%, #06b6d4 100%);
+      --shadow-sm: 0 4px 15px rgba(99, 102, 241, 0.1);
+      --shadow-md: 0 10px 30px rgba(99, 102, 241, 0.15);
+      --shadow-lg: 0 20px 60px rgba(99, 102, 241, 0.2);
+      --shadow-xl: 0 30px 80px rgba(99, 102, 241, 0.25);
+    }
+
+    body {
+      background: linear-gradient(180deg, #f8fafc 0%, #f0f9ff 50%, #faf5ff 100%);
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+
+    /* === ANIMATIONS === */
+    @keyframes slideInDown {
+      from { opacity: 0; transform: translateY(-30px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    @keyframes slideInUp {
+      from { opacity: 0; transform: translateY(30px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    @keyframes slideInLeft {
+      from { opacity: 0; transform: translateX(-30px); }
+      to { opacity: 1; transform: translateX(0); }
+    }
+
+    @keyframes scaleIn {
+      from { opacity: 0; transform: scale(0.95); }
+      to { opacity: 1; transform: scale(1); }
+    }
+
+    @keyframes float {
+      0%, 100% { transform: translateY(0px); }
+      50% { transform: translateY(-10px); }
+    }
+
+    /* === SIDEBAR NAVIGATION === */
+    .sidebar {
+      background: rgba(255, 255, 255, 0.95);
+      backdrop-filter: blur(10px);
+      box-shadow: var(--shadow-lg);
+      min-height: 100vh;
+      position: sticky;
+      top: 0;
+      border-right: 1px solid rgba(99, 102, 241, 0.1);
+      animation: slideInLeft 0.5s ease-out;
+    }
+
+    .sidebar-header {
+      padding: 2.5rem 1.5rem;
+      border-bottom: 2px solid rgba(99, 102, 241, 0.1);
+      background: linear-gradient(135deg, rgba(99, 102, 241, 0.05) 0%, rgba(139, 92, 246, 0.05) 100%);
+    }
+
+    .sidebar-brand {
+      font-weight: 800;
+      font-size: 1.4rem;
+      background: var(--gradient-1);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      text-decoration: none;
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      transition: all 0.3s ease;
+      letter-spacing: -0.5px;
+    }
+
+    .sidebar-brand:hover {
+      transform: scale(1.05);
+      filter: drop-shadow(0 8px 20px rgba(99, 102, 241, 0.3));
+    }
+
+    .sidebar-nav {
+      padding: 1.5rem 0;
+    }
+
+    .nav-item-custom {
+      padding: 0.9rem 1.5rem;
+      margin: 0.4rem 0.75rem;
+      cursor: pointer;
+      transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+      border-left: 4px solid transparent;
+      border-radius: 0 12px 12px 0;
+      color: #64748b;
+      text-decoration: none;
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      font-weight: 600;
+      position: relative;
+    }
+
+    .nav-item-custom::after {
+      content: '';
+      position: absolute;
+      right: 0;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 0;
+      height: 60%;
+      background: var(--gradient-1);
+      border-radius: 12px 0 0 12px;
+      transition: all 0.3s ease;
+      z-index: -1;
+    }
+
+    .nav-item-custom:hover {
+      background-color: rgba(99, 102, 241, 0.08);
+      color: var(--primary);
+      border-left-color: var(--primary);
+      transform: translateX(4px);
+    }
+
+    .nav-item-custom.active {
+      background: linear-gradient(90deg, rgba(99, 102, 241, 0.15) 0%, rgba(99, 102, 241, 0.05) 100%);
+      color: var(--primary);
+      border-left-color: var(--primary);
+      font-weight: 700;
+      box-shadow: var(--shadow-sm);
+    }
+
+    .nav-item-custom i {
+      font-size: 1.3rem;
+      transition: all 0.3s ease;
+    }
+
+    .nav-item-custom:hover i,
+    .nav-item-custom.active i {
+      transform: scale(1.15) rotate(5deg);
+    }
+
+    .sidebar-logout {
+      margin-top: auto;
+      padding: 1.5rem;
+      border-top: 1px solid rgba(99, 102, 241, 0.1);
+      animation: slideInUp 0.5s ease-out 0.2s both;
+    }
+
+    /* === TOP BAR === */
+    .topbar {
+      background: rgba(255, 255, 255, 0.95);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid rgba(99, 102, 241, 0.1);
+      padding: 1.5rem 2rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      box-shadow: var(--shadow-md);
+      animation: slideInDown 0.5s ease-out;
+    }
+
+    .user-info {
+      display: flex;
+      align-items: center;
+      gap: 1.2rem;
+    }
+
+    .user-avatar {
+      width: 50px;
+      height: 50px;
+      border-radius: 12px;
+      background: var(--gradient-1);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      font-weight: 800;
+      font-size: 1.3rem;
+      box-shadow: var(--shadow-md);
+      transition: all 0.3s ease;
+    }
+
+    .user-avatar:hover {
+      transform: scale(1.1) rotate(5deg);
+      box-shadow: var(--shadow-lg);
+    }
+
+    .user-details h5 {
+      font-size: 1rem;
+      margin: 0;
+      color: var(--dark-text);
+      font-weight: 700;
+      letter-spacing: -0.5px;
+    }
+
+    .user-details p {
+      font-size: 0.85rem;
+      color: #64748b;
+      margin: 0;
+    }
+
+    /* === MAIN CONTENT === */
+    .main-content {
+      padding: 2.5rem;
+      animation: slideInUp 0.5s ease-out 0.1s both;
+    }
+
+    .page-header {
+      margin-bottom: 2rem;
+    }
+
+    .page-title {
+      font-size: 2.2rem;
+      font-weight: 900;
+      background: var(--gradient-1);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      letter-spacing: -1px;
+    }
+
+    /* === DASHBOARD CARDS === */
+    .dashboard-card {
+      background: white;
+      border-radius: 16px;
+      padding: 2.5rem;
+      box-shadow: var(--shadow-sm);
+      margin-bottom: 2.5rem;
+      transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+      border: 1px solid rgba(99, 102, 241, 0.05);
+      animation: scaleIn 0.5s ease-out;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .dashboard-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 3px;
+      background: var(--gradient-1);
+      transform: scaleX(0);
+      transform-origin: left;
+      transition: transform 0.4s ease;
+    }
+
+    .dashboard-card:hover {
+      box-shadow: var(--shadow-lg);
+      transform: translateY(-8px);
+      border-color: rgba(99, 102, 241, 0.15);
+    }
+
+    .dashboard-card:hover::before {
+      transform: scaleX(1);
+    }
+
+    .card-title {
+      font-size: 1.6rem;
+      font-weight: 800;
+      color: var(--dark-text);
+      margin-bottom: 1.5rem;
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      letter-spacing: -0.5px;
+    }
+
+    .card-title i {
+      background: var(--gradient-1);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      font-size: 2rem;
+    }
+
+    /* === QUICK STATS === */
+    .stat-card {
+      background: white;
+      border: 2px solid rgba(99, 102, 241, 0.1);
+      border-radius: 14px;
+      padding: 2rem;
+      text-align: center;
+      transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+      cursor: pointer;
+      position: relative;
+      overflow: hidden;
+      animation: slideInUp 0.6s ease-out;
+      animation-fill-mode: both;
+    }
+
+    .stat-card:nth-child(1) { animation-delay: 0.1s; }
+    .stat-card:nth-child(2) { animation-delay: 0.2s; }
+    .stat-card:nth-child(3) { animation-delay: 0.3s; }
+    .stat-card:nth-child(4) { animation-delay: 0.4s; }
+
+    .stat-card::before {
+      content: '';
+      position: absolute;
+      top: -50%;
+      right: -50%;
+      width: 200%;
+      height: 200%;
+      background: var(--gradient-1);
+      opacity: 0;
+      transition: all 0.4s ease;
+      border-radius: 50%;
+      z-index: 0;
+    }
+
+    .stat-card:hover {
+      transform: translateY(-12px) scale(1.03);
+      box-shadow: var(--shadow-lg);
+      border-color: rgba(99, 102, 241, 0.3);
+    }
+
+    .stat-card:hover::before {
+      opacity: 0.08;
+    }
+
+    .stat-number {
+      font-size: 2.5rem;
+      font-weight: 950;
+      background: var(--gradient-1);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      position: relative;
+      z-index: 1;
+      letter-spacing: -1px;
+    }
+
+    .stat-label {
+      font-size: 0.95rem;
+      color: #64748b;
+      margin-top: 0.75rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      position: relative;
+      z-index: 1;
+    }
+
+    /* === BTN STYLES === */
+    .btn-custom {
+      padding: 0.9rem 1.8rem;
+      border-radius: 10px;
+      font-weight: 700;
+      transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+      border: none;
+      cursor: pointer;
+      position: relative;
+      overflow: hidden;
+      letter-spacing: -0.5px;
+    }
+
+    .btn-primary-custom {
+      background: var(--gradient-1);
+      color: white;
+      box-shadow: var(--shadow-md);
+    }
+
+    .btn-primary-custom::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+      transition: left 0.6s ease;
+    }
+
+    .btn-primary-custom:hover::before {
+      left: 100%;
+    }
+
+    .btn-primary-custom:hover {
+      transform: translateY(-4px) scale(1.05);
+      box-shadow: var(--shadow-xl);
+      color: white;
+      filter: brightness(1.1);
+    }
+
+    .btn-secondary-custom {
+      background: white;
+      color: var(--primary);
+      border: 2px solid var(--primary);
+      box-shadow: var(--shadow-sm);
+    }
+
+    .btn-secondary-custom:hover {
+      background: var(--primary);
+      color: white;
+      transform: translateY(-4px);
+      box-shadow: var(--shadow-lg);
+    }
+
+    /* === SECTIONS === */
+    .section-dashboard,
+    .section-appointments,
+    .section-availability,
+    .section-applications,
+    .section-clinic {
+      display: none;
+      animation: slideInUp 0.5s ease-out;
+    }
+
+    .section-dashboard.active,
+    .section-appointments.active,
+    .section-availability.active,
+    .section-applications.active,
+    .section-clinic.active {
+      display: block;
+    }
+
+    .appointment-item {
+      background: white;
+      padding: 1.75rem;
+      border-radius: 12px;
+      border: 2px solid rgba(99, 102, 241, 0.1);
+      margin-bottom: 1.2rem;
+      transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+      animation: slideInUp 0.5s ease-out;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .appointment-item::before {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 0;
+      width: 4px;
+      height: 100%;
+      background: var(--gradient-1);
+      transform: scaleY(0);
+      transform-origin: top;
+      transition: transform 0.3s ease;
+    }
+
+    .appointment-item:hover {
+      box-shadow: var(--shadow-lg);
+      transform: translateX(6px);
+      border-color: rgba(99, 102, 241, 0.3);
+    }
+
+    .appointment-item:hover::before {
+      transform: scaleY(1);
+    }
+
+    .empty-state {
+      text-align: center;
+      padding: 4rem 2rem;
+      color: #94a3b8;
+      animation: slideInUp 0.5s ease-out;
+    }
+
+    .empty-state-icon {
+      font-size: 3.5rem;
+      margin-bottom: 1rem;
+      opacity: 0.4;
+      animation: float 3s ease-in-out infinite;
+    }
+
+    /* === FORMS === */
+    .form-control, .form-select {
+      border-radius: 10px;
+      border: 2px solid #e2e8f0;
+      background: white;
+      font-weight: 500;
+      transition: all 0.3s ease;
+    }
+
+    .form-control:focus, .form-select:focus {
+      border-color: var(--primary);
+      box-shadow: 0 0 0 0.3rem rgba(99, 102, 241, 0.15);
+      background: white;
+    }
+
+    .form-label {
+      font-weight: 700;
+      color: var(--dark-text);
+      font-size: 0.95rem;
+      margin-bottom: 0.6rem;
+      letter-spacing: -0.3px;
+    }
+
+    /* === RESPONSIVE === */
+    @media (max-width: 992px) {
+      .sidebar {
+        position: fixed;
+        left: 0;
+        top: 0;
+        width: 280px;
+        height: 100vh;
+        transform: translateX(-100%);
+        z-index: 999;
+        transition: transform 0.3s ease;
+      }
+
+      .sidebar.active {
+        transform: translateX(0);
+      }
+
+      .main-content {
+        margin-left: 0;
+        padding: 1.5rem;
+      }
+
+      .page-title {
+        font-size: 1.8rem;
+      }
+    }
+
+    @media (max-width: 576px) {
+      .topbar {
+        flex-direction: column;
+        gap: 1rem;
+      }
+
+      .main-content {
+        padding: 1rem;
+      }
+
+      .dashboard-card {
+        padding: 1.5rem;
+      }
+
+      .page-title {
+        font-size: 1.5rem;
+      }
+    }
+
+    .badge-pending {
+      background: linear-gradient(135deg, #fbbf24 0%, #f59e0b 100%);
+      color: white;
+      font-weight: 700;
+      padding: 0.4rem 0.9rem;
+      border-radius: 8px;
+    }
+
+    .badge-confirmed {
+      background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+      color: white;
+      font-weight: 700;
+      padding: 0.4rem 0.9rem;
+      border-radius: 8px;
+    }
+
+    .badge-cancelled {
+      background: linear-gradient(135deg, #ef4444 0%, #dc2626 100%);
+      color: white;
+      font-weight: 700;
+      padding: 0.4rem 0.9rem;
+      border-radius: 8px;
+    }
+  </style>
+</head>
+<body>
+  <div class="d-flex h-100">
+    <!-- === SIDEBAR === -->
+    <div class="sidebar col-lg-3 col-xl-2">
+      <div class="sidebar-header">
+        <a href="vet-home.html" class="sidebar-brand">
+          <i class="bi bi-heart-pulse"></i>
+          <span class="d-none d-md-inline">Pet's Heaven</span>
+        </a>
+      </div>
+
+      <nav class="sidebar-nav">
+        <a href="#" class="nav-item-custom active" data-section="dashboard">
+          <i class="bi bi-speedometer2"></i>
+          <span>Tableau de Bord</span>
+        </a>
+        <a href="#" class="nav-item-custom" data-section="appointments">
+          <i class="bi bi-calendar-check"></i>
+          <span>Rendez-vous</span>
+        </a>
+        <a href="#" class="nav-item-custom" data-section="availability">
+          <i class="bi bi-clock-history"></i>
+          <span>Disponibilités</span>
+        </a>
+        <a href="#" class="nav-item-custom" data-section="applications">
+          <i class="bi bi-file-earmark-check"></i>
+          <span>Candidatures</span>
+        </a>
+        <a href="#" class="nav-item-custom" data-section="clinic">
+          <i class="bi bi-info-circle"></i>
+          <span>Mon Profil</span>
+        </a>
+      </nav>
+
+      <div class="sidebar-logout">
+        <button id="logoutBtn" class="btn btn-secondary-custom w-100">
+          <i class="bi bi-box-arrow-right me-2"></i>Déconnexion
+        </button>
+      </div>
+    </div>
+
+    <!-- === MAIN CONTENT === -->
+    <div class="col-lg-9 col-xl-10">
+      <!-- TOP BAR -->
+      <div class="topbar">
+        <div class="page-header">
+          <div class="page-title" id="pageTitle">
+            <i class="bi bi-speedometer2"></i>
+            <span>Tableau de Bord</span>
+          </div>
+        </div>
+        <div class="user-info">
+          <div class="user-avatar" id="userAvatar">V</div>
+          <div class="user-details">
+            <h5 id="userName">Vétérinaire</h5>
+            <p id="userSpecialty">Médecine Générale</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- CONTENT AREA -->
+      <div class="main-content">
+        <!-- === DASHBOARD SECTION === -->
+        <section class="section-dashboard active">
+          <div class="dashboard-card">
+            <h2 class="card-title">
+              <i class="bi bi-speedometer2"></i>
+              Bienvenue dans votre Espace Vétérinaire
+            </h2>
+            <p style="color: #64748b; line-height: 1.8; font-size: 1.05rem;">
+              Gérez vos rendez-vous, vos disponibilités et communiquez avec vos clients via cette plateforme complète et intuitive.
+            </p>
+          </div>
+
+          <div class="row g-4 mb-4">
+            <div class="col-md-6 col-lg-3">
+              <div class="stat-card">
+                <div class="stat-number" id="statAppointments">0</div>
+                <div class="stat-label">Rendez-vous</div>
+              </div>
+            </div>
+            <div class="col-md-6 col-lg-3">
+              <div class="stat-card">
+                <div class="stat-number" id="statPending">0</div>
+                <div class="stat-label">En Attente</div>
+              </div>
+            </div>
+            <div class="col-md-6 col-lg-3">
+              <div class="stat-card">
+                <div class="stat-number" id="statClients">0</div>
+                <div class="stat-label">Clients</div>
+              </div>
+            </div>
+            <div class="col-md-6 col-lg-3">
+              <div class="stat-card">
+                <div class="stat-number" id="statSlots">0</div>
+                <div class="stat-label">Créneaux Libres</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="dashboard-card">
+            <h3 class="card-title">
+              <i class="bi bi-zap-fill"></i>
+              Actions Rapides
+            </h3>
+            <div class="row g-3">
+              <div class="col-md-6">
+                <div style="padding: 2rem; background: linear-gradient(135deg, rgba(99, 102, 241, 0.08) 0%, rgba(139, 92, 246, 0.08) 100%); border-radius: 14px; border: 2px solid rgba(99, 102, 241, 0.15); transition: all 0.3s ease; cursor: pointer; position: relative; overflow: hidden;" onmouseover="this.style.transform='translateY(-6px)'; this.style.boxShadow='0 20px 60px rgba(99, 102, 241, 0.2)'" onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='none'">
+                  <h5 style="color: var(--primary); margin-bottom: 0.75rem; font-weight: 800; font-size: 1.1rem; display: flex; align-items: center; gap: 0.5rem; letter-spacing: -0.3px;">
+                    <i class="bi bi-calendar-check" style="font-size: 1.3rem;"></i>Gérer Rendez-vous
+                  </h5>
+                  <p style="font-size: 0.9rem; color: #64748b; margin-bottom: 1.2rem; line-height: 1.6;">Consultez et répondez aux demandes de rendez-vous</p>
+                  <button class="btn btn-primary-custom btn-sm" onclick="navigateToSection('appointments')" style="font-weight: 700;">
+                    <i class="bi bi-arrow-right me-2"></i>Voir Rendez-vous
+                  </button>
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div style="padding: 2rem; background: linear-gradient(135deg, rgba(139, 92, 246, 0.08) 0%, rgba(236, 72, 153, 0.08) 100%); border-radius: 14px; border: 2px solid rgba(139, 92, 246, 0.15); transition: all 0.3s ease; cursor: pointer; position: relative; overflow: hidden;" onmouseover="this.style.transform='translateY(-6px)'; this.style.boxShadow='0 20px 60px rgba(139, 92, 246, 0.2)'" onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='none'">
+                  <h5 style="color: #8b5cf6; margin-bottom: 0.75rem; font-weight: 800; font-size: 1.1rem; display: flex; align-items: center; gap: 0.5rem; letter-spacing: -0.3px;">
+                    <i class="bi bi-clock" style="font-size: 1.3rem;"></i>Configurer Disponibilités
+                  </h5>
+                  <p style="font-size: 0.9rem; color: #64748b; margin-bottom: 1.2rem; line-height: 1.6;">Définissez vos horaires de consultation</p>
+                  <button class="btn btn-custom" onclick="navigateToSection('availability')" style="background: linear-gradient(135deg, #8b5cf6 0%, #ec4899 100%); color: white; font-weight: 700;">
+                    <i class="bi bi-arrow-right me-2"></i>Configurer
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- === APPOINTMENTS SECTION === -->
+        <section class="section-appointments">
+          <div class="dashboard-card">
+            <h2 class="card-title">
+              <i class="bi bi-calendar-check"></i>
+              Rendez-vous
+            </h2>
+
+            <div id="appointmentsList">
+              <div class="empty-state">
+                <div class="empty-state-icon">
+                  <i class="bi bi-calendar-x"></i>
+                </div>
+                <p style="font-size: 1.1rem; margin-bottom: 0.5rem; font-weight: 600;">Aucun rendez-vous actuellement</p>
+                <p style="font-size: 0.95rem; color: #94a3b8;">Les rendez-vous apparaîtront ici</p>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- === AVAILABILITY SECTION === -->
+        <section class="section-availability">
+          <div class="dashboard-card">
+            <h2 class="card-title">
+              <i class="bi bi-clock-history"></i>
+              Gérer Disponibilités
+            </h2>
+
+            <div class="row g-3 mb-4">
+              <div class="col-md-6">
+                <label class="form-label">Jour de la semaine</label>
+                <select class="form-select" id="daySelect">
+                  <option value="">Sélectionner un jour</option>
+                  <option value="lundi">Lundi</option>
+                  <option value="mardi">Mardi</option>
+                  <option value="mercredi">Mercredi</option>
+                  <option value="jeudi">Jeudi</option>
+                  <option value="vendredi">Vendredi</option>
+                  <option value="samedi">Samedi</option>
+                  <option value="dimanche">Dimanche</option>
+                </select>
+              </div>
+              <div class="col-md-6">
+                <label class="form-label">Statut</label>
+                <select class="form-select" id="statusSelect">
+                  <option value="available">Disponible</option>
+                  <option value="unavailable">Indisponible</option>
+                </select>
+              </div>
+            </div>
+
+            <div class="row g-3 mb-4">
+              <div class="col-md-6">
+                <label class="form-label">Heure de début</label>
+                <input type="time" class="form-control" id="startTime">
+              </div>
+              <div class="col-md-6">
+                <label class="form-label">Heure de fin</label>
+                <input type="time" class="form-control" id="endTime">
+              </div>
+            </div>
+
+            <button class="btn btn-primary-custom" onclick="saveAvailability()" style="padding: 0.9rem 2rem; border-radius: 10px;">
+              <i class="bi bi-check-circle me-2"></i>Sauvegarder Disponibilité
+            </button>
+
+            <hr style="margin: 2.5rem 0; border: 1px solid rgba(99, 102, 241, 0.1);">
+
+            <h4 style="margin-bottom: 1.5rem; font-weight: 800; color: var(--dark-text); font-size: 1.2rem;">Horaires Configurés</h4>
+            <div id="availabilityList">
+              <div class="empty-state" style="padding: 2rem;">
+                <p style="color: #94a3b8;">Aucune disponibilité configurée</p>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- === CLINIC INFO SECTION === -->
+        <section class="section-clinic">
+          <div class="dashboard-card">
+            <h2 class="card-title">
+              <i class="bi bi-person-badge"></i>
+              Mon Profil Professionnel
+            </h2>
+
+            <form id="clinicForm">
+              <div class="row">
+                <div class="col-md-6 mb-3">
+                  <label class="form-label">Nom Complet</label>
+                  <input type="text" class="form-control" id="vetName" readonly style="background: #f1f5f9; cursor: not-allowed;">
+                </div>
+                <div class="col-md-6 mb-3">
+                  <label class="form-label">Email</label>
+                  <input type="email" class="form-control" id="vetEmail" readonly style="background: #f1f5f9; cursor: not-allowed;">
+                </div>
+              </div>
+
+              <div class="row">
+                <div class="col-md-6 mb-3">
+                  <label class="form-label">Téléphone</label>
+                  <input type="tel" class="form-control" id="vetPhone" placeholder="+212 6 XX XX XX XX">
+                </div>
+                <div class="col-md-6 mb-3">
+                  <label class="form-label">Spécialité</label>
+                  <input type="text" class="form-control" id="vetSpecialty" readonly style="background: #f1f5f9; cursor: not-allowed;">
+                </div>
+              </div>
+
+              <div class="row">
+                <div class="col-md-6 mb-3">
+                  <label class="form-label">Ville</label>
+                  <input type="text" class="form-control" id="vetCity" placeholder="Casablanca">
+                </div>
+                <div class="col-md-6 mb-3">
+                  <label class="form-label">Nom Clinique/Cabinet</label>
+                  <input type="text" class="form-control" id="vetClinic" placeholder="Nom de votre clinique">
+                </div>
+              </div>
+
+              <div class="mb-3">
+                <label class="form-label">Numéro de Licence</label>
+                <input type="text" class="form-control" id="vetLicense" readonly style="background: #f1f5f9; cursor: not-allowed;">
+              </div>
+
+              <button type="submit" class="btn btn-primary-custom" style="padding: 0.9rem 2rem; border-radius: 10px;">
+                <i class="bi bi-check-circle me-2"></i>Mettre à jour
+              </button>
+            </form>
+          </div>
+        </section>
+
+        <section class="section-applications">
+          <div class="dashboard-card">
+            <h2 class="card-title">
+              <i class="bi bi-file-earmark-check"></i>
+              Mes Candidatures
+            </h2>
+            <div id="applicationsSection">
+              <div class="empty-state" style="padding: 3rem;">
+                <div class="empty-state-icon">
+                  <i class="bi bi-inbox"></i>
+                </div>
+                <p style="font-size: 1.1rem;">Aucune candidature</p>
+              </div>
+            </div>
+          </div>
+        </section>
+      </div>
+    </div>
+  </div>
+
+  <!-- Bootstrap JS -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  
+  <!-- Vet Dashboard JS -->
+  <script src="assets/js/vet-dashboard.js"></script>
+</body>
+</html>

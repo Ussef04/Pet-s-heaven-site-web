@@ -1,0 +1,2185 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Pet's Heaven — Services Vétérinaires & Bien-être Animaux au Maroc</title>
+  <meta name="description" content="Pet's Heaven : services vétérinaires, produits pour animaux de compagnie (chats, chiens, oiseaux, rongeurs), prise de RDV, nutrition et bien-être. Abonnements Plus, Pro et Premium disponibles.">
+  <meta name="keywords" content="vétérinaire maroc, produits animaux, pet shop maroc, animaux domestiques, bien-être animal, santé pet, abonnement animal, livraison maroc">
+
+  <!-- Bootstrap & Icons -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet">
+
+  <!-- Styles -->
+  <link rel="stylesheet" href="assets/css/styles.css">
+  <link rel="stylesheet" href="assets/css/modern-ui.css">
+  
+  <style>
+    /* Enhanced Header Styles */
+    .header-featured-banner {
+      background: linear-gradient(135deg, #4f46e5 0%, #7c3aed 100%);
+      color: white;
+      padding: 12px 0;
+      text-align: center;
+      font-size: 14px;
+      font-weight: 500;
+    }
+
+    .header-featured-banner a {
+      color: white;
+      text-decoration: none;
+      border-bottom: 2px solid rgba(255,255,255,0.5);
+      transition: all 0.3s ease;
+    }
+
+    .header-featured-banner a:hover {
+      border-bottom: 2px solid white;
+    }
+
+    .featured-icon {
+      margin-right: 8px;
+      display: inline-block;
+    }
+
+    /* Icon Grid Section */
+    .icon-benefits {
+      background: #f8f9fa;
+      padding: 40px 0;
+      margin: 30px 0;
+    }
+
+    .benefit-card {
+      text-align: center;
+      padding: 2.5rem 1.5rem;
+      border-radius: 16px;
+      background: white;
+      transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+      height: 100%;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+      animation: slideInUp 0.6s ease-out;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .benefit-card::before {
+      content: '';
+      position: absolute;
+      top: -50%;
+      left: -50%;
+      width: 200%;
+      height: 200%;
+      background: radial-gradient(circle, rgba(79, 70, 229, 0.1) 0%, transparent 70%);
+      animation: float 6s ease-in-out infinite;
+    }
+
+    .benefit-card > * {
+      position: relative;
+      z-index: 2;
+    }
+
+    .benefit-card:nth-child(1) { animation-delay: 0s; }
+    .benefit-card:nth-child(2) { animation-delay: 0.1s; }
+    .benefit-card:nth-child(3) { animation-delay: 0.2s; }
+
+    .benefit-card:hover {
+      transform: translateY(-12px) scale(1.03);
+      box-shadow: 0 20px 50px rgba(79, 70, 229, 0.15);
+    }
+
+    .benefit-icon {
+      font-size: 3.5rem;
+      background: linear-gradient(135deg, #4f46e5 0%, #7c3aed 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      margin-bottom: 1rem;
+      display: block;
+      animation: bounce 2s ease-in-out infinite;
+    }
+
+    .benefit-card:nth-child(2) .benefit-icon { animation-delay: 0.2s; }
+    .benefit-card:nth-child(3) .benefit-icon { animation-delay: 0.4s; }
+
+    .benefit-card h5 {
+      color: #1f2937;
+      font-weight: 800;
+      margin-bottom: 0.75rem;
+      font-size: 1.15rem;
+      letter-spacing: 0.5px;
+    }
+
+    .benefit-card p {
+      color: #6b7280;
+      font-size: 0.95rem;
+      margin: 0;
+      line-height: 1.6;
+    }
+
+    @keyframes slideInUp {
+      from {
+        opacity: 0;
+        transform: translateY(30px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @keyframes bounce {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-10px); }
+    }
+
+    @keyframes float {
+      0%, 100% { transform: translate(0, 0); }
+      50% { transform: translate(20px, 20px); }
+    }
+
+    /* Subscription Cards Enhancement */
+    .sub-card {
+      border: 2px solid #e5e7eb;
+      border-radius: 16px;
+      transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+      animation: slideInUp 0.6s ease-out;
+      overflow: hidden;
+      position: relative;
+    }
+
+    .sub-card:nth-child(1) { animation-delay: 0s; }
+    .sub-card:nth-child(2) { animation-delay: 0.1s; }
+    .sub-card:nth-child(3) { animation-delay: 0.2s; }
+
+    .sub-card:hover {
+      transform: translateY(-12px) scale(1.02);
+      border-color: #4f46e5;
+      box-shadow: 0 20px 50px rgba(79, 70, 229, 0.2);
+    }
+
+    .sub-card .btn {
+      transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    .sub-card .btn:hover {
+      transform: translateY(-2px) scale(1.05);
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+    }
+
+    /* Enhanced Hover Lift Effect */
+    .hover-lift {
+      transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+      border: 1px solid rgba(79, 70, 229, 0.1);
+      border-radius: 16px;
+      overflow: hidden;
+    }
+
+    .hover-lift:hover {
+      transform: translateY(-8px) scale(1.02);
+      box-shadow: 0 20px 50px rgba(79, 70, 229, 0.15);
+      border-color: #4f46e5;
+    }
+
+    .hover-lift:hover i {
+      animation: bounce 0.6s ease-in-out;
+    }
+
+    /* Icon Benefits Animation */
+    .icon-benefits {
+      background: linear-gradient(135deg, #f8f9fa 0%, #f0f1f9 100%);
+      padding: 4rem 0;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .icon-benefits::before {
+      content: '';
+      position: absolute;
+      top: -50%;
+      right: -50%;
+      width: 200%;
+      height: 200%;
+      background: radial-gradient(circle, rgba(79, 70, 229, 0.05) 0%, transparent 70%);
+      animation: float 10s ease-in-out infinite;
+      z-index: 0;
+    }
+
+    .icon-benefits .row {
+      position: relative;
+      z-index: 1;
+    }
+
+    /* Featured Carousel */
+    .featured-carousel {
+      border-radius: 20px;
+      overflow: hidden;
+      box-shadow: 0 20px 50px rgba(0,0,0,0.1);
+      margin: 30px 0;
+    }
+
+    .carousel-item img {
+      height: 400px;
+      object-fit: cover;
+    }
+
+    @media (max-width: 768px) {
+      .carousel-item img {
+        height: 250px;
+      }
+    }
+
+    /* Featured Products Section */
+    .featured-products-section {
+      padding: 50px 0;
+      background: linear-gradient(180deg, #f8f9fa 0%, #ffffff 100%);
+    }
+
+    .section-header {
+      text-align: center;
+      margin-bottom: 40px;
+    }
+
+    .section-header h2 {
+      font-size: 36px;
+      font-weight: 700;
+      color: #1f2937;
+      margin-bottom: 10px;
+    }
+
+    .section-header .separator {
+      display: inline-block;
+      color: #4f46e5;
+      font-size: 20px;
+      margin: 0 15px;
+    }
+
+    .section-header a {
+      font-size: 14px;
+      color: #4f46e5;
+      text-decoration: none;
+      font-weight: 600;
+      transition: all 0.3s ease;
+    }
+
+    .section-header a:hover {
+      color: #7c3aed;
+    }
+
+    /* Dynamic Partners Carousel */
+    .partners-carousel-wrapper {
+      position: relative;
+      overflow: hidden;
+      padding: 40px 100px;
+      margin: 0 -20px;
+      animation: fadeInUp 0.8s ease-out;
+    }
+
+    .partners-carousel-container {
+      display: flex;
+      gap: 2rem;
+      transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+      will-change: transform;
+    }
+
+    .partners-carousel-item {
+      flex: 0 0 calc(33.333% - 1.35rem);
+      min-width: 320px;
+      animation: fadeInUp 0.6s ease-out;
+    }
+
+    .partners-carousel-item .card {
+      transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+      will-change: transform, box-shadow;
+      transform: scale(0.95);
+      box-shadow: 0 10px 30px rgba(79, 70, 229, 0.1);
+      border-radius: 20px;
+      border: 1px solid rgba(79, 70, 229, 0.05);
+    }
+
+    .partners-carousel-item .card:hover {
+      transform: scale(1.05) translateY(-10px);
+      box-shadow: 0 25px 60px rgba(79, 70, 229, 0.25);
+    }
+
+    .partners-carousel-item .card .card-body {
+      min-height: 380px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+
+    @media (max-width: 1024px) {
+      .partners-carousel-item {
+        flex: 0 0 calc(50% - 1rem);
+      }
+    }
+
+    @media (max-width: 768px) {
+      .partners-carousel-item {
+        flex: 0 0 100%;
+      }
+      
+      .partners-carousel-wrapper {
+        padding: 30px 50px;
+      }
+      
+      .carousel-nav-btn {
+        width: 45px;
+        height: 45px;
+        font-size: 18px;
+      }
+      
+      .carousel-nav-btn.prev {
+        left: 10px;
+      }
+
+      .carousel-nav-btn.next {
+        right: 10px;
+      }
+    }
+
+    .carousel-nav-btn {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      z-index: 10;
+      background: linear-gradient(135deg, #4f46e5 0%, #7c3aed 100%);
+      border: none;
+      border-radius: 50%;
+      width: 50px;
+      height: 50px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      cursor: pointer;
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      font-size: 22px;
+      box-shadow: 0 10px 30px rgba(79, 70, 229, 0.3);
+      outline: none;
+      border: 1px solid rgba(255, 255, 255, 0.3);
+      font-weight: 700;
+    }
+    
+    .carousel-nav-btn:focus {
+      outline: 2px solid #4f46e5;
+      outline-offset: 2px;
+    }
+
+    .carousel-nav-btn:hover {
+      transform: translateY(-50%) scale(1.15);
+      box-shadow: 0 15px 40px rgba(79, 70, 229, 0.5);
+    }
+
+    .carousel-nav-btn:active {
+      transform: translateY(-50%) scale(0.95);
+    }
+
+    .carousel-nav-btn.prev {
+      left: 20px;
+    }
+
+    .carousel-nav-btn.next {
+      right: 20px;
+    }
+
+    /* Social Links */
+    .social-links {
+      margin-top: 20px;
+      display: flex;
+      justify-content: center;
+      gap: 15px;
+    }
+
+    .social-links a {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 50px;
+      height: 50px;
+      background: linear-gradient(135deg, #667eea, #764ba2);
+      border-radius: 50%;
+      color: white;
+      transition: all 0.3s ease;
+      font-size: 20px;
+      text-decoration: none;
+      box-shadow: 0 8px 25px rgba(79, 70, 229, 0.25);
+      border: 1px solid rgba(255, 255, 255, 0.3);
+      font-weight: 700;
+    }
+
+    .social-links a:hover {
+      background: linear-gradient(135deg, #4f46e5, #7c3aed);
+      color: white;
+      transform: translateY(-5px) scale(1.1);
+      box-shadow: 0 12px 35px rgba(79, 70, 229, 0.4);
+    }
+
+    /* ===== NAVBAR ULTRA-MODERNE ===== */
+    .navbar-premium {
+      background: transparent;
+      border-bottom: none;
+      backdrop-filter: blur(12px);
+      box-shadow: 0 2px 20px rgba(0, 0, 0, 0.05);
+      animation: slideInDown 0.6s ease-out;
+      padding: 14px 0;
+    }
+
+    .navbar-brand-premium {
+      animation: slideInLeft 0.6s ease-out;
+    }
+
+    .navbar-menu {
+      gap: 0.8rem;
+    }
+
+    .nav-link-premium {
+      color: #374151 !important;
+      transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+      border-radius: 10px;
+      padding: 10px 16px !important;
+      font-weight: 600;
+      font-size: 0.95rem;
+      letter-spacing: 0.3px;
+      position: relative;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      overflow: hidden;
+    }
+
+    .nav-link-premium:hover {
+      color: #4f46e5 !important;
+      background: rgba(79, 70, 229, 0.08);
+      transform: translateY(-2px);
+    }
+
+    .nav-link-premium:hover div {
+      width: 100% !important;
+    }
+
+    .nav-link-premium i {
+      transition: all 0.3s ease;
+      font-size: 1.15rem;
+    }
+
+    .nav-link-premium:hover i {
+      transform: scale(1.25) rotate(-5deg);
+    }
+
+    .navbar-toggler-premium {
+      border: 2px solid #4f46e5;
+      border-radius: 8px;
+      padding: 8px 12px;
+      transition: all 0.3s ease;
+    }
+
+    .navbar-toggler-premium:focus {
+      box-shadow: 0 0 0 3px rgba(79, 70, 229, 0.2);
+      outline: none;
+    }
+
+    .btn-outline-primary-nav {
+      border: 2px solid #4f46e5;
+      color: #4f46e5;
+      transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .btn-outline-primary-nav::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(90deg, rgba(79, 70, 229, 0.1), rgba(124, 58, 237, 0.1));
+      transition: left 0.3s ease;
+      z-index: -1;
+    }
+
+    .btn-outline-primary-nav:hover {
+      background: linear-gradient(135deg, #4f46e5 0%, #7c3aed 100%);
+      border-color: transparent;
+      color: white;
+      transform: translateY(-2px);
+      box-shadow: 0 8px 20px rgba(79, 70, 229, 0.3);
+    }
+
+    .btn-primary-nav {
+      background: linear-gradient(135deg, #4f46e5 0%, #7c3aed 100%);
+      border: none;
+      color: white;
+      transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+      box-shadow: 0 4px 15px rgba(79, 70, 229, 0.2);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .btn-primary-nav::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+      transition: left 0.6s ease;
+    }
+
+    .btn-primary-nav:hover::before {
+      left: 100%;
+    }
+
+    .btn-primary-nav:hover {
+      transform: translateY(-3px) scale(1.05);
+      box-shadow: 0 12px 35px rgba(79, 70, 229, 0.4);
+      color: white;
+    }
+
+    .btn-account {
+      background: linear-gradient(135deg, #f3f4f6 0%, #e5e7eb 100%);
+      color: #374151;
+      border: none;
+      transition: all 0.3s ease;
+    }
+
+    .btn-account:hover {
+      background: linear-gradient(135deg, #4f46e5 0%, #7c3aed 100%);
+      color: white;
+      transform: translateY(-2px);
+    }
+
+    .dropdown-menu-premium {
+      border: 1px solid rgba(79, 70, 229, 0.15);
+      background: linear-gradient(135deg, #ffffff 0%, #f9fafb 100%);
+      backdrop-filter: blur(10px);
+      margin-top: 12px !important;
+      border-radius: 14px !important;
+    }
+
+    .dropdown-item-premium {
+      color: #374151;
+      transition: all 0.3s ease;
+      padding: 10px 16px !important;
+      font-weight: 500;
+      border-radius: 8px;
+      margin: 4px 8px;
+    }
+
+    .dropdown-item-premium:hover {
+      background: linear-gradient(135deg, rgba(79, 70, 229, 0.1) 0%, rgba(124, 58, 237, 0.05) 100%);
+      color: #4f46e5;
+      transform: translateX(4px);
+    }
+
+    @media (max-width: 768px) {
+      .nav-link-premium {
+        padding: 10px 12px !important;
+        font-size: 0.9rem;
+      }
+
+      .navbar-auth {
+        flex-direction: column;
+        width: 100%;
+      }
+
+      .btn-outline-primary-nav,
+      .btn-primary-nav {
+        width: 100%;
+        justify-content: center;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Featured Banner -->
+  <div style="background: linear-gradient(135deg, #4f46e5 0%, #7c3aed 100%); color: white; padding: 12px 0; text-align: center; font-size: 14px; font-weight: 500;">
+    <div class="container">
+      <div class="row align-items-center g-2">
+        <div class="col-md-4 mb-2 mb-md-0">
+          <span style="margin-right: 8px; display: inline-block;">✓</span>
+          <a href="#" style="color: white; text-decoration: none; border-bottom: 2px solid rgba(255,255,255,0.5); transition: all 0.3s ease;"><strong>Livraison Gratuite</strong> pour commandes > 500 DH</a>
+        </div>
+        <div class="col-md-4 mb-2 mb-md-0">
+          <span style="margin-right: 8px; display: inline-block;">📅</span>
+          <a href="#abonnement" style="color: white; text-decoration: none; border-bottom: 2px solid rgba(255,255,255,0.5); transition: all 0.3s ease;"><strong>Abonnement</strong> : Économisez jusqu'à 40%</a>
+        </div>
+        <div class="col-md-4">
+          <span style="margin-right: 8px; display: inline-block;">🐾</span>
+          <a href="pets.html" style="color: white; text-decoration: none; border-bottom: 2px solid rgba(255,255,255,0.5); transition: all 0.3s ease;"><strong>Suivi Pet</strong> : Profil gratuit</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- NAVBAR ULTRA-MODERNE & PROFESSIONNELLE -->
+  <nav class="navbar navbar-expand-lg sticky-top navbar-premium" style="z-index: 1000; position: relative;">
+    <!-- Animated Background Gradient -->
+    <div style="position: absolute; inset: 0; background: linear-gradient(90deg, #ffffff 0%, rgba(249, 250, 251, 0.7) 50%, #ffffff 100%); backdrop-filter: blur(12px); border-bottom: 1px solid rgba(79, 70, 229, 0.08); z-index: -1; box-shadow: 0 2px 20px rgba(0, 0, 0, 0.05);"></div>
+    
+    <div class="container">
+      <!-- Brand Logo Section -->
+      <a class="navbar-brand navbar-brand-premium fw-bold d-flex align-items-center" href="index.html" style="gap: 12px; transition: all 0.3s ease;">
+        <div style="position: relative; width: 48px; height: 48px; border-radius: 12px; overflow: hidden; background: linear-gradient(135deg, #4f46e5 0%, #7c3aed 100%); padding: 3px; box-shadow: 0 8px 25px rgba(79, 70, 229, 0.25); transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);" onmouseover="this.style.transform='scale(1.08)'; this.style.boxShadow='0 12px 35px rgba(79, 70, 229, 0.35)'" onmouseout="this.style.transform='scale(1)'; this.style.boxShadow='0 8px 25px rgba(79, 70, 229, 0.25)'">
+          <div style="width: 100%; height: 100%; border-radius: 8px; overflow: hidden;">
+            <img src="assets/images/Logo12.jpg" alt="Pet's Heaven" style="width: 100%; height: 100%; object-fit: cover;">
+          </div>
+        </div>
+        <div style="display: flex; flex-direction: column; gap: 2px;">
+          <span style="font-size: 1.2rem; font-weight: 900; background: linear-gradient(135deg, #4f46e5 0%, #7c3aed 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; letter-spacing: -0.8px;">Pet's Heaven</span>
+          <span style="font-size: 0.65rem; font-weight: 600; color: #6b7280; letter-spacing: 0.8px; text-transform: uppercase;">Services Vétérinaires</span>
+        </div>
+      </a>
+
+      <!-- Mobile Toggler -->
+      <button class="navbar-toggler border-0 navbar-toggler-premium" data-bs-toggle="collapse" data-bs-target="#navContent" style="transition: all 0.3s ease; box-shadow: 0 4px 12px rgba(0,0,0,0.08);" onmouseover="this.style.boxShadow='0 6px 20px rgba(79, 70, 229, 0.15)'" onmouseout="this.style.boxShadow='0 4px 12px rgba(0,0,0,0.08)'">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+      <!-- Main Navigation -->
+      <div id="navContent" class="collapse navbar-collapse">
+        <!-- Center Navigation Menu -->
+        <ul class="navbar-nav mx-auto navbar-menu" style="gap: 0.3rem;">
+          <li class="nav-item" id="discoverLink">
+            <a class="nav-link nav-link-premium" href="index.html#menu" style="position: relative; font-weight: 600; color: #374151;">
+              <i class="bi bi-compass" style="margin-right: 6px; font-size: 1.1rem;"></i>
+              <span>Découvrir</span>
+              <div style="position: absolute; bottom: 8px; left: 0; width: 0; height: 2px; background: linear-gradient(90deg, #4f46e5, #7c3aed); transition: width 0.4s ease; border-radius: 1px;"></div>
+            </a>
+          </li>
+          <li class="nav-item" id="productsLink">
+            <a class="nav-link nav-link-premium" href="products.html" style="position: relative; font-weight: 600; color: #374151;">
+              <i class="bi bi-bag-fill" style="margin-right: 6px; font-size: 1.1rem; color: #f59e0b;"></i>
+              <span>Produits</span>
+              <div style="position: absolute; bottom: 8px; left: 0; width: 0; height: 2px; background: linear-gradient(90deg, #f59e0b, #f97316); transition: width 0.4s ease; border-radius: 1px;"></div>
+            </a>
+          </li>
+          <li class="nav-item" id="vetsLink">
+            <a class="nav-link nav-link-premium" href="vets.html" style="position: relative; font-weight: 600; color: #374151;">
+              <i class="bi bi-hospital" style="margin-right: 6px; font-size: 1.1rem; color: #10b981;"></i>
+              <span>Vétérinaires</span>
+              <div style="position: absolute; bottom: 8px; left: 0; width: 0; height: 2px; background: linear-gradient(90deg, #10b981, #06b6d4); transition: width 0.4s ease; border-radius: 1px;"></div>
+            </a>
+          </li>
+          <li class="nav-item" id="rdvLink">
+            <a class="nav-link nav-link-premium" href="rdv.html" style="position: relative; font-weight: 600; color: #374151;">
+              <i class="bi bi-calendar2-check" style="margin-right: 6px; font-size: 1.1rem; color: #06b6d4;"></i>
+              <span>RDV</span>
+              <div style="position: absolute; bottom: 8px; left: 0; width: 0; height: 2px; background: linear-gradient(90deg, #06b6d4, #0891b2); transition: width 0.4s ease; border-radius: 1px;"></div>
+            </a>
+          </li>
+          <li class="nav-item" id="mePetsLink">
+            <a class="nav-link nav-link-premium" href="pets.html" style="position: relative; font-weight: 600; color: #374151;">
+              <i class="bi bi-paw-fill" style="margin-right: 6px; font-size: 1.1rem; color: #db2777;"></i>
+              <span>Mes Animaux</span>
+              <div style="position: absolute; bottom: 8px; left: 0; width: 0; height: 2px; background: linear-gradient(90deg, #db2777, #ec4899); transition: width 0.4s ease; border-radius: 1px;"></div>
+            </a>
+          </li>
+          <li class="nav-item" id="partnerLink">
+            <a class="nav-link nav-link-premium" href="vets-register.html" style="position: relative; font-weight: 600; color: #374151;">
+              <i class="bi bi-person-plus" style="margin-right: 6px; font-size: 1.1rem; color: #7c3aed;"></i>
+              <span>Partenaire</span>
+              <div style="position: absolute; bottom: 8px; left: 0; width: 0; height: 2px; background: linear-gradient(90deg, #7c3aed, #d946ef); transition: width 0.4s ease; border-radius: 1px;"></div>
+            </a>
+          </li>
+        </ul>
+
+        <!-- Right Auth & Actions Section -->
+        <div class="d-flex align-items-center gap-2 mt-3 mt-lg-0 navbar-auth" style="flex-wrap: wrap; min-width: fit-content;">
+          <!-- Account Dropdown (Hidden by default) -->
+          <div class="dropdown d-none" id="accountMenu">
+            <button class="btn btn-account btn-sm fw-700 dropdown-toggle" data-bs-toggle="dropdown" id="accountBtn" style="border-radius: 10px; padding: 8px 18px; background: linear-gradient(135deg, #f3f4f6 0%, #e5e7eb 100%); color: #374151; border: none; transition: all 0.3s ease; font-size: 0.9rem;" onmouseover="this.style.background='linear-gradient(135deg, #4f46e5 0%, #7c3aed 100%)'; this.style.color='white'; this.style.transform='translateY(-2px)'" onmouseout="this.style.background='linear-gradient(135deg, #f3f4f6 0%, #e5e7eb 100%)'; this.style.color='#374151'; this.style.transform='translateY(0)'">
+              <i class="bi bi-person-check me-1"></i>Compte
+            </button>
+            <ul class="dropdown-menu dropdown-menu-end dropdown-menu-premium rounded-3" style="box-shadow: 0 20px 60px rgba(79, 70, 229, 0.2); border: 1px solid rgba(79, 70, 229, 0.1); margin-top: 12px;">
+              <li class="dropdown-item-text small text-muted px-4 pt-3 pb-2 fw-700" id="helloUser" style="color: #6b7280; font-size: 0.85rem;">Bonjour</li>
+              <li><hr class="dropdown-divider my-2" style="border-color: rgba(79, 70, 229, 0.1);"></li>
+              <li><a class="dropdown-item dropdown-item-premium" href="pets.html" style="padding: 10px 16px; color: #374151; transition: all 0.3s ease;"><i class="bi bi-paw-fill me-2" style="color: #7c3aed; font-weight: 700;"></i>Mes animaux</a></li>
+              <li><a class="dropdown-item dropdown-item-premium" href="rdv.html" style="padding: 10px 16px; color: #374151; transition: all 0.3s ease;"><i class="bi bi-calendar-event me-2" style="color: #f59e0b; font-weight: 700;"></i>Mes RDV</a></li>
+              <li><a class="dropdown-item dropdown-item-premium" href="index.html#abonnement" style="padding: 10px 16px; color: #374151; transition: all 0.3s ease;"><i class="bi bi-gift me-2" style="color: #10b981; font-weight: 700;"></i>Abonnement</a></li>
+              <li><hr class="dropdown-divider my-2" style="border-color: rgba(79, 70, 229, 0.1);"></li>
+              <li><button class="dropdown-item dropdown-item-premium text-danger" id="btnLogout" style="padding: 10px 16px; color: #ef4444; transition: all 0.3s ease; background: none; border: none; width: 100%; text-align: left; cursor: pointer;"><i class="bi bi-box-arrow-right me-2"></i>Déconnexion</button></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <!-- HERO SECTION ULTRA PREMIUM -->
+  <section class="hero-section-ultra" style="position: relative; overflow: hidden; min-height: 100vh; display: flex; align-items: center; justify-content: center; background: linear-gradient(135deg, #ffffff 0%, #f0f4ff 50%, #f9fafb 100%);">
+    
+    <!-- Animated Gradient Blobs -->
+    <div style="position: absolute; top: -50%; left: -50%; width: 600px; height: 600px; background: radial-gradient(circle, rgba(79, 70, 229, 0.2) 0%, transparent 70%); border-radius: 50%; animation: float 25s infinite ease-in-out; filter: blur(40px);"></div>
+    <div style="position: absolute; bottom: -40%; right: -40%; width: 500px; height: 500px; background: radial-gradient(circle, rgba(124, 58, 237, 0.15) 0%, transparent 70%); border-radius: 50%; animation: float 30s infinite ease-in-out 3s; filter: blur(40px);"></div>
+    <div style="position: absolute; top: 30%; right: 5%; width: 350px; height: 350px; background: radial-gradient(circle, rgba(168, 85, 247, 0.12) 0%, transparent 70%); border-radius: 50%; animation: float 28s infinite ease-in-out 1.5s; filter: blur(40px);"></div>
+
+    <!-- Floating Decorative Elements -->
+    <div style="position: absolute; top: 10%; left: 8%; width: 70px; height: 70px; background: linear-gradient(135deg, rgba(79, 70, 229, 0.15) 0%, rgba(124, 58, 237, 0.08) 100%); border-radius: 20px; backdrop-filter: blur(10px); border: 1px solid rgba(255, 255, 255, 0.4); animation: bounce 5s infinite ease-in-out; box-shadow: 0 10px 30px rgba(79, 70, 229, 0.1);"></div>
+    <div style="position: absolute; bottom: 25%; right: 10%; width: 55px; height: 55px; background: linear-gradient(135deg, rgba(168, 85, 247, 0.15) 0%, rgba(124, 58, 237, 0.08) 100%); border-radius: 15px; backdrop-filter: blur(10px); border: 1px solid rgba(255, 255, 255, 0.4); animation: bounce 4.5s infinite ease-in-out 1.2s; box-shadow: 0 8px 25px rgba(168, 85, 247, 0.1);"></div>
+    <div style="position: absolute; top: 40%; left: 12%; width: 45px; height: 45px; background: linear-gradient(135deg, rgba(251, 146, 60, 0.15) 0%, rgba(249, 115, 22, 0.08) 100%); border-radius: 12px; backdrop-filter: blur(10px); border: 1px solid rgba(255, 255, 255, 0.4); animation: bounce 5.5s infinite ease-in-out 2s; box-shadow: 0 8px 20px rgba(251, 146, 60, 0.08);"></div>
+
+    <!-- Main Content -->
+    <div class="container" style="position: relative; z-index: 10;">
+      <div style="max-width: 950px; margin: 0 auto; text-align: center;">
+        
+        <!-- Badge Animé -->
+        <div style="display: inline-block; margin-bottom: 35px; animation: slideInDown 0.9s ease-out;">
+          <div style="padding: 14px 30px; background: linear-gradient(135deg, rgba(79, 70, 229, 0.12) 0%, rgba(124, 58, 237, 0.08) 100%); border: 2px solid rgba(79, 70, 229, 0.25); border-radius: 60px; backdrop-filter: blur(15px); box-shadow: 0 4px 20px rgba(79, 70, 229, 0.1); transition: all 0.4s ease;">
+            <span style="font-weight: 800; font-size: 0.95rem; color: #4f46e5; letter-spacing: 0.6px; text-transform: uppercase;">
+              <i class="bi bi-star-fill me-2" style="color: #f59e0b; animation: pulse 2s infinite;"></i>Bienvenue chez Pet's Heaven
+            </span>
+          </div>
+        </div>
+
+        <!-- Main Title with Gradient Animation -->
+        <h1 style="font-size: clamp(2.8rem, 9vw, 5rem); font-weight: 950; line-height: 1.1; margin: 35px 0 25px 0; animation: slideInUp 0.9s ease-out 0.15s backwards; letter-spacing: -1.5px; word-spacing: 0.1em;">
+          <span style="background: linear-gradient(135deg, #4f46e5 0%, #7c3aed 35%, #d946ef 65%, #f59e0b 100%); background-size: 300% 300%; -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; animation: gradientShift 10s ease infinite; display: block;">
+            Découvrez l'Amour
+          </span>
+          <span style="background: linear-gradient(135deg, #7c3aed 0%, #d946ef 45%, #f59e0b 100%); background-size: 300% 300%; -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; animation: gradientShift 10s ease infinite 0.5s; display: block;">
+            des Animaux
+          </span>
+        </h1>
+
+        <!-- Subtitle -->
+        <p style="font-size: 1.35rem; color: #6b7280; max-width: 780px; margin: 30px auto; line-height: 1.7; animation: slideInUp 0.9s ease-out 0.3s backwards; font-weight: 500; letter-spacing: 0.3px;">
+          Accédez à <strong style="color: #4f46e5; font-weight: 700;">produits premium</strong>, trouvez les meilleurs <strong style="color: #7c3aed; font-weight: 700;">vétérinaires</strong>, et gérez la santé de vos compagnons. 🐾
+        </p>
+
+        <!-- Feature Pills with Hover Effect -->
+        <div style="display: flex; gap: 16px; justify-content: center; margin: 45px 0 55px 0; flex-wrap: wrap; animation: slideInUp 0.9s ease-out 0.45s backwards;">
+          <div style="padding: 12px 26px; background: rgba(79, 70, 229, 0.08); border-radius: 60px; border: 1.5px solid rgba(79, 70, 229, 0.2); transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1); cursor: pointer; backdrop-filter: blur(8px);" onmouseover="this.style.background='rgba(79, 70, 229, 0.15)'; this.style.transform='translateY(-4px)'; this.style.boxShadow='0 10px 25px rgba(79, 70, 229, 0.15)';" onmouseout="this.style.background='rgba(79, 70, 229, 0.08)'; this.style.transform='translateY(0)'; this.style.boxShadow='none';">
+            <i class="bi bi-shield-check" style="color: #4f46e5; margin-right: 10px; font-weight: 700;"></i><span style="color: #374151; font-weight: 700; font-size: 0.95rem;">100% Sécurisé</span>
+          </div>
+          <div style="padding: 12px 26px; background: rgba(10, 184, 156, 0.08); border-radius: 60px; border: 1.5px solid rgba(10, 184, 156, 0.2); transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1); cursor: pointer; backdrop-filter: blur(8px);" onmouseover="this.style.background='rgba(10, 184, 156, 0.15)'; this.style.transform='translateY(-4px)'; this.style.boxShadow='0 10px 25px rgba(10, 184, 156, 0.15)';" onmouseout="this.style.background='rgba(10, 184, 156, 0.08)'; this.style.transform='translateY(0)'; this.style.boxShadow='none';">
+            <i class="bi bi-lightning-fill" style="color: #10b981; margin-right: 10px; font-weight: 700;"></i><span style="color: #374151; font-weight: 700; font-size: 0.95rem;">Rapide & Fiable</span>
+          </div>
+          <div style="padding: 12px 26px; background: rgba(244, 67, 54, 0.08); border-radius: 60px; border: 1.5px solid rgba(244, 67, 54, 0.2); transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1); cursor: pointer; backdrop-filter: blur(8px);" onmouseover="this.style.background='rgba(244, 67, 54, 0.15)'; this.style.transform='translateY(-4px)'; this.style.boxShadow='0 10px 25px rgba(244, 67, 54, 0.15)';" onmouseout="this.style.background='rgba(244, 67, 54, 0.08)'; this.style.transform='translateY(0)'; this.style.boxShadow='none';">
+            <i class="bi bi-heart-fill" style="color: #ef4444; margin-right: 10px; font-weight: 700;"></i><span style="color: #374151; font-weight: 700; font-size: 0.95rem;">Fait avec Amour</span>
+          </div>
+        </div>
+
+        <!-- CTA Buttons Premium -->
+        <div style="display: flex; gap: 24px; justify-content: center; margin-top: 55px; flex-wrap: wrap; animation: slideInUp 0.9s ease-out 0.6s backwards;">
+          <a href="rdv.html" class="hero-btn-primary" style="padding: 18px 50px; font-size: 1.1rem; font-weight: 800; border-radius: 14px; background: linear-gradient(135deg, #4f46e5 0%, #7c3aed 100%); color: white; border: none; cursor: pointer; transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1); box-shadow: 0 10px 35px rgba(79, 70, 229, 0.3); position: relative; overflow: hidden; text-decoration: none; display: inline-block; letter-spacing: 0.5px;">
+            <i class="bi bi-calendar-event me-3" style="font-weight: 700;"></i>Prendre un RDV
+          </a>
+          <button class="hero-btn-secondary" id="heroLearnMore" style="padding: 18px 50px; font-size: 1.1rem; font-weight: 800; border-radius: 14px; background: white; border: 2.5px solid #4f46e5; color: #4f46e5; cursor: pointer; transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1); box-shadow: 0 5px 20px rgba(79, 70, 229, 0.15); position: relative; overflow: hidden; letter-spacing: 0.5px;">
+            <i class="bi bi-arrow-down me-3" style="font-weight: 700;"></i>En savoir plus
+          </button>
+        </div>
+
+        <!-- Stats Row with Counter Animation -->
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 40px; margin-top: 100px; padding-top: 80px; border-top: 2px solid rgba(79, 70, 229, 0.1); animation: slideInUp 0.9s ease-out 0.75s backwards;">
+          <div style="text-align: center;">
+            <div style="font-size: 2.8rem; font-weight: 950; background: linear-gradient(135deg, #4f46e5 0%, #7c3aed 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; margin-bottom: 8px; letter-spacing: -0.5px;">
+              <span class="stat-counter" data-target="85">0</span>+
+            </div>
+            <p style="color: #6b7280; font-weight: 700; font-size: 0.95rem; text-transform: uppercase; letter-spacing: 0.5px;">Produits Premium</p>
+          </div>
+          <div style="text-align: center;">
+            <div style="font-size: 2.8rem; font-weight: 950; background: linear-gradient(135deg, #f59e0b 0%, #d946ef 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; margin-bottom: 8px; letter-spacing: -0.5px;">
+              <span class="stat-counter" data-target="32">0</span>+
+            </div>
+            <p style="color: #6b7280; font-weight: 700; font-size: 0.95rem; text-transform: uppercase; letter-spacing: 0.5px;">Vétérinaires</p>
+          </div>
+          <div style="text-align: center;">
+            <div style="font-size: 2.8rem; font-weight: 950; background: linear-gradient(135deg, #10b981 0%, #06b6d4 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; margin-bottom: 8px; letter-spacing: -0.5px;">
+              <span class="stat-counter" data-target="150">0</span>+
+            </div>
+            <p style="color: #6b7280; font-weight: 700; font-size: 0.95rem; text-transform: uppercase; letter-spacing: 0.5px;">Patients Actifs</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Scroll Indicator -->
+    <div style="position: absolute; bottom: 40px; left: 50%; transform: translateX(-50%); animation: slideInUp 1.3s ease-out 2s backwards;">
+      <div style="text-align: center; color: #d1d5db; animation: bounce 2.5s infinite; cursor: pointer;" onclick="document.querySelector('#menu').scrollIntoView({behavior:'smooth'});">
+        <i class="bi bi-chevron-down" style="font-size: 1.8rem; display: block; font-weight: 700;"></i>
+      </div>
+    </div>
+
+    <!-- Button Styles -->
+    <style>
+      .hero-btn-primary::before,
+      .hero-btn-secondary::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: -100%;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.4), transparent);
+        transition: left 0.6s ease;
+      }
+
+      .hero-btn-primary:hover::before,
+      .hero-btn-secondary:hover::before {
+        left: 100%;
+      }
+
+      .hero-btn-primary:hover {
+        transform: translateY(-6px) scale(1.02);
+        box-shadow: 0 20px 50px rgba(79, 70, 229, 0.5) !important;
+      }
+
+      .hero-btn-secondary:hover {
+        background: linear-gradient(135deg, #4f46e5 0%, #7c3aed 100%);
+        color: white !important;
+        border-color: transparent;
+        transform: translateY(-6px) scale(1.02);
+        box-shadow: 0 15px 40px rgba(79, 70, 229, 0.4) !important;
+      }
+
+      @media (max-width: 768px) {
+        .hero-btn-primary,
+        .hero-btn-secondary {
+          width: 100%;
+          max-width: 100%;
+        }
+      }
+    </style>
+  </section>
+
+  <!-- Benefits Icon Grid -->
+  <section class="icon-benefits" style="background: linear-gradient(135deg, #ffffff 0%, #f8fafc 100%); padding: 80px 0; position: relative; overflow: hidden;">
+    <div style="position: absolute; top: -100px; right: -100px; width: 400px; height: 400px; background: radial-gradient(circle, rgba(79, 70, 229, 0.08) 0%, transparent 70%); border-radius: 50%; pointer-events: none;"></div>
+    <div style="position: absolute; bottom: -80px; left: -80px; width: 300px; height: 300px; background: radial-gradient(circle, rgba(124, 58, 237, 0.08) 0%, transparent 70%); border-radius: 50%; pointer-events: none;"></div>
+    
+    <div class="container" style="position: relative; z-index: 1;">
+      <div class="row g-5">
+        <div class="col-md-4">
+          <div style="background: white; padding: 2.5rem; border-radius: 16px; box-shadow: 0 4px 20px rgba(0,0,0,0.05); transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1); border: 1px solid rgba(79, 70, 229, 0.1);" onmouseover="this.style.transform='translateY(-8px)'; this.style.boxShadow='0 20px 50px rgba(79, 70, 229, 0.15)'; this.style.borderColor='rgba(79, 70, 229, 0.3)';" onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='0 4px 20px rgba(0,0,0,0.05)'; this.style.borderColor='rgba(79, 70, 229, 0.1)';">
+            <div style="width: 60px; height: 60px; background: linear-gradient(135deg, #4f46e5 0%, #7c3aed 100%); border-radius: 12px; display: flex; align-items: center; justify-content: center; margin-bottom: 1.5rem; box-shadow: 0 8px 20px rgba(79, 70, 229, 0.3);">
+              <i class="bi bi-truck" style="color: white; font-size: 1.5rem; font-weight: 700;"></i>
+            </div>
+            <h5 style="font-size: 1.2rem; font-weight: 800; color: #1f2937; margin-bottom: 0.8rem;">Livraison Rapide</h5>
+            <p style="color: #6b7280; line-height: 1.7; font-size: 0.95rem;">Gratuite pour les commandes > 500 DH. Partout au Maroc en 2-3 jours ouvrables avec suivi en temps réel.</p>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div style="background: white; padding: 2.5rem; border-radius: 16px; box-shadow: 0 4px 20px rgba(0,0,0,0.05); transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1); border: 1px solid rgba(245, 158, 11, 0.1);" onmouseover="this.style.transform='translateY(-8px)'; this.style.boxShadow='0 20px 50px rgba(245, 158, 11, 0.15)'; this.style.borderColor='rgba(245, 158, 11, 0.3)';" onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='0 4px 20px rgba(0,0,0,0.05)'; this.style.borderColor='rgba(245, 158, 11, 0.1)';">
+            <div style="width: 60px; height: 60px; background: linear-gradient(135deg, #f59e0b 0%, #f97316 100%); border-radius: 12px; display: flex; align-items: center; justify-content: center; margin-bottom: 1.5rem; box-shadow: 0 8px 20px rgba(245, 158, 11, 0.3);">
+              <i class="bi bi-calendar-check" style="color: white; font-size: 1.5rem; font-weight: 700;"></i>
+            </div>
+            <h5 style="font-size: 1.2rem; font-weight: 800; color: #1f2937; margin-bottom: 0.8rem;">Abonnement Flexible</h5>
+            <p style="color: #6b7280; line-height: 1.7; font-size: 0.95rem;">Planifiez vos achats mensuels avec réductions automatiques, annulation gratuite sans engagement.</p>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div style="background: white; padding: 2.5rem; border-radius: 16px; box-shadow: 0 4px 20px rgba(0,0,0,0.05); transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1); border: 1px solid rgba(124, 58, 237, 0.1);" onmouseover="this.style.transform='translateY(-8px)'; this.style.boxShadow='0 20px 50px rgba(124, 58, 237, 0.15)'; this.style.borderColor='rgba(124, 58, 237, 0.3)';" onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='0 4px 20px rgba(0,0,0,0.05)'; this.style.borderColor='rgba(124, 58, 237, 0.1)';">
+            <div style="width: 60px; height: 60px; background: linear-gradient(135deg, #7c3aed 0%, #d946ef 100%); border-radius: 12px; display: flex; align-items: center; justify-content: center; margin-bottom: 1.5rem; box-shadow: 0 8px 20px rgba(124, 58, 237, 0.3);">
+              <i class="bi bi-headset" style="color: white; font-size: 1.5rem; font-weight: 700;"></i>
+            </div>
+            <h5 style="font-size: 1.2rem; font-weight: 800; color: #1f2937; margin-bottom: 0.8rem;">Support 24/7 VIP</h5>
+            <p style="color: #6b7280; line-height: 1.7; font-size: 0.95rem;">Conseillers vétérinaires experts disponibles par chat, WhatsApp, email — réponse en moins de 2h.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Menu Principal -->
+  <section id="menu" class="py-5" style="background: linear-gradient(135deg, #ffffff 0%, #f8fafc 100%); position: relative; overflow: hidden;">
+    <div style="position: absolute; top: 0; right: 0; width: 500px; height: 500px; background: radial-gradient(circle, rgba(79, 70, 229, 0.06) 0%, transparent 70%); border-radius: 50%; pointer-events: none; transform: translate(100px, -100px);"></div>
+    <div style="position: absolute; bottom: 0; left: 0; width: 400px; height: 400px; background: radial-gradient(circle, rgba(124, 58, 237, 0.06) 0%, transparent 70%); border-radius: 50%; pointer-events: none; transform: translate(-100px, 100px);"></div>
+    
+    <div class="container" style="position: relative; z-index: 1;">
+      <div style="text-align: center; margin-bottom: 5rem;">
+        <h2 style="font-size: 2.8rem; font-weight: 900; color: #1f2937; margin-bottom: 1rem;">Nos Services & Solutions</h2>
+        <p style="font-size: 1.1rem; color: #6b7280; max-width: 600px; margin: 0 auto; line-height: 1.8;">Explorez tous les services essentiels pour le bien-être et la santé de vos compagnons</p>
+      </div>
+      
+      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 2.5rem;">
+        <!-- Produits Card -->
+        <a href="products.html" class="text-decoration-none">
+          <div style="background: white; border-radius: 18px; overflow: hidden; box-shadow: 0 4px 20px rgba(0,0,0,0.05); border: 1px solid rgba(79, 70, 229, 0.1); transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1); height: 100%; display: flex; flex-direction: column;" onmouseover="this.style.transform='translateY(-12px)'; this.style.boxShadow='0 25px 60px rgba(79, 70, 229, 0.2)'; this.style.borderColor='rgba(79, 70, 229, 0.3)';" onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='0 4px 20px rgba(0,0,0,0.05)'; this.style.borderColor='rgba(79, 70, 229, 0.1)';">
+            <div style="background: linear-gradient(135deg, #4f46e5 0%, #7c3aed 100%); padding: 2.5rem 2rem; text-align: center; position: relative; overflow: hidden;">
+              <div style="position: absolute; top: -50%; right: -50%; width: 200px; height: 200px; background: radial-gradient(circle, rgba(255,255,255,0.15) 0%, transparent 70%); border-radius: 50%;"></div>
+              <i class="bi bi-bag-fill" style="font-size: 2.5rem; color: white; position: relative; z-index: 1; display: block; margin-bottom: 1rem;"></i>
+              <h3 style="color: white; font-weight: 800; font-size: 1.4rem; position: relative; z-index: 1; margin: 0;">Produits Premium</h3>
+            </div>
+            <div style="padding: 2rem; flex-grow: 1; display: flex; flex-direction: column;">
+              <p style="color: #6b7280; line-height: 1.8; flex-grow: 1; margin: 0; font-size: 0.95rem;">Croquettes haut de gamme, jouets durables et accessoires exclusifs sélectionnés pour tous vos animaux.</p>
+              <div style="margin-top: 1.5rem; display: flex; align-items: center; gap: 0.5rem; color: #4f46e5; font-weight: 700;">
+                <span>Découvrir</span>
+                <i class="bi bi-arrow-right" style="transition: transform 0.3s ease;"></i>
+              </div>
+            </div>
+          </div>
+        </a>
+
+        <!-- Vétérinaires Card -->
+        <a href="vets.html" class="text-decoration-none">
+          <div style="background: white; border-radius: 18px; overflow: hidden; box-shadow: 0 4px 20px rgba(0,0,0,0.05); border: 1px solid rgba(245, 158, 11, 0.1); transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1); height: 100%; display: flex; flex-direction: column;" onmouseover="this.style.transform='translateY(-12px)'; this.style.boxShadow='0 25px 60px rgba(245, 158, 11, 0.2)'; this.style.borderColor='rgba(245, 158, 11, 0.3)';" onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='0 4px 20px rgba(0,0,0,0.05)'; this.style.borderColor='rgba(245, 158, 11, 0.1)';">
+            <div style="background: linear-gradient(135deg, #f59e0b 0%, #f97316 100%); padding: 2.5rem 2rem; text-align: center; position: relative; overflow: hidden;">
+              <div style="position: absolute; top: -50%; right: -50%; width: 200px; height: 200px; background: radial-gradient(circle, rgba(255,255,255,0.15) 0%, transparent 70%); border-radius: 50%;"></div>
+              <i class="bi bi-hospital" style="font-size: 2.5rem; color: white; position: relative; z-index: 1; display: block; margin-bottom: 1rem;"></i>
+              <h3 style="color: white; font-weight: 800; font-size: 1.4rem; position: relative; z-index: 1; margin: 0;">Vétérinaires</h3>
+            </div>
+            <div style="padding: 2rem; flex-grow: 1; display: flex; flex-direction: column;">
+              <p style="color: #6b7280; line-height: 1.8; flex-grow: 1; margin: 0; font-size: 0.95rem;">Experts qualifiés et professionnels certifiés garantissant la meilleure santé pour vos compagnons.</p>
+              <div style="margin-top: 1.5rem; display: flex; align-items: center; gap: 0.5rem; color: #f59e0b; font-weight: 700;">
+                <span>Consulter</span>
+                <i class="bi bi-arrow-right" style="transition: transform 0.3s ease;"></i>
+              </div>
+            </div>
+          </div>
+        </a>
+
+        <!-- Rendez-vous Card -->
+        <a href="rdv.html" class="text-decoration-none">
+          <div style="background: white; border-radius: 18px; overflow: hidden; box-shadow: 0 4px 20px rgba(0,0,0,0.05); border: 1px solid rgba(6, 182, 212, 0.1); transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1); height: 100%; display: flex; flex-direction: column;" onmouseover="this.style.transform='translateY(-12px)'; this.style.boxShadow='0 25px 60px rgba(6, 182, 212, 0.2)'; this.style.borderColor='rgba(6, 182, 212, 0.3)';" onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='0 4px 20px rgba(0,0,0,0.05)'; this.style.borderColor='rgba(6, 182, 212, 0.1)';">
+            <div style="background: linear-gradient(135deg, #06b6d4 0%, #0891b2 100%); padding: 2.5rem 2rem; text-align: center; position: relative; overflow: hidden;">
+              <div style="position: absolute; top: -50%; right: -50%; width: 200px; height: 200px; background: radial-gradient(circle, rgba(255,255,255,0.15) 0%, transparent 70%); border-radius: 50%;"></div>
+              <i class="bi bi-calendar2-check" style="font-size: 2.5rem; color: white; position: relative; z-index: 1; display: block; margin-bottom: 1rem;"></i>
+              <h3 style="color: white; font-weight: 800; font-size: 1.4rem; position: relative; z-index: 1; margin: 0;">Rendez-vous</h3>
+            </div>
+            <div style="padding: 2rem; flex-grow: 1; display: flex; flex-direction: column;">
+              <p style="color: #6b7280; line-height: 1.8; flex-grow: 1; margin: 0; font-size: 0.95rem;">Réservez facilement en ligne avec vos vétérinaires préférés en quelques clics, 24h/24.</p>
+              <div style="margin-top: 1.5rem; display: flex; align-items: center; gap: 0.5rem; color: #06b6d4; font-weight: 700;">
+                <span>Réserver</span>
+                <i class="bi bi-arrow-right" style="transition: transform 0.3s ease;"></i>
+              </div>
+            </div>
+          </div>
+        </a>
+
+        <!-- Mes Animaux Card -->
+        <a href="pets.html" class="text-decoration-none">
+          <div style="background: white; border-radius: 18px; overflow: hidden; box-shadow: 0 4px 20px rgba(0,0,0,0.05); border: 1px solid rgba(219, 39, 119, 0.1); transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1); height: 100%; display: flex; flex-direction: column;" onmouseover="this.style.transform='translateY(-12px)'; this.style.boxShadow='0 25px 60px rgba(219, 39, 119, 0.2)'; this.style.borderColor='rgba(219, 39, 119, 0.3)';" onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='0 4px 20px rgba(0,0,0,0.05)'; this.style.borderColor='rgba(219, 39, 119, 0.1)';">
+            <div style="background: linear-gradient(135deg, #db2777 0%, #ec4899 100%); padding: 2.5rem 2rem; text-align: center; position: relative; overflow: hidden;">
+              <div style="position: absolute; top: -50%; right: -50%; width: 200px; height: 200px; background: radial-gradient(circle, rgba(255,255,255,0.15) 0%, transparent 70%); border-radius: 50%;"></div>
+              <i class="bi bi-paw-fill" style="font-size: 2.5rem; color: white; position: relative; z-index: 1; display: block; margin-bottom: 1rem;"></i>
+              <h3 style="color: white; font-weight: 800; font-size: 1.4rem; position: relative; z-index: 1; margin: 0;">Mes Animaux</h3>
+            </div>
+            <div style="padding: 2rem; flex-grow: 1; display: flex; flex-direction: column;">
+              <p style="color: #6b7280; line-height: 1.8; flex-grow: 1; margin: 0; font-size: 0.95rem;">Suivi complet, profil personnalisé et historique détaillé de santé pour chaque animal.</p>
+              <div style="margin-top: 1.5rem; display: flex; align-items: center; gap: 0.5rem; color: #db2777; font-weight: 700;">
+                <span>Gérer</span>
+                <i class="bi bi-arrow-right" style="transition: transform 0.3s ease;"></i>
+              </div>
+            </div>
+          </div>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ABONNEMENT SECTION -->
+  <section id="abonnement" class="py-5" style="background: linear-gradient(135deg, #f9fafb 0%, #f3f4f6 100%);">
+    <div class="container">
+      <div class="section-header">
+        <h2 style="font-size: 2.5rem; font-weight: 900; background: linear-gradient(135deg, #4f46e5 0%, #7c3aed 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;">Formules d'Abonnement</h2>
+        <p style="font-size: 1.1rem; color: #6b7280;">Choisissez votre plan pour accéder aux meilleurs services vétérinaires</p>
+      </div>
+
+      <div class="row g-4 justify-content-center">
+        <!-- Plan Découverte -->
+        <div class="col-md-6 col-lg-4">
+          <div class="card sub-card h-100 border-0 rounded-4" style="box-shadow: 0 4px 20px rgba(0,0,0,0.05); background: white; transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);">
+            <div style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); padding: 2.5rem 2rem; color: white; text-align: center; border-radius: 1.5rem 1.5rem 0 0; position: relative; overflow: hidden;">
+              <div style="position: absolute; top: -50%; right: -50%; width: 200px; height: 200px; background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, transparent 70%); border-radius: 50%;"></div>
+              <h5 class="fw-bold mb-2" style="position: relative; z-index: 1; font-size: 1.3rem;">Découverte</h5>
+              <div class="display-4 fw-bold" style="position: relative; z-index: 1;">0 <span style="font-size: 0.6em;">DH</span></div>
+              <p class="small mt-2" style="position: relative; z-index: 1; opacity: 0.9;">Accès gratuit de base</p>
+            </div>
+            <div class="card-body p-4 text-center">
+              <ul class="list-unstyled" style="font-size: 0.9rem;">
+                <li class="py-2"><i class="bi bi-check-circle" style="color: #10b981; margin-right: 8px; font-weight: 700;"></i><span>Profil animal</span></li>
+                <li class="py-2"><i class="bi bi-check-circle" style="color: #10b981; margin-right: 8px; font-weight: 700;"></i><span>Conseils basiques</span></li>
+                <li class="py-2 text-muted"><i class="bi bi-x-circle" style="margin-right: 8px;"></i><span>Accès vétérinaires limité</span></li>
+                <li class="py-2 text-muted"><i class="bi bi-x-circle" style="margin-right: 8px;"></i><span>Pas de livraisons</span></li>
+              </ul>
+              <button class="btn w-100 mt-4 fw-700 sub-btn" data-plan="Découverte" style="border: 2px solid #667eea; color: #667eea; background: transparent; border-radius: 10px; transition: all 0.3s ease;" onmouseover="this.style.background='linear-gradient(135deg, #667eea 0%, #764ba2 100%)'; this.style.color='white';" onmouseout="this.style.background='transparent'; this.style.color='#667eea';">
+                <i class="bi bi-arrow-right me-2"></i>Choisir
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Plan Plus (POPULAIRE) -->
+        <div class="col-md-6 col-lg-4" style="position: relative;">
+          <div style="position: absolute; top: -18px; left: 50%; transform: translateX(-50%); z-index: 30;">
+            <div style="background: linear-gradient(135deg, #f59e0b 0%, #f97316 100%); color: white; padding: 8px 20px; border-radius: 20px; font-weight: 700; font-size: 0.85rem; box-shadow: 0 4px 15px rgba(245, 158, 11, 0.3);">
+              ⭐ POPULAIRE
+            </div>
+          </div>
+          <div class="card sub-card h-100 border-0 rounded-4" style="transform: scale(1.06); box-shadow: 0 20px 50px rgba(245, 158, 11, 0.2); background: white; transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);">
+            <div style="background: linear-gradient(135deg, #f59e0b 0%, #f97316 100%); padding: 2.5rem 2rem; color: white; text-align: center; border-radius: 1.5rem 1.5rem 0 0; position: relative; overflow: hidden;">
+              <div style="position: absolute; top: -50%; right: -50%; width: 200px; height: 200px; background: radial-gradient(circle, rgba(255,255,255,0.15) 0%, transparent 70%); border-radius: 50%;"></div>
+              <h5 class="fw-bold mb-2" style="position: relative; z-index: 1; font-size: 1.3rem;">Plus</h5>
+              <div class="display-4 fw-bold" style="position: relative; z-index: 1;">100 <span style="font-size: 0.6em;">DH</span></div>
+              <p class="small mt-2" style="position: relative; z-index: 1; opacity: 0.9;">Plan principal recommandé</p>
+            </div>
+            <div class="card-body p-4 text-center">
+              <ul class="list-unstyled" style="font-size: 0.9rem;">
+                <li class="py-2"><i class="bi bi-check-circle" style="color: #f59e0b; margin-right: 8px; font-weight: 700;"></i><span>2-3 animaux</span></li>
+                <li class="py-2"><i class="bi bi-check-circle" style="color: #f59e0b; margin-right: 8px; font-weight: 700;"></i><span>Jusqu'à 20 kg/mois</span></li>
+                <li class="py-2"><i class="bi bi-check-circle" style="color: #f59e0b; margin-right: 8px; font-weight: 700;"></i><span>Profil complet</span></li>
+                <li class="py-2"><i class="bi bi-calendar-check" style="color: #f59e0b; margin-right: 8px; font-weight: 700;"></i><strong>RDV vétérinaire</strong></li>
+                <li class="py-2"><i class="bi bi-clock" style="color: #f59e0b; margin-right: 8px; font-weight: 700;"></i><span>Priorité réservation</span></li>
+                <li class="py-2"><i class="bi bi-headset" style="color: #f59e0b; margin-right: 8px; font-weight: 700;"></i><span>Support prioritaire</span></li>
+              </ul>
+              <button class="btn w-100 mt-4 fw-700 sub-btn" data-plan="Plus" style="background: linear-gradient(135deg, #f59e0b 0%, #f97316 100%); color: white; border: none; border-radius: 10px; box-shadow: 0 4px 15px rgba(245, 158, 11, 0.25); transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);" onmouseover="this.style.transform='translateY(-2px)'; this.style.boxShadow='0 10px 30px rgba(245, 158, 11, 0.35)';" onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='0 4px 15px rgba(245, 158, 11, 0.25)';">
+                <i class="bi bi-lightning-fill me-2"></i>Choisir
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Plan Pro -->
+        <div class="col-md-6 col-lg-4">
+          <div class="card sub-card h-100 border-0 rounded-4" style="box-shadow: 0 4px 20px rgba(0,0,0,0.05); background: white; transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);">
+            <div style="background: linear-gradient(135deg, #7c3aed 0%, #d946ef 100%); padding: 2.5rem 2rem; color: white; text-align: center; border-radius: 1.5rem 1.5rem 0 0; position: relative; overflow: hidden;">
+              <div style="position: absolute; top: -50%; right: -50%; width: 200px; height: 200px; background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, transparent 70%); border-radius: 50%;"></div>
+              <h5 class="fw-bold mb-2" style="position: relative; z-index: 1; font-size: 1.3rem;">Pro</h5>
+              <div class="display-4 fw-bold" style="position: relative; z-index: 1;">200 <span style="font-size: 0.6em;">DH</span></div>
+              <p class="small mt-2" style="position: relative; z-index: 1; opacity: 0.9;">Plan premium illimité</p>
+            </div>
+            <div class="card-body p-4 text-center">
+              <ul class="list-unstyled" style="font-size: 0.9rem;">
+                <li class="py-2"><i class="bi bi-check-circle" style="color: #7c3aed; margin-right: 8px; font-weight: 700;"></i><span>Animaux illimités</span></li>
+                <li class="py-2"><i class="bi bi-check-circle" style="color: #7c3aed; margin-right: 8px; font-weight: 700;"></i><span>Livraisons illimitées</span></li>
+                <li class="py-2"><i class="bi bi-calendar-check" style="color: #7c3aed; margin-right: 8px; font-weight: 700;"></i><strong>RDV illimités</strong></li>
+                <li class="py-2"><i class="bi bi-telephone" style="color: #7c3aed; margin-right: 8px; font-weight: 700;"></i><span>Réservation gratuite</span></li>
+                <li class="py-2"><i class="bi bi-crown" style="color: #7c3aed; margin-right: 8px; font-weight: 700;"></i><span>Créneau prioritaire</span></li>
+                <li class="py-2"><i class="bi bi-shield-check" style="color: #7c3aed; margin-right: 8px; font-weight: 700;"></i><span>Support 24/7 VIP</span></li>
+              </ul>
+              <button class="btn w-100 mt-4 fw-700 sub-btn" data-plan="Pro" style="background: linear-gradient(135deg, #7c3aed 0%, #d946ef 100%); color: white; border: none; border-radius: 10px; box-shadow: 0 4px 15px rgba(124, 58, 237, 0.25); transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);" onmouseover="this.style.transform='translateY(-2px)'; this.style.boxShadow='0 10px 30px rgba(124, 58, 237, 0.35)';" onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='0 4px 15px rgba(124, 58, 237, 0.25)';">
+                <i class="bi bi-crown me-2"></i>Choisir
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- VETERINARY APPOINTMENT ADVANTAGE SECTION -->
+  <section class="py-5" style="background: linear-gradient(135deg, rgba(16, 185, 129, 0.08) 0%, rgba(34, 197, 94, 0.08) 100%);">
+    <div class="container">
+      <div class="section-header">
+        <h2><i class="bi bi-heart-pulse me-3" style="color: #ef4444;"></i>Accès Facile aux Rendez-vous Vétérinaires</h2>
+        <p>Simplifiez la prise de rendez-vous avec nos vétérinaires partenaires</p>
+      </div>
+
+      <div class="row g-4">
+        <!-- Découverte Features -->
+        <div class="col-md-6 col-lg-4">
+          <div class="card border-0 shadow-sm h-100" style="border-top: 4px solid #667eea; overflow: hidden;">
+            <div style="background: linear-gradient(135deg, rgba(102, 126, 234, 0.1) 0%, rgba(118, 75, 162, 0.1) 100%); padding: 2.5rem 2rem; text-align: center;">
+              <div style="font-size: 3rem; margin-bottom: 1rem;">🔍</div>
+              <h5 class="fw-bold mb-2" style="color: #667eea;">Plan Découverte</h5>
+              <p class="text-muted small">Accès basique</p>
+            </div>
+            <div class="card-body p-4">
+              <ul class="list-unstyled">
+                <li class="mb-3">
+                  <i class="bi bi-eye text-muted me-2"></i>
+                  <span>Consulter la liste des vétérinaires</span>
+                </li>
+                <li class="mb-3">
+                  <i class="bi bi-info-circle text-muted me-2"></i>
+                  <span>Lire les avis et spécialités</span>
+                </li>
+                <li class="mb-3">
+                  <i class="bi bi-telephone text-muted me-2"></i>
+                  <span>Appeler directement les vétérinaires</span>
+                </li>
+                <li class="mb-0">
+                  <i class="bi bi-x-circle text-danger me-2"></i>
+                  <span class="text-muted">Pas de réservation intégrée</span>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <!-- Plus Features -->
+        <div class="col-md-6 col-lg-4">
+          <div class="card border-0 shadow-sm h-100" style="border-top: 4px solid #f59e0b; transform: scale(1.05); position: relative;">
+            <div style="position: absolute; top: 0; right: 0; background: #f59e0b; color: white; padding: 0.5rem 1rem; border-radius: 0 0 0 10px;">
+              <small class="fw-bold">✨ Recommandé</small>
+            </div>
+            <div style="background: linear-gradient(135deg, rgba(245, 158, 11, 0.1) 0%, rgba(249, 115, 22, 0.1) 100%); padding: 2.5rem 2rem; text-align: center;">
+              <div style="font-size: 3rem; margin-bottom: 1rem;">📅</div>
+              <h5 class="fw-bold mb-2" style="color: #f59e0b;">Plan Plus</h5>
+              <p class="text-muted small">Réservation simplifiée</p>
+            </div>
+            <div class="card-body p-4">
+              <ul class="list-unstyled">
+                <li class="mb-3">
+                  <i class="bi bi-check-circle text-success me-2"></i>
+                  <strong>Réserver en quelques clics</strong>
+                </li>
+                <li class="mb-3">
+                  <i class="bi bi-check-circle text-success me-2"></i>
+                  <span>Interface de réservation intuitive</span>
+                </li>
+                <li class="mb-3">
+                  <i class="bi bi-check-circle text-success me-2"></i>
+                  <span>Priorité dans les créneaux disponibles</span>
+                </li>
+                <li class="mb-3">
+                  <i class="bi bi-check-circle text-success me-2"></i>
+                  <span>Rappel automatique par SMS</span>
+                </li>
+                <li class="mb-0">
+                  <i class="bi bi-check-circle text-success me-2"></i>
+                  <span>Confirmation immédiate du RDV</span>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <!-- Pro Features -->
+        <div class="col-md-6 col-lg-4">
+          <div class="card border-0 shadow-sm h-100" style="border-top: 4px solid #7c3aed; overflow: hidden;">
+            <div style="background: linear-gradient(135deg, rgba(124, 58, 237, 0.1) 0%, rgba(168, 85, 247, 0.1) 100%); padding: 2.5rem 2rem; text-align: center;">
+              <div style="font-size: 3rem; margin-bottom: 1rem;">👑</div>
+              <h5 class="fw-bold mb-2" style="color: #7c3aed;">Plan Pro</h5>
+              <p class="text-muted small">Service VIP complet</p>
+            </div>
+            <div class="card-body p-4">
+              <ul class="list-unstyled">
+                <li class="mb-3">
+                  <i class="bi bi-star-fill text-warning me-2"></i>
+                  <strong>Réservation VIP sans attente</strong>
+                </li>
+                <li class="mb-3">
+                  <i class="bi bi-telephone-fill text-success me-2"></i>
+                  <span>Concierge téléphonique dédié</span>
+                </li>
+                <li class="mb-3">
+                  <i class="bi bi-clock-history text-success me-2"></i>
+                  <span>Créneaux prioritaires garantis</span>
+                </li>
+                <li class="mb-3">
+                  <i class="bi bi-file-earmark-medical text-success me-2"></i>
+                  <span>Dossier médical partagé</span>
+                </li>
+                <li class="mb-3">
+                  <i class="bi bi-chat-dots text-success me-2"></i>
+                  <span>Suivi post-consultation inclus</span>
+                </li>
+                <li class="mb-0">
+                  <i class="bi bi-shield-check text-success me-2"></i>
+                  <span>Garantie de satisfaction 100%</span>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Quick Booking CTA -->
+      <div class="mt-5 p-4 rounded-3" style="background: linear-gradient(135deg, #10b981 0%, #059669 100%); color: white; text-align: center;">
+        <h4 class="fw-bold mb-3"><i class="bi bi-lightning-fill me-2"></i>Réservez Maintenant en Toute Simplicité</h4>
+        <p class="mb-4">Accédez à la liste complète de nos vétérinaires partenaires et réservez votre premier rendez-vous</p>
+        <a href="rdv.html" class="btn btn-light btn-lg fw-bold" style="padding: 12px 40px;">
+          <i class="bi bi-calendar-event me-2"></i>Prendre un Rendez-vous
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Réductions sur les Achats & Avantages RDV -->
+  <section class="py-5" style="background: linear-gradient(135deg, rgba(79, 70, 229, 0.08) 0%, rgba(124, 58, 237, 0.08) 100%);">
+    <div class="container">
+      <div class="section-header">
+        <h2><i class="bi bi-gift me-3" style="color: #f59e0b;"></i>Avantages Exclusifs de nos Abonnements</h2>
+        <p>Économisez sur vos achats ET simplifiez la prise de rendez-vous vétérinaires</p>
+      </div>
+
+      <div class="row g-4">
+        <!-- Plan Plus - 10% Réduction + RDV Facile -->
+        <div class="col-md-6">
+          <div class="card border-0 shadow-sm h-100" style="border-left: 5px solid #f59e0b; background: white;">
+            <div class="card-body p-4">
+              <div class="d-flex align-items-center mb-3">
+                <div style="width: 60px; height: 60px; background: linear-gradient(135deg, #f59e0b 0%, #f97316 100%); border-radius: 12px; display: flex; align-items: center; justify-content: center; color: white; font-size: 28px; margin-right: 15px;">
+                  🎁
+                </div>
+                <div>
+                  <h5 class="fw-bold mb-1" style="color: #1f2937;">Plan Plus</h5>
+                  <p class="text-muted small mb-0">100 DH/mois</p>
+                </div>
+              </div>
+              
+              <!-- Shopping Discount -->
+              <div style="background: #fef3c7; padding: 15px; border-radius: 10px; margin-bottom: 15px;">
+                <p class="mb-0" style="color: #92400e; font-weight: 600; font-size: 16px;">
+                  <i class="bi bi-percent" style="color: #f59e0b;"></i> 10% sur tous vos achats
+                </p>
+              </div>
+              <p class="text-muted small mb-3">
+                Exemple : 1000 DH → 900 DH 💰
+              </p>
+              
+              <!-- Veterinary Advantage -->
+              <div style="background: #e0f2fe; padding: 15px; border-radius: 10px; margin-bottom: 15px;">
+                <p class="mb-0" style="color: #0369a1; font-weight: 600; font-size: 16px;">
+                  <i class="bi bi-calendar-check" style="color: #0ea5e9;"></i> Réservation RDV simplifiée
+                </p>
+              </div>
+              
+              <ul class="list-unstyled small">
+                <li class="mb-2">
+                  <i class="bi bi-check-circle" style="color: #10b981;"></i>
+                  <span class="ms-2"><strong>Réservation en 2 clics</strong></span>
+                </li>
+                <li class="mb-2">
+                  <i class="bi bi-check-circle" style="color: #10b981;"></i>
+                  <span class="ms-2">Priorité dans les créneaux</span>
+                </li>
+                <li class="mb-2">
+                  <i class="bi bi-check-circle" style="color: #10b981;"></i>
+                  <span class="ms-2">Rappel automatique par SMS</span>
+                </li>
+                <li class="mb-0">
+                  <i class="bi bi-check-circle" style="color: #10b981;"></i>
+                  <span class="ms-2">Confirmation immédiate</span>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <!-- Plan Pro - 20% Réduction + Service VIP -->
+        <div class="col-md-6">
+          <div class="card border-0 shadow-sm h-100" style="border-left: 5px solid #7c3aed; background: white; transform: scale(1.02);">
+            <div class="card-body p-4">
+              <div class="d-flex align-items-center mb-3">
+                <div style="width: 60px; height: 60px; background: linear-gradient(135deg, #7c3aed 0%, #a855f7 100%); border-radius: 12px; display: flex; align-items: center; justify-content: center; color: white; font-size: 28px; margin-right: 15px;">
+                  💎
+                </div>
+                <div>
+                  <h5 class="fw-bold mb-1" style="color: #1f2937;">Plan Pro</h5>
+                  <p class="text-muted small mb-0">200 DH/mois</p>
+                </div>
+              </div>
+              
+              <!-- Shopping Discount -->
+              <div style="background: #e9d5ff; padding: 15px; border-radius: 10px; margin-bottom: 15px;">
+                <p class="mb-0" style="color: #581c87; font-weight: 600; font-size: 16px;">
+                  <i class="bi bi-percent" style="color: #7c3aed;"></i> 20% sur tous vos achats
+                </p>
+              </div>
+              <p class="text-muted small mb-3">
+                Exemple : 1000 DH → 800 DH 💰
+              </p>
+              
+              <!-- Premium Veterinary Service -->
+              <div style="background: #f0fdf4; padding: 15px; border-radius: 10px; margin-bottom: 15px;">
+                <p class="mb-0" style="color: #15803d; font-weight: 600; font-size: 16px;">
+                  <i class="bi bi-star-fill" style="color: #22c55e;"></i> Service VIP RDV vétérinaire
+                </p>
+              </div>
+              
+              <ul class="list-unstyled small">
+                <li class="mb-2">
+                  <i class="bi bi-check-circle" style="color: #10b981;"></i>
+                  <span class="ms-2"><strong>Concierge téléphonique dédié</strong></span>
+                </li>
+                <li class="mb-2">
+                  <i class="bi bi-check-circle" style="color: #10b981;"></i>
+                  <span class="ms-2">Créneaux prioritaires garantis</span>
+                </li>
+                <li class="mb-2">
+                  <i class="bi bi-check-circle" style="color: #10b981;"></i>
+                  <span class="ms-2">Dossier médical partagé</span>
+                </li>
+                <li class="mb-0">
+                  <i class="bi bi-check-circle" style="color: #10b981;"></i>
+                  <span class="ms-2">Suivi post-consultation inclus</span>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Calcul Rapide -->
+      <div class="row mt-5">
+        <div class="col-lg-8 mx-auto">
+          <div class="card border-0" style="background: linear-gradient(135deg, #4f46e5 0%, #7c3aed 100%); color: white;">
+            <div class="card-body p-4 text-center">
+              <h5 class="fw-bold mb-3">💡 Rentabilité en quelques mois</h5>
+              <div class="row g-3">
+                <div class="col-md-4">
+                  <div style="background: rgba(255,255,255,0.15); padding: 15px; border-radius: 10px;">
+                    <p class="small mb-1 opacity-75">Plan Plus</p>
+                    <p class="fw-bold mb-0">Rentabilisé en 3 mois</p>
+                    <p class="small opacity-75 mt-2">100 DH amortis rapidement</p>
+                  </div>
+                </div>
+                <div class="col-md-4">
+                  <div style="background: rgba(255,255,255,0.15); padding: 15px; border-radius: 10px;">
+                    <p class="small mb-1 opacity-75">Plan Pro</p>
+                    <p class="fw-bold mb-0">Rentabilisé en 2-3 mois</p>
+                    <p class="small opacity-75 mt-2">200 DH rapidement amortis</p>
+                  </div>
+                </div>
+                <div class="col-md-4">
+                  <div style="background: rgba(255,255,255,0.15); padding: 15px; border-radius: 10px;">
+                    <p class="small mb-1 opacity-75">Économie Annuelle</p>
+                    <p class="fw-bold mb-0">Jusqu'à 2400 DH/an</p>
+                    <p class="small opacity-75 mt-2">Avec le plan Pro</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Toast Notification (Subscription) -->
+  <div class="toast-container position-fixed bottom-0 end-0 p-3" style="z-index: 11;">
+    <div id="subToast" class="toast align-items-center text-white bg-success border-0" role="alert">
+      <div class="d-flex">
+        <div class="toast-body">
+          ✓ Abonnement <strong id="subName">Plus</strong> choisi avec succès !
+        </div>
+        <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast"></button>
+      </div>
+    </div>
+  </div>
+
+  <!-- FAQ Interactive Section -->
+  <section class="py-5" style="background: white;">
+    <div class="container">
+      <div class="section-header mb-5" style="text-align: center;">
+        <h2 style="font-size: 2.8rem; margin-bottom: 1rem; color: #1f2937; font-weight: 900;">Questions Fréquemment Posées</h2>
+        <p style="font-size: 1.1rem; color: #6b7280; max-width: 600px; margin: 0 auto;">Trouvez les réponses à vos questions les plus courantes sur nos services</p>
+        <div style="width: 100px; height: 4px; background: linear-gradient(90deg, #4f46e5 0%, #7c3aed 100%); margin: 1.5rem auto; border-radius: 2px;"></div>
+      </div>
+
+      <div class="row g-3" style="max-width: 800px; margin: 0 auto;">
+        <!-- FAQ Item 1 -->
+        <div class="col-12">
+          <div class="faq-item" style="background: white; border: 2px solid #e5e7eb; border-radius: 14px; overflow: hidden; transition: all 0.3s ease;">
+            <button class="faq-button w-100" style="background: white; border: none; padding: 1.5rem; text-align: left; cursor: pointer; display: flex; justify-content: space-between; align-items: center; transition: all 0.3s ease;" onmouseover="this.parentElement.style.borderColor='#4f46e5'; this.parentElement.style.boxShadow='0 4px 20px rgba(79, 70, 229, 0.1)'" onmouseout="this.parentElement.style.borderColor='#e5e7eb'; this.parentElement.style.boxShadow='none'">
+              <span style="font-weight: 700; color: #1f2937; font-size: 1rem;">Comment puis-je prendre rendez-vous chez un vétérinaire ?</span>
+              <i class="bi bi-chevron-down" style="color: #4f46e5; font-weight: 900; transition: 0.3s;"></i>
+            </button>
+            <div class="faq-content d-none" style="padding: 0 1.5rem; background: rgba(79, 70, 229, 0.05); overflow: hidden;">
+              <p style="color: #6b7280; margin: 1rem 0; line-height: 1.6;">Vous pouvez réserver un rendez-vous directement via notre plateforme en cliquant sur l'onglet "Rendez-vous". Sélectionnez votre vétérinaire préféré, choisissez la date et l'heure qui vous convient, et confirmez. Vous recevrez une confirmation par email.</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- FAQ Item 2 -->
+        <div class="col-12">
+          <div class="faq-item" style="background: white; border: 2px solid #e5e7eb; border-radius: 14px; overflow: hidden; transition: all 0.3s ease;">
+            <button class="faq-button w-100" style="background: white; border: none; padding: 1.5rem; text-align: left; cursor: pointer; display: flex; justify-content: space-between; align-items: center; transition: all 0.3s ease;" onmouseover="this.parentElement.style.borderColor='#4f46e5'; this.parentElement.style.boxShadow='0 4px 20px rgba(79, 70, 229, 0.1)'" onmouseout="this.parentElement.style.borderColor='#e5e7eb'; this.parentElement.style.boxShadow='none'">
+              <span style="font-weight: 700; color: #1f2937; font-size: 1rem;">Quel est le délai de livraison de mes commandes ?</span>
+              <i class="bi bi-chevron-down" style="color: #4f46e5; font-weight: 900; transition: 0.3s;"></i>
+            </button>
+            <div class="faq-content d-none" style="padding: 0 1.5rem; background: rgba(79, 70, 229, 0.05); overflow: hidden;">
+              <p style="color: #6b7280; margin: 1rem 0; line-height: 1.6;">Nos délais de livraison sont généralement de 24 à 48 heures dans les villes principales du Maroc. Pour les autres régions, comptez 2 à 5 jours ouvrables. Les frais de livraison varient selon votre localisation et le poids de votre commande.</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- FAQ Item 3 -->
+        <div class="col-12">
+          <div class="faq-item" style="background: white; border: 2px solid #e5e7eb; border-radius: 14px; overflow: hidden; transition: all 0.3s ease;">
+            <button class="faq-button w-100" style="background: white; border: none; padding: 1.5rem; text-align: left; cursor: pointer; display: flex; justify-content: space-between; align-items: center; transition: all 0.3s ease;" onmouseover="this.parentElement.style.borderColor='#4f46e5'; this.parentElement.style.boxShadow='0 4px 20px rgba(79, 70, 229, 0.1)'" onmouseout="this.parentElement.style.borderColor='#e5e7eb'; this.parentElement.style.boxShadow='none'">
+              <span style="font-weight: 700; color: #1f2937; font-size: 1rem;">Quel est le meilleur abonnement pour moi ?</span>
+              <i class="bi bi-chevron-down" style="color: #4f46e5; font-weight: 900; transition: 0.3s;"></i>
+            </button>
+            <div class="faq-content d-none" style="padding: 0 1.5rem; background: rgba(79, 70, 229, 0.05); overflow: hidden;">
+              <p style="color: #6b7280; margin: 1rem 0; line-height: 1.6;"><strong>Plan Découverte :</strong> Parfait pour un premier animal domestique. <strong>Plan Plus :</strong> Idéal si vous avez 2-3 animaux. <strong>Plan Pro :</strong> Pour les amoureux avec plusieurs animaux. <strong>Plan Premium :</strong> L'expérience complète avec tous les services et réductions maximales.</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- FAQ Item 4 -->
+        <div class="col-12">
+          <div class="faq-item" style="background: white; border: 2px solid #e5e7eb; border-radius: 14px; overflow: hidden; transition: all 0.3s ease;">
+            <button class="faq-button w-100" style="background: white; border: none; padding: 1.5rem; text-align: left; cursor: pointer; display: flex; justify-content: space-between; align-items: center; transition: all 0.3s ease;" onmouseover="this.parentElement.style.borderColor='#4f46e5'; this.parentElement.style.boxShadow='0 4px 20px rgba(79, 70, 229, 0.1)'" onmouseout="this.parentElement.style.borderColor='#e5e7eb'; this.parentElement.style.boxShadow='none'">
+              <span style="font-weight: 700; color: #1f2937; font-size: 1rem;">Puis-je annuler mon rendez-vous ?</span>
+              <i class="bi bi-chevron-down" style="color: #4f46e5; font-weight: 900; transition: 0.3s;"></i>
+            </button>
+            <div class="faq-content d-none" style="padding: 0 1.5rem; background: rgba(79, 70, 229, 0.05); overflow: hidden;">
+              <p style="color: #6b7280; margin: 1rem 0; line-height: 1.6;">Oui, vous pouvez annuler ou reporter votre rendez-vous jusqu'à 24 heures avant l'heure prévue. Pour le faire, accédez à votre compte, trouvez le rendez-vous et cliquez sur "Annuler". Aucun frais ne vous sera facturé.</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- FAQ Item 5 -->
+        <div class="col-12">
+          <div class="faq-item" style="background: white; border: 2px solid #e5e7eb; border-radius: 14px; overflow: hidden; transition: all 0.3s ease;">
+            <button class="faq-button w-100" style="background: white; border: none; padding: 1.5rem; text-align: left; cursor: pointer; display: flex; justify-content: space-between; align-items: center; transition: all 0.3s ease;" onmouseover="this.parentElement.style.borderColor='#4f46e5'; this.parentElement.style.boxShadow='0 4px 20px rgba(79, 70, 229, 0.1)'" onmouseout="this.parentElement.style.borderColor='#e5e7eb'; this.parentElement.style.boxShadow='none'">
+              <span style="font-weight: 700; color: #1f2937; font-size: 1rem;">Comment puis-je contacter votre support client ?</span>
+              <i class="bi bi-chevron-down" style="color: #4f46e5; font-weight: 900; transition: 0.3s;"></i>
+            </button>
+            <div class="faq-content d-none" style="padding: 0 1.5rem; background: rgba(79, 70, 229, 0.05); overflow: hidden;">
+              <p style="color: #6b7280; margin: 1rem 0; line-height: 1.6;">Notre équipe de support est disponible 24/7. Vous pouvez nous contacter via email à <strong>support@petheaven.ma</strong>, par WhatsApp au <strong>+212 6 12 34 56 78</strong>, ou via le formulaire de contact sur notre site. Temps de réponse moyen : moins de 2 heures.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Premium Testimonials Section -->
+  <section class="py-5" style="background: linear-gradient(135deg, rgba(245, 158, 11, 0.1) 0%, rgba(16, 185, 129, 0.1) 100%);">
+    <div class="container">
+      <div class="section-header mb-5" style="text-align: center;">
+        <h2 style="font-size: 2.8rem; margin-bottom: 1rem; color: #1f2937; font-weight: 900;">Nos Clients Adorent Pet's Heaven</h2>
+        <p style="font-size: 1.1rem; color: #6b7280; max-width: 600px; margin: 0 auto;">Découvrez ce que les propriétaires d'animaux pensent de nos services</p>
+        <div style="width: 100px; height: 4px; background: linear-gradient(90deg, #4f46e5 0%, #7c3aed 100%); margin: 1.5rem auto; border-radius: 2px;"></div>
+      </div>
+
+      <div class="row g-4" style="max-width: 1100px; margin: 0 auto;">
+        <!-- Testimonial 1 -->
+        <div class="col-md-6 col-lg-4">
+          <div style="background: white; padding: 2rem; border-radius: 14px; border-left: 5px solid #4f46e5; box-shadow: 0 4px 20px rgba(0,0,0,0.05); transition: all 0.3s ease; height: 100%;" onmouseover="this.style.transform='translateY(-8px)'; this.style.boxShadow='0 12px 40px rgba(79, 70, 229, 0.15)'" onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='0 4px 20px rgba(0,0,0,0.05)'">
+            <div style="display: flex; gap: 0.3rem; margin-bottom: 1rem;">
+              <i class="bi bi-star-fill" style="color: #f59e0b;"></i>
+              <i class="bi bi-star-fill" style="color: #f59e0b;"></i>
+              <i class="bi bi-star-fill" style="color: #f59e0b;"></i>
+              <i class="bi bi-star-fill" style="color: #f59e0b;"></i>
+              <i class="bi bi-star-fill" style="color: #f59e0b;"></i>
+            </div>
+            <p style="color: #4b5563; font-size: 1rem; line-height: 1.6; margin-bottom: 1.5rem; font-weight: 500;">"Pet's Heaven a complètement changé ma façon de prendre soin de mon chat. Les rendez-vous sont faciles à réserver et le support est incroyable!"</p>
+            <div style="display: flex; align-items: center; gap: 0.8rem;">
+              <div style="width: 45px; height: 45px; border-radius: 50%; background: linear-gradient(135deg, #4f46e5 0%, #7c3aed 100%); display: flex; align-items: center; justify-content: center; color: white; font-weight: 700; font-size: 1.1rem;">MK</div>
+              <div>
+                <h6 style="margin: 0; color: #1f2937; font-weight: 700;">Mariam K.</h6>
+                <small style="color: #9ca3af;">Casablanca</small>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Testimonial 2 -->
+        <div class="col-md-6 col-lg-4">
+          <div style="background: white; padding: 2rem; border-radius: 14px; border-left: 5px solid #10b981; box-shadow: 0 4px 20px rgba(0,0,0,0.05); transition: all 0.3s ease; height: 100%;" onmouseover="this.style.transform='translateY(-8px)'; this.style.boxShadow='0 12px 40px rgba(16, 185, 129, 0.15)'" onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='0 4px 20px rgba(0,0,0,0.05)'">
+            <div style="display: flex; gap: 0.3rem; margin-bottom: 1rem;">
+              <i class="bi bi-star-fill" style="color: #f59e0b;"></i>
+              <i class="bi bi-star-fill" style="color: #f59e0b;"></i>
+              <i class="bi bi-star-fill" style="color: #f59e0b;"></i>
+              <i class="bi bi-star-fill" style="color: #f59e0b;"></i>
+              <i class="bi bi-star-fill" style="color: #f59e0b;"></i>
+            </div>
+            <p style="color: #4b5563; font-size: 1rem; line-height: 1.6; margin-bottom: 1.5rem; font-weight: 500;">"Les produits de qualité premium et la livraison rapide m'ont conquis. Mon chien est tellement heureux avec les nouvelles croquettes!"</p>
+            <div style="display: flex; align-items: center; gap: 0.8rem;">
+              <div style="width: 45px; height: 45px; border-radius: 50%; background: linear-gradient(135deg, #10b981 0%, #059669 100%); display: flex; align-items: center; justify-content: center; color: white; font-weight: 700; font-size: 1.1rem;">HB</div>
+              <div>
+                <h6 style="margin: 0; color: #1f2937; font-weight: 700;">Hassan B.</h6>
+                <small style="color: #9ca3af;">Rabat</small>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Testimonial 3 -->
+        <div class="col-md-6 col-lg-4">
+          <div style="background: white; padding: 2rem; border-radius: 14px; border-left: 5px solid #f59e0b; box-shadow: 0 4px 20px rgba(0,0,0,0.05); transition: all 0.3s ease; height: 100%;" onmouseover="this.style.transform='translateY(-8px)'; this.style.boxShadow='0 12px 40px rgba(245, 158, 11, 0.15)'" onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='0 4px 20px rgba(0,0,0,0.05)'">
+            <div style="display: flex; gap: 0.3rem; margin-bottom: 1rem;">
+              <i class="bi bi-star-fill" style="color: #f59e0b;"></i>
+              <i class="bi bi-star-fill" style="color: #f59e0b;"></i>
+              <i class="bi bi-star-fill" style="color: #f59e0b;"></i>
+              <i class="bi bi-star-fill" style="color: #f59e0b;"></i>
+              <i class="bi bi-star-fill" style="color: #f59e0b;"></i>
+            </div>
+            <p style="color: #4b5563; font-size: 1rem; line-height: 1.6; margin-bottom: 1.5rem; font-weight: 500;">"L'abonnement Premium en vaut vraiment la peine. Les vétérinaires sont professionnels et les réductions sont fantastiques!"</p>
+            <div style="display: flex; align-items: center; gap: 0.8rem;">
+              <div style="width: 45px; height: 45px; border-radius: 50%; background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%); display: flex; align-items: center; justify-content: center; color: white; font-weight: 700; font-size: 1.1rem;">SA</div>
+              <div>
+                <h6 style="margin: 0; color: #1f2937; font-weight: 700;">Sarah A.</h6>
+                <small style="color: #9ca3af;">Fès</small>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Testimonial 4 -->
+        <div class="col-md-6 col-lg-4">
+          <div style="background: white; padding: 2rem; border-radius: 14px; border-left: 5px solid #06b6d4; box-shadow: 0 4px 20px rgba(0,0,0,0.05); transition: all 0.3s ease; height: 100%;" onmouseover="this.style.transform='translateY(-8px)'; this.style.boxShadow='0 12px 40px rgba(6, 182, 212, 0.15)'" onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='0 4px 20px rgba(0,0,0,0.05)'">
+            <div style="display: flex; gap: 0.3rem; margin-bottom: 1rem;">
+              <i class="bi bi-star-fill" style="color: #f59e0b;"></i>
+              <i class="bi bi-star-fill" style="color: #f59e0b;"></i>
+              <i class="bi bi-star-fill" style="color: #f59e0b;"></i>
+              <i class="bi bi-star-fill" style="color: #f59e0b;"></i>
+              <i class="bi bi-star-fill" style="color: #f59e0b;"></i>
+            </div>
+            <p style="color: #4b5563; font-size: 1rem; line-height: 1.6; margin-bottom: 1.5rem; font-weight: 500;">"L'interface est super intuitive! Même ma grand-mère a pu réserver un rendez-vous sans problème. C'est vraiment une belle plateforme!"</p>
+            <div style="display: flex; align-items: center; gap: 0.8rem;">
+              <div style="width: 45px; height: 45px; border-radius: 50%; background: linear-gradient(135deg, #06b6d4 0%, #0891b2 100%); display: flex; align-items: center; justify-content: center; color: white; font-weight: 700; font-size: 1.1rem;">NZ</div>
+              <div>
+                <h6 style="margin: 0; color: #1f2937; font-weight: 700;">Noor Z.</h6>
+                <small style="color: #9ca3af;">Marrakech</small>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Testimonial 5 -->
+        <div class="col-md-6 col-lg-4">
+          <div style="background: white; padding: 2rem; border-radius: 14px; border-left: 5px solid #ec4899; box-shadow: 0 4px 20px rgba(0,0,0,0.05); transition: all 0.3s ease; height: 100%;" onmouseover="this.style.transform='translateY(-8px)'; this.style.boxShadow='0 12px 40px rgba(236, 72, 153, 0.15)'" onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='0 4px 20px rgba(0,0,0,0.05)'">
+            <div style="display: flex; gap: 0.3rem; margin-bottom: 1rem;">
+              <i class="bi bi-star-fill" style="color: #f59e0b;"></i>
+              <i class="bi bi-star-fill" style="color: #f59e0b;"></i>
+              <i class="bi bi-star-fill" style="color: #f59e0b;"></i>
+              <i class="bi bi-star-fill" style="color: #f59e0b;"></i>
+              <i class="bi bi-star-fill" style="color: #f59e0b;"></i>
+            </div>
+            <p style="color: #4b5563; font-size: 1rem; line-height: 1.6; margin-bottom: 1.5rem; font-weight: 500;">"Le support client répond en moins de 2 heures! Enfin une plateforme qui prend vraiment soin de ses clients."</p>
+            <div style="display: flex; align-items: center; gap: 0.8rem;">
+              <div style="width: 45px; height: 45px; border-radius: 50%; background: linear-gradient(135deg, #ec4899 0%, #db2777 100%); display: flex; align-items: center; justify-content: center; color: white; font-weight: 700; font-size: 1.1rem;">FA</div>
+              <div>
+                <h6 style="margin: 0; color: #1f2937; font-weight: 700;">Fatima A.</h6>
+                <small style="color: #9ca3af;">Tangier</small>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Testimonial 6 -->
+        <div class="col-md-6 col-lg-4">
+          <div style="background: white; padding: 2rem; border-radius: 14px; border-left: 5px solid #8b5cf6; box-shadow: 0 4px 20px rgba(0,0,0,0.05); transition: all 0.3s ease; height: 100%;" onmouseover="this.style.transform='translateY(-8px)'; this.style.boxShadow='0 12px 40px rgba(139, 92, 246, 0.15)'" onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='0 4px 20px rgba(0,0,0,0.05)'">
+            <div style="display: flex; gap: 0.3rem; margin-bottom: 1rem;">
+              <i class="bi bi-star-fill" style="color: #f59e0b;"></i>
+              <i class="bi bi-star-fill" style="color: #f59e0b;"></i>
+              <i class="bi bi-star-fill" style="color: #f59e0b;"></i>
+              <i class="bi bi-star-fill" style="color: #f59e0b;"></i>
+              <i class="bi bi-star-fill" style="color: #f59e0b;"></i>
+            </div>
+            <p style="color: #4b5563; font-size: 1rem; line-height: 1.6; margin-bottom: 1.5rem; font-weight: 500;">"Les prix des abonnements sont très compétitifs et je fais d'énormes économies chaque mois!"</p>
+            <div style="display: flex; align-items: center; gap: 0.8rem;">
+              <div style="width: 45px; height: 45px; border-radius: 50%; background: linear-gradient(135deg, #8b5cf6 0%, #7c3aed 100%); display: flex; align-items: center; justify-content: center; color: white; font-weight: 700; font-size: 1.1rem;">KM</div>
+              <div>
+                <h6 style="margin: 0; color: #1f2937; font-weight: 700;">Karim M.</h6>
+                <small style="color: #9ca3af;">Agadir</small>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Partenaires Marocains -->
+  <section class="py-5" style="background: linear-gradient(135deg, rgba(79, 70, 229, 0.08) 0%, rgba(124, 58, 237, 0.08) 100%);">
+    <div class="container">
+      <div class="section-header mb-5">
+        <h2 style="font-size: 2.5rem; margin-bottom: 1rem;">
+          <i class="bi bi-building" style="color: #4f46e5; margin-right: 10px;"></i>Nos Partenaires Marocains
+        </h2>
+        <p style="font-size: 1.1rem; color: #6b7280;">Les meilleures marques d'alimentation et produits pour animaux au Maroc</p>
+        <div style="width: 100px; height: 4px; background: linear-gradient(90deg, #4f46e5 0%, #7c3aed 100%); margin: 1.5rem auto; border-radius: 2px;"></div>
+      </div>
+
+      <div class="partners-carousel-wrapper">
+        <div class="partners-carousel-container" id="partnersContainer">
+          <!-- Partenaire 1 -->
+          <div class="partners-carousel-item">
+            <div class="card border-0 shadow-sm h-100 hover-lift" style="border-top: 5px solid #f59e0b; background: linear-gradient(135deg, #fef3c7 0%, #ffffff 100%); border-radius: 15px; overflow: hidden;">
+              <div class="card-body p-5 d-flex flex-column">
+                <div style="font-size: 3.5rem; margin-bottom: 1.5rem; text-align: center;">🐾</div>
+                <h5 class="card-title fw-bold mb-2" style="font-size: 1.1rem; text-align: center;">Pet Shop Casablanca</h5>
+                <p class="text-muted small mb-4 text-center flex-grow-1">Leader marocain des produits pour animaux domestiques</p>
+                <div class="text-center"><span class="badge bg-warning text-dark fw-bold" style="font-size: 0.85rem; padding: 0.5rem 1rem;">⭐ Depuis 2010</span></div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Partenaire 2 -->
+          <div class="partners-carousel-item">
+            <div class="card border-0 shadow-sm h-100 hover-lift" style="border-top: 5px solid #10b981; background: linear-gradient(135deg, #d1fae5 0%, #ffffff 100%); border-radius: 15px; overflow: hidden;">
+              <div class="card-body p-5 d-flex flex-column">
+                <div style="height: 130px; display: flex; align-items: center; justify-content: center; margin-bottom: 1.5rem;">
+                  <img src="assets/images/logo entreprise.png" alt="Alimentation Animaux Maroc" style="width: 100%; height: 100%; object-fit: contain;">
+                </div>
+                <h5 class="card-title fw-bold mb-2" style="font-size: 1.1rem; text-align: center;">Alimentation Animaux Maroc</h5>
+                <p class="text-muted small mb-4 text-center flex-grow-1">Distributeur officiel de croquettes premium</p>
+                <div class="text-center"><span class="badge bg-success fw-bold" style="font-size: 0.85rem; padding: 0.5rem 1rem;">✓ Distributeur agréé</span></div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Partenaire 3 -->
+          <div class="partners-carousel-item">
+            <div class="card border-0 shadow-sm h-100 hover-lift" style="border-top: 5px solid #7c3aed; background: linear-gradient(135deg, #e9d5ff 0%, #ffffff 100%); border-radius: 15px; overflow: hidden;">
+              <div class="card-body p-5 d-flex flex-column">
+                <div style="height: 130px; display: flex; align-items: center; justify-content: center; margin-bottom: 1.5rem;">
+                  <img src="assets/images/images.png" alt="Pharmacie Vétérinaire Maroc" style="width: 100%; height: 100%; object-fit: contain;">
+                </div>
+                <h5 class="card-title fw-bold mb-2" style="font-size: 1.1rem; text-align: center;">Pharmacie Vétérinaire Maroc</h5>
+                <p class="text-muted small mb-4 text-center flex-grow-1">Produits vétérinaires et suppléments nutritifs</p>
+                <div class="text-center"><span class="badge bg-primary fw-bold" style="font-size: 0.85rem; padding: 0.5rem 1rem;">🏥 Agréé santé</span></div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Partenaire 4 -->
+          <div class="partners-carousel-item">
+            <div class="card border-0 shadow-sm h-100 hover-lift" style="border-top: 5px solid #ef4444; background: linear-gradient(135deg, #fee2e2 0%, #ffffff 100%); border-radius: 15px; overflow: hidden;">
+              <div class="card-body p-5 d-flex flex-column">
+                <div style="height: 130px; display: flex; align-items: center; justify-content: center; margin-bottom: 1.5rem;">
+                  <img src="assets/images/jouer.png" alt="Jouets & Accessoires Maroc" style="width: 100%; height: 100%; object-fit: contain;">
+                </div>
+                <h5 class="card-title fw-bold mb-2" style="font-size: 1.1rem; text-align: center;">Jouets & Accessoires Maroc</h5>
+                <p class="text-muted small mb-4 text-center flex-grow-1">Jouets écologiques et accessoires innovants</p>
+                <div class="text-center"><span class="badge bg-danger fw-bold" style="font-size: 0.85rem; padding: 0.5rem 1rem;">🌱 Produits éco</span></div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Partenaire 5 -->
+          <div class="partners-carousel-item">
+            <div class="card border-0 shadow-sm h-100 hover-lift" style="border-top: 5px solid #06b6d4; background: linear-gradient(135deg, #cffafe 0%, #ffffff 100%); border-radius: 15px; overflow: hidden;">
+              <div class="card-body p-5 d-flex flex-column">
+                <div style="height: 130px; display: flex; align-items: center; justify-content: center; margin-bottom: 1.5rem;">
+                  <img src="assets/images/image2.png" alt="Hygiène Animaux Fez" style="width: 100%; height: 100%; object-fit: contain;">
+                </div>
+                <h5 class="card-title fw-bold mb-2" style="font-size: 1.1rem; text-align: center;">Hygiène Animaux Fez</h5>
+                <p class="text-muted small mb-4 text-center flex-grow-1">Produits d'hygiène et soins naturels</p>
+                <div class="text-center"><span class="badge bg-info fw-bold" style="font-size: 0.85rem; padding: 0.5rem 1rem;">✨ Produits naturels</span></div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Contrôles du carrousel -->
+        <button class="carousel-nav-btn prev" onclick="scrollCarousel('left')">
+          <i class="bi bi-chevron-left"></i>
+        </button>
+        <button class="carousel-nav-btn next" onclick="scrollCarousel('right')">
+          <i class="bi bi-chevron-right"></i>
+        </button>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACT SECTION -->
+  <section id="contact" class="py-5" style="background: linear-gradient(135deg, #ffffff 0%, #f8fafc 100%); position: relative; overflow: hidden;">
+    <div style="position: absolute; top: -100px; right: -100px; width: 400px; height: 400px; background: radial-gradient(circle, rgba(79, 70, 229, 0.08) 0%, transparent 70%); border-radius: 50%; pointer-events: none;"></div>
+    <div style="position: absolute; bottom: -80px; left: -80px; width: 300px; height: 300px; background: radial-gradient(circle, rgba(124, 58, 237, 0.08) 0%, transparent 70%); border-radius: 50%; pointer-events: none;"></div>
+    
+    <div class="container" style="position: relative; z-index: 1;">
+      <div style="text-align: center; margin-bottom: 4rem;">
+        <h2 style="font-size: 2.8rem; font-weight: 900; color: #1f2937; margin-bottom: 1rem;">Restons en Contact</h2>
+        <p style="font-size: 1.1rem; color: #6b7280; max-width: 600px; margin: 0 auto; line-height: 1.8;">Nous répondons à vos questions en moins de 2 heures. Contactez-nous par le moyen qui vous convient.</p>
+      </div>
+
+      <div class="row g-5">
+        <div class="col-lg-6">
+          <div style="background: white; padding: 2.5rem; border-radius: 18px; box-shadow: 0 4px 20px rgba(0,0,0,0.05); border: 1px solid rgba(79, 70, 229, 0.1);">
+            <h4 style="font-weight: 800; color: #1f2937; margin-bottom: 2rem;">Envoyez-nous un message</h4>
+            <form>
+              <div class="mb-4">
+                <label class="form-label fw-700" style="color: #1f2937; margin-bottom: 0.8rem; font-size: 0.95rem;">Nom complet</label>
+                <input type="text" class="form-control" placeholder="Votre nom" required style="border-radius: 10px; border: 1px solid #e5e7eb; padding: 0.8rem 1rem; transition: all 0.3s ease;" onmouseover="this.style.borderColor='#4f46e5'; this.style.boxShadow='0 0 0 3px rgba(79, 70, 229, 0.1)'" onmouseout="this.style.borderColor='#e5e7eb'; this.style.boxShadow='none'">
+              </div>
+              <div class="mb-4">
+                <label class="form-label fw-700" style="color: #1f2937; margin-bottom: 0.8rem; font-size: 0.95rem;">Email</label>
+                <input type="email" class="form-control" placeholder="votre@email.com" required style="border-radius: 10px; border: 1px solid #e5e7eb; padding: 0.8rem 1rem; transition: all 0.3s ease;" onmouseover="this.style.borderColor='#4f46e5'; this.style.boxShadow='0 0 0 3px rgba(79, 70, 229, 0.1)'" onmouseout="this.style.borderColor='#e5e7eb'; this.style.boxShadow='none'">
+              </div>
+              <div class="mb-4">
+                <label class="form-label fw-700" style="color: #1f2937; margin-bottom: 0.8rem; font-size: 0.95rem;">Message</label>
+                <textarea class="form-control" rows="5" placeholder="Décrivez votre demande..." required style="border-radius: 10px; border: 1px solid #e5e7eb; padding: 0.8rem 1rem; transition: all 0.3s ease; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;" onmouseover="this.style.borderColor='#4f46e5'; this.style.boxShadow='0 0 0 3px rgba(79, 70, 229, 0.1)'" onmouseout="this.style.borderColor='#e5e7eb'; this.style.boxShadow='none'"></textarea>
+              </div>
+              <button type="submit" class="btn w-100 fw-700" style="background: linear-gradient(135deg, #4f46e5 0%, #7c3aed 100%); color: white; padding: 0.95rem 2rem; border-radius: 10px; border: none; transition: all 0.3s ease; font-size: 0.95rem;" onmouseover="this.style.transform='translateY(-2px)'; this.style.boxShadow='0 10px 30px rgba(79, 70, 229, 0.3)'" onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='0 4px 15px rgba(79, 70, 229, 0.2)'">
+                <i class="bi bi-send me-2"></i>Envoyer le message
+              </button>
+            </form>
+          </div>
+        </div>
+
+        <div class="col-lg-6">
+          <div style="display: grid; grid-template-columns: 1fr; gap: 1.5rem;">
+            <!-- Téléphone Card -->
+            <div style="background: white; padding: 2rem; border-radius: 14px; box-shadow: 0 4px 20px rgba(0,0,0,0.05); border: 1px solid rgba(79, 70, 229, 0.1); transition: all 0.3s ease;" onmouseover="this.style.transform='translateY(-6px)'; this.style.boxShadow='0 15px 40px rgba(79, 70, 229, 0.15)'; this.style.borderColor='rgba(79, 70, 229, 0.3)'" onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='0 4px 20px rgba(0,0,0,0.05)'; this.style.borderColor='rgba(79, 70, 229, 0.1)'">
+              <div style="display: flex; align-items: flex-start; gap: 1rem;">
+                <div style="width: 50px; height: 50px; background: linear-gradient(135deg, #4f46e5 0%, #7c3aed 100%); border-radius: 12px; display: flex; align-items: center; justify-content: center; flex-shrink: 0; box-shadow: 0 4px 15px rgba(79, 70, 229, 0.2);">
+                  <i class="bi bi-telephone-fill" style="color: white; font-size: 1.3rem;"></i>
+                </div>
+                <div>
+                  <h6 style="font-weight: 800; color: #1f2937; margin-bottom: 0.5rem; font-size: 1rem;">Téléphone</h6>
+                  <p style="color: #6b7280; margin: 0; font-size: 0.9rem; line-height: 1.6;">+212 6 12 34 56 78<br>+212 6 98 76 54 32</p>
+                </div>
+              </div>
+            </div>
+
+            <!-- Email Card -->
+            <div style="background: white; padding: 2rem; border-radius: 14px; box-shadow: 0 4px 20px rgba(0,0,0,0.05); border: 1px solid rgba(245, 158, 11, 0.1); transition: all 0.3s ease;" onmouseover="this.style.transform='translateY(-6px)'; this.style.boxShadow='0 15px 40px rgba(245, 158, 11, 0.15)'; this.style.borderColor='rgba(245, 158, 11, 0.3)'" onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='0 4px 20px rgba(0,0,0,0.05)'; this.style.borderColor='rgba(245, 158, 11, 0.1)'">
+              <div style="display: flex; align-items: flex-start; gap: 1rem;">
+                <div style="width: 50px; height: 50px; background: linear-gradient(135deg, #f59e0b 0%, #f97316 100%); border-radius: 12px; display: flex; align-items: center; justify-content: center; flex-shrink: 0; box-shadow: 0 4px 15px rgba(245, 158, 11, 0.2);">
+                  <i class="bi bi-envelope-fill" style="color: white; font-size: 1.3rem;"></i>
+                </div>
+                <div>
+                  <h6 style="font-weight: 800; color: #1f2937; margin-bottom: 0.5rem; font-size: 1rem;">Email</h6>
+                  <p style="color: #6b7280; margin: 0; font-size: 0.9rem; line-height: 1.6;">support@petheaven.ma<br>info@petheaven.ma</p>
+                </div>
+              </div>
+            </div>
+
+            <!-- Adresse Card -->
+            <div style="background: white; padding: 2rem; border-radius: 14px; box-shadow: 0 4px 20px rgba(0,0,0,0.05); border: 1px solid rgba(16, 185, 129, 0.1); transition: all 0.3s ease;" onmouseover="this.style.transform='translateY(-6px)'; this.style.boxShadow='0 15px 40px rgba(16, 185, 129, 0.15)'; this.style.borderColor='rgba(16, 185, 129, 0.3)'" onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='0 4px 20px rgba(0,0,0,0.05)'; this.style.borderColor='rgba(16, 185, 129, 0.1)'">
+              <div style="display: flex; align-items: flex-start; gap: 1rem;">
+                <div style="width: 50px; height: 50px; background: linear-gradient(135deg, #10b981 0%, #06b6d4 100%); border-radius: 12px; display: flex; align-items: center; justify-content: center; flex-shrink: 0; box-shadow: 0 4px 15px rgba(16, 185, 129, 0.2);">
+                  <i class="bi bi-geo-alt-fill" style="color: white; font-size: 1.3rem;"></i>
+                </div>
+                <div>
+                  <h6 style="font-weight: 800; color: #1f2937; margin-bottom: 0.5rem; font-size: 1rem;">Adresse</h6>
+                  <p style="color: #6b7280; margin: 0; font-size: 0.9rem; line-height: 1.6;">123 Rue des Animaux<br>Casablanca, Maroc</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Newsletter Premium Section -->
+  <section style="background: linear-gradient(135deg, rgba(79, 70, 229, 0.95) 0%, rgba(124, 58, 237, 0.95) 100%); padding: 4rem 0; position: relative; overflow: hidden;">
+    <!-- Decorative elements -->
+    <div style="position: absolute; top: -100px; right: -100px; width: 300px; height: 300px; background: rgba(255,255,255,0.1); border-radius: 50%; filter: blur(40px);"></div>
+    <div style="position: absolute; bottom: -80px; left: -80px; width: 250px; height: 250px; background: rgba(255,255,255,0.05); border-radius: 50%; filter: blur(40px);"></div>
+
+    <div class="container" style="position: relative; z-index: 2;">
+      <div class="row align-items-center g-5">
+        <!-- Text Section -->
+        <div class="col-lg-6">
+          <h2 style="font-size: 2.8rem; font-weight: 900; color: white; margin-bottom: 1rem; line-height: 1.2;">Recevez nos Conseils <span style="background: linear-gradient(135deg, #fbbf24 0%, #f59e0b 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;">Vétérinaires</span></h2>
+          <p style="font-size: 1.1rem; color: rgba(255,255,255,0.85); margin-bottom: 1.5rem; line-height: 1.8;">Inscrivez-vous à notre newsletter pour recevoir des astuces santé, des offres exclusives et les dernières nouveautés en bien-être animal.</p>
+          <div style="display: flex; gap: 1rem; flex-wrap: wrap;">
+            <div style="display: flex; align-items: center; gap: 0.8rem; color: rgba(255,255,255,0.9);">
+              <i class="bi bi-check-circle-fill" style="font-size: 1.5rem; color: #10b981;"></i>
+              <span style="font-weight: 600;">Conseils exclusifs</span>
+            </div>
+            <div style="display: flex; align-items: center; gap: 0.8rem; color: rgba(255,255,255,0.9);">
+              <i class="bi bi-check-circle-fill" style="font-size: 1.5rem; color: #10b981;"></i>
+              <span style="font-weight: 600;">Offres spéciales</span>
+            </div>
+            <div style="display: flex; align-items: center; gap: 0.8rem; color: rgba(255,255,255,0.9);">
+              <i class="bi bi-check-circle-fill" style="font-size: 1.5rem; color: #10b981;"></i>
+              <span style="font-weight: 600;">Sans spam</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Form Section -->
+        <div class="col-lg-6">
+          <div style="background: rgba(255,255,255,0.95); padding: 2.5rem; border-radius: 18px; box-shadow: 0 20px 60px rgba(0,0,0,0.15); backdrop-filter: blur(10px);">
+            <form id="newsletterForm" style="display: flex; flex-direction: column; gap: 1rem;">
+              <div>
+                <label style="display: block; margin-bottom: 0.5rem; color: #374151; font-weight: 600; font-size: 0.9rem;">Votre nom</label>
+                <input type="text" placeholder="Jean Dupont" required style="width: 100%; padding: 0.8rem 1rem; border: 2px solid #e5e7eb; border-radius: 10px; font-size: 0.9rem; transition: all 0.3s ease; font-family: inherit;" onmouseover="this.style.borderColor='#4f46e5'; this.style.boxShadow='0 0 0 3px rgba(79, 70, 229, 0.1)'" onmouseout="this.style.borderColor='#e5e7eb'; this.style.boxShadow='none'">
+              </div>
+              <div>
+                <label style="display: block; margin-bottom: 0.5rem; color: #374151; font-weight: 600; font-size: 0.9rem;">Votre email</label>
+                <input type="email" placeholder="votre@email.com" required style="width: 100%; padding: 0.8rem 1rem; border: 2px solid #e5e7eb; border-radius: 10px; font-size: 0.9rem; transition: all 0.3s ease; font-family: inherit;" onmouseover="this.style.borderColor='#4f46e5'; this.style.boxShadow='0 0 0 3px rgba(79, 70, 229, 0.1)'" onmouseout="this.style.borderColor='#e5e7eb'; this.style.boxShadow='none'">
+              </div>
+              <div style="display: flex; align-items: center; gap: 0.5rem; margin-top: 0.5rem;">
+                <input type="checkbox" id="agreeNewsletter" required style="width: 18px; height: 18px; cursor: pointer; accent-color: #4f46e5;">
+                <label for="agreeNewsletter" style="color: #6b7280; font-size: 0.85rem; margin: 0; cursor: pointer;">J'accepte de recevoir des emails marketing</label>
+              </div>
+              <button type="submit" style="padding: 0.9rem 2rem; background: linear-gradient(135deg, #4f46e5 0%, #7c3aed 100%); color: white; border: none; border-radius: 10px; font-weight: 700; font-size: 0.95rem; cursor: pointer; transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1); position: relative; overflow: hidden;" onmouseover="this.style.transform='translateY(-2px)'; this.style.boxShadow='0 12px 30px rgba(79, 70, 229, 0.3)'" onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='none'">
+                <span style="position: relative; z-index: 2;">S'inscrire à la newsletter</span>
+              </button>
+              <p style="text-align: center; color: #9ca3af; font-size: 0.8rem; margin: 0; margin-top: 0.5rem;">Nous respectons votre vie privée. Désinscription facile.</p>
+            </form>
+            <div id="newsletterSuccess" class="d-none" style="text-align: center; padding: 1.5rem; background: rgba(16, 185, 129, 0.1); border-radius: 10px; color: #059669; font-weight: 600;">
+              <i class="bi bi-check-circle-fill" style="font-size: 1.5rem; margin-right: 0.5rem;"></i>
+              Merci ! Bienvenue dans notre communauté
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Enhanced Footer -->
+  <footer style="background: linear-gradient(135deg, #1f2937 0%, #111827 100%); color: #f3f4f6; padding-top: 3rem; padding-bottom: 1.5rem;">
+    <div class="container">
+      <div class="row mb-5">
+        <!-- Brand Section -->
+        <div class="col-md-3 mb-4">
+          <h6 class="fw-bold mb-3" style="color: #60a5fa; font-size: 18px;">
+            <i class="bi bi-paw-fill" style="color: #4f46e5;"></i> Pet's Heaven
+          </h6>
+          <p style="color: #d1d5db; font-size: 14px; line-height: 1.6;">
+            Votre plateforme complète pour prendre soin de vos animaux de compagnie.
+          </p>
+          <div style="display: flex; gap: 0.75rem;">
+            <a href="#" class="text-decoration-none" style="color: #60a5fa; transition: 0.3s;">
+              <i class="bi bi-facebook" style="font-size: 18px;"></i>
+            </a>
+            <a href="#" class="text-decoration-none" style="color: #ec4899; transition: 0.3s;">
+              <i class="bi bi-instagram" style="font-size: 18px;"></i>
+            </a>
+            <a href="#" class="text-decoration-none" style="color: #10b981; transition: 0.3s;">
+              <i class="bi bi-whatsapp" style="font-size: 18px;"></i>
+            </a>
+            <a href="#" class="text-decoration-none" style="color: #06b6d4; transition: 0.3s;">
+              <i class="bi bi-twitter" style="font-size: 18px;"></i>
+            </a>
+          </div>
+        </div>
+
+        <!-- Quick Links -->
+        <div class="col-md-3 mb-4">
+          <h6 class="fw-bold mb-3" style="color: #60a5fa;">Navigation</h6>
+          <ul class="list-unstyled" style="font-size: 14px;">
+            <li class="mb-2">
+              <a href="products.html" class="text-decoration-none" style="color: #d1d5db; transition: 0.3s;">
+                <i class="bi bi-box-fill" style="color: #f59e0b; margin-right: 0.5rem;"></i>Nos Produits
+              </a>
+            </li>
+            <li class="mb-2">
+              <a href="vets.html" class="text-decoration-none" style="color: #d1d5db; transition: 0.3s;">
+                <i class="bi bi-hospital" style="color: #f59e0b; margin-right: 0.5rem;"></i>Vétérinaires
+              </a>
+            </li>
+            <li class="mb-2">
+              <a href="rdv.html" class="text-decoration-none" style="color: #d1d5db; transition: 0.3s;">
+                <i class="bi bi-calendar-check" style="color: #f59e0b; margin-right: 0.5rem;"></i>Rendez-vous
+              </a>
+            </li>
+            <li class="mb-2">
+              <a href="pets.html" class="text-decoration-none" style="color: #d1d5db; transition: 0.3s;">
+                <i class="bi bi-heart-fill" style="color: #f59e0b; margin-right: 0.5rem;"></i>Mes Animaux
+              </a>
+            </li>
+          </ul>
+        </div>
+
+        <!-- Company Info -->
+        <div class="col-md-3 mb-4">
+          <h6 class="fw-bold mb-3" style="color: #60a5fa;">Informations</h6>
+          <ul class="list-unstyled" style="font-size: 14px;">
+            <li class="mb-2">
+              <a href="#" class="text-decoration-none" style="color: #d1d5db; transition: 0.3s;">
+                <i class="bi bi-question-circle" style="color: #f59e0b; margin-right: 0.5rem;"></i>À Propos
+              </a>
+            </li>
+            <li class="mb-2">
+              <a href="#" class="text-decoration-none" style="color: #d1d5db; transition: 0.3s;">
+                <i class="bi bi-shield-check" style="color: #f59e0b; margin-right: 0.5rem;"></i>Confidentialité
+              </a>
+            </li>
+            <li class="mb-2">
+              <a href="#" class="text-decoration-none" style="color: #d1d5db; transition: 0.3s;">
+                <i class="bi bi-file-text" style="color: #f59e0b; margin-right: 0.5rem;"></i>Conditions
+              </a>
+            </li>
+            <li class="mb-2">
+              <a href="#" class="text-decoration-none" style="color: #d1d5db; transition: all 0.3s ease; padding: 0.4rem 0;" onmouseover="this.style.color='#60a5fa'; this.style.transform='translateX(4px)'" onmouseout="this.style.color='#d1d5db'; this.style.transform='translateX(0)'">
+                <i class="bi bi-chat-dots" style="color: #f59e0b; margin-right: 0.5rem;"></i>FAQ
+              </a>
+            </li>
+          </ul>
+        </div>
+
+        <!-- Contact Info -->
+        <div class="col-md-3 mb-4">
+          <h6 class="fw-bold mb-3" style="color: #60a5fa; font-size: 1rem; letter-spacing: 0.5px;">Nous Contacter</h6>
+          <div style="font-size: 0.9rem; line-height: 2;">
+            <p class="mb-2">
+              <i class="bi bi-envelope-fill" style="color: #f59e0b; margin-right: 0.6rem; font-size: 1.1rem;"></i>
+              <a href="mailto:support@petheaven.ma" class="text-decoration-none" style="color: #d1d5db; transition: all 0.3s ease;" onmouseover="this.style.color='#60a5fa'" onmouseout="this.style.color='#d1d5db'">
+                support@petheaven.ma
+              </a>
+            </p>
+            <p class="mb-2">
+              <i class="bi bi-whatsapp" style="color: #10b981; margin-right: 0.6rem; font-size: 1.1rem;"></i>
+              <a href="https://wa.me/212612345678" class="text-decoration-none" style="color: #d1d5db; transition: all 0.3s ease;" onmouseover="this.style.color='#10b981'" onmouseout="this.style.color='#d1d5db'">
+                +212 6 12 34 56 78
+              </a>
+            </p>
+            <p class="mb-2">
+              <i class="bi bi-telephone-fill" style="color: #ec4899; margin-right: 0.6rem; font-size: 1.1rem;"></i>
+              <span style="color: #d1d5db;">+212 5 22 34 56 78</span>
+            </p>
+            <p class="mb-0">
+              <i class="bi bi-geo-alt-fill" style="color: #06b6d4; margin-right: 0.6rem; font-size: 1.1rem;"></i>
+              <span style="color: #d1d5db;">Casablanca, Maroc</span>
+            </p>
+          </div>
+        </div>
+
+        <!-- Social & Extras -->
+        <div class="col-md-3 mb-4">
+          <h6 class="fw-bold mb-3" style="color: #60a5fa; font-size: 1rem; letter-spacing: 0.5px;">Nous Suivre</h6>
+          <div style="display: flex; gap: 0.8rem; flex-wrap: wrap;">
+            <a href="#" class="text-decoration-none" style="width: 40px; height: 40px; border-radius: 10px; background: rgba(96, 165, 250, 0.1); color: #60a5fa; display: flex; align-items: center; justify-content: center; transition: all 0.3s ease; border: 1px solid rgba(96, 165, 250, 0.2);" onmouseover="this.style.background='rgba(96, 165, 250, 0.2)'; this.style.transform='translateY(-4px)'; this.style.boxShadow='0 8px 20px rgba(96, 165, 250, 0.2)'" onmouseout="this.style.background='rgba(96, 165, 250, 0.1)'; this.style.transform='translateY(0)'; this.style.boxShadow='none'">
+              <i class="bi bi-facebook"></i>
+            </a>
+            <a href="#" class="text-decoration-none" style="width: 40px; height: 40px; border-radius: 10px; background: rgba(236, 72, 153, 0.1); color: #ec4899; display: flex; align-items: center; justify-content: center; transition: all 0.3s ease; border: 1px solid rgba(236, 72, 153, 0.2);" onmouseover="this.style.background='rgba(236, 72, 153, 0.2)'; this.style.transform='translateY(-4px)'; this.style.boxShadow='0 8px 20px rgba(236, 72, 153, 0.2)'" onmouseout="this.style.background='rgba(236, 72, 153, 0.1)'; this.style.transform='translateY(0)'; this.style.boxShadow='none'">
+              <i class="bi bi-instagram"></i>
+            </a>
+            <a href="#" class="text-decoration-none" style="width: 40px; height: 40px; border-radius: 10px; background: rgba(16, 185, 129, 0.1); color: #10b981; display: flex; align-items: center; justify-content: center; transition: all 0.3s ease; border: 1px solid rgba(16, 185, 129, 0.2);" onmouseover="this.style.background='rgba(16, 185, 129, 0.2)'; this.style.transform='translateY(-4px)'; this.style.boxShadow='0 8px 20px rgba(16, 185, 129, 0.2)'" onmouseout="this.style.background='rgba(16, 185, 129, 0.1)'; this.style.transform='translateY(0)'; this.style.boxShadow='none'">
+              <i class="bi bi-whatsapp"></i>
+            </a>
+            <a href="#" class="text-decoration-none" style="width: 40px; height: 40px; border-radius: 10px; background: rgba(79, 70, 229, 0.1); color: #4f46e5; display: flex; align-items: center; justify-content: center; transition: all 0.3s ease; border: 1px solid rgba(79, 70, 229, 0.2);" onmouseover="this.style.background='rgba(79, 70, 229, 0.2)'; this.style.transform='translateY(-4px)'; this.style.boxShadow='0 8px 20px rgba(79, 70, 229, 0.2)'" onmouseout="this.style.background='rgba(79, 70, 229, 0.1)'; this.style.transform='translateY(0)'; this.style.boxShadow='none'">
+              <i class="bi bi-linkedin"></i>
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Divider -->
+      <hr style="border-color: #374151; margin: 2.5rem 0; opacity: 0.5;">
+
+      <!-- Copyright & Legal -->
+      <div class="row align-items-center">
+        <div class="col-md-6">
+          <p style="color: #9ca3af; font-size: 0.85rem; margin-bottom: 0.5rem; line-height: 1.6;">
+            © 2025 <strong style="color: #e5e7eb;">Pet's Heaven Morocco</strong>. Tous droits réservés. <br>
+            <small style="opacity: 0.7;">Plateforme de bien-être animal | Services vétérinaires intégrés</small>
+          </p>
+        </div>
+        <div class="col-md-6 text-md-end">
+          <div style="display: flex; justify-content: flex-end; gap: 1.5rem; flex-wrap: wrap; color: #9ca3af; font-size: 0.85rem;">
+            <a href="#" class="text-decoration-none" style="color: #9ca3af; transition: all 0.3s ease;" onmouseover="this.style.color='#60a5fa'" onmouseout="this.style.color='#9ca3af'">Politique de confidentialité</a>
+            <a href="#" class="text-decoration-none" style="color: #9ca3af; transition: all 0.3s ease;" onmouseover="this.style.color='#60a5fa'" onmouseout="this.style.color='#9ca3af'">Conditions d'utilisation</a>
+            <span>
+              Conçu avec <i class="bi bi-heart-fill" style="color: #ef4444; margin: 0 0.3rem; animation: pulse 2s infinite;"></i> pour vos compagnons
+            </span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- MODALES AUTH -->
+  <!-- LOGIN MODAL PREMIUM -->
+  <div class="modal fade" id="loginModal" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" style="max-width: 420px;">
+      <div class="modal-content border-0 rounded-4" style="box-shadow: 0 20px 60px rgba(79, 70, 229, 0.25);">
+        <div class="modal-header border-0 p-0" style="background: linear-gradient(135deg, #4f46e5 0%, #7c3aed 100%); border-radius: 1.5rem 1.5rem 0 0; position: relative; overflow: hidden; min-height: 160px; display: flex; align-items: center; justify-content: center; flex-direction: column;">
+          <div style="position: absolute; top: -50%; right: -50%; width: 300px; height: 300px; background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, transparent 70%); border-radius: 50%; animation: float 8s infinite ease-in-out;"></div>
+          <button type="button" class="btn-close btn-close-white position-absolute top-0 end-0 m-3" data-bs-dismiss="modal" style="z-index: 10;"></button>
+          <div style="position: relative; z-index: 5; text-align: center;">
+            <div style="width: 80px; height: 80px; margin: 0 auto 12px; background: white; border-radius: 16px; padding: 6px; box-shadow: 0 10px 30px rgba(0,0,0,0.2);"><img src="assets/images/Logo12.jpg" alt="Logo" style="width: 100%; height: 100%; object-fit: cover; border-radius: 10px;"></div>
+            <h5 class="modal-title fw-bold text-white mb-1" style="font-size: 1.3rem;">S'identifier</h5>
+            <p class="text-white-50 small mb-0">Accédez à votre compte</p>
+          </div>
+        </div>
+        <form id="loginForm" class="modal-body p-5">
+          <div class="mb-4"><label class="form-label fw-600 mb-2" style="color: #374151; font-size: 0.9rem;">Email</label><div style="position: relative;"><i class="bi bi-envelope" style="position: absolute; left: 13px; top: 12px; color: #9ca3af; font-size: 1rem;"></i><input type="email" class="form-control" id="loginEmail" required style="padding-left: 40px; border: 2px solid #e5e7eb; border-radius: 10px; transition: all 0.3s ease; font-size: 0.9rem;" placeholder="votre@email.com"></div></div>
+          <div class="mb-2"><label class="form-label fw-600 mb-2" style="color: #374151; font-size: 0.9rem;">Mot de passe</label><div style="position: relative;"><i class="bi bi-lock" style="position: absolute; left: 13px; top: 12px; color: #9ca3af; font-size: 1rem;"></i><input type="password" class="form-control" id="loginPassword" minlength="4" required style="padding-left: 40px; border: 2px solid #e5e7eb; border-radius: 10px; transition: all 0.3s ease; font-size: 0.9rem;" placeholder="••••••••"></div></div>
+          <div class="form-text small mb-4">Minimum 4 caractères</div>
+          <div class="alert alert-danger d-none mb-4 border-0 rounded-2" id="loginError" style="background: rgba(239, 68, 68, 0.1); color: #dc2626; padding: 10px 12px; font-size: 0.85rem;"><i class="bi bi-exclamation-circle me-2"></i>Identifiants invalides</div>
+          <button type="submit" class="btn w-100 fw-700" style="background: linear-gradient(135deg, #4f46e5 0%, #7c3aed 100%); color: white; padding: 11px; border-radius: 10px; border: none; transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1); box-shadow: 0 4px 12px rgba(79, 70, 229, 0.2); font-size: 0.9rem;" onmouseover="this.style.transform='translateY(-2px)'; this.style.boxShadow='0 8px 25px rgba(79, 70, 229, 0.35)'" onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='0 4px 12px rgba(79, 70, 229, 0.2)'" ><i class="bi bi-box-arrow-in-right me-2"></i>Connexion</button>
+          <div style="text-align: center; margin-top: 18px; padding-top: 16px; border-top: 1px solid #e5e7eb;"><p class="text-muted small mb-0">Nouveau? <a href="#" data-bs-dismiss="modal" data-bs-toggle="modal" data-bs-target="#signupModal" style="color: #4f46e5; font-weight: 600; text-decoration: none;">Créer un compte</a></p></div>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <!-- SIGNUP MODAL PREMIUM -->
+  <div class="modal fade" id="signupModal" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" style="max-width: 420px;">
+      <div class="modal-content border-0 rounded-4" style="box-shadow: 0 20px 60px rgba(124, 58, 237, 0.25);">
+        <div class="modal-header border-0 p-0" style="background: linear-gradient(135deg, #7c3aed 0%, #d946ef 100%); border-radius: 1.5rem 1.5rem 0 0; position: relative; overflow: hidden; min-height: 160px; display: flex; align-items: center; justify-content: center; flex-direction: column;">
+          <div style="position: absolute; top: -50%; right: -50%; width: 300px; height: 300px; background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, transparent 70%); border-radius: 50%; animation: float 8s infinite ease-in-out;"></div>
+          <button type="button" class="btn-close btn-close-white position-absolute top-0 end-0 m-3" data-bs-dismiss="modal" style="z-index: 10;"></button>
+          <div style="position: relative; z-index: 5; text-align: center;">
+            <div style="width: 80px; height: 80px; margin: 0 auto 12px; background: white; border-radius: 16px; padding: 6px; box-shadow: 0 10px 30px rgba(0,0,0,0.2);"><img src="assets/images/Logo12.jpg" alt="Logo" style="width: 100%; height: 100%; object-fit: cover; border-radius: 10px;"></div>
+            <h5 class="modal-title fw-bold text-white mb-1" style="font-size: 1.3rem;">Créer un compte</h5>
+            <p class="text-white-50 small mb-0">Rejoignez Pet's Heaven</p>
+          </div>
+        </div>
+        <form id="signupForm" class="modal-body p-5">
+          <div class="mb-4"><label class="form-label fw-600 mb-2" style="color: #374151; font-size: 0.9rem;">Nom Complet</label><div style="position: relative;"><i class="bi bi-person" style="position: absolute; left: 13px; top: 12px; color: #9ca3af; font-size: 1rem;"></i><input type="text" class="form-control" id="signupName" required style="padding-left: 40px; border: 2px solid #e5e7eb; border-radius: 10px; transition: all 0.3s ease; font-size: 0.9rem;" placeholder="Votre nom"></div></div>
+          <div class="mb-4"><label class="form-label fw-600 mb-2" style="color: #374151; font-size: 0.9rem;">Type de compte</label><div style="display: flex; gap: 12px; margin-bottom: 16px;"><label style="flex: 1; cursor: pointer;"><input type="radio" name="accountType" value="client" checked style="margin-right: 8px;"><span style="color: #374151; font-weight: 500;">Client</span></label><label style="flex: 1; cursor: pointer;"><input type="radio" name="accountType" value="vet" style="margin-right: 8px;"><span style="color: #374151; font-weight: 500;">Vétérinaire</span></label></div></div>
+          <div class="mb-4"><label class="form-label fw-600 mb-2" style="color: #374151; font-size: 0.9rem;">Email</label><div style="position: relative;"><i class="bi bi-envelope" style="position: absolute; left: 13px; top: 12px; color: #9ca3af; font-size: 1rem;"></i><input type="email" class="form-control" id="signupEmail" required style="padding-left: 40px; border: 2px solid #e5e7eb; border-radius: 10px; transition: all 0.3s ease; font-size: 0.9rem;" placeholder="votre@email.com"></div></div>
+          <div class="mb-2"><label class="form-label fw-600 mb-2" style="color: #374151; font-size: 0.9rem;">Mot de passe</label><div style="position: relative;"><i class="bi bi-lock" style="position: absolute; left: 13px; top: 12px; color: #9ca3af; font-size: 1rem;"></i><input type="password" class="form-control" id="signupPassword" minlength="4" required style="padding-left: 40px; border: 2px solid #e5e7eb; border-radius: 10px; transition: all 0.3s ease; font-size: 0.9rem;" placeholder="••••••••"></div></div>
+          <div class="form-text small mb-4">Minimum 4 caractères</div>
+          <div class="alert alert-danger d-none mb-4 border-0 rounded-2" id="signupError" style="background: rgba(239, 68, 68, 0.1); color: #dc2626; padding: 10px 12px; font-size: 0.85rem;"><i class="bi bi-exclamation-circle me-2"></i>Email déjà utilisé</div>
+          <div class="form-check mb-4"><input class="form-check-input" type="checkbox" id="agreeTermsSignup" required style="border: 2px solid #e5e7eb; cursor: pointer; width: 18px; height: 18px;"><label class="form-check-label small" for="agreeTermsSignup" style="color: #6b7280; margin-left: 6px;">J'accepte les <a href="#" style="color: #7c3aed; text-decoration: none; font-weight: 600;">conditions</a></label></div>
+          <button type="submit" class="btn w-100 fw-700" style="background: linear-gradient(135deg, #7c3aed 0%, #d946ef 100%); color: white; padding: 11px; border-radius: 10px; border: none; transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1); box-shadow: 0 4px 12px rgba(124, 58, 237, 0.2); font-size: 0.9rem;" onmouseover="this.style.transform='translateY(-2px)'; this.style.boxShadow='0 8px 25px rgba(124, 58, 237, 0.35)'" onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='0 4px 12px rgba(124, 58, 237, 0.2)'" ><i class="bi bi-person-plus me-2"></i>S'inscrire</button>
+          <div style="text-align: center; margin-top: 18px; padding-top: 16px; border-top: 1px solid #e5e7eb;"><p class="text-muted small mb-0">Déjà inscrit? <a href="#" data-bs-dismiss="modal" data-bs-toggle="modal" data-bs-target="#loginModal" style="color: #7c3aed; font-weight: 600; text-decoration: none;">Se connecter</a></p></div>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <!-- Payment Modal PREMIUM -->
+  <div class="modal fade" id="paymentModal" tabindex="-1">
+    <div class="modal-dialog modal-dialog-centered modal-lg">
+      <div class="modal-content border-0 rounded-4" style="box-shadow: 0 25px 75px rgba(79, 70, 229, 0.15); overflow: hidden;">
+        <!-- Header Premium -->
+        <div class="modal-header border-0 p-0" style="background: linear-gradient(135deg, #4f46e5 0%, #7c3aed 100%); color: white; min-height: 120px; display: flex; align-items: center; justify-content: space-between; padding: 30px!important; position: relative; overflow: hidden;">
+          <div style="position: absolute; top: -50%; right: -50%; width: 300px; height: 300px; background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, transparent 70%); border-radius: 50%; animation: float 8s infinite ease-in-out;"></div>
+          <div style="position: relative; z-index: 5;">
+            <h5 class="modal-title fw-bold mb-1" style="font-size: 1.3rem;">Finaliser l'abonnement</h5>
+            <p class="small text-white-50 mb-0">Sélectionnez votre mode de paiement</p>
+          </div>
+          <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" style="position: relative; z-index: 5;"></button>
+        </div>
+
+        <div class="modal-body p-5">
+          <!-- Plan Info Card -->
+          <div class="card border-0 mb-5" style="background: linear-gradient(135deg, rgba(79, 70, 229, 0.05) 0%, rgba(124, 58, 237, 0.05) 100%); border-radius: 16px;">
+            <div class="card-body p-4">
+              <div class="d-flex justify-content-between align-items-center">
+                <div>
+                  <h6 class="text-muted mb-1" style="font-size: 0.8rem; text-transform: uppercase; letter-spacing: 0.5px;">Plan sélectionné</h6>
+                  <h4 class="fw-bold mb-1" id="paymentPlanName">Plus</h4>
+                  <p class="text-muted small mb-0" id="paymentPlanDesc">12% de réduction</p>
+                </div>
+                <div class="text-end">
+                  <h3 class="fw-bold mb-0"><span id="paymentAmount">100</span> <span style="font-size: 1.2rem;">DH</span></h3>
+                  <p class="text-muted small mb-0">/mois</p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Payment Methods -->
+          <h6 class="fw-bold mb-3">Mode de paiement</h6>
+          <div class="row g-3 mb-4">
+            <div class="col-md-6"><div class="card border-2 payment-method" data-method="card" style="cursor: pointer; border-color: #e5e7eb; transition: all 0.3s ease; border-radius: 12px;"><div class="card-body text-center p-4"><i class="bi bi-credit-card" style="font-size: 2rem; color: #4f46e5; margin-bottom: 10px; display: block;"></i><h6 class="fw-bold small mb-1">Carte Bancaire</h6><p class="text-muted small mb-0">Visa, MC, Amex</p></div></div></div>
+            <div class="col-md-6"><div class="card border-2 payment-method" data-method="mobile" style="cursor: pointer; border-color: #e5e7eb; transition: all 0.3s ease; border-radius: 12px;"><div class="card-body text-center p-4"><i class="bi bi-phone" style="font-size: 2rem; color: #f59e0b; margin-bottom: 10px; display: block;"></i><h6 class="fw-bold small mb-1">Portefeuille</h6><p class="text-muted small mb-0">Maroc Telecom</p></div></div></div>
+            <div class="col-md-6"><div class="card border-2 payment-method" data-method="transfer" style="cursor: pointer; border-color: #e5e7eb; transition: all 0.3s ease; border-radius: 12px;"><div class="card-body text-center p-4"><i class="bi bi-bank" style="font-size: 2rem; color: #10b981; margin-bottom: 10px; display: block;"></i><h6 class="fw-bold small mb-1">Virement</h6><p class="text-muted small mb-0">Compte bancaire</p></div></div></div>
+            <div class="col-md-6"><div class="card border-2 payment-method" data-method="cash" style="cursor: pointer; border-color: #e5e7eb; transition: all 0.3s ease; border-radius: 12px;"><div class="card-body text-center p-4"><i class="bi bi-cash-coin" style="font-size: 2rem; color: #ef4444; margin-bottom: 10px; display: block;"></i><h6 class="fw-bold small mb-1">À la livraison</h6><p class="text-muted small mb-0">Paiement en espèces</p></div></div></div>
+          </div>
+
+          <!-- Form Container -->
+          <div id="paymentFormContainer" class="mb-4"></div>
+
+          <!-- Terms Checkbox -->
+          <div class="form-check mb-0" style="padding: 14px; background: rgba(79, 70, 229, 0.05); border-radius: 10px; margin-bottom: 20px!important;">
+            <input class="form-check-input" type="checkbox" id="agreeTerms" required style="border: 2px solid #e5e7eb; width: 18px; height: 18px; cursor: pointer;">
+            <label class="form-check-label small" for="agreeTerms" style="color: #6b7280; margin-left: 10px; cursor: pointer;">
+              J'accepte les <a href="#" style="color: #4f46e5; text-decoration: none; font-weight: 600;">conditions</a> et <a href="#" style="color: #4f46e5; text-decoration: none; font-weight: 600;">politique de confidentialité</a>
+            </label>
+          </div>
+        </div>
+
+        <!-- Footer -->
+        <div class="modal-footer border-top p-4" style="background: #f9fafb;">
+          <button type="button" class="btn btn-light fw-600" data-bs-dismiss="modal" style="border: 1px solid #e5e7eb; color: #374151;">Annuler</button>
+          <button type="button" class="btn fw-700" id="confirmPaymentBtn" disabled style="background: linear-gradient(135deg, #4f46e5 0%, #7c3aed 100%); color: white; transition: all 0.3s ease; box-shadow: 0 4px 12px rgba(79, 70, 229, 0.2);" onmouseover="if(!this.disabled) { this.style.boxShadow='0 8px 25px rgba(79, 70, 229, 0.35)'; this.style.transform='translateY(-2px)'; }" onmouseout="if(!this.disabled) { this.style.boxShadow='0 4px 12px rgba(79, 70, 229, 0.2)'; this.style.transform='translateY(0)'; }">
+            <i class="bi bi-lock-fill me-2"></i>Confirmer
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Scripts -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="assets/js/script.js"></script>
+
+  <style>
+    .text-light-75 {
+      color: rgba(255, 255, 255, 0.75);
+      transition: color 0.3s ease;
+    }
+
+    .text-light-75:hover {
+      color: white;
+    }
+
+    .bg-light-25 {
+      background: rgba(255, 255, 255, 0.25);
+    }
+  </style>
+
+  <!-- Dynamic Carousel Script -->
+  <script>
+    // Animation des compteurs
+    function animateCounters() {
+      const counters = document.querySelectorAll('.stat-counter');
+      const observerOptions = {
+        threshold: 0.5,
+        rootMargin: '0px'
+      };
+
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting && !entry.target.hasAttribute('data-animated')) {
+            const target = parseInt(entry.target.getAttribute('data-target'));
+            const duration = 2000; // 2 secondes
+            const start = Date.now();
+
+            entry.target.setAttribute('data-animated', 'true');
+
+            const animate = () => {
+              const now = Date.now();
+              const progress = Math.min((now - start) / duration, 1);
+              const value = Math.floor(progress * target);
+              entry.target.textContent = value;
+
+              if (progress < 1) {
+                requestAnimationFrame(animate);
+              } else {
+                entry.target.textContent = target;
+              }
+            };
+
+            animate();
+          }
+        });
+      }, observerOptions);
+
+      counters.forEach(counter => observer.observe(counter));
+    }
+
+    let isAnimating = false;
+    let currentIndex = 0;
+    
+    function scrollCarousel(direction) {
+      if (isAnimating) return;
+      isAnimating = true;
+      
+      const container = document.getElementById('partnersContainer');
+      const items = Array.from(container.querySelectorAll('.partners-carousel-item'));
+      
+      if (direction === 'right') {
+        // Défilement vers la droite (suivant)
+        currentIndex = (currentIndex + 1) % items.length;
+      } else {
+        // Défilement vers la gauche (précédent)
+        currentIndex = (currentIndex - 1 + items.length) % items.length;
+      }
+      
+      // Calculer la largeur réelle de l'item
+      const itemWidth = items[0].offsetWidth;
+      const computedStyle = window.getComputedStyle(container);
+      const gap = parseFloat(computedStyle.gap) || 32;
+      const scrollDistance = (itemWidth + gap) * currentIndex;
+      
+      container.style.transition = 'transform 0.6s cubic-bezier(0.4, 0, 0.2, 1)';
+      container.style.transform = `translateX(-${scrollDistance}px)`;
+      
+      setTimeout(() => {
+        isAnimating = false;
+      }, 600);
+    }
+    
+    // Initialiser le carrousel et les compteurs au chargement
+    window.addEventListener('load', () => {
+      const container = document.getElementById('partnersContainer');
+      if (container) {
+        container.style.transition = 'transform 0.6s cubic-bezier(0.4, 0, 0.2, 1)';
+      }
+      animateCounters();
+    });
+
+    // Aussi initialiser sur DOMContentLoaded
+    document.addEventListener('DOMContentLoaded', animateCounters);
+  </script>
+</body>
+</html>

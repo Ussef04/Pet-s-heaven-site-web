@@ -1,0 +1,347 @@
+/* ====== VARIABLES & BASE STYLES ====== */
+:root {
+  --primary: #667eea;
+  --secondary: #764ba2;
+  --accent: #f093fb;
+  --success: #10b981;
+  --danger: #ef4444;
+  --warning: #f59e0b;
+  --dark: #1a1a2e;
+  --light: #f8f9fa;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  color: #333;
+  line-height: 1.6;
+}
+
+/* ====== ANIMATIONS ====== */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes slideInRight {
+  from {
+    opacity: 0;
+    transform: translateX(-50px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-20px);
+  }
+}
+
+@keyframes pulse {
+  0%, 100% {
+    box-shadow: 0 0 0 0 rgba(102, 126, 234, 0.7);
+  }
+  50% {
+    box-shadow: 0 0 0 10px rgba(102, 126, 234, 0);
+  }
+}
+
+@keyframes glow {
+  0%, 100% {
+    text-shadow: 0 0 5px rgba(240, 147, 251, 0.5);
+  }
+  50% {
+    text-shadow: 0 0 20px rgba(240, 147, 251, 1);
+  }
+}
+
+@keyframes shimmer {
+  0% {
+    background-position: -1000px 0;
+  }
+  100% {
+    background-position: 1000px 0;
+  }
+}
+
+.animate-fade-in {
+  animation: fadeInUp 0.8s ease-out both;
+  animation-delay: calc(var(--delay, 0) * 1s);
+}
+
+.animate-slide-right {
+  animation: slideInRight 0.8s ease-out both;
+}
+
+/* ====== HERO SECTION ====== */
+.hero-section {
+  position: relative;
+  overflow: hidden;
+}
+
+.animated-bg {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: 
+    radial-gradient(circle at 20% 50%, rgba(240, 147, 251, 0.3) 0%, transparent 50%),
+    radial-gradient(circle at 80% 80%, rgba(102, 126, 234, 0.3) 0%, transparent 50%);
+  animation: shimmer 15s linear infinite;
+  z-index: 1;
+}
+
+.floating-card {
+  position: relative;
+  animation: float 3s ease-in-out infinite;
+}
+
+/* ====== FEATURE CARDS ====== */
+.feature-card {
+  background: white;
+  border: 2px solid #e5e7eb;
+  border-radius: 20px;
+  padding: 30px;
+  transition: all 0.3s ease;
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
+}
+
+.feature-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(135deg, var(--primary), var(--accent));
+  transition: left 0.3s ease;
+  z-index: -1;
+}
+
+.feature-card:hover {
+  transform: translateY(-10px);
+  border-color: transparent;
+  color: white;
+  box-shadow: 0 20px 40px rgba(102, 126, 234, 0.2);
+}
+
+.feature-card:hover::before {
+  left: 0;
+}
+
+.feature-icon {
+  font-size: 3rem;
+  text-align: center;
+  animation: pulse 2s infinite;
+}
+
+/* ====== PRICING CARDS ====== */
+.pricing-card {
+  background: white;
+  border: 2px solid #e5e7eb;
+  border-radius: 20px;
+  padding: 30px;
+  transition: all 0.3s ease;
+  position: relative;
+  text-align: center;
+}
+
+.pricing-card:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 20px 50px rgba(102, 126, 234, 0.15);
+  border-color: var(--primary);
+}
+
+.pricing-card.popular {
+  border: 2px solid var(--primary);
+  background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+  color: white;
+  transform: scale(1.05);
+}
+
+.pricing-card.popular .btn-primary {
+  background: white;
+  color: var(--primary);
+  border: none;
+}
+
+.pricing-card.popular .btn-primary:hover {
+  background: #f0f0f0;
+}
+
+/* ====== TESTIMONIAL CARDS ====== */
+.testimonial-card {
+  background: white;
+  border: 2px solid #e5e7eb;
+  border-radius: 15px;
+  padding: 25px;
+  transition: all 0.3s ease;
+}
+
+.testimonial-card:hover {
+  box-shadow: 0 15px 40px rgba(102, 126, 234, 0.1);
+  border-color: var(--primary);
+  transform: translateY(-5px);
+}
+
+/* ====== NAVBAR CUSTOM ====== */
+.navbar {
+  box-shadow: 0 2px 20px rgba(0, 0, 0, 0.1);
+}
+
+.navbar-brand {
+  letter-spacing: 1px;
+  transition: all 0.3s ease;
+}
+
+.navbar-brand:hover {
+  animation: glow 1s ease-in-out;
+}
+
+/* ====== BUTTONS ====== */
+.btn {
+  border-radius: 10px;
+  font-weight: 600;
+  transition: all 0.3s ease;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  font-size: 0.9rem;
+}
+
+.btn-primary {
+  background: linear-gradient(135deg, var(--primary), var(--secondary));
+  border: none;
+}
+
+.btn-primary:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 25px rgba(102, 126, 234, 0.3);
+}
+
+.btn-outline-primary {
+  border: 2px solid var(--primary);
+  color: var(--primary);
+}
+
+.btn-outline-primary:hover {
+  background: var(--primary);
+  color: white;
+  border-color: var(--primary);
+}
+
+/* ====== RESPONSIVE ====== */
+@media (max-width: 768px) {
+  .display-3 {
+    font-size: 2rem;
+  }
+
+  .display-4 {
+    font-size: 2.5rem;
+  }
+
+  .pricing-card.popular {
+    transform: scale(1);
+  }
+
+  .feature-card {
+    padding: 20px;
+  }
+}
+
+/* ====== UTILITY CLASSES ====== */
+.bg-gradient {
+  background: linear-gradient(135deg, var(--primary), var(--secondary)) !important;
+}
+
+.text-gradient {
+  background: linear-gradient(135deg, var(--primary), var(--accent));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.shadow-lg {
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.1);
+}
+
+/* ====== FORMS ====== */
+.form-control {
+  border: 2px solid #e5e7eb;
+  border-radius: 10px;
+  padding: 12px 16px;
+  transition: all 0.3s ease;
+  font-size: 1rem;
+}
+
+.form-control:focus {
+  border-color: var(--primary);
+  box-shadow: 0 0 0 0.2rem rgba(102, 126, 234, 0.25);
+}
+
+.form-label {
+  font-weight: 600;
+  margin-bottom: 8px;
+  color: #333;
+}
+
+/* ====== MODAL CUSTOM ====== */
+.modal-content {
+  border: none;
+  border-radius: 20px;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+}
+
+.modal-header {
+  border-bottom: none;
+  border-radius: 20px 20px 0 0;
+}
+
+/* ====== BADGE STYLES ====== */
+.badge {
+  padding: 8px 16px;
+  border-radius: 50px;
+  font-weight: 600;
+  font-size: 0.85rem;
+}
+
+/* ====== SCROLLBAR CUSTOM ====== */
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(135deg, var(--primary), var(--secondary));
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--primary);
+}
