@@ -54,25 +54,14 @@ function redirectUser(userType) {
   if (userType === 'client') {
     console.log('Session client confirmée, redirection vers index.html');
     window.location.href = 'index.html';
-  } else if (userType === 'vet') {
-    console.log('Session vet confirmée, redirection vers vet-dashboard.html');
-    window.location.href = 'vet-dashboard.html';
   }
+  // Les vétérinaires ne sont plus supportés
 }
 
 function openSignupChoice() {
-  // Fermer tout modal ouvert
-  const openModals = document.querySelectorAll('.modal.show');
-  openModals.forEach(modal => {
-    const instance = bootstrap.Modal.getInstance(modal);
-    if (instance) instance.hide();
-  });
-  
-  // Ouvrir le modal de choix après un court délai
-  setTimeout(() => {
-    const choiceModal = new bootstrap.Modal('#signupChoiceModal');
-    choiceModal.show();
-  }, 300);
+  // Appel direct à la modale d'inscription client
+  const signupClientModal = new bootstrap.Modal('#signupClientModal');
+  signupClientModal.show();
 }
 
 // === DOM READY ===
@@ -103,8 +92,47 @@ document.addEventListener('DOMContentLoaded', () => {
 
 // === HERO BUTTONS ===
 function setupHeroButtons() {
-  // Setup choice modal buttons
+  // Setup hero buttons
+  const signupBtnHero = document.getElementById('signupBtnHero');
+  const exploreBtnHero = document.getElementById('exploreBtnHero');
   const signupClientChoiceBtn = document.getElementById('signupClientChoiceBtn');
+  
+  if (signupBtnHero) {
+    signupBtnHero.addEventListener('click', () => {
+      const clientModal = new bootstrap.Modal('#signupClientModal');
+      clientModal.show();
+    });
+    
+    // Add hover effect
+    signupBtnHero.addEventListener('mouseenter', function() {
+      this.style.transform = 'translateY(-4px)';
+      this.style.boxShadow = '0 12px 32px rgba(245, 158, 11, 0.5)';
+    });
+    
+    signupBtnHero.addEventListener('mouseleave', function() {
+      this.style.transform = 'translateY(0)';
+      this.style.boxShadow = '0 8px 24px rgba(245, 158, 11, 0.4)';
+    });
+  }
+  
+  if (exploreBtnHero) {
+    exploreBtnHero.addEventListener('click', () => {
+      window.scrollTo({ top: window.innerHeight, behavior: 'smooth' });
+    });
+    
+    // Add hover effect
+    exploreBtnHero.addEventListener('mouseenter', function() {
+      this.style.background = 'rgba(255, 255, 255, 0.2)';
+      this.style.transform = 'translateY(-4px)';
+      this.style.boxShadow = '0 12px 32px rgba(255, 255, 255, 0.3)';
+    });
+    
+    exploreBtnHero.addEventListener('mouseleave', function() {
+      this.style.background = 'transparent';
+      this.style.transform = 'translateY(0)';
+      this.style.boxShadow = 'none';
+    });
+  }
   
   if (signupClientChoiceBtn) {
     signupClientChoiceBtn.addEventListener('click', () => {
@@ -145,24 +173,6 @@ function setupLoginForm() {
       const modal = bootstrap.Modal.getInstance('#loginModal');
       modal.hide();
       redirectUser('client');
-      return;
-    }
-
-    // Check in vets
-    const vets = loadData(KEY_VETS);
-    const vetMatch = vets.find(v => v.email === email && v.password === password);
-    if (vetMatch) {
-      setSession({
-        type: 'vet',
-        id: vetMatch.id,
-        name: vetMatch.name,
-        email: vetMatch.email,
-        specialty: vetMatch.specialty,
-        clinic: vetMatch.clinic
-      });
-      const modal = bootstrap.Modal.getInstance('#loginModal');
-      modal.hide();
-      redirectUser('vet');
       return;
     }
 
@@ -266,6 +276,110 @@ function scrollCarousel(direction) {
     });
   }
 }
+
+// === ADVANCED SCROLL ANIMATIONS === 
+const observerOptions = {
+  threshold: 0.15,
+  rootMargin: '0px 0px -100px 0px'
+};
+
+const scrollObserver = new IntersectionObserver((entries) => {
+  entries.forEach((entry, index) => {
+    if (entry.isIntersecting) {
+      entry.target.style.opacity = '1';
+      entry.target.style.animation = `slideInUp 0.8s ease-out ${index * 0.1}s forwards`;
+      
+      // Add stagger animation to children
+      const children = entry.target.querySelectorAll('[class*="card"]');
+      children.forEach((child, childIndex) => {
+        child.style.animation = `fadeInScale 0.6s ease-out ${(index * 0.1) + (childIndex * 0.05)}s forwards`;
+      });
+      
+      scrollObserver.unobserve(entry.target);
+    }
+  });
+}, observerOptions);
+
+// Observe all interactive elements when DOM loads
+document.addEventListener('DOMContentLoaded', () => {
+  const cards = document.querySelectorAll('.feature-card, .role-card, .card, section');
+  cards.forEach((card) => {
+    card.style.opacity = '0';
+    scrollObserver.observe(card);
+  });
+
+  // Add smooth scroll behavior for buttons
+  document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+    anchor.addEventListener('click', function (e) {
+      e.preventDefault();
+      const target = document.querySelector(this.getAttribute('href'));
+      if (target) {
+        target.scrollIntoView({
+          behavior: 'smooth',
+          block: 'start'
+        });
+      }
+    });
+  });
+});
+
+// === PARALLAX & SCROLL EFFECTS ===
+let scrollProgress = 0;
+let lastScrollY = 0;
+
+window.addEventListener('scroll', () => {
+  const hero = document.querySelector('[style*="background-image"]');
+  if (hero) {
+    const scrollPosition = window.scrollY;
+    hero.style.backgroundPosition = `center ${scrollPosition * 0.5}px`;
+  }
+
+  // Update scroll progress
+  const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+  scrollProgress = (window.scrollY / docHeight) * 100;
+  lastScrollY = window.scrollY;
+
+  // Add scroll animation to buttons
+  document.querySelectorAll('.btn-hero-primary, .btn-hero-secondary').forEach(btn => {
+    if (lastScrollY > 100) {
+      btn.style.transform = 'scale(1)';
+    }
+  });
+});
+
+// === BUTTON INTERACTION EFFECTS ===
+document.addEventListener('DOMContentLoaded', () => {
+  document.querySelectorAll('button').forEach(button => {
+    button.addEventListener('mouseenter', function() {
+      this.style.transform = 'scale(1.05)';
+    });
+
+    button.addEventListener('mouseleave', function() {
+      this.style.transform = 'scale(1)';
+    });
+
+    button.addEventListener('click', function(e) {
+      // Create ripple effect
+      const rect = this.getBoundingClientRect();
+      const x = e.clientX - rect.left;
+      const y = e.clientY - rect.top;
+
+      const ripple = document.createElement('span');
+      ripple.style.position = 'absolute';
+      ripple.style.width = '20px';
+      ripple.style.height = '20px';
+      ripple.style.background = 'rgba(255, 255, 255, 0.5)';
+      ripple.style.borderRadius = '50%';
+      ripple.style.left = x + 'px';
+      ripple.style.top = y + 'px';
+      ripple.style.pointerEvents = 'none';
+      ripple.style.animation = 'scale-ripple 0.6s ease-out';
+      
+      this.appendChild(ripple);
+      setTimeout(() => ripple.remove(), 600);
+    });
+  });
+});
 
 // === AUTO-REDIRECT IF ALREADY LOGGED IN ===
 // (Merged into main DOMContentLoaded above)

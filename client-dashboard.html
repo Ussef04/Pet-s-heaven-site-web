@@ -232,7 +232,54 @@
       background: var(--primary);
       color: white;
     }
+    /* === BUTTON SIZES === */
+    .btn-sm {
+      padding: 0.4rem 0.8rem;
+      font-size: 0.85rem;
+      transition: all 0.3s ease;
+    }
 
+    .btn-primary-custom.btn-sm:hover,
+    .btn-secondary-custom.btn-sm:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 4px 12px rgba(79, 70, 229, 0.2);
+    }
+
+    .btn-warning {
+      background: linear-gradient(135deg, var(--accent), #fbbf24);
+      color: white;
+      border: none;
+      padding: 0.4rem 0.8rem;
+      font-size: 0.85rem;
+      border-radius: 6px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+
+    .btn-warning:hover {
+      filter: brightness(1.1);
+      transform: translateY(-2px);
+      box-shadow: 0 4px 12px rgba(245, 158, 11, 0.2);
+      color: white;
+    }
+
+    .btn-danger {
+      background: #ef4444;
+      color: white;
+      border: none;
+      padding: 0.4rem 0.8rem;
+      font-size: 0.85rem;
+      border-radius: 6px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+
+    .btn-danger:hover {
+      background: #dc2626;
+      transform: translateY(-2px);
+      box-shadow: 0 4px 12px rgba(239, 68, 68, 0.2);
+      color: white;
+    }
     /* === SECTIONS === */
     .section-appointments,
     .section-products,

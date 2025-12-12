@@ -221,7 +221,13 @@ function loadPets(client) {
             </p>
           </div>
           <div class="col-md-6 text-md-end">
-            <button class="btn btn-sm btn-secondary-custom" onclick="editPet('${pet.id}')">
+            <button class="btn btn-sm btn-primary-custom" onclick="scheduleVetAppointment('${pet.id}', '${pet.name}')">
+              <i class="bi bi-calendar-check me-1"></i>RDV VETO
+            </button>
+            <button class="btn btn-sm btn-secondary-custom" onclick="openHealthRecord('${pet.id}', '${pet.name}')" style="margin-left: 0.5rem;">
+              <i class="bi bi-file-text me-1"></i>CARNET
+            </button>
+            <button class="btn btn-sm btn-warning" onclick="editPet('${pet.id}')" style="margin-left: 0.5rem;">
               <i class="bi bi-pencil me-1"></i>Modifier
             </button>
             <button class="btn btn-sm btn-danger" style="margin-left: 0.5rem;" onclick="deletePet('${pet.id}')">
@@ -363,6 +369,114 @@ function deletePet(petId) {
     }
   }
 }
+
+// === SCHEDULE VET APPOINTMENT ===
+function scheduleVetAppointment(petId, petName) {
+  // Rediriger vers la page RDV avec le pet sélectionné
+  sessionStorage.setItem('selectedPetId', petId);
+  sessionStorage.setItem('selectedPetName', petName);
+  window.location.href = 'rdv.html';
+}
+
+// === OPEN HEALTH RECORD (CARNET) ===
+function openHealthRecord(petId, petName) {
+  const session = getSession();
+  const clients = loadData(KEY_CLIENTS);
+  const client = clients.find(c => c.id === session.id);
+  const pet = client.pets.find(p => p.id === petId);
+  
+  if (!pet) {
+    alert('Animal non trouvé');
+    return;
+  }
+  
+  // Créer le contenu du carnet de santé
+  let healthRecordHTML = `
+    <div style="padding: 2rem; background: white; border-radius: 12px; max-width: 600px; margin: 0 auto;">
+      <h3 style="color: #4f46e5; text-align: center; margin-bottom: 2rem;">
+        <i class="bi bi-file-earmark-medical me-2"></i>Carnet de Santé - ${petName}
+      </h3>
+      
+      <div style="background: #f8fafc; padding: 1.5rem; border-radius: 8px; margin-bottom: 1.5rem;">
+        <h5 style="color: #1f2937; margin-bottom: 1rem;">Informations de l'Animal</h5>
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;">
+          <div>
+            <p style="color: #6b7280; font-size: 0.85rem; margin: 0;">Nom</p>
+            <p style="color: #1f2937; font-weight: 600; margin: 0.25rem 0 0 0;">${pet.name}</p>
+          </div>
+          <div>
+            <p style="color: #6b7280; font-size: 0.85rem; margin: 0;">Âge</p>
+            <p style="color: #1f2937; font-weight: 600; margin: 0.25rem 0 0 0;">${pet.age} ans</p>
+          </div>
+          <div>
+            <p style="color: #6b7280; font-size: 0.85rem; margin: 0;">Race</p>
+            <p style="color: #1f2937; font-weight: 600; margin: 0.25rem 0 0 0;">${pet.breed}</p>
+          </div>
+          <div>
+            <p style="color: #6b7280; font-size: 0.85rem; margin: 0;">Poids</p>
+            <p style="color: #1f2937; font-weight: 600; margin: 0.25rem 0 0 0;">${pet.weight} kg</p>
+          </div>
+        </div>
+      </div>
+      
+      <div style="background: #f8fafc; padding: 1.5rem; border-radius: 8px; margin-bottom: 1.5rem;">
+        <h5 style="color: #1f2937; margin-bottom: 1rem;">Historique Médical</h5>
+        <div id="healthHistory" style="min-height: 100px;">
+          <p style="color: #9ca3af; text-align: center; padding: 2rem 0;">
+            <i class="bi bi-inbox" style="font-size: 2rem; display: block; margin-bottom: 0.5rem;"></i>
+            Aucun historique médical enregistré
+          </p>
+        </div>
+      </div>
+      
+      <div style="background: #f8fafc; padding: 1.5rem; border-radius: 8px;">
+        <h5 style="color: #1f2937; margin-bottom: 1rem;">Vaccinations</h5>
+        <div id="vaccinations" style="min-height: 100px;">
+          <p style="color: #9ca3af; text-align: center; padding: 2rem 0;">
+            <i class="bi bi-shield-check" style="font-size: 2rem; display: block; margin-bottom: 0.5rem;"></i>
+            Aucun vaccin enregistré
+          </p>
+        </div>
+      </div>
+      
+      <div style="margin-top: 2rem; display: flex; gap: 1rem;">
+        <button class="btn btn-primary-custom" style="flex: 1;" onclick="addMedicalRecord('${petId}')">
+          <i class="bi bi-plus me-2"></i>Ajouter un Événement Médical
+        </button>
+        <button class="btn btn-secondary-custom" style="flex: 1;" onclick="closeHealthRecord()">
+          <i class="bi bi-x me-2"></i>Fermer
+        </button>
+      </div>
+    </div>
+  `;
+  
+  // Afficher dans une modale ou une nouvelle fenêtre
+  const modal = document.createElement('div');
+  modal.id = 'healthRecordModal';
+  modal.style.cssText = `
+    position: fixed; top: 0; left: 0; right: 0; bottom: 0;
+    background: rgba(0, 0, 0, 0.5); display: flex; align-items: center;
+    justify-content: center; z-index: 9999;
+  `;
+  modal.innerHTML = healthRecordHTML;
+  modal.addEventListener('click', (e) => {
+    if (e.target === modal) closeHealthRecord();
+  });
+  document.body.appendChild(modal);
+}
+
+// === CLOSE HEALTH RECORD ===
+function closeHealthRecord() {
+  const modal = document.getElementById('healthRecordModal');
+  if (modal) modal.remove();
+}
+
+// === ADD MEDICAL RECORD ===
+function addMedicalRecord(petId) {
+  alert('Fonctionnalité "Ajouter un événement médical" en développement');
+  // Cette fonction pourrait ouvrir un formulaire pour ajouter des événements médicaux
+}
+
 
 function bookAppointmentWithVet(vetId, vetName) {
   // Store vet info in session and redirect to appointment booking
