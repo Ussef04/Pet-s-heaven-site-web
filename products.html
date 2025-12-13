@@ -61,6 +61,12 @@
 
         <!-- Auth Actions -->
         <div class="d-flex align-items-center gap-2 mt-3 mt-lg-0">
+          <!-- Bouton Panier -->
+          <a href="cart.html" class="btn btn-outline-primary btn-sm fw-600" style="border-radius: 8px; position: relative;">
+            <i class="bi bi-bag-fill me-1"></i>Panier
+            <span class="badge bg-danger position-absolute top-0 end-0 translate-middle-y" id="cartBadge" style="font-size: 0.7rem; display: none;">0</span>
+          </a>
+          
           <!-- Account Menu (hidden by default) -->
           <div class="dropdown d-none" id="accountMenu">
             <button class="btn btn-light btn-sm fw-600 dropdown-toggle" data-bs-toggle="dropdown" id="accountBtn" style="border-radius: 8px;">

@@ -15,6 +15,7 @@ let cart = JSON.parse(localStorage.getItem('ph_cart')) || [];
 
 document.addEventListener('DOMContentLoaded', () => {
   renderProducts('all');
+  updateCartBadge();
 
   // Event listeners sur les boutons catégories
   document.querySelectorAll('[data-category]').forEach(btn => {
@@ -87,9 +88,24 @@ function renderProducts(category) {
 }
 
 function addToCart(productName, price, btnEl) {
-  // Ajouter au panier
-  cart.push({ id: Date.now(), name: productName, price });
+  // Vérifier si l'article existe déjà
+  const existingItem = cart.find(item => item.name === productName);
+  
+  if (existingItem) {
+    // Si existe, augmenter la quantité
+    existingItem.quantity = (existingItem.quantity || 1) + 1;
+  } else {
+    // Sinon, ajouter un nouvel article
+    cart.push({ 
+      id: 'prod-' + Date.now() + Math.random(), 
+      name: productName, 
+      price: parseFloat(price),
+      quantity: 1
+    });
+  }
+  
   localStorage.setItem('ph_cart', JSON.stringify(cart));
+  updateCartBadge();
   
   // Animation du bouton
   const originalHTML = btnEl.innerHTML;
@@ -97,7 +113,7 @@ function addToCart(productName, price, btnEl) {
   btnEl.classList.add('btn-success');
   btnEl.disabled = true;
   
-  // Toast de confirmation
+  // Toast de confirmation avec lien vers panier
   const toast = document.createElement('div');
   toast.className = 'position-fixed bottom-0 end-0 m-3 p-3';
   toast.style.zIndex = '2000';
@@ -105,6 +121,7 @@ function addToCart(productName, price, btnEl) {
   toast.innerHTML = `
     <div class="alert alert-success alert-dismissible fade show" style="border-radius: 10px; box-shadow: 0 10px 30px rgba(16, 185, 129, 0.3); border: none;">
       <i class="bi bi-bag-check me-2"></i><strong>${productName}</strong> ajouté au panier!
+      <br><small><a href="cart.html" style="color: #10b981; text-decoration: underline; font-weight: bold;">Voir le panier →</a></small>
       <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
     </div>
   `;
@@ -119,5 +136,19 @@ function addToCart(productName, price, btnEl) {
   setTimeout(() => {
     toast.querySelector('.btn-close').click();
     setTimeout(() => toast.remove(), 300);
-  }, 3000);
+  }, 4000);
+}
+
+function updateCartBadge() {
+  const badge = document.getElementById('cartBadge');
+  if (!badge) return;
+  
+  const totalItems = cart.reduce((sum, item) => sum + (item.quantity || 1), 0);
+  
+  if (totalItems > 0) {
+    badge.textContent = totalItems;
+    badge.style.display = 'inline-block';
+  } else {
+    badge.style.display = 'none';
+  }
 }
